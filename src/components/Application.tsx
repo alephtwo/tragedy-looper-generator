@@ -1,4 +1,4 @@
-import { Button, Divider, Typography } from '@material-ui/core';
+import { Button, Container, Grid, Typography } from '@material-ui/core';
 import * as React from 'react';
 import { useState } from 'react';
 import { generateTragedy } from '../calculations/generateTragedy';
@@ -31,22 +31,20 @@ function Application(): JSX.Element {
   };
 
   return (
-    <>
-      <div>
-        <Typography variant="h1">Tragedy Looper Generator</Typography>
-      </div>
-      <Divider />
-      <div>
-        <Arguments args={args} setArgs={setArgs} />
-      </div>
-      <div>
-        <Button variant="contained" onClick={generate}>
-          Generate
-        </Button>
-      </div>
-      <Divider />
+    <Container>
+      <Typography align={'center'} variant="h1">
+        Tragedy Looper Generator
+      </Typography>
+      <Arguments args={args} setArgs={setArgs} />
+      <Grid container justify="center" alignItems="center">
+        <Grid item md={4} xs={12}>
+          <Button variant="contained" color="primary" fullWidth onClick={generate}>
+            Generate
+          </Button>
+        </Grid>
+      </Grid>
       <TragedyView tragedy={tragedy} />
-    </>
+    </Container>
   );
 }
 

@@ -1,4 +1,4 @@
-import { MenuItem, Select, Slider, Typography } from '@material-ui/core';
+import { Grid, makeStyles, MenuItem, Paper, Select, Slider, Typography } from '@material-ui/core';
 import * as React from 'react';
 import { Dispatch, SetStateAction } from 'react';
 import { TragedySets } from '../data/TragedySets';
@@ -11,6 +11,8 @@ interface ArgumentsProps {
 }
 
 export function Arguments({ args, setArgs }: ArgumentsProps): JSX.Element {
+  const classes = useStyles();
+
   const announceSlider = (property: string) => (value: number) => {
     const next = extend(args, { [property]: value });
     setArgs(next);
@@ -23,23 +25,31 @@ export function Arguments({ args, setArgs }: ArgumentsProps): JSX.Element {
   };
 
   return (
-    <>
-      <div>
-        <TragedySetChooser announce={announceTragedySet} value={args.tragedySet} />
-      </div>
-      <div>
-        <GeneratorSlider label="Subplots" value={args.subplots} min={1} max={2} announce={announceSlider('subplots')} />
-      </div>
-      <div>
-        <GeneratorSlider
-          label="Cast Size"
-          value={args.castSize}
-          min={6}
-          max={11}
-          announce={announceSlider('castSize')}
-        />
-      </div>
-    </>
+    <Paper className={classes.paper}>
+      <Grid container spacing={2}>
+        <Grid item xs={12}>
+          <TragedySetChooser announce={announceTragedySet} value={args.tragedySet} />
+        </Grid>
+        <Grid item md={6} xs={12}>
+          <GeneratorSlider
+            label="Subplots"
+            value={args.subplots}
+            min={1}
+            max={2}
+            announce={announceSlider('subplots')}
+          />
+        </Grid>
+        <Grid item md={6} xs={12}>
+          <GeneratorSlider
+            label="Cast Size"
+            value={args.castSize}
+            min={6}
+            max={11}
+            announce={announceSlider('castSize')}
+          />
+        </Grid>
+      </Grid>
+    </Paper>
   );
 }
 
@@ -49,7 +59,9 @@ interface TragedySetChooserProps {
 }
 
 function TragedySetChooser(props: TragedySetChooserProps) {
-  const options = TragedySets.sort((a, b) => a.order - b.order).map((ts) => {
+  // Build a copy of the tragedy sets so as not to affect the original
+  const sortedSets = [...TragedySets].sort((a, b) => a.order - b.order);
+  const options = sortedSets.map((ts) => {
     return (
       <MenuItem key={`${ts.id}`} value={ts.id}>
         {ts.title}
@@ -58,7 +70,12 @@ function TragedySetChooser(props: TragedySetChooserProps) {
   });
 
   return (
-    <Select label="Tragedy Set" onChange={(e) => props.announce(e.target.value as string)} value={props.value.id}>
+    <Select
+      variant="outlined"
+      fullWidth
+      onChange={(e) => props.announce(e.target.value as string)}
+      value={props.value.id}
+    >
       {options}
     </Select>
   );
@@ -73,6 +90,11 @@ interface GeneratorSliderProps {
 }
 
 function GeneratorSlider(props: GeneratorSliderProps): JSX.Element {
+  const marks = [];
+  for (let i = props.min; i <= props.max; i++) {
+    marks.push({ value: i, label: i.toString() });
+  }
+
   return (
     <>
       <Typography gutterBottom>
@@ -83,7 +105,7 @@ function GeneratorSlider(props: GeneratorSliderProps): JSX.Element {
         min={props.min}
         max={props.max}
         valueLabelDisplay="auto"
-        marks
+        marks={marks}
         onChange={(_, value) => props.announce(+value)}
       />
     </>
@@ -93,3 +115,11 @@ function GeneratorSlider(props: GeneratorSliderProps): JSX.Element {
 function extend(src: GeneratorArgs, ext: Record<string, unknown>): GeneratorArgs {
   return Object.assign({}, src, ext);
 }
+
+const useStyles = makeStyles((theme) => ({
+  paper: {
+    padding: theme.spacing(4),
+    marginTop: theme.spacing(2),
+    marginBottom: theme.spacing(2),
+  },
+}));
