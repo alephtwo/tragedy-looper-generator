@@ -182,7 +182,7 @@ export const Subplots: Record<string, Plot> = {
     name: 'Panic and Obsession',
   },
   peopleWhoDontListen: {
-    name: "People who don't Listen",
+    name: "People Who Don't Listen",
   },
   // Cosmic Evil
   anUnsettlingRumor2: {

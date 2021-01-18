@@ -2,6 +2,7 @@ import { Button, Divider, Typography } from '@material-ui/core';
 import * as React from 'react';
 import { useState } from 'react';
 import { generateTragedy } from '../calculations/generateTragedy';
+import { MainPlots } from '../data/Plots';
 import { TragedySets } from '../data/TragedySets';
 import { GeneratorArgs } from '../types/GeneratorArgs';
 import { Tragedy } from '../types/Tragedy';
@@ -15,6 +16,8 @@ const initialArgs: GeneratorArgs = {
 };
 
 const initialTragedy: Tragedy = {
+  mainPlot: MainPlots.murderPlan,
+  subplots: [],
   cast: [],
 };
 
