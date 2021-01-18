@@ -34,7 +34,7 @@ function MastermindCard({ tragedy: tragedy }: TragedyViewProps): JSX.Element {
   ));
 
   const cast = tragedy.cast.map((c) => (
-    <ListItem>
+    <ListItem key={c.id}>
       <ListItemText primary={c.name} />
     </ListItem>
   ));
