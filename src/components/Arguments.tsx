@@ -9,30 +9,45 @@ interface ArgumentsProps {
 }
 
 export function Arguments({ args, setArgs }: ArgumentsProps): JSX.Element {
+  const announce = (property: string) => (value: number) => {
+    const next = extend(args, { [property]: value });
+    setArgs(next);
+  };
+
   return (
     <>
       <div>
-        <Typography gutterBottom>Sublplots: {args.subplots}</Typography>
-        <Slider
-          defaultValue={args.subplots}
-          min={1}
-          max={2}
-          marks
-          valueLabelDisplay="auto"
-          onChange={(_, value) => setArgs(extend(args, { subplots: +value }))}
-        />
+        <GeneratorSlider label="Subplots" value={args.subplots} min={1} max={2} announce={announce('subplots')} />
       </div>
       <div>
-        <Typography gutterBottom>Cast Size: {args.castSize}</Typography>
-        <Slider
-          defaultValue={args.castSize}
-          min={6}
-          max={11}
-          marks
-          valueLabelDisplay="auto"
-          onChange={(_, value) => setArgs(extend(args, { castSize: +value }))}
-        />
+        <GeneratorSlider label="Cast Size" value={args.castSize} min={6} max={11} announce={announce('castSize')} />
       </div>
+    </>
+  );
+}
+
+interface GeneratorSliderProps {
+  label: string;
+  value: number;
+  min: number;
+  max: number;
+  announce: (value: number) => void;
+}
+
+function GeneratorSlider(props: GeneratorSliderProps): JSX.Element {
+  return (
+    <>
+      <Typography gutterBottom>
+        {props.label}: {props.value}
+      </Typography>
+      <Slider
+        defaultValue={props.value}
+        min={props.min}
+        max={props.max}
+        valueLabelDisplay="auto"
+        marks
+        onChange={(_, value) => props.announce(+value)}
+      />
     </>
   );
 }
