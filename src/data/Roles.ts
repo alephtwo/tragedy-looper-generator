@@ -53,4 +53,48 @@ export const Roles: Record<string, Role> = {
     id: '011c23fd-15b1-435e-a08e-b91e4d18ba51',
     name: 'Witch',
   },
+  magician: {
+    id: 'ce40a35a-ffce-4226-b519-2a66979a091d',
+    name: 'Magician',
+  },
+  ninja: {
+    id: '8dc41278-0a96-4ee4-ab01-f33267e3a955',
+    name: 'Ninja',
+  },
+  obstinate: {
+    id: '58ff6ee3-dd0f-4c59-96ad-06b840e1b169',
+    name: 'Obstinate',
+  },
+  prophet: {
+    id: '3e425296-3ffc-499e-b4ea-b7b799587335',
+    name: 'Prophet',
+  },
+  immortal: {
+    id: '0b016916-baae-430a-962a-6eb70fc927e2',
+    name: 'Immortal',
+  },
+  poisoner: {
+    id: '06e6e832-dfe2-4fa0-bb09-8d9ace844bef',
+    name: 'Poisoner',
+  },
+  fool: {
+    id: '42860f15-bf07-4a96-81d9-5ba184655018',
+    name: 'Fool',
+  },
+  privateInvestigator: {
+    id: '1f74472f-0029-402f-b0ba-7b9958f70af6',
+    name: 'Private Investigator',
+  },
+  paranoiac: {
+    id: '216548f7-2a29-4e57-b76b-567661aa2d36',
+    name: 'Paranoiac',
+  },
+  twin: {
+    id: '2ded16d0-b220-470b-a1c1-7eb2ea3f44b2',
+    name: 'Twin',
+  },
+  therapist: {
+    id: '8e2bfcf8-1669-4414-84ca-e4903a6afc89',
+    name: 'Therapist',
+  },
 };

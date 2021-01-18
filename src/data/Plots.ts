@@ -42,53 +42,53 @@ export const MainPlots: Record<string, Plot> = {
   theSealedItem2: {
     id: '2624db3b-eab3-4d65-84e4-0a42c6862122',
     name: 'The Sealed Item (Midnight Zone)',
-    roles: [],
+    roles: [Roles.brain, Roles.cultist],
   },
   secretRecord: {
     id: '61494789-8d76-4b60-8850-1370bf4e323c',
     name: 'Secret Record',
-    roles: [],
+    roles: [Roles.keyPerson, Roles.brain, Roles.conspiracyTheorist],
   },
   maleConfrontation: {
     id: 'b65ad9f2-7756-40a3-b0e1-3d91928ae99b',
     name: 'Male Confrontation',
-    roles: [],
+    roles: [Roles.ninja],
   },
   theDevilsHand: {
     id: '03207e39-1c4f-43a9-91fe-9a33a9137d4d',
     name: "The Devil's Hand",
-    roles: [],
+    roles: [Roles.keyPerson, Roles.cultist, Roles.ninja],
   },
   fatedConnections: {
     id: 'cb193092-3d9a-4f7b-8b00-9e855585dfb6',
     name: 'Fated Connections',
-    roles: [],
+    roles: [Roles.conspiracyTheorist, Roles.friend, Roles.serialKiller],
   },
   // Mystery Circle
   murderPlan2: {
     id: 'd3e4073a-421f-45ba-bcae-d10a3bdc5cbf',
     name: 'Murder Plan (Mystery Circle)',
-    roles: [],
+    roles: [Roles.keyPerson, Roles.brain, Roles.killer],
   },
   aQuiltOfIncidents: {
     id: 'd53e2adc-ec83-4cfd-bd28-71d7e33b87c9',
     name: 'A Quilt of Incidents',
-    roles: [],
+    roles: [Roles.fool, Roles.conspiracyTheorist],
   },
   tightropePlan: {
     id: '1bba4a6c-59bb-4680-8786-92da9c9821f5',
     name: 'Tightrope Plan',
-    roles: [],
+    roles: [Roles.brain, Roles.killer],
   },
   theBlackSchool: {
     id: '12aeb24d-2238-4439-a414-37d25f499b1d',
     name: 'The Black School',
-    roles: [],
+    roles: [Roles.brain],
   },
   aDropOfStrychnine: {
     id: 'b9877c5a-5406-4934-b437-c01a37ff007e',
     name: 'A Drop of Strychnine',
-    roles: [],
+    roles: [Roles.keyPerson, Roles.poisoner, Roles.fool],
   },
   // Prime Evil
   aNobleBloodline: {
@@ -196,73 +196,73 @@ export const Subplots: Record<string, Plot> = {
   loveHateSpiral: {
     id: 'f35974c7-5c63-4af3-9189-ece67511b16a',
     name: 'Love-Hate Spiral',
-    roles: [],
+    roles: [Roles.friend, Roles.obstinate],
   },
   witchesTeaTime: {
     id: '3afb64de-e67a-472f-af69-e232aad90d23',
     name: 'Witches Tea Time',
-    roles: [],
+    roles: [Roles.conspiracyTheorist, Roles.friend, Roles.witch, Roles.witch],
   },
   diceOfTheGods: {
     id: '066d20aa-2830-4c9d-8354-0413a0e1b2e3',
     name: 'Dice of the Gods',
-    roles: [],
+    roles: [Roles.serialKiller, Roles.obstinate],
   },
   unsafeTrigger: {
     id: '133e4874-1815-4880-a880-400f190a039e',
     name: 'Unsafe Trigger',
-    roles: [],
+    roles: [Roles.factor],
   },
   showtimeOfDeath: {
     id: '813e7a16-0417-416a-a144-45a63c5d5441',
     name: 'Showtime of Death',
-    roles: [],
+    roles: [Roles.magician, Roles.immortal],
   },
   unansweredHeart: {
     id: '2d65bd0c-4469-44bd-8a0d-1c8d650cabb9',
     name: 'Unanswered Heart',
-    roles: [],
+    roles: [Roles.conspiracyTheorist, Roles.magician],
   },
   worshippersOfTheApocalypse: {
     id: 'e77efda5-4b07-4ff4-8b64-096bd6562f14',
     name: 'Worshippers of the Apocalypse',
-    roles: [],
+    roles: [Roles.prophet],
   },
   // Mystery Circle
   theHiddenFreak2: {
     id: '9fe52e73-5565-48c4-846d-86fe51d8cb18',
     name: 'The Hidden Freak (Mystery Circle)',
-    roles: [],
+    roles: [Roles.friend, Roles.serialKiller],
   },
   isolatedInstitutionPsycho: {
     id: 'ea84db6e-2d0e-4b3c-a964-90f108572c2b',
     name: 'Isolated Institution Psycho',
-    roles: [],
+    roles: [Roles.conspiracyTheorist, Roles.therapist, Roles.paranoiac],
   },
   smellOfGunpowder: {
     id: 'a74b8d79-077d-40f8-bfc2-d977642fa546',
     name: 'Smell of Gunpowder',
-    roles: [],
+    roles: [Roles.serialKiller],
   },
   iAmAMasterDetective: {
     id: 'cb9e521f-113f-4599-8482-4f640a18310f',
     name: 'I Am a Master Detective',
-    roles: [],
+    roles: [Roles.conspiracyTheorist, Roles.friend, Roles.privateInvestigator],
   },
   danceOfFools: {
     id: '51482a2a-13d6-4b0c-b2d5-379a98ed0e54',
     name: 'Dance of Fools',
-    roles: [],
+    roles: [Roles.fool, Roles.friend],
   },
   anAbsoluteWill: {
     id: 'de83f0f3-63fe-45bc-87ef-5ac086fd548c',
     name: 'An Absolute Will',
-    roles: [],
+    roles: [Roles.obstinate],
   },
   trickyTwins: {
     id: 'aa04f330-7a55-44a7-a534-f36fd2267995',
     name: 'Tricky Twins',
-    roles: [],
+    roles: [Roles.paranoiac, Roles.twin],
   },
   // Prime Evil
   thoseWithHabits: {
