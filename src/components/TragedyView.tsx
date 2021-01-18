@@ -27,21 +27,26 @@ export function TragedyView({ tragedy: tragedy }: TragedyViewProps): JSX.Element
 function MastermindCard({ tragedy: tragedy }: TragedyViewProps): JSX.Element {
   const styles = useStyles();
 
-  const subplots = tragedy.subplots.map((sp) => (
-    <ListItem key={sp.id}>
-      <ListItemText primary={sp.name} />
-    </ListItem>
-  ));
+  const subplots = [...tragedy.subplots]
+    .sort((a, b) => a.name.localeCompare(b.name))
+    .map((sp) => (
+      <ListItem key={sp.id}>
+        <ListItemText primary={sp.name} />
+      </ListItem>
+    ));
 
-  const cast = tragedy.cast.map((c) => (
-    <ListItem key={c.id}>
-      <ListItemText primary={c.name} />
-    </ListItem>
-  ));
+  const cast = [...tragedy.cast]
+    .sort((a, b) => a.name.localeCompare(b.name))
+    .map((c) => (
+      <ListItem key={c.id}>
+        <ListItemText primary={c.name} />
+      </ListItem>
+    ));
 
   return (
     <Paper className={styles.paper}>
       <Typography variant="h2">Mastermind</Typography>
+      <Typography>Tragedy Set: {tragedy.tragedySet}</Typography>
       <Typography>Main Plot: {tragedy.mainPlot.name}</Typography>
       <Typography>Subplots:</Typography>
       <List dense>{subplots}</List>
@@ -57,7 +62,7 @@ function PlayerCard({ tragedy: tragedy }: TragedyViewProps): JSX.Element {
   return (
     <Paper className={styles.paper}>
       <Typography variant="h2">Players</Typography>
-      {JSON.stringify(tragedy)}
+      <Typography>Tragedy Set: {tragedy.tragedySet}</Typography>
     </Paper>
   );
 }

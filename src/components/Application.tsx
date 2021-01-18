@@ -16,6 +16,7 @@ const initialArgs: GeneratorArgs = {
 };
 
 const initialTragedy: Tragedy = {
+  tragedySet: '',
   mainPlot: MainPlots.murderPlan,
   subplots: [],
   cast: [],

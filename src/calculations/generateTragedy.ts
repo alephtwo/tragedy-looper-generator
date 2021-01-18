@@ -13,6 +13,7 @@ export function generateTragedy(args: GeneratorArgs): Tragedy {
   const cast = chooseCast(tragedySet.availableCast, args.castSize);
 
   return {
+    tragedySet: tragedySet.title,
     mainPlot: mainPlot,
     subplots: subplots,
     cast: cast,
