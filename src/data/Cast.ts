@@ -1,6 +1,6 @@
 import { Character } from '../types/Character';
 
-const FullCast: Record<string, Character> = {
+const FullCast: CastDatabase = {
   // Base Game
   boyStudent: {
     id: '03bdc526-2b8c-48f4-8d10-2d0bec80cfe7',
@@ -196,3 +196,32 @@ export const CosmicEvilCast = BaseCast.concat([
   FullCast.blackCat,
   FullCast.soldier,
 ]);
+
+interface CastDatabase {
+  boyStudent: Character;
+  girlStudent: Character;
+  richMansDaughter: Character;
+  shrineMaiden: Character;
+  policeOfficer: Character;
+  officeWorker: Character;
+  informer: Character;
+  doctor: Character;
+  patient: Character;
+  classRep: Character;
+  mysteryBoy: Character;
+  alien: Character;
+  godlyBeing: Character;
+  popIdol: Character;
+  journalist: Character;
+  boss: Character;
+  nurse: Character;
+  henchman: Character;
+  scientist: Character;
+  forensicSpecialist: Character;
+  ai: Character;
+  illusion: Character;
+  teacher: Character;
+  transferStudent: Character;
+  blackCat: Character;
+  soldier: Character;
+}

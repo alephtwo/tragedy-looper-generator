@@ -1,6 +1,6 @@
 import { Role } from '../types/Role';
 
-export const Roles: Record<string, Role> = {
+export const Roles: RoleDatabase = {
   person: {
     id: '45041819-44ec-4fbd-aa6e-2cf816097cdc',
     name: 'Person',
@@ -146,3 +146,42 @@ export const Roles: Record<string, Role> = {
     name: 'Wizard',
   },
 };
+
+interface RoleDatabase {
+  person: Role;
+  keyPerson: Role;
+  killer: Role;
+  brain: Role;
+  cultist: Role;
+  conspiracyTheorist: Role;
+  serialKiller: Role;
+  curmudgeon: Role;
+  friend: Role;
+  timeTraveller: Role;
+  lover: Role;
+  lovedOne: Role;
+  factor: Role;
+  witch: Role;
+  magician: Role;
+  ninja: Role;
+  obstinate: Role;
+  prophet: Role;
+  immortal: Role;
+  poisoner: Role;
+  fool: Role;
+  privateInvestigator: Role;
+  paranoiac: Role;
+  twin: Role;
+  therapist: Role;
+  vampire: Role;
+  werewolf: Role;
+  nightmare: Role;
+  ghost: Role;
+  showOff: Role;
+  coward: Role;
+  sacrifice: Role;
+  deepOne: Role;
+  witness: Role;
+  faceless: Role;
+  wizard: Role;
+}

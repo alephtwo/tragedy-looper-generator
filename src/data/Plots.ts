@@ -1,7 +1,7 @@
 import { Plot } from '../types/Plot';
 import { Roles } from './Roles';
 
-export const MainPlots: Record<string, Plot> = {
+export const MainPlots: MainPlotDatabase = {
   // Base Game
   murderPlan: {
     id: '4de8232d-3704-4976-9785-e4d826da0cde',
@@ -144,7 +144,7 @@ export const MainPlots: Record<string, Plot> = {
   },
 };
 
-export const Subplots: Record<string, Plot> = {
+export const Subplots: SubplotDatabase = {
   // Base Game
   circleOfFriends: {
     id: 'ddfabe2e-4717-43d8-87e5-6542682e7387',
@@ -337,3 +337,73 @@ export const Subplots: Record<string, Plot> = {
     roles: [Roles.paranoiac],
   },
 };
+
+interface MainPlotDatabase {
+  murderPlan: Plot;
+  theSealedItem: Plot;
+  signWithMe: Plot;
+  changeOfFuture: Plot;
+  giantTimeBomb: Plot;
+  lightOfTheAvenger: Plot;
+  aPlaceToProtect: Plot;
+  theSealedItem2: Plot;
+  secretRecord: Plot;
+  maleConfrontation: Plot;
+  theDevilsHand: Plot;
+  fatedConnections: Plot;
+  murderPlan2: Plot;
+  aQuiltOfIncidents: Plot;
+  tightropePlan: Plot;
+  theBlackSchool: Plot;
+  aDropOfStrychnine: Plot;
+  aNobleBloodline: Plot;
+  moonlightBeast: Plot;
+  nightMistNightmare: Plot;
+  theOnesFromTheGrave: Plot;
+  theCursedLand: Plot;
+  choirToTheOutsideGod: Plot;
+  theSacredWordsOfDagon: Plot;
+  theKingInYellow: Plot;
+  giantTimeBombAgain: Plot;
+  bloodyRites: Plot;
+}
+
+interface SubplotDatabase {
+  circleOfFriends: Plot;
+  aLoveAffair: Plot;
+  theHiddenFreak: Plot;
+  anUnsettlingRumor: Plot;
+  paranoiaVirus: Plot;
+  threadsOfFate: Plot;
+  unknownFactorX: Plot;
+  shadowOfTheRipper: Plot;
+  aHideousScript: Plot;
+  loveHateSpiral: Plot;
+  witchesTeaTime: Plot;
+  diceOfTheGods: Plot;
+  unsafeTrigger: Plot;
+  showtimeOfDeath: Plot;
+  unansweredHeart: Plot;
+  worshippersOfTheApocalypse: Plot;
+  theHiddenFreak2: Plot;
+  isolatedInstitutionPsycho: Plot;
+  smellOfGunpowder: Plot;
+  iAmAMasterDetective: Plot;
+  danceOfFools: Plot;
+  anAbsoluteWill: Plot;
+  trickyTwins: Plot;
+  thoseWithHabits: Plot;
+  aLoveAffair2: Plot;
+  witchsCurse: Plot;
+  theKeyGirl: Plot;
+  monsterIntrigue: Plot;
+  panicAndObsession: Plot;
+  peopleWhoDontListen: Plot;
+  anUnsettlingRumor2: Plot;
+  theResistance: Plot;
+  peopleWhoSaw: Plot;
+  theProfoundRace: Plot;
+  whispersFromTheDeep: Plot;
+  theFacelessGod: Plot;
+  aTwistedTruth: Plot;
+}

@@ -146,7 +146,7 @@ export const TragedySets: Array<TragedySetInfo> = [
       Subplots.peopleWhoDontListen,
     ],
     incidents: [
-      Incidents.sacrilegiousMurder,
+      Incidents.sacrilegiousMurger,
       Incidents.increasingUnease,
       Incidents.missingPerson,
       Incidents.evilContamination,

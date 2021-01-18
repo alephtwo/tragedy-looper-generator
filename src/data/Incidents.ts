@@ -1,7 +1,6 @@
 import { Incident } from '../types/Incident';
 
-export const Incidents: Record<string, Incident> = {
-  // First Steps
+export const Incidents: IncidentDatabase = {
   murder: {
     id: '4b50bb64-da08-448b-81ad-ad7765cf0e7d',
     name: 'Murder',
@@ -30,7 +29,6 @@ export const Incidents: Record<string, Incident> = {
     id: '573fcf57-fc62-4a2e-96a0-49862082ff53',
     name: 'Spreading',
   },
-  // Basic Tragedy
   foulEvil: {
     id: '6cfbbac5-14c1-4082-a651-2786aac17b17',
     name: 'Foul Evil',
@@ -39,7 +37,6 @@ export const Incidents: Record<string, Incident> = {
     id: '02068221-5e2e-407e-ba77-e5dbe7f31704',
     name: 'Butterfly Effect',
   },
-  // Midnight Zone
   conspiracies: {
     id: '6a0b35d7-2d04-4112-80b2-4c0fccf93580',
     name: 'Conspiracies',
@@ -64,7 +61,6 @@ export const Incidents: Record<string, Incident> = {
     id: '6623e61f-8de9-4018-a14f-4b9ab7353f3a',
     name: 'Confession',
   },
-  // Mystery Circle
   portent: {
     id: '94060d4e-35c8-4623-94e9-a3c8521c73d8',
     name: 'Portent',
@@ -89,7 +85,6 @@ export const Incidents: Record<string, Incident> = {
     id: '6d8cc913-c92f-40d8-9bc9-6a386f05621e',
     name: 'The Silver Bullet',
   },
-  // Prime Evil
   sacrilegiousMurger: {
     id: '89e4b54c-d76a-47e7-8894-c15b6771a5f5',
     name: 'Sacrilegious Murder',
@@ -126,7 +121,6 @@ export const Incidents: Record<string, Incident> = {
     id: '444b1aa1-b4e4-4530-8d8d-858b088ef928',
     name: 'Fountain of Filth',
   },
-  // Cosmic Mythology
   insaneMurder: {
     id: '6dc9d495-6dcb-4aed-8e30-8c3aa0470984',
     name: 'Insane Murder',
@@ -147,4 +141,47 @@ export const Incidents: Record<string, Incident> = {
     id: 'dfdb1988-7d95-4553-94c4-1da003166cba',
     name: 'Discovery',
   },
+  serialMurder: {
+    id: 'deab4fbd-de29-4b26-9292-ca7f5e8c060b',
+    name: 'Serial Murder',
+  },
 };
+
+interface IncidentDatabase {
+  murder: Incident;
+  increasingUnease: Incident;
+  suicide: Incident;
+  hospitalIncident: Incident;
+  farawayMurder: Incident;
+  missingPerson: Incident;
+  spreading: Incident;
+  foulEvil: Incident;
+  butterflyEffect: Incident;
+  conspiracies: Incident;
+  uproar: Incident;
+  fakeIncident: Incident;
+  breakthrough: Incident;
+  fakedSuicide: Incident;
+  confession: Incident;
+  portent: Incident;
+  terrorism: Incident;
+  bestialMurder: Incident;
+  aSuspiciousLetter: Incident;
+  closedCircle: Incident;
+  theSilverBullet: Incident;
+  sacrilegiousMurger: Incident;
+  theExecutioner: Incident;
+  darkRumor: Incident;
+  barricade: Incident;
+  evilContamination: Incident;
+  nightOfMadness: Incident;
+  awakenedCurse: Incident;
+  evangeliumOfTheDead: Incident;
+  fountainOfFilth: Incident;
+  insaneMurder: Incident;
+  massSuicide: Incident;
+  fireOfDemise: Incident;
+  houndDogScent: Incident;
+  discovery: Incident;
+  serialMurder: Incident;
+}
