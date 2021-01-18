@@ -11,7 +11,7 @@ interface ArgumentsProps {
 }
 
 export function Arguments({ args, setArgs }: ArgumentsProps): JSX.Element {
-  const classes = useStyles();
+  const styles = useStyles();
 
   const announceSlider = (property: string) => (value: number) => {
     const next = extend(args, { [property]: value });
@@ -25,7 +25,7 @@ export function Arguments({ args, setArgs }: ArgumentsProps): JSX.Element {
   };
 
   return (
-    <Paper className={classes.paper}>
+    <Paper className={styles.paper}>
       <Grid container spacing={2}>
         <Grid item xs={12}>
           <TragedySetChooser announce={announceTragedySet} value={args.tragedySet} />

@@ -1,5 +1,6 @@
 import * as React from 'react';
 import { Tragedy } from '../types/Tragedy';
+import { Grid, List, ListItem, ListItemText, makeStyles, Paper, Typography } from '@material-ui/core';
 
 interface TragedyViewProps {
   tragedy: Tragedy;
@@ -12,27 +13,59 @@ export function TragedyView({ tragedy: tragedy }: TragedyViewProps): JSX.Element
   }
 
   return (
-    <>
-      <div>
-        <h2>Main Plot</h2>
-        {tragedy.mainPlot.name}
-      </div>
-      <div>
-        <h2>Subplots</h2>
-        <ul>
-          {tragedy.subplots.map((s) => (
-            <li>{s.name}</li>
-          ))}
-        </ul>
-      </div>
-      <div>
-        <h2>Cast</h2>
-        <ul>
-          {tragedy.cast.map((c) => (
-            <li>{c.name}</li>
-          ))}
-        </ul>
-      </div>
-    </>
+    <Grid container spacing={2}>
+      <Grid item xs={12} md={6}>
+        <MastermindCard tragedy={tragedy} />
+      </Grid>
+      <Grid item xs={12} md={6}>
+        <PlayerCard tragedy={tragedy} />
+      </Grid>
+    </Grid>
   );
 }
+
+function MastermindCard({ tragedy: tragedy }: TragedyViewProps): JSX.Element {
+  const styles = useStyles();
+
+  const subplots = tragedy.subplots.map((sp) => (
+    <ListItem>
+      <ListItemText primary={sp.name} />
+    </ListItem>
+  ));
+
+  const cast = tragedy.cast.map((c) => (
+    <ListItem>
+      <ListItemText primary={c.name} />
+    </ListItem>
+  ));
+
+  return (
+    <Paper className={styles.paper}>
+      <Typography variant="h2">Mastermind</Typography>
+      <Typography>Main Plot: {tragedy.mainPlot.name}</Typography>
+      <Typography>Subplots:</Typography>
+      <List dense>{subplots}</List>
+      <Typography>Cast:</Typography>
+      <List dense>{cast}</List>
+    </Paper>
+  );
+}
+
+function PlayerCard({ tragedy: tragedy }: TragedyViewProps): JSX.Element {
+  const styles = useStyles();
+
+  return (
+    <Paper className={styles.paper}>
+      <Typography variant="h2">Players</Typography>
+      {JSON.stringify(tragedy)}
+    </Paper>
+  );
+}
+
+const useStyles = makeStyles((theme) => ({
+  paper: {
+    padding: theme.spacing(4),
+    marginTop: theme.spacing(2),
+    marginBottom: theme.spacing(2),
+  },
+}));
