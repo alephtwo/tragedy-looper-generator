@@ -1,6 +1,6 @@
 import { Character } from "../types/Character";
 
-export const FullCast: Record<string, Character> = {
+const FullCast: Record<string, Character> = {
   // Base Game
   boyStudent: {},
   girlStudent: {},
@@ -52,3 +52,17 @@ export const BaseCast: Array<Character> = [
   FullCast.nurse,
   FullCast.henchman
 ]
+
+export const MidnightCircleCast = BaseCast.concat([
+  FullCast.scientist,
+  FullCast.forensicSpecialist,
+  FullCast.ai,
+  FullCast.illusion
+])
+
+export const CosmicEvilCast = BaseCast.concat([
+  FullCast.teacher,
+  FullCast.transferStudent,
+  FullCast.blackCat,
+  FullCast.soldier
+])
