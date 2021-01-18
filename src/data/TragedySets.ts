@@ -1,6 +1,7 @@
 import { TragedySetInfo } from '../types/TragedySetInfo';
 import * as Cast from './Cast';
 import { MainPlots, Subplots } from './Plots';
+import { Incidents } from './Incidents';
 
 export const TragedySets: Array<TragedySetInfo> = [
   {
@@ -10,6 +11,15 @@ export const TragedySets: Array<TragedySetInfo> = [
     availableCast: Cast.BaseCast,
     mainPlots: [MainPlots.murderPlan, MainPlots.lightOfTheAvenger, MainPlots.aPlaceToProtect],
     subplots: [Subplots.shadowOfTheRipper, Subplots.anUnsettlingRumor, Subplots.aHideousScript],
+    incidents: [
+      Incidents.murder,
+      Incidents.increasingUnease,
+      Incidents.suicide,
+      Incidents.hospitalIncident,
+      Incidents.farawayMurder,
+      Incidents.missingPerson,
+      Incidents.spreading,
+    ],
   },
   {
     id: 'bb074b59-e991-4a21-868d-d815acb85a05',
@@ -31,6 +41,17 @@ export const TragedySets: Array<TragedySetInfo> = [
       Subplots.paranoiaVirus,
       Subplots.threadsOfFate,
       Subplots.unknownFactorX,
+    ],
+    incidents: [
+      Incidents.murder,
+      Incidents.increasingUnease,
+      Incidents.foulEvil,
+      Incidents.suicide,
+      Incidents.hospitalIncident,
+      Incidents.farawayMurder,
+      Incidents.missingPerson,
+      Incidents.spreading,
+      Incidents.butterflyEffect,
     ],
   },
   {
@@ -54,6 +75,19 @@ export const TragedySets: Array<TragedySetInfo> = [
       Subplots.unansweredHeart,
       Subplots.worshippersOfTheApocalypse,
     ],
+    incidents: [
+      Incidents.serialMurder,
+      Incidents.missingPerson,
+      Incidents.suicide,
+      Incidents.conspiracies,
+      Incidents.increasingUnease,
+      Incidents.hospitalIncident,
+      Incidents.uproar,
+      Incidents.fakeIncident,
+      Incidents.breakthrough,
+      Incidents.fakedSuicide,
+      Incidents.confession,
+    ],
   },
   {
     id: '133a909a-c0ac-4155-9d5c-d4903bc3e42e',
@@ -75,6 +109,19 @@ export const TragedySets: Array<TragedySetInfo> = [
       Subplots.danceOfFools,
       Subplots.anAbsoluteWill,
       Subplots.trickyTwins,
+    ],
+    incidents: [
+      Incidents.serialMurder,
+      Incidents.hospitalIncident,
+      Incidents.portent,
+      Incidents.increasingUnease,
+      Incidents.terrorism,
+      Incidents.bestialMurder,
+      Incidents.suicide,
+      Incidents.aSuspiciousLetter,
+      Incidents.fakedSuicide,
+      Incidents.closedCircle,
+      Incidents.theSilverBullet,
     ],
   },
   {
@@ -98,6 +145,19 @@ export const TragedySets: Array<TragedySetInfo> = [
       Subplots.panicAndObsession,
       Subplots.peopleWhoDontListen,
     ],
+    incidents: [
+      Incidents.sacrilegiousMurder,
+      Incidents.increasingUnease,
+      Incidents.missingPerson,
+      Incidents.evilContamination,
+      Incidents.theExecutioner,
+      Incidents.darkRumor,
+      Incidents.barricade,
+      Incidents.nightOfMadness,
+      Incidents.awakenedCurse,
+      Incidents.evangeliumOfTheDead,
+      Incidents.fountainOfFilth,
+    ],
   },
   {
     id: '8f5efcb6-1251-4e2c-b82a-763f69e8df75',
@@ -119,6 +179,19 @@ export const TragedySets: Array<TragedySetInfo> = [
       Subplots.whispersFromTheDeep,
       Subplots.theFacelessGod,
       Subplots.aTwistedTruth,
+    ],
+    incidents: [
+      Incidents.insaneMurder,
+      Incidents.massSuicide,
+      Incidents.increasingUnease,
+      Incidents.missingPerson,
+      Incidents.evilContamination,
+      Incidents.hospitalIncident,
+      Incidents.uproar,
+      Incidents.fireOfDemise,
+      Incidents.houndDogScent,
+      Incidents.discovery,
+      Incidents.theExecutioner,
     ],
   },
 ];
