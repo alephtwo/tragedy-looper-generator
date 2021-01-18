@@ -97,4 +97,48 @@ export const Roles: Record<string, Role> = {
     id: '8e2bfcf8-1669-4414-84ca-e4903a6afc89',
     name: 'Therapist',
   },
+  vampire: {
+    id: 'da697bd7-9170-4587-a060-92e7229f1340',
+    name: 'Vampire',
+  },
+  werewolf: {
+    id: '6f7453ad-6dde-40b2-9355-00b2ff1f5626',
+    name: 'Werewolf',
+  },
+  nightmare: {
+    id: 'cf36a815-8c0c-4511-8897-590ca0791265',
+    name: 'Nightmare',
+  },
+  ghost: {
+    id: '51493ed0-0870-49a1-bd54-c63ba3406923',
+    name: 'Ghost',
+  },
+  showOff: {
+    id: '6b1049dd-3690-4181-b56e-6452d565cbcc',
+    name: 'Show-Off',
+  },
+  coward: {
+    id: 'b18d3c56-a096-4897-a533-76967eddc3d7',
+    name: 'Coward',
+  },
+  sacrifice: {
+    id: '6d11f30c-f04f-4136-8c16-368ba803f816',
+    name: 'Sacrifice',
+  },
+  deepOne: {
+    id: '94807217-c0ba-4481-949d-82877399c129',
+    name: 'Deep One',
+  },
+  witness: {
+    id: 'a342d418-7eb3-470a-b1b0-cb5509c2ce38',
+    name: 'Witness',
+  },
+  faceless: {
+    id: 'eba1ca5a-4a7d-4f1a-8177-8f5fa9059b6c',
+    name: 'Faceless',
+  },
+  wizard: {
+    id: '15807f5c-e3e1-4d8d-be73-9958acf2084b',
+    name: 'Wizard',
+  },
 };

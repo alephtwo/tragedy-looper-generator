@@ -94,17 +94,17 @@ export const MainPlots: Record<string, Plot> = {
   aNobleBloodline: {
     id: '16732658-6f01-4c88-af4b-d404ffdd7682',
     name: 'A Noble Bloodline',
-    roles: [],
+    roles: [Roles.keyPerson, Roles.vampire],
   },
   moonlightBeast: {
     id: '9f989bc8-fd71-495c-bb88-94938c1be142',
     name: 'Moonlight Beast',
-    roles: [],
+    roles: [Roles.werewolf],
   },
   nightMistNightmare: {
     id: 'e82a5e06-4b04-488e-9eb8-9f046f7235a0',
     name: 'Night Mist Nightmare',
-    roles: [],
+    roles: [Roles.nightmare],
   },
   theOnesFromTheGrave: {
     id: '9c790fb8-4748-433b-924c-b1dd22d75ee2',
@@ -114,33 +114,33 @@ export const MainPlots: Record<string, Plot> = {
   theCursedLand: {
     id: 'e2878437-6e36-4099-ab94-4b7f97ca2fc6',
     name: 'The Cursed Land',
-    roles: [],
+    roles: [Roles.ghost, Roles.showOff],
   },
   // Cosmic Mythology
   choirToTheOutsideGod: {
     id: '620f0793-22c5-4fa9-a096-f6aee8cd7de9',
     name: 'Choir to the Outside God',
-    roles: [],
+    roles: [Roles.keyPerson, Roles.sacrifice, Roles.immortal],
   },
   theSacredWordsOfDagon: {
     id: 'e6333431-f648-4cdd-bd53-638070e06cb0',
     name: 'The Sacred Words of Dagon',
-    roles: [],
+    roles: [Roles.keyPerson, Roles.cultist, Roles.deepOne],
   },
   theKingInYellow: {
     id: '6f3ebebd-5d82-4bf0-8a80-2ee7dfac0643',
     name: 'The King in Yellow',
-    roles: [],
+    roles: [Roles.sacrifice, Roles.cultist],
   },
   giantTimeBombAgain: {
     id: 'ab783db0-205d-432d-8411-e7ad0e2030b8',
     name: 'Giant Time Bomb Again',
-    roles: [],
+    roles: [Roles.witch, Roles.deepOne],
   },
   bloodyRites: {
     id: '50cb0340-6f44-4e75-b129-23553cdbb4c0',
     name: 'Bloody Rites',
-    roles: [],
+    roles: [Roles.witch, Roles.immortal],
   },
 };
 
@@ -268,72 +268,72 @@ export const Subplots: Record<string, Plot> = {
   thoseWithHabits: {
     id: 'b776e852-06b9-48fe-8ff4-8386757944a3',
     name: 'Those with Habits',
-    roles: [],
+    roles: [Roles.ghost, Roles.serialKiller, Roles.lovedOne],
   },
   aLoveAffair2: {
     id: '6c191eba-6505-4230-a5c9-5dd0f7e2a6ab',
     name: 'A Love Affair (Prime Evil)',
-    roles: [],
+    roles: [Roles.lover, Roles.lovedOne],
   },
   witchsCurse: {
     id: '9d41e7bd-c30f-4607-adad-79264884aa8e',
     name: "Witch's Curse",
-    roles: [],
+    roles: [Roles.conspiracyTheorist, Roles.witch],
   },
   theKeyGirl: {
     id: '8d27e3b9-0351-4039-bef2-ddf7e09acb2a',
     name: 'The Key Girl',
-    roles: [],
+    roles: [Roles.keyPerson],
   },
   monsterIntrigue: {
     id: '73438252-52c1-43c2-aa07-df071ca959a8',
     name: 'Monster Intrigue',
-    roles: [],
+    roles: [Roles.conspiracyTheorist],
   },
   panicAndObsession: {
     id: '2f294d6f-0b0f-495d-b9e4-0e383973a37d',
     name: 'Panic and Obsession',
-    roles: [],
+    roles: [Roles.serialKiller, Roles.coward, Roles.witch],
   },
   peopleWhoDontListen: {
     id: 'aa2b8699-b738-4140-bf08-5dd42dd6064e',
     name: "People Who Don't Listen",
-    roles: [],
+    roles: [Roles.showOff, Roles.conspiracyTheorist, Roles.coward],
   },
   // Cosmic Evil
   anUnsettlingRumor2: {
     id: '69cb5ae0-9b3a-4637-9671-d13f461f7230',
     name: 'An Unsettling Rumor (Cosmic Evil)',
-    roles: [],
+    roles: [Roles.conspiracyTheorist],
   },
   theResistance: {
     id: '3758b139-f56d-4ad6-b686-711f2e03d587',
     name: 'The Resistance',
-    roles: [],
+    roles: [Roles.conspiracyTheorist, Roles.wizard, Roles.serialKiller],
   },
   peopleWhoSaw: {
     id: 'adc8b9f9-40f2-4efb-8803-b27f5febfc98',
     name: 'People Who Saw',
-    roles: [],
+    roles: [Roles.conspiracyTheorist, Roles.witness],
   },
   theProfoundRace: {
     id: 'b5db08e9-c946-4b53-b482-69c0137c97f9',
     name: 'The Profound Race',
-    roles: [],
+    roles: [Roles.serialKiller, Roles.timeTraveller],
   },
   whispersFromTheDeep: {
     id: 'cdd00e27-63e5-40a2-b9c2-b9ae20f4cd38',
     name: 'Whispers from the Deep',
-    roles: [],
+    roles: [Roles.deepOne, Roles.paranoiac],
   },
   theFacelessGod: {
     id: 'b5b7fb70-9f22-488f-ad9e-9fbf10bd6866',
     name: 'The Faceless God',
-    roles: [],
+    roles: [Roles.faceless, Roles.wizard],
   },
   aTwistedTruth: {
     id: '54c3dd3a-b6c0-491b-a42d-49d8eff8412f',
     name: 'A Twisted Truth',
-    roles: [],
+    roles: [Roles.paranoiac],
   },
 };
