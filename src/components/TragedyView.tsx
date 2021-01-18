@@ -28,7 +28,7 @@ function MastermindCard({ tragedy: tragedy }: TragedyViewProps): JSX.Element {
   const styles = useStyles();
 
   const subplots = tragedy.subplots.map((sp) => (
-    <ListItem>
+    <ListItem key={sp.id}>
       <ListItemText primary={sp.name} />
     </ListItem>
   ));
