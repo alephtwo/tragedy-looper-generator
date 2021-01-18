@@ -1,9 +1,9 @@
-import { Character } from './Character';
+import { CastMember } from './Character';
 import { Plot } from './Plot';
 
 export interface Tragedy {
   tragedySet: string;
   mainPlot: Plot;
   subplots: Array<Plot>;
-  cast: Array<Character>;
+  cast: Array<CastMember>;
 }

@@ -36,10 +36,10 @@ function MastermindCard({ tragedy: tragedy }: TragedyViewProps): JSX.Element {
     ));
 
   const cast = [...tragedy.cast]
-    .sort((a, b) => a.name.localeCompare(b.name))
+    .sort((a, b) => a.character.name.localeCompare(b.character.name))
     .map((c) => (
-      <ListItem key={c.id}>
-        <ListItemText primary={c.name} />
+      <ListItem key={c.character.id}>
+        <ListItemText primary={c.character.name} secondary={c.role.name} />
       </ListItem>
     ));
 

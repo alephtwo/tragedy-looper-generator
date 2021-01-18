@@ -1,6 +1,10 @@
 import { Role } from '../types/Role';
 
 export const Roles: Record<string, Role> = {
+  person: {
+    id: '45041819-44ec-4fbd-aa6e-2cf816097cdc',
+    name: 'Person',
+  },
   keyPerson: {
     id: '95d137b0-8652-4576-ae64-a7dc34a5f3f4',
     name: 'Key Person',
