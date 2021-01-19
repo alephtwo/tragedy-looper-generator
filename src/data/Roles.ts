@@ -24,6 +24,7 @@ export const Roles: RoleDatabase = {
   conspiracyTheorist: {
     id: '87a2518e-9e79-4dae-ae5f-1e58bd785887',
     name: 'Conspiracy Theorist',
+    max: 1,
   },
   serialKiller: {
     id: '85a0c633-fdf1-463c-9971-9b45bdc0cfcf',
@@ -36,6 +37,7 @@ export const Roles: RoleDatabase = {
   friend: {
     id: 'ef68b5d1-adf6-4935-a298-2434e240f859',
     name: 'Friend',
+    max: 2,
   },
   timeTraveller: {
     id: '7774f887-6c8f-483f-aa1c-fab32835f867',
@@ -84,6 +86,7 @@ export const Roles: RoleDatabase = {
   fool: {
     id: '42860f15-bf07-4a96-81d9-5ba184655018',
     name: 'Fool',
+    max: 1,
   },
   privateInvestigator: {
     id: '1f74472f-0029-402f-b0ba-7b9958f70af6',
@@ -116,6 +119,7 @@ export const Roles: RoleDatabase = {
   ghost: {
     id: '51493ed0-0870-49a1-bd54-c63ba3406923',
     name: 'Ghost',
+    max: 1,
   },
   showOff: {
     id: '6b1049dd-3690-4181-b56e-6452d565cbcc',
@@ -132,6 +136,7 @@ export const Roles: RoleDatabase = {
   deepOne: {
     id: '94807217-c0ba-4481-949d-82877399c129',
     name: 'Deep One',
+    max: 1,
   },
   witness: {
     id: 'a342d418-7eb3-470a-b1b0-cb5509c2ce38',
@@ -144,6 +149,7 @@ export const Roles: RoleDatabase = {
   wizard: {
     id: '15807f5c-e3e1-4d8d-be73-9958acf2084b',
     name: 'Wizard',
+    max: 1,
   },
 };
 
