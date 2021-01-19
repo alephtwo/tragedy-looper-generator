@@ -13,6 +13,8 @@ const initialArgs: GeneratorArgs = {
   tragedySet: TragedySets.find((ts) => ts.order === 0) || TragedySets[0],
   subplots: 2,
   castSize: 9,
+  days: 7,
+  loops: 3,
 };
 
 const initialTragedy: Tragedy = {

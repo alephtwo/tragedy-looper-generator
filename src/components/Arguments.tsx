@@ -48,6 +48,12 @@ export function Arguments({ args, setArgs }: ArgumentsProps): JSX.Element {
             announce={announceSlider('castSize')}
           />
         </Grid>
+        <Grid item md={6} xs={12}>
+          <GeneratorSlider label="Days" value={args.days} min={4} max={10} announce={announceSlider('days')} />
+        </Grid>
+        <Grid item md={6} xs={12}>
+          <GeneratorSlider label="Loops" value={args.loops} min={1} max={6} announce={announceSlider('loops')} />
+        </Grid>
       </Grid>
     </Paper>
   );
