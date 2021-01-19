@@ -45,7 +45,7 @@ function chooseCast(pool: Array<Character>, size: number): Array<Character> {
 function chooseIncidents(pool: Array<Incident>, days: number): Array<Incident> {
   // Choose a random number of incidents that is less than the number of days, but at least one.
   const size = Math.floor(Math.random() * (days / 2) + 1);
-  return shuffle.pick(pool, { picks: size }) as Array<Incident>;
+  return wrap(shuffle.pick(pool, { picks: size }));
 }
 
 function assignRoles(mainPlot: Plot, subplots: Array<Plot>, cast: Array<Character>): Array<CastMember> {
@@ -60,8 +60,8 @@ function assignRoles(mainPlot: Plot, subplots: Array<Plot>, cast: Array<Characte
 }
 
 function assignIncidents(incidents: Array<Incident>, cast: Array<Character>, maxDay: number): Array<IncidentOcurrence> {
-  const culprits = shuffle.pick(cast, { picks: incidents.length }) as Array<Character>;
-  const days = shuffle.pick(rangeInclusive(1, maxDay), { picks: incidents.length }) as Array<number>;
+  const culprits = wrap(shuffle.pick(cast, { picks: incidents.length }));
+  const days = wrap(shuffle.pick(rangeInclusive(1, maxDay), { picks: incidents.length }));
 
   return incidents.map((incident, i) => ({
     character: culprits[i],
