@@ -9,6 +9,9 @@ import { Role } from '../types/Role';
 import { Incident } from '../types/Incident';
 import { IncidentOcurrence } from '../types/IncidentOcurrence';
 import { rangeInclusive } from '../util/range';
+import { resolve } from '../util/resolve';
+import { randomInclusive } from '../util/random';
+import { duplicate } from '../util/duplicate';
 
 export function generateTragedy(args: GeneratorArgs): Tragedy {
   const { tragedySet } = args;
@@ -44,7 +47,8 @@ function chooseCast(pool: Array<Character>, size: number): Array<Character> {
 
 function chooseIncidents(pool: Array<Incident>, days: number): Array<Incident> {
   // Choose a random number of incidents that is less than the number of days, but at least one.
-  const size = Math.floor(Math.random() * (days / 2) + 1);
+  // TODO: Allow the user to select the number of incidents, not the number of loops.
+  const size = randomInclusive(1, days / 2);
   return wrap(shuffle.pick(pool, { picks: size }));
 }
 
@@ -73,8 +77,8 @@ function assignIncidents(incidents: Array<Incident>, cast: Array<Character>, max
 function getRequiredRoles(mainPlot: Plot, subplots: Array<Plot>): Array<Role> {
   // Stop complaining, this compiles dangit
   // eslint-disable-next-line @typescript-eslint/no-unsafe-assignment,@typescript-eslint/no-unsafe-call
-  const subplotRoles = subplots.map((s: Plot) => s.roles).flat();
-  const required = mainPlot.roles.concat(subplotRoles);
+  const subplotRoles = subplots.map((s: Plot) => resolve(s.roles)).flat();
+  const required = resolve(mainPlot.roles).concat(subplotRoles);
 
   // Some of the roles might have maximum amounts. If they do, we need to make sure we remove duplicates.
   // We can do this with a reduce.
@@ -86,7 +90,7 @@ function getRequiredRoles(mainPlot: Plot, subplots: Array<Plot>): Array<Role> {
  * @param missing The number of roles to fill
  */
 function getFillerRoles(missing: number) {
-  return [...new Array<number>(missing)].map(() => Roles.person);
+  return duplicate(Roles.person, missing);
 }
 
 /**
