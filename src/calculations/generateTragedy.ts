@@ -10,7 +10,6 @@ import { Incident } from '../types/Incident';
 import { IncidentOcurrence } from '../types/IncidentOcurrence';
 import { rangeInclusive } from '../util/range';
 import { resolve } from '../util/resolve';
-import { randomInclusive } from '../util/random';
 import { duplicate } from '../util/duplicate';
 
 export function generateTragedy(args: GeneratorArgs): Tragedy {
@@ -19,7 +18,7 @@ export function generateTragedy(args: GeneratorArgs): Tragedy {
   const mainPlot = chooseMainPlot(tragedySet.mainPlots);
   const subplots = chooseSubplots(tragedySet.subplots, args.subplots);
   const chosenCast = chooseCast(tragedySet.availableCast, args.castSize);
-  const chosenIncidents = chooseIncidents(tragedySet.incidents, args.days);
+  const chosenIncidents = chooseIncidents(tragedySet.incidents, args.incidents);
 
   const cast = assignRoles(mainPlot, subplots, chosenCast);
   const incidents = assignIncidents(chosenIncidents, chosenCast, args.days);
@@ -45,11 +44,8 @@ function chooseCast(pool: Array<Character>, size: number): Array<Character> {
   return shuffle.pick(pool, { picks: size }) as Array<Character>;
 }
 
-function chooseIncidents(pool: Array<Incident>, days: number): Array<Incident> {
-  // Choose a random number of incidents that is less than the number of days, but at least one.
-  // TODO: Allow the user to select the number of incidents, not the number of loops.
-  const size = randomInclusive(1, days / 2);
-  return wrap(shuffle.pick(pool, { picks: size }));
+function chooseIncidents(pool: Array<Incident>, incidents: number): Array<Incident> {
+  return wrap(shuffle.pick(pool, { picks: incidents }));
 }
 
 function assignRoles(mainPlot: Plot, subplots: Array<Plot>, cast: Array<Character>): Array<CastMember> {

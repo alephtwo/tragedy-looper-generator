@@ -4,5 +4,9 @@
  * @param amount The number of times to duplicate it
  */
 export function duplicate<T>(data: T, amount: number): Array<T> {
+  if (amount === 0) {
+    return [];
+  }
+
   return [...new Array<T>(amount)].map(() => data);
 }

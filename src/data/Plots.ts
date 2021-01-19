@@ -195,7 +195,6 @@ export const Subplots: SubplotDatabase = {
     roles: (): Array<Role> => {
       // Script writer may choose 0, 1, or 2 Curmudgeons.
       const curmudgeons = duplicate(Roles.curmudgeon, randomInclusive(0, 2));
-      console.log(`Chose ${curmudgeons.length} Curmudgeons.`);
       return [Roles.conspiracyTheorist, Roles.friend].concat(curmudgeons);
     },
   },

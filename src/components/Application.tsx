@@ -14,7 +14,7 @@ const initialArgs: GeneratorArgs = {
   subplots: 2,
   castSize: 9,
   days: 7,
-  loops: 3,
+  incidents: 1,
 };
 
 const initialTragedy: Tragedy = {

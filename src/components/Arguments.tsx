@@ -16,6 +16,9 @@ export function Arguments({ args, setArgs }: ArgumentsProps): JSX.Element {
 
   const announceSlider = (property: string) => (value: number) => {
     const next = extend(args, { [property]: value });
+    // Can only have as many incidents as there are days or cast members to cause them.
+    // Therefore, we need to limit it.
+    next.incidents = Math.min(next.incidents, next.days, next.castSize);
     setArgs(next);
   };
 
@@ -53,7 +56,13 @@ export function Arguments({ args, setArgs }: ArgumentsProps): JSX.Element {
           <GeneratorSlider label="Days" value={args.days} min={4} max={10} announce={announceSlider('days')} />
         </Grid>
         <Grid item md={6} xs={12}>
-          <GeneratorSlider label="Loops" value={args.loops} min={1} max={6} announce={announceSlider('loops')} />
+          <GeneratorSlider
+            label="Incidents"
+            value={args.incidents}
+            min={0}
+            max={Math.min(args.days, args.castSize)}
+            announce={announceSlider('incidents')}
+          />
         </Grid>
       </Grid>
     </Paper>
@@ -104,7 +113,7 @@ function GeneratorSlider(props: GeneratorSliderProps): JSX.Element {
         {props.label}: {props.value}
       </Typography>
       <Slider
-        defaultValue={props.value}
+        value={props.value}
         min={props.min}
         max={props.max}
         valueLabelDisplay="auto"
