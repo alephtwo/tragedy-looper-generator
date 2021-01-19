@@ -11,13 +11,17 @@ import { IncidentOcurrence } from '../types/IncidentOcurrence';
 import { rangeInclusive } from '../util/range';
 import { resolve } from '../util/resolve';
 import { duplicate } from '../util/duplicate';
+import * as Cast from '../data/Cast';
 
 export function generateTragedy(args: GeneratorArgs): Tragedy {
   const { tragedySet } = args;
 
   const mainPlot = chooseMainPlot(tragedySet.mainPlots);
   const subplots = chooseSubplots(tragedySet.subplots, args.subplots);
-  const chosenCast = chooseCast(tragedySet.availableCast, args.castSize);
+
+  const availableCast = getAvailableCast(args);
+  const chosenCast = chooseCast(availableCast, args.castSize);
+
   const chosenIncidents = chooseIncidents(tragedySet.incidents, args.incidents);
 
   const cast = assignRoles(mainPlot, subplots, chosenCast);
@@ -30,6 +34,16 @@ export function generateTragedy(args: GeneratorArgs): Tragedy {
     cast: cast,
     incidents: incidents,
   };
+}
+
+function getAvailableCast(args: GeneratorArgs): Array<Character> {
+  const mapping = [
+    { cast: Cast.BaseCast, use: true },
+    { cast: Cast.MidnightCircleCast, use: args.useMidnightCircleCharacters },
+    { cast: Cast.CosmicEvilCast, use: args.useCosmicEvilCharacters },
+  ];
+
+  return mapping.filter(({ use }) => use).flatMap(({ cast }) => cast);
 }
 
 function chooseMainPlot(pool: Array<Plot>): Plot {

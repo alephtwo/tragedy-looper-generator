@@ -162,7 +162,7 @@ const FullCast: CastDatabase = {
   },
 };
 
-export const BaseCast: Array<Character> = [
+export const BaseCast = [
   FullCast.boyStudent,
   FullCast.girlStudent,
   FullCast.richMansDaughter,
@@ -183,19 +183,9 @@ export const BaseCast: Array<Character> = [
   FullCast.henchman,
 ];
 
-export const MidnightCircleCast = BaseCast.concat([
-  FullCast.scientist,
-  FullCast.forensicSpecialist,
-  FullCast.ai,
-  FullCast.illusion,
-]);
+export const MidnightCircleCast = [FullCast.scientist, FullCast.forensicSpecialist, FullCast.ai, FullCast.illusion];
 
-export const CosmicEvilCast = BaseCast.concat([
-  FullCast.teacher,
-  FullCast.transferStudent,
-  FullCast.blackCat,
-  FullCast.soldier,
-]);
+export const CosmicEvilCast = [FullCast.teacher, FullCast.transferStudent, FullCast.blackCat, FullCast.soldier];
 
 interface CastDatabase {
   boyStudent: Character;
