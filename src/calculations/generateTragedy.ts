@@ -6,6 +6,9 @@ import { Plot } from '../types/Plot';
 import { wrap } from '../util/wrap';
 import { Roles } from '../data/Roles';
 import { Role } from '../types/Role';
+import { Incident } from '../types/Incident';
+import { IncidentOcurrence } from '../types/IncidentOcurrence';
+import { rangeInclusive } from '../util/range';
 
 export function generateTragedy(args: GeneratorArgs): Tragedy {
   const { tragedySet } = args;
@@ -13,15 +16,17 @@ export function generateTragedy(args: GeneratorArgs): Tragedy {
   const mainPlot = chooseMainPlot(tragedySet.mainPlots);
   const subplots = chooseSubplots(tragedySet.subplots, args.subplots);
   const chosenCast = chooseCast(tragedySet.availableCast, args.castSize);
+  const chosenIncidents = chooseIncidents(tragedySet.incidents, args.days);
 
   const cast = assignRoles(mainPlot, subplots, chosenCast);
-  console.log(cast);
+  const incidents = assignIncidents(chosenIncidents, chosenCast, args.days);
 
   return {
     tragedySet: tragedySet.title,
     mainPlot: mainPlot,
     subplots: subplots,
     cast: cast,
+    incidents: incidents,
   };
 }
 
@@ -37,6 +42,12 @@ function chooseCast(pool: Array<Character>, size: number): Array<Character> {
   return shuffle.pick(pool, { picks: size }) as Array<Character>;
 }
 
+function chooseIncidents(pool: Array<Incident>, days: number): Array<Incident> {
+  // Choose a random number of incidents that is less than the number of days, but at least one.
+  const size = Math.floor(Math.random() * (days / 2) + 1);
+  return shuffle.pick(pool, { picks: size }) as Array<Incident>;
+}
+
 function assignRoles(mainPlot: Plot, subplots: Array<Plot>, cast: Array<Character>): Array<CastMember> {
   const required = getRequiredRoles(mainPlot, subplots);
   const filler = getFillerRoles(cast.length - required.length);
@@ -45,6 +56,17 @@ function assignRoles(mainPlot: Plot, subplots: Array<Plot>, cast: Array<Characte
   return cast.map((c, i) => ({
     character: c,
     role: roles[i],
+  }));
+}
+
+function assignIncidents(incidents: Array<Incident>, cast: Array<Character>, maxDay: number): Array<IncidentOcurrence> {
+  const culprits = shuffle.pick(cast, { picks: incidents.length }) as Array<Character>;
+  const days = shuffle.pick(rangeInclusive(1, maxDay), { picks: incidents.length }) as Array<number>;
+
+  return incidents.map((incident, i) => ({
+    character: culprits[i],
+    incident: incident,
+    day: days[i],
   }));
 }
 

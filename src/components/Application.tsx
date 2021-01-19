@@ -22,6 +22,7 @@ const initialTragedy: Tragedy = {
   mainPlot: MainPlots.murderPlan,
   subplots: [],
   cast: [],
+  incidents: [],
 };
 
 function Application(): JSX.Element {

@@ -4,6 +4,7 @@ import { Dispatch, SetStateAction } from 'react';
 import { TragedySets } from '../data/TragedySets';
 import { GeneratorArgs } from '../types/GeneratorArgs';
 import { TragedySetInfo } from '../types/TragedySetInfo';
+import { rangeInclusive } from '../util/range';
 
 interface ArgumentsProps {
   args: GeneratorArgs;
@@ -96,11 +97,7 @@ interface GeneratorSliderProps {
 }
 
 function GeneratorSlider(props: GeneratorSliderProps): JSX.Element {
-  const marks = [];
-  for (let i = props.min; i <= props.max; i++) {
-    marks.push({ value: i, label: i.toString() });
-  }
-
+  const marks = rangeInclusive(props.min, props.max).map((i) => ({ value: i, label: i.toString() }));
   return (
     <>
       <Typography gutterBottom>

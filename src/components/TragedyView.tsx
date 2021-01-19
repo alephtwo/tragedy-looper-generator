@@ -39,9 +39,20 @@ function MastermindCard({ tragedy: tragedy }: TragedyViewProps): JSX.Element {
     .sort((a, b) => a.character.name.localeCompare(b.character.name))
     .map((c) => (
       <ListItem key={c.character.id}>
-        <ListItemText primary={c.character.name} secondary={c.role.name} />
+        <ListItemText primary={`${c.character.name} (${c.role.name})`} />
       </ListItem>
     ));
+
+  const incidents = [...tragedy.incidents]
+    .sort((a, b) => a.day - b.day)
+    .map((i) => {
+      const msg = `${i.day} - ${i.incident.name} (${i.character.name})`;
+      return (
+        <ListItem key={`m-${i.incident.id}`}>
+          <ListItemText primary={msg} />
+        </ListItem>
+      );
+    });
 
   return (
     <Paper className={styles.paper}>
@@ -52,6 +63,8 @@ function MastermindCard({ tragedy: tragedy }: TragedyViewProps): JSX.Element {
       <List dense>{subplots}</List>
       <Typography>Cast:</Typography>
       <List dense>{cast}</List>
+      <Typography>Incidents:</Typography>
+      <List dense>{incidents}</List>
     </Paper>
   );
 }
@@ -59,10 +72,20 @@ function MastermindCard({ tragedy: tragedy }: TragedyViewProps): JSX.Element {
 function PlayerCard({ tragedy: tragedy }: TragedyViewProps): JSX.Element {
   const styles = useStyles();
 
+  const incidents = [...tragedy.incidents]
+    .sort((a, b) => a.day - b.day)
+    .map((i) => (
+      <ListItem key={`p-${i.incident.id}`}>
+        <ListItemText primary={`${i.day} - ${i.incident.name}`} />
+      </ListItem>
+    ));
+
   return (
     <Paper className={styles.paper}>
       <Typography variant="h2">Players</Typography>
       <Typography>Tragedy Set: {tragedy.tragedySet}</Typography>
+      <Typography>Incidents:</Typography>
+      <List dense>{incidents}</List>
     </Paper>
   );
 }
