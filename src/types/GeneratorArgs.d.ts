@@ -6,4 +6,6 @@ export interface GeneratorArgs {
   castSize: 6 | 7 | 8 | 9 | 10 | 11;
   days: 4 | 5 | 6 | 7 | 8 | 9 | 10;
   incidents: number;
+  useMidnightCircleCharacters: boolean;
+  useCosmicEvilCharacters: boolean;
 }

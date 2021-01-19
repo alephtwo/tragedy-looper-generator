@@ -1,6 +1,16 @@
-import { Grid, makeStyles, MenuItem, Paper, Select, Slider, Typography } from '@material-ui/core';
+import {
+  Checkbox,
+  FormControlLabel,
+  Grid,
+  makeStyles,
+  MenuItem,
+  Paper,
+  Select,
+  Slider,
+  Typography,
+} from '@material-ui/core';
 import * as React from 'react';
-import { Dispatch, SetStateAction } from 'react';
+import { ChangeEvent, Dispatch, SetStateAction } from 'react';
 import { TragedySets } from '../data/TragedySets';
 import { GeneratorArgs } from '../types/GeneratorArgs';
 import { TragedySetInfo } from '../types/TragedySetInfo';
@@ -22,6 +32,11 @@ export function Arguments({ args, setArgs }: ArgumentsProps): JSX.Element {
     setArgs(next);
   };
 
+  const announceBoolean = (property: string) => (_: ChangeEvent<HTMLInputElement>, value: boolean): void => {
+    const next = extend(args, { [property]: value });
+    setArgs(next);
+  };
+
   const announceTragedySet = (id: string) => {
     const chosen = TragedySets.find((a) => a.id === id) || TragedySets[0];
     const next = extend(args, { tragedySet: chosen });
@@ -31,8 +46,30 @@ export function Arguments({ args, setArgs }: ArgumentsProps): JSX.Element {
   return (
     <Paper className={styles.paper}>
       <Grid container spacing={2}>
-        <Grid item xs={12}>
+        <Grid item xs={6}>
           <TragedySetChooser announce={announceTragedySet} value={args.tragedySet} />
+        </Grid>
+        <Grid container item justify="space-around" xs={6}>
+          <FormControlLabel
+            label="Midnight Circle"
+            control={
+              <Checkbox
+                checked={args.useMidnightCircleCharacters}
+                onChange={announceBoolean('useMidnightCircleCharacters')}
+                color="primary"
+              />
+            }
+          />
+          <FormControlLabel
+            label="Cosmic Evil"
+            control={
+              <Checkbox
+                checked={args.useCosmicEvilCharacters}
+                onChange={announceBoolean('useCosmicEvilCharacters')}
+                color="primary"
+              />
+            }
+          />
         </Grid>
         <Grid item md={6} xs={12}>
           <GeneratorSlider

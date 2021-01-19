@@ -15,6 +15,8 @@ const initialArgs: GeneratorArgs = {
   castSize: 9,
   days: 7,
   incidents: 1,
+  useMidnightCircleCharacters: true,
+  useCosmicEvilCharacters: true,
 };
 
 const initialTragedy: Tragedy = {
