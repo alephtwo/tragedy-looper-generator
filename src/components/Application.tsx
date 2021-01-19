@@ -1,4 +1,4 @@
-import { Button, Container, Grid, Typography } from '@material-ui/core';
+import { Button, Container, Grid } from '@material-ui/core';
 import * as React from 'react';
 import { useState } from 'react';
 import { generateTragedy } from '../calculations/generateTragedy';
@@ -36,9 +36,6 @@ function Application(): JSX.Element {
 
   return (
     <Container>
-      <Typography align={'center'} variant="h1">
-        Tragedy Looper Generator
-      </Typography>
       <Arguments args={args} setArgs={setArgs} />
       <Grid container justify="center" alignItems="center">
         <Grid item md={4} xs={12}>
