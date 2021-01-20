@@ -1,6 +1,8 @@
 import * as React from 'react';
 import { Tragedy } from '../types/Tragedy';
 import { Grid, List, ListItem, ListItemText, makeStyles, Paper, Typography } from '@material-ui/core';
+import { FullCast } from '../data/Cast';
+import { Character } from '../types/Character';
 
 interface TragedyViewProps {
   tragedy: Tragedy;
@@ -37,11 +39,15 @@ function MastermindCard({ tragedy: tragedy }: TragedyViewProps): JSX.Element {
 
   const cast = [...tragedy.cast]
     .sort((a, b) => a.character.name.localeCompare(b.character.name))
-    .map((c) => (
-      <ListItem key={c.character.id}>
-        <ListItemText primary={`${c.character.name} (${c.role.name})`} />
-      </ListItem>
-    ));
+    .map((c) => {
+      const loopDesignator = getLoopDesignator(c.character);
+      const msg = `${c.character.name} (${c.role.name}) ${loopDesignator}`.trim();
+      return (
+        <ListItem key={c.character.id}>
+          <ListItemText primary={msg} />
+        </ListItem>
+      );
+    });
 
   const incidents = [...tragedy.incidents]
     .sort((a, b) => a.day - b.day)
@@ -88,6 +94,14 @@ function PlayerCard({ tragedy: tragedy }: TragedyViewProps): JSX.Element {
       <List dense>{incidents}</List>
     </Paper>
   );
+}
+
+function getLoopDesignator(character: Character): string {
+  // TODO: Actually put a loop number here!
+  if (character.id === FullCast.godlyBeing.id) {
+    return '(Enters on Loop X)';
+  }
+  return '';
 }
 
 const useStyles = makeStyles((theme) => ({

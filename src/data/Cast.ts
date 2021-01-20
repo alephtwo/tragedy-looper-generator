@@ -1,6 +1,6 @@
 import { Character } from '../types/Character';
 
-const FullCast: CastDatabase = {
+export const FullCast: CastDatabase = {
   // Base Game
   boyStudent: {
     id: '03bdc526-2b8c-48f4-8d10-2d0bec80cfe7',
