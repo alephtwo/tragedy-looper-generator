@@ -70,6 +70,7 @@ export const Roles: RoleDatabase = {
   obstinate: {
     id: '58ff6ee3-dd0f-4c59-96ad-06b840e1b169',
     name: 'Obstinate',
+    isCulprit: 'always',
   },
   prophet: {
     id: '3e425296-3ffc-499e-b4ea-b7b799587335',
@@ -87,10 +88,12 @@ export const Roles: RoleDatabase = {
     id: '42860f15-bf07-4a96-81d9-5ba184655018',
     name: 'Fool',
     max: 1,
+    isCulprit: 'always',
   },
   privateInvestigator: {
     id: '1f74472f-0029-402f-b0ba-7b9958f70af6',
     name: 'Private Investigator',
+    isCulprit: 'never',
   },
   paranoiac: {
     id: '216548f7-2a29-4e57-b76b-567661aa2d36',
@@ -99,6 +102,7 @@ export const Roles: RoleDatabase = {
   twin: {
     id: '2ded16d0-b220-470b-a1c1-7eb2ea3f44b2',
     name: 'Twin',
+    isCulprit: 'always',
   },
   therapist: {
     id: '8e2bfcf8-1669-4414-84ca-e4903a6afc89',

@@ -21,10 +21,8 @@ export function generateTragedy(args: GeneratorArgs): Tragedy {
   const availableCast = getAvailableCast(args);
   const chosenCast = chooseCast(availableCast, args.castSize);
 
-  const chosenIncidents = chooseIncidents(tragedySet.incidents, args.incidents);
-
   const cast = assignRoles(mainPlot, subplots, chosenCast);
-  const incidents = assignIncidents(chosenIncidents, chosenCast, args.days);
+  const incidents = assignIncidents(tragedySet.incidents, cast, args.days, args.incidents);
 
   return {
     tragedySet: tragedySet.title,
@@ -57,10 +55,6 @@ function chooseCast(pool: Array<Character>, size: number): Array<Character> {
   return shuffle.pick(pool, { picks: size }) as Array<Character>;
 }
 
-function chooseIncidents(pool: Array<Incident>, incidents: number): Array<Incident> {
-  return wrap(shuffle.pick(pool, { picks: incidents }));
-}
-
 function assignRoles(mainPlot: Plot, subplots: Array<Plot>, cast: Array<Character>): Array<CastMember> {
   const required = getRequiredRoles(mainPlot, subplots);
   const filler = getFillerRoles(cast.length - required.length);
@@ -73,12 +67,39 @@ function assignRoles(mainPlot: Plot, subplots: Array<Plot>, cast: Array<Characte
   }));
 }
 
-function assignIncidents(incidents: Array<Incident>, cast: Array<Character>, maxDay: number): Array<IncidentOcurrence> {
-  const culprits = wrap(shuffle.pick(cast, { picks: incidents.length }));
-  const days = wrap(shuffle.pick(_.range(1, maxDay + 1), { picks: incidents.length }));
+function assignIncidents(
+  incidents: Array<Incident>,
+  cast: Array<CastMember>,
+  maxDay: number,
+  requestedIncidents: number
+): Array<IncidentOcurrence> {
+  // Some roles are required to be culprits.
+  const [required, notRequired] = _.partition(cast, (c) => c.role.isCulprit === 'always');
 
-  return incidents.map((incident, i) => ({
-    character: culprits[i],
+  // Knox's 7th: it is forbidden for the detective to be the culprit.
+  const allowed = notRequired.filter((c) => c.role.isCulprit !== 'never');
+
+  // One small problem. Since we added/removed culprits, there may be more
+  // or less incidents than the user expected.
+  // Can't do much about this other than to clamp the number of incidents.
+  // We need this many...
+  const neededIncidents = Math.max(required.length, requestedIncidents);
+  // And we need to ensure that we don't have more incidents than our cast size.
+  const actualIncidents = Math.min(neededIncidents, allowed.length);
+
+  // The least we can do is let the wise know when this has happened.
+  if (actualIncidents != requestedIncidents) {
+    console.log('Due to the roles chosen, the number of incidents has been changed.');
+  }
+
+  const remainingCulprits = wrap(shuffle.pick(allowed, { picks: actualIncidents - required.length }));
+  const culprits = required.concat(remainingCulprits);
+
+  const chosenIncidents = wrap(shuffle.pick(incidents, { picks: actualIncidents }));
+  const days = wrap(shuffle.pick(_.range(1, maxDay + 1), { picks: actualIncidents }));
+
+  return chosenIncidents.map((incident, i) => ({
+    character: culprits[i].character,
     incident: incident,
     day: days[i],
   }));
