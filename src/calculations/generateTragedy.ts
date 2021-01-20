@@ -29,6 +29,7 @@ export function generateTragedy(args: GeneratorArgs): Tragedy {
   const incidents = assignIncidents({
     incidents: tragedySet.incidents,
     cast: cast,
+    plots: plots,
     maxDay: args.days,
     requestedIncidents: args.incidents,
   });
@@ -139,6 +140,8 @@ interface AssignIncidentsArgs {
   readonly incidents: Array<Incident>;
   // All chosen cast members.
   readonly cast: Array<CastMember>;
+  // The main plot and any subplots.
+  readonly plots: Array<Plot>;
   // The last day of each loop.
   readonly maxDay: number;
   // How many incidents did the user ask for?
@@ -168,7 +171,8 @@ function assignIncidents(args: AssignIncidentsArgs): Array<IncidentOcurrence> {
   const remainingCulprits = wrap(shuffle.pick(allowed, { picks: actualIncidents - required.length }));
   const culprits = required.concat(remainingCulprits);
 
-  const chosenIncidents = wrap(shuffle.pick(args.incidents, { picks: actualIncidents }));
+  const chosenIncidents = chooseIncidents(args.incidents, actualIncidents, args.plots);
+  console.log(chosenIncidents);
   const days = wrap(shuffle.pick(_.range(1, args.maxDay + 1), { picks: actualIncidents }));
 
   return chosenIncidents.map((incident, i) => ({
@@ -176,6 +180,27 @@ function assignIncidents(args: AssignIncidentsArgs): Array<IncidentOcurrence> {
     incident: incident,
     day: days[i],
   }));
+}
+
+function chooseIncidents(incidents: Array<Incident>, count: number, plots: Array<Plot>): Array<Incident> {
+  // Find plots that have required incidents.
+  const required = plots.filter((p) => p.incidents).flatMap((p) => p.incidents as Array<Incident>);
+  // What's left over?
+  // TODO: This code is probably deeply subpar in terms of performance, but it'll do for now.
+  const optional = incidents.filter((p) => !required.some(r => p.id === r.id));
+
+  // Grab however many we need to.
+  // TODO: Right now this will probably break if there are too many required incidents.
+  // Only one plot requires this, so I'm not particularly worried about it as-is.
+  // Weird behavior: shuffle.pick returns 1 option even if picks is 0. So we have to wrap around it.
+  const needed = count - required.length;
+  const chosen = needed === 0 ? [] : wrap(shuffle.pick(optional, { picks: count - required.length }));
+
+  required.forEach((i) => {
+    console.log(`${i.name} was added as it is a required incident.`);
+  });
+
+  return required.concat(chosen);
 }
 
 function getRequiredRoles(plots: Array<Plot>): Array<Role> {

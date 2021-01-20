@@ -1,5 +1,6 @@
 import { Role } from './Role';
 import { Character } from './Character';
+import { Incident } from './Incident';
 
 export interface Plot {
   readonly id: string;
@@ -9,4 +10,5 @@ export interface Plot {
     readonly role: Role;
     readonly filter: (character: Character) => boolean;
   };
+  readonly incidents?: Array<Incident>;
 }

@@ -3,6 +3,7 @@ import { Plot } from '../types/Plot';
 import { Roles } from './Roles';
 import { Role } from '../types/Role';
 import { randomInclusive } from '../util/random';
+import { Incidents } from './Incidents';
 
 export const MainPlots: MainPlotDatabase = {
   // Base Game
@@ -242,6 +243,7 @@ export const Subplots: SubplotDatabase = {
     id: 'e77efda5-4b07-4ff4-8b64-096bd6562f14',
     name: 'Worshippers of the Apocalypse',
     roles: [Roles.prophet],
+    incidents: [Incidents.suicide],
   },
   // Mystery Circle
   theHiddenFreak2: {
