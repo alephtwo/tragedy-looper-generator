@@ -3,9 +3,9 @@ import { Plot } from './Plot';
 import { IncidentOcurrence } from './IncidentOcurrence';
 
 export interface Tragedy {
-  tragedySet: string;
-  mainPlot: Plot;
-  subplots: Array<Plot>;
-  cast: Array<CastMember>;
-  incidents: Array<IncidentOcurrence>;
+  readonly tragedySet: string;
+  readonly mainPlot: Plot;
+  readonly subplots: Array<Plot>;
+  readonly cast: Array<CastMember>;
+  readonly incidents: Array<IncidentOcurrence>;
 }

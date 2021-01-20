@@ -66,11 +66,11 @@ function chooseCast(pool: Array<Character>, size: number): Array<Character> {
 
 interface AssignRolesArgs {
   // The main plot.
-  mainPlot: Plot;
+  readonly mainPlot: Plot;
   // Every subplot.
-  subplots: Array<Plot>;
+  readonly subplots: Array<Plot>;
   // The cast of characters.
-  cast: Array<Character>;
+  readonly cast: Array<Character>;
 }
 function assignRoles(args: AssignRolesArgs): Array<CastMember> {
   const plots = [args.mainPlot].concat(args.subplots);
@@ -118,13 +118,13 @@ function assignRoles(args: AssignRolesArgs): Array<CastMember> {
 
 interface AssignIncidentsArgs {
   // All possible incidents for the scenario.
-  incidents: Array<Incident>;
+  readonly incidents: Array<Incident>;
   // All chosen cast members.
-  cast: Array<CastMember>;
+  readonly cast: Array<CastMember>;
   // The last day of each loop.
-  maxDay: number;
+  readonly maxDay: number;
   // How many incidents did the user ask for?
-  requestedIncidents: number;
+  readonly requestedIncidents: number;
 }
 
 function assignIncidents(args: AssignIncidentsArgs): Array<IncidentOcurrence> {

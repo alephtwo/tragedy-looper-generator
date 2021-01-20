@@ -1,16 +1,16 @@
 import { Role } from './Role';
 
 export interface Character {
-  id: string;
-  name: string;
-  type: CharacterType;
-  gender: CharacterGender;
-  descriptor: CharacterDescriptor;
+  readonly id: string;
+  readonly name: string;
+  readonly type: CharacterType;
+  readonly gender: CharacterGender;
+  readonly descriptor: CharacterDescriptor;
 }
 
 interface CastMember {
-  character: Character;
-  role: Role;
+  readonly character: Character;
+  readonly role: Role;
 }
 
 type CharacterType = 'Adult' | 'Student' | 'Animal' | 'Construct' | null;

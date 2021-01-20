@@ -1,6 +1,6 @@
 export interface Role {
-  id: string;
-  name: string;
-  max?: number;
-  isCulprit?: 'always' | 'never';
+  readonly id: string;
+  readonly name: string;
+  readonly max?: number;
+  readonly isCulprit?: 'always' | 'never';
 }

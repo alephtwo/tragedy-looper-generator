@@ -1,11 +1,11 @@
 import { TragedySetInfo } from './TragedySetInfo';
 
 export interface GeneratorArgs {
-  tragedySet: TragedySetInfo;
-  subplots: 1 | 2;
-  castSize: 6 | 7 | 8 | 9 | 10 | 11;
-  days: 4 | 5 | 6 | 7 | 8 | 9 | 10;
-  incidents: number;
-  useMidnightCircleCharacters: boolean;
-  useCosmicEvilCharacters: boolean;
+  readonly tragedySet: TragedySetInfo;
+  readonly subplots: 1 | 2;
+  readonly castSize: 6 | 7 | 8 | 9 | 10 | 11;
+  readonly days: 4 | 5 | 6 | 7 | 8 | 9 | 10;
+  readonly incidents: number;
+  readonly useMidnightCircleCharacters: boolean;
+  readonly useCosmicEvilCharacters: boolean;
 }

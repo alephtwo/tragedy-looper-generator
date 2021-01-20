@@ -1,4 +1,4 @@
 export interface Incident {
-  id: string;
-  name: string;
+  readonly id: string;
+  readonly name: string;
 }

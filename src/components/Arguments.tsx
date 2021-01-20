@@ -17,8 +17,8 @@ import { TragedySetInfo } from '../types/TragedySetInfo';
 import * as _ from 'lodash';
 
 interface ArgumentsProps {
-  args: GeneratorArgs;
-  setArgs: Dispatch<SetStateAction<GeneratorArgs>>;
+  readonly args: GeneratorArgs;
+  readonly setArgs: Dispatch<SetStateAction<GeneratorArgs>>;
 }
 
 export function Arguments({ args, setArgs }: ArgumentsProps): JSX.Element {
@@ -28,11 +28,11 @@ export function Arguments({ args, setArgs }: ArgumentsProps): JSX.Element {
     const next = extend(args, { [property]: value });
     // Can only have as many incidents as there are days or cast members to cause them.
     // Therefore, we need to limit it.
-    next.incidents = Math.min(next.incidents, next.days, next.castSize);
-    setArgs(next);
+    const clampedDays = extend(next, { incidents: Math.min(next.incidents, next.days, next.castSize) });
+    setArgs(clampedDays);
   };
 
-  const announceBoolean = (property: string) => (_: ChangeEvent<HTMLInputElement>, value: boolean): void => {
+  const announceBoolean = (property: string) => (__: ChangeEvent<HTMLInputElement>, value: boolean): void => {
     const next = extend(args, { [property]: value });
     setArgs(next);
   };
@@ -155,7 +155,7 @@ function GeneratorSlider(props: GeneratorSliderProps): JSX.Element {
         max={props.max}
         valueLabelDisplay="auto"
         marks={marks}
-        onChange={(_, value) => props.announce(+value)}
+        onChange={(__, value) => props.announce(+value)}
       />
     </>
   );
