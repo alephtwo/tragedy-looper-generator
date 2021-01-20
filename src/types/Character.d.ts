@@ -5,7 +5,7 @@ export interface Character {
   readonly name: string;
   readonly type: CharacterType;
   readonly gender: CharacterGender;
-  readonly descriptor: CharacterDescriptor;
+  readonly descriptors: Array<CharacterDescriptor>;
 }
 
 interface CastMember {
@@ -17,4 +17,4 @@ type CharacterType = 'Adult' | 'Student' | 'Animal' | 'Construct' | null;
 
 type CharacterGender = 'Male' | 'Female' | 'All' | null;
 
-type CharacterDescriptor = 'Girl' | 'Woman' | 'Boy' | 'Man' | 'All' | null;
+type CharacterDescriptor = 'Girl' | 'Woman' | 'Boy' | 'Man';

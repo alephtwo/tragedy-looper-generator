@@ -187,7 +187,7 @@ function chooseIncidents(incidents: Array<Incident>, count: number, plots: Array
   const required = plots.filter((p) => p.incidents).flatMap((p) => p.incidents as Array<Incident>);
   // What's left over?
   // TODO: This code is probably deeply subpar in terms of performance, but it'll do for now.
-  const optional = incidents.filter((p) => !required.some(r => p.id === r.id));
+  const optional = incidents.filter((p) => !required.some((r) => p.id === r.id));
 
   // Grab however many we need to.
   // TODO: Right now this will probably break if there are too many required incidents.

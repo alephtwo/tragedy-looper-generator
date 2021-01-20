@@ -23,7 +23,7 @@ export const MainPlots: MainPlotDatabase = {
     roles: [Roles.keyPerson],
     roleCriteria: {
       role: Roles.keyPerson,
-      filter: (character) => character.descriptor === 'Girl',
+      filter: (character) => character.descriptors.includes('Girl'),
     },
   },
   changeOfFuture: {
@@ -63,7 +63,7 @@ export const MainPlots: MainPlotDatabase = {
     roles: [Roles.ninja],
     roleCriteria: {
       role: Roles.ninja,
-      filter: (character) => character.descriptor === 'Man',
+      filter: (character) => character.descriptors.includes('Man'),
     },
   },
   theDevilsHand: {
@@ -303,7 +303,7 @@ export const Subplots: SubplotDatabase = {
     roles: [Roles.keyPerson],
     roleCriteria: {
       role: Roles.keyPerson,
-      filter: (character) => character.descriptor === 'Girl',
+      filter: (character) => character.descriptors.includes('Girl'),
     },
   },
   monsterIntrigue: {
