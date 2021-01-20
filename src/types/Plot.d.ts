@@ -6,7 +6,7 @@ export interface Plot {
   name: string;
   roles: Array<Role> | (() => Array<Role>);
   roleCriteria?: {
-    role: Role,
-    filter: (character: Character) => boolean
-  }
+    role: Role;
+    filter: (character: Character) => boolean;
+  };
 }

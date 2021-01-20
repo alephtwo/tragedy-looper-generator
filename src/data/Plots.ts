@@ -22,8 +22,8 @@ export const MainPlots: MainPlotDatabase = {
     roles: [Roles.keyPerson],
     roleCriteria: {
       role: Roles.keyPerson,
-      filter: (character) => character.descriptor === 'Girl'
-    }
+      filter: (character) => character.descriptor === 'Girl',
+    },
   },
   changeOfFuture: {
     id: '4abf382c-4dae-4692-9825-b6918b28f69d',
@@ -62,8 +62,8 @@ export const MainPlots: MainPlotDatabase = {
     roles: [Roles.ninja],
     roleCriteria: {
       role: Roles.ninja,
-      filter: (character) => character.descriptor === 'Man'
-    }
+      filter: (character) => character.descriptor === 'Man',
+    },
   },
   theDevilsHand: {
     id: '03207e39-1c4f-43a9-91fe-9a33a9137d4d',
@@ -301,8 +301,8 @@ export const Subplots: SubplotDatabase = {
     roles: [Roles.keyPerson],
     roleCriteria: {
       role: Roles.keyPerson,
-      filter: (character) => character.descriptor === 'Girl'
-    }
+      filter: (character) => character.descriptor === 'Girl',
+    },
   },
   monsterIntrigue: {
     id: '73438252-52c1-43c2-aa07-df071ca959a8',
