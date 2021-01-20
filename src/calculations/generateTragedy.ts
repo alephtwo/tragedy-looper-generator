@@ -15,17 +15,17 @@ import * as Cast from '../data/Cast';
 export function generateTragedy(args: GeneratorArgs): Tragedy {
   const { tragedySet } = args;
 
+  // Figure out what plots we're dealing with.
   const mainPlot = chooseMainPlot(tragedySet.mainPlots);
   const subplots = chooseSubplots(tragedySet.subplots, args.subplots);
+  const plots = [mainPlot].concat(subplots);
 
+  // Figure out what cast we should have, and what their roles should be.
   const availableCast = getAvailableCast(args);
-  const chosenCast = chooseCast(availableCast, args.castSize);
+  const chosenCast = chooseCast(availableCast, plots, args.castSize);
+  const cast = assignRoles(plots, chosenCast);
 
-  const cast = assignRoles({
-    mainPlot: mainPlot,
-    subplots: subplots,
-    cast: chosenCast,
-  });
+  // Assign incidents to the cast members.
   const incidents = assignIncidents({
     incidents: tragedySet.incidents,
     cast: cast,
@@ -60,26 +60,41 @@ function chooseSubplots(pool: Array<Plot>, size: number): Array<Plot> {
   return wrap(shuffle.pick(pool, { picks: size }));
 }
 
-function chooseCast(pool: Array<Character>, size: number): Array<Character> {
-  return shuffle.pick(pool, { picks: size }) as Array<Character>;
+function chooseCast(characters: Array<Character>, plots: Array<Plot>, size: number): Array<Character> {
+  const plotsWithRequirements: Array<Plot> = plots.filter((p) => p.roleCriteria);
+
+  // If there are no plots that have requirements, we can just stop.
+  if (plotsWithRequirements.length === 0) {
+    return shuffle.pick(characters, { picks: size }) as Array<Character>;
+  }
+
+  // Otherwise we have some work to do. We should ensure that we have characters to meet the requirements.
+  const quota: Array<Character> = [];
+  // Copy the cast over to a new pool from which to draw.
+  const pool = [...characters];
+  plotsWithRequirements.forEach((p) => {
+    // Grab a character that matches the requirements.
+    const suitableCharacters = pool.filter((c) => p.roleCriteria?.filter(c));
+    const quotaFiller = shuffle.pick(suitableCharacters, { picks: 1 }) as Character;
+    // Add this character to the list of quota fillers.
+    quota.push(quotaFiller);
+    // Then, remove it from the pool.
+    _.remove(pool, (c: Character) => c.id === quotaFiller.id);
+    console.log(`${quotaFiller.name} was added to the pool to ensure plot requirements could be met.`);
+  });
+
+  // Grab a number of people remaining.
+  const spackle = shuffle.pick(pool, { picks: size - quota.length }) as Array<Character>;
+  return quota.concat(spackle);
 }
 
-interface AssignRolesArgs {
-  // The main plot.
-  readonly mainPlot: Plot;
-  // Every subplot.
-  readonly subplots: Array<Plot>;
-  // The cast of characters.
-  readonly cast: Array<Character>;
-}
-function assignRoles(args: AssignRolesArgs): Array<CastMember> {
-  const plots = [args.mainPlot].concat(args.subplots);
+function assignRoles(plots: Array<Plot>, availableCast: Array<Character>): Array<CastMember> {
   const required = getRequiredRoles(plots);
-  const filler = getFillerRoles(args.cast.length - required.length);
+  const filler = getFillerRoles(availableCast.length - required.length);
   const roles = required.concat(filler);
 
   // Make a copy of the cast; we might be mutating this and don't want to affect the param.
-  const cast = [...args.cast];
+  const cast = [...availableCast];
 
   // If any roles have requirements, we need to handpick some of our characters for certain roles.
   const requiredCastMembers: Array<CastMember> = [];
@@ -92,8 +107,11 @@ function assignRoles(args: AssignRolesArgs): Array<CastMember> {
         return;
       }
 
-      // TODO: What if there isn't a suitable character? Need to handle this better.
       const character = shuffle.pick(cast.filter(plot.roleCriteria.filter), { picks: 1 }) as Character;
+      if (!character) {
+        // This shouldn't happen, since we've ensured that the pool contains enough characters to meet quotas.
+        throw new Error('No matching required character could be selected.');
+      }
 
       // We've picked a character for this role, so let's add them to the list of required cast members...
       console.log(`${character.name} was selected for role ${plot.roleCriteria.role.name} due to criteria.`);
