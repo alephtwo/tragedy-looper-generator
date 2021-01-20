@@ -20,6 +20,10 @@ export const MainPlots: MainPlotDatabase = {
     id: '60d51048-dd95-49c1-9063-12bad472d9b5',
     name: 'Sign with me!',
     roles: [Roles.keyPerson],
+    roleCriteria: {
+      role: Roles.keyPerson,
+      filter: (character) => character.descriptor === 'Girl'
+    }
   },
   changeOfFuture: {
     id: '4abf382c-4dae-4692-9825-b6918b28f69d',
@@ -56,6 +60,10 @@ export const MainPlots: MainPlotDatabase = {
     id: 'b65ad9f2-7756-40a3-b0e1-3d91928ae99b',
     name: 'Male Confrontation',
     roles: [Roles.ninja],
+    roleCriteria: {
+      role: Roles.ninja,
+      filter: (character) => character.descriptor === 'Man'
+    }
   },
   theDevilsHand: {
     id: '03207e39-1c4f-43a9-91fe-9a33a9137d4d',
@@ -291,6 +299,10 @@ export const Subplots: SubplotDatabase = {
     id: '8d27e3b9-0351-4039-bef2-ddf7e09acb2a',
     name: 'The Key Girl',
     roles: [Roles.keyPerson],
+    roleCriteria: {
+      role: Roles.keyPerson,
+      filter: (character) => character.descriptor === 'Girl'
+    }
   },
   monsterIntrigue: {
     id: '73438252-52c1-43c2-aa07-df071ca959a8',
