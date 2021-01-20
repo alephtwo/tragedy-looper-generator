@@ -8,9 +8,8 @@ import { Roles } from '../data/Roles';
 import { Role } from '../types/Role';
 import { Incident } from '../types/Incident';
 import { IncidentOcurrence } from '../types/IncidentOcurrence';
-import { rangeInclusive } from '../util/range';
 import { resolve } from '../util/resolve';
-import { duplicate } from '../util/duplicate';
+import * as _ from 'lodash';
 import * as Cast from '../data/Cast';
 
 export function generateTragedy(args: GeneratorArgs): Tragedy {
@@ -67,6 +66,7 @@ function assignRoles(mainPlot: Plot, subplots: Array<Plot>, cast: Array<Characte
   const filler = getFillerRoles(cast.length - required.length);
 
   const roles = required.concat(filler);
+
   return cast.map((c, i) => ({
     character: c,
     role: roles[i],
@@ -75,7 +75,7 @@ function assignRoles(mainPlot: Plot, subplots: Array<Plot>, cast: Array<Characte
 
 function assignIncidents(incidents: Array<Incident>, cast: Array<Character>, maxDay: number): Array<IncidentOcurrence> {
   const culprits = wrap(shuffle.pick(cast, { picks: incidents.length }));
-  const days = wrap(shuffle.pick(rangeInclusive(1, maxDay), { picks: incidents.length }));
+  const days = wrap(shuffle.pick(_.range(1, maxDay + 1), { picks: incidents.length }));
 
   return incidents.map((incident, i) => ({
     character: culprits[i],
@@ -100,7 +100,7 @@ function getRequiredRoles(mainPlot: Plot, subplots: Array<Plot>): Array<Role> {
  * @param missing The number of roles to fill
  */
 function getFillerRoles(missing: number) {
-  return duplicate(Roles.person, missing);
+  return _.times(missing, _.constant(Roles.person));
 }
 
 /**

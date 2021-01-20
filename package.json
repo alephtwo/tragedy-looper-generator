@@ -12,6 +12,7 @@
   "author": "",
   "license": "ISC",
   "devDependencies": {
+    "@types/lodash": "^4.14.168",
     "@types/react": "17.0.0",
     "@types/react-dom": "17.0.0",
     "@types/shuffle-array": "1.0.0",
@@ -29,6 +30,7 @@
   },
   "dependencies": {
     "@material-ui/core": "4.11.2",
+    "lodash": "^4.17.20",
     "react": "17.0.1",
     "react-dom": "17.0.1",
     "shuffle-array": "1.0.1"
