@@ -172,7 +172,6 @@ function assignIncidents(args: AssignIncidentsArgs): Array<IncidentOcurrence> {
   const culprits = required.concat(remainingCulprits);
 
   const chosenIncidents = chooseIncidents(args.incidents, actualIncidents, args.plots);
-  console.log(chosenIncidents);
   const days = wrap(shuffle.pick(_.range(1, args.maxDay + 1), { picks: actualIncidents }));
 
   return chosenIncidents.map((incident, i) => ({
