@@ -48,6 +48,8 @@ export function chooseIncidents(args: ChooseIncidentsArgs): Array<Incident> {
   }
 
   // If we need more incidents, grab them from the pool and return everything.
-  const remaining = _.sampleSize<Incident>(pool, numberOfMissingIncidents);
+  // The same incident can happen more than once.
+  const remaining = _.times<Incident>(numberOfMissingIncidents, () => _.sample(pool) as Incident);
+
   return chosenIncidents.concat(remaining);
 }

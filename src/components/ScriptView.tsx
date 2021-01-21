@@ -1,7 +1,6 @@
 import * as React from 'react';
 import { Script } from '../types/Script';
 import { Grid, List, ListItem, ListItemText, makeStyles, Paper, Typography } from '@material-ui/core';
-import { AllCharacters } from '../data/Characters';
 import { Character } from '../types/Character';
 
 interface ScriptViewProps {
@@ -55,7 +54,7 @@ function MastermindCard({ script: script, loops: loops }: ScriptViewProps): JSX.
     .map((i) => {
       const msg = `${i.day} - ${i.incident.name} (${i.character.name})`;
       return (
-        <ListItem key={`m-${i.incident.id}`}>
+        <ListItem key={`m-${i.incident.id}-${i.character.id}`}>
           <ListItemText primary={msg} />
         </ListItem>
       );
@@ -83,7 +82,7 @@ function PlayerCard({ script: script, loops: loops }: ScriptViewProps): JSX.Elem
   const incidents = [...script.incidents]
     .sort((a, b) => a.day - b.day)
     .map((i) => (
-      <ListItem key={`p-${i.incident.id}`}>
+      <ListItem key={`p-${i.incident.id}-${i.character.id}`}>
         <ListItemText primary={`${i.day} - ${i.incident.name}`} />
       </ListItem>
     ));
