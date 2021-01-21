@@ -1,14 +1,14 @@
 import * as React from 'react';
-import { Tragedy } from '../types/Tragedy';
+import { Script } from '../types/Script';
 import { Grid, List, ListItem, ListItemText, makeStyles, Paper, Typography } from '@material-ui/core';
-import { FullCast } from '../data/Cast';
+import { AllCharacters } from '../data/Characters';
 import { Character } from '../types/Character';
 
 interface TragedyViewProps {
-  tragedy: Tragedy;
+  tragedy: Script;
 }
 
-export function TragedyView({ tragedy: tragedy }: TragedyViewProps): JSX.Element {
+export function ScriptView({ tragedy: tragedy }: TragedyViewProps): JSX.Element {
   // Assume that no cast means it hasn't been generated yet.
   if (tragedy.cast.length === 0) {
     return <></>;
@@ -98,7 +98,7 @@ function PlayerCard({ tragedy: tragedy }: TragedyViewProps): JSX.Element {
 
 function getLoopDesignator(character: Character): string {
   // TODO: Actually put a loop number here!
-  if (character.id === FullCast.godlyBeing.id) {
+  if (character.id === AllCharacters.godlyBeing.id) {
     return '(Enters on Loop X)';
   }
   return '';

@@ -11,4 +11,5 @@ export interface Plot {
     readonly filter: (character: Character) => boolean;
   };
   readonly incidents?: Array<Incident>;
+  readonly mandatoryCharacters?: Array<Character>;
 }

@@ -1,6 +1,6 @@
 import { Character } from '../types/Character';
 
-export const FullCast: CastDatabase = {
+export const AllCharacters: CastDatabase = {
   // Base Game
   boyStudent: {
     id: '03bdc526-2b8c-48f4-8d10-2d0bec80cfe7',
@@ -188,30 +188,40 @@ export const FullCast: CastDatabase = {
   },
 };
 
-export const BaseCast = [
-  FullCast.boyStudent,
-  FullCast.girlStudent,
-  FullCast.richMansDaughter,
-  FullCast.shrineMaiden,
-  FullCast.policeOfficer,
-  FullCast.officeWorker,
-  FullCast.informer,
-  FullCast.doctor,
-  FullCast.patient,
-  FullCast.classRep,
-  FullCast.mysteryBoy,
-  FullCast.alien,
-  FullCast.godlyBeing,
-  FullCast.popIdol,
-  FullCast.journalist,
-  FullCast.boss,
-  FullCast.nurse,
-  FullCast.henchman,
+export const BaseGame = [
+  AllCharacters.boyStudent,
+  AllCharacters.girlStudent,
+  AllCharacters.richMansDaughter,
+  AllCharacters.shrineMaiden,
+  AllCharacters.policeOfficer,
+  AllCharacters.officeWorker,
+  AllCharacters.informer,
+  AllCharacters.doctor,
+  AllCharacters.patient,
+  AllCharacters.classRep,
+  AllCharacters.mysteryBoy,
+  AllCharacters.alien,
+  AllCharacters.godlyBeing,
+  AllCharacters.popIdol,
+  AllCharacters.journalist,
+  AllCharacters.boss,
+  AllCharacters.nurse,
+  AllCharacters.henchman,
 ];
 
-export const MidnightCircleCast = [FullCast.scientist, FullCast.forensicSpecialist, FullCast.ai, FullCast.illusion];
+export const MidnightCircle = [
+  AllCharacters.scientist,
+  AllCharacters.forensicSpecialist,
+  AllCharacters.ai,
+  AllCharacters.illusion,
+];
 
-export const CosmicEvilCast = [FullCast.teacher, FullCast.transferStudent, FullCast.blackCat, FullCast.soldier];
+export const CosmicEvil = [
+  AllCharacters.teacher,
+  AllCharacters.transferStudent,
+  AllCharacters.blackCat,
+  AllCharacters.soldier,
+];
 
 interface CastDatabase {
   boyStudent: Character;

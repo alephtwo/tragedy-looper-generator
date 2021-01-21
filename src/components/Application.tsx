@@ -1,13 +1,13 @@
 import { Button, Container, Grid } from '@material-ui/core';
 import * as React from 'react';
 import { useState } from 'react';
-import { generateTragedy } from '../calculations/generateTragedy';
+import { generateScript } from '../calculations/generateScript';
 import { MainPlots } from '../data/Plots';
 import { TragedySets } from '../data/TragedySets';
 import { GeneratorArgs } from '../types/GeneratorArgs';
-import { Tragedy } from '../types/Tragedy';
+import { Script } from '../types/Script';
 import { Arguments } from './Arguments';
-import { TragedyView } from './TragedyView';
+import { ScriptView } from './ScriptView';
 
 const initialArgs: GeneratorArgs = {
   tragedySet: TragedySets.find((ts) => ts.order === 0) || TragedySets[0],
@@ -19,7 +19,7 @@ const initialArgs: GeneratorArgs = {
   useCosmicEvilCharacters: true,
 };
 
-const initialTragedy: Tragedy = {
+const initialScript: Script = {
   tragedySet: '',
   mainPlot: MainPlots.murderPlan,
   subplots: [],
@@ -29,11 +29,11 @@ const initialTragedy: Tragedy = {
 
 function Application(): JSX.Element {
   const [args, setArgs] = useState<GeneratorArgs>(initialArgs);
-  const [tragedy, setTragedy] = useState<Tragedy>(initialTragedy);
+  const [script, setScript] = useState<Script>(initialScript);
 
   const generate = () => {
-    const generated = generateTragedy(args);
-    setTragedy(generated);
+    const generated = generateScript(args);
+    setScript(generated);
   };
 
   return (
@@ -46,7 +46,7 @@ function Application(): JSX.Element {
           </Button>
         </Grid>
       </Grid>
-      <TragedyView tragedy={tragedy} />
+      <ScriptView tragedy={script} />
     </Container>
   );
 }

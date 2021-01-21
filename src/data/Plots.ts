@@ -4,6 +4,7 @@ import { Roles } from './Roles';
 import { Role } from '../types/Role';
 import { randomInclusive } from '../util/random';
 import { Incidents } from './Incidents';
+import { AllCharacters } from './Characters';
 
 export const MainPlots: MainPlotDatabase = {
   // Base Game
@@ -356,6 +357,7 @@ export const Subplots: SubplotDatabase = {
     id: '54c3dd3a-b6c0-491b-a42d-49d8eff8412f',
     name: 'A Twisted Truth',
     roles: [Roles.paranoiac],
+    mandatoryCharacters: [AllCharacters.informer],
   },
 };
 
