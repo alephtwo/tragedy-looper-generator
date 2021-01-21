@@ -35,7 +35,6 @@ function Application(): JSX.Element {
 
   const generate = () => {
     const generated = generateScript(args);
-    console.debug('script', generated);
     setScript(generated);
   };
 
