@@ -2,7 +2,6 @@ import * as _ from 'lodash';
 import { Plot } from '../types/Plot';
 import { Roles } from './Roles';
 import { Role } from '../types/Role';
-import { randomInclusive } from '../util/random';
 import { Incidents } from './Incidents';
 import { AllCharacters } from './Characters';
 
@@ -204,7 +203,7 @@ export const Subplots: SubplotDatabase = {
     name: 'A Hideous Script',
     roles: (): Array<Role> => {
       // Script writer may choose 0, 1, or 2 Curmudgeons.
-      const amount = randomInclusive(0, 2);
+      const amount = _.random(0, 2);
       const curmudgeons = _.times(amount, _.constant(Roles.curmudgeon));
       return [Roles.conspiracyTheorist, Roles.friend].concat(curmudgeons);
     },
