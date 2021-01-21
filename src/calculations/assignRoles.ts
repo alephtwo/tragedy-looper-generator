@@ -2,23 +2,25 @@ import { CastMember, Character } from '../types/Character';
 import { Plot } from '../types/Plot';
 import { Role } from '../types/Role';
 import * as _ from 'lodash';
-import { Roles } from '../data/Roles';
 
-export function assignRoles(characters: Array<Character>, plots: Array<Plot>): Array<CastMember> {
-  const requiredRoles = getRoles(plots);
-  const roles = fillWithPeople(requiredRoles, characters.length);
+interface AssignRolesArgs {
+  characters: Array<Character>;
+  plots: Array<Plot>;
+  roles: Array<Role>;
+}
 
+export function assignRoles(args: AssignRolesArgs): Array<CastMember> {
   // By now we have arrays of matched length: people and roles.
   // We have our pools; let's start.
   // Copy the arrays so as not to modify unintentionally. Our pools _will_ be modified.
-  const rolePool = [...roles];
-  const characterPool = [...characters];
+  const rolePool = [...args.roles];
+  const characterPool = [...args.characters];
 
   // Somewhere to store our results.
   const assignedRoles: Array<CastMember> = [];
 
   // Some roles have requirements. We need to account for those out of the gate.
-  const rolesWithCriteria = plots
+  const rolesWithCriteria = args.plots
     .filter((p) => p.roleCriteria)
     // Trust me, this one is definitely non null.
     // eslint-disable-next-line @typescript-eslint/no-non-null-assertion
@@ -50,55 +52,4 @@ export function assignRoles(characters: Array<Character>, plots: Array<Plot>): A
   }));
 
   return assignedRoles.concat(remaining);
-}
-
-function getRoles(plots: Array<Plot>): Array<Role> {
-  // What roles do we have?
-  const roles = plots.flatMap((p) => resolve(p.roles));
-
-  // Some of the roles might have maximum amounts. If they do, we need to make sure we remove duplicates.
-  // We can do this with a reduce.
-  return roles.reduce(ensureRoleCaps, []);
-}
-
-function fillWithPeople(requiredRoles: Array<Role>, castSize: number): Array<Role> {
-  const numberOfPeopleNeeded = castSize - requiredRoles.length;
-  if (numberOfPeopleNeeded <= 0) {
-    // If we got here, something has gone terribly wrong and this is likely undefined behavior.
-    return requiredRoles;
-  }
-
-  const people = _.times(numberOfPeopleNeeded, () => Roles.person);
-  return requiredRoles.concat(people);
-}
-
-/**
- * Prune the occurrences of roles back to their maximums, if set.
- * @param accumulator The accumulator for the reducer
- * @param role The role itself
- */
-function ensureRoleCaps(accumulator: Role[], role: Role): Role[] {
-  // If there isn't a max specified for this role, just keep on going.
-  if (!role.max) {
-    return accumulator.concat(role);
-  }
-
-  // If there is a max for this role, we need to make sure we aren't already hitting it.
-  const existing = accumulator.filter((r) => r.id === role.id).length;
-  if (existing < role.max) {
-    // Add the role, we haven't yet capped out.
-    return accumulator.concat(role);
-  }
-
-  // We must've maxed out. Don't add anything.
-  return accumulator;
-}
-
-/**
- * If arg is a function, call it and return the value.
- * Otherwise, return the value.
- * @param arg
- */
-export function resolve<T>(arg: T | (() => T)): T {
-  return arg instanceof Function ? arg() : arg;
 }

@@ -6,6 +6,7 @@ import { chooseIncidents } from './chooseIncidents';
 import { assignRoles } from './assignRoles';
 import { assignIncidents } from './assignIncidents';
 import * as _ from 'lodash';
+import { getRoles } from './getRoles';
 
 export function generateScript(args: GeneratorArgs): Script {
   const { tragedySet } = args;
@@ -15,16 +16,31 @@ export function generateScript(args: GeneratorArgs): Script {
   const subplots = chooseSubplots(tragedySet.subplots, args.subplots);
   const plots = [mainPlot].concat(subplots);
 
+  // What roles are going to come into play?
+  const roles = getRoles(plots, args.castSize);
+
+  // Notably, the plot can demand more roles than there are characters.
+  // From now on, use the max of the two.
+  // Sorry, users!
+  const neededCharacters = Math.max(args.castSize, roles.length);
+  if (neededCharacters != args.castSize) {
+    console.log('Characters have been added to ensure that roles can be filled.');
+  }
+
   // What cast are we going to have?
   const characters = chooseCharacters({
-    amount: args.castSize,
+    amount: neededCharacters,
     useMidnightCircleCharacters: args.useMidnightCircleCharacters,
     useCosmicEvilCharacters: args.useCosmicEvilCharacters,
     plots: plots,
   });
 
   // Assign a role to each member of our cast.
-  const cast = assignRoles(characters, plots);
+  const cast = assignRoles({
+    characters: characters,
+    plots: plots,
+    roles: roles,
+  });
 
   // What incidents are we going to have?
   const incidents = chooseIncidents({
