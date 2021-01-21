@@ -1,7 +1,6 @@
 import { GeneratorArgs } from '../types/GeneratorArgs';
 import { Script } from '../types/Script';
 import { Plot } from '../types/Plot';
-import { wrap } from '../util/wrap';
 import { chooseCharacters } from './chooseCharacters';
 import { chooseIncidents } from './chooseIncidents';
 import { assignRoles } from './assignRoles';
@@ -58,5 +57,5 @@ function chooseMainPlot(pool: Array<Plot>): Plot {
 }
 
 function chooseSubplots(pool: Array<Plot>, size: number): Array<Plot> {
-  return wrap(_.sampleSize(pool, size));
+  return _.sampleSize(pool, size);
 }
