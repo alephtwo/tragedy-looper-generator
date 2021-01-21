@@ -1,6 +1,5 @@
 import { CastMember, Character } from '../types/Character';
 import { Plot } from '../types/Plot';
-import { resolve } from '../util/resolve';
 import { Role } from '../types/Role';
 import * as _ from 'lodash';
 import { Roles } from '../data/Roles';
@@ -93,4 +92,13 @@ function ensureRoleCaps(accumulator: Role[], role: Role): Role[] {
 
   // We must've maxed out. Don't add anything.
   return accumulator;
+}
+
+/**
+ * If arg is a function, call it and return the value.
+ * Otherwise, return the value.
+ * @param arg
+ */
+export function resolve<T>(arg: T | (() => T)): T {
+  return arg instanceof Function ? arg() : arg;
 }
