@@ -8,4 +8,5 @@ export interface Script {
   readonly subplots: Array<Plot>;
   readonly cast: Array<CastMember>;
   readonly incidents: Array<IncidentOcurrence>;
+  readonly days: number;
 }

@@ -65,6 +65,7 @@ export function generateScript(args: GeneratorArgs): Script {
     subplots: subplots,
     cast: cast,
     incidents: incidentOccurrences,
+    days: args.days,
   };
 }
 

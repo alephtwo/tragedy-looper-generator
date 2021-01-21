@@ -8,6 +8,7 @@ import { GeneratorArgs } from '../types/GeneratorArgs';
 import { Script } from '../types/Script';
 import { Arguments } from './Arguments';
 import { ScriptView } from './ScriptView';
+import { estimateLoops } from '../calculations/estimateLoops';
 
 const initialArgs: GeneratorArgs = {
   tragedySet: TragedySets.find((ts) => ts.order === 0) || TragedySets[0],
@@ -25,6 +26,7 @@ const initialScript: Script = {
   subplots: [],
   cast: [],
   incidents: [],
+  days: 6,
 };
 
 function Application(): JSX.Element {
@@ -47,7 +49,7 @@ function Application(): JSX.Element {
           </Button>
         </Grid>
       </Grid>
-      <ScriptView script={script} />
+      <ScriptView script={script} loops={estimateLoops(script)} />
     </Container>
   );
 }

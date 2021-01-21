@@ -6,9 +6,10 @@ import { Character } from '../types/Character';
 
 interface ScriptViewProps {
   script: Script;
+  loops: number;
 }
 
-export function ScriptView({ script: script }: ScriptViewProps): JSX.Element {
+export function ScriptView({ script: script, loops: loops }: ScriptViewProps): JSX.Element {
   // Assume that no cast means it hasn't been generated yet.
   if (script.cast.length === 0) {
     return <></>;
@@ -17,16 +18,16 @@ export function ScriptView({ script: script }: ScriptViewProps): JSX.Element {
   return (
     <Grid container spacing={2}>
       <Grid item xs={12} md={6}>
-        <MastermindCard script={script} />
+        <MastermindCard script={script} loops={loops} />
       </Grid>
       <Grid item xs={12} md={6}>
-        <PlayerCard script={script} />
+        <PlayerCard script={script} loops={loops} />
       </Grid>
     </Grid>
   );
 }
 
-function MastermindCard({ script: script }: ScriptViewProps): JSX.Element {
+function MastermindCard({ script: script, loops: loops }: ScriptViewProps): JSX.Element {
   const styles = useStyles();
 
   const subplots = [...script.subplots]
@@ -64,6 +65,7 @@ function MastermindCard({ script: script }: ScriptViewProps): JSX.Element {
     <Paper className={styles.paper}>
       <Typography variant="h2">Mastermind</Typography>
       <Typography>Tragedy Set: {script.tragedySet}</Typography>
+      <Typography>Loops: {loops}</Typography>
       <Typography>Main Plot: {script.mainPlot.name}</Typography>
       <Typography>Subplots:</Typography>
       <List dense>{subplots}</List>
@@ -75,7 +77,7 @@ function MastermindCard({ script: script }: ScriptViewProps): JSX.Element {
   );
 }
 
-function PlayerCard({ script: script }: ScriptViewProps): JSX.Element {
+function PlayerCard({ script: script, loops: loops }: ScriptViewProps): JSX.Element {
   const styles = useStyles();
 
   const incidents = [...script.incidents]
@@ -90,6 +92,7 @@ function PlayerCard({ script: script }: ScriptViewProps): JSX.Element {
     <Paper className={styles.paper}>
       <Typography variant="h2">Players</Typography>
       <Typography>Tragedy Set: {script.tragedySet}</Typography>
+      <Typography>Loops: {loops}</Typography>
       <Typography>Incidents:</Typography>
       <List dense>{incidents}</List>
     </Paper>

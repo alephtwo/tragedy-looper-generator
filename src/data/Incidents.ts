@@ -12,10 +12,12 @@ export const Incidents: IncidentDatabase = {
   suicide: {
     id: '71e53334-02be-44e2-b33e-2126739b6310',
     name: 'Suicide',
+    loopEstimate: 0.2,
   },
   hospitalIncident: {
     id: '2d4300de-801e-4436-9df6-20f8e3cebc4c',
     name: 'Hospital Incident',
+    loopEstimate: 0.4,
   },
   farawayMurder: {
     id: '6fa6c79b-10ad-4e1a-87b9-a016234ce5bc',
@@ -48,10 +50,12 @@ export const Incidents: IncidentDatabase = {
   fakeIncident: {
     id: 'ed52f5dc-0100-4394-869c-e5d08cced458',
     name: 'Fake Incident',
+    loopEstimate: 0.5,
   },
   breakthrough: {
     id: '40558603-fb7c-4bb8-9abd-1900c66f391b',
     name: 'Breakthrough',
+    loopEstimate: -0.2,
   },
   fakedSuicide: {
     id: 'b23a6923-b3da-49ae-acab-95bd9529c345',
@@ -68,6 +72,7 @@ export const Incidents: IncidentDatabase = {
   terrorism: {
     id: 'fc992060-f708-429a-9c20-6df09648e908',
     name: 'Terrorism',
+    loopEstimate: 0.4,
   },
   bestialMurder: {
     id: '3394cc8e-3c63-4c51-8312-696323d7bd5a',
@@ -108,6 +113,7 @@ export const Incidents: IncidentDatabase = {
   nightOfMadness: {
     id: '02c5d388-0cb4-458e-ad67-03c132917056',
     name: 'Night of Madness',
+    loopEstimate: 0.2,
   },
   awakenedCurse: {
     id: 'bbeb6df0-cdd9-4919-aa29-9defd3e1d603',
@@ -116,6 +122,7 @@ export const Incidents: IncidentDatabase = {
   evangeliumOfTheDead: {
     id: '3d2e0649-dd64-483f-8535-c7b2bc4fe954',
     name: 'Evangelium of the Dead',
+    loopEstimate: 0.6,
   },
   fountainOfFilth: {
     id: '444b1aa1-b4e4-4530-8d8d-858b088ef928',
@@ -132,10 +139,12 @@ export const Incidents: IncidentDatabase = {
   fireOfDemise: {
     id: '882c2aa2-3c56-4d9f-8810-3763c3eb6111',
     name: 'Fire of Demise',
+    loopEstimate: 0.4,
   },
   houndDogScent: {
     id: '87d18693-1678-46ea-90bd-2b2fa807853b',
     name: 'Hound Dog Scent',
+    loopEstimate: 0.4,
   },
   discovery: {
     id: 'dfdb1988-7d95-4553-94c4-1da003166cba',
