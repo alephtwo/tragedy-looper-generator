@@ -4,32 +4,32 @@ import { Grid, List, ListItem, ListItemText, makeStyles, Paper, Typography } fro
 import { AllCharacters } from '../data/Characters';
 import { Character } from '../types/Character';
 
-interface TragedyViewProps {
-  tragedy: Script;
+interface ScriptViewProps {
+  script: Script;
 }
 
-export function ScriptView({ tragedy: tragedy }: TragedyViewProps): JSX.Element {
+export function ScriptView({ script: script }: ScriptViewProps): JSX.Element {
   // Assume that no cast means it hasn't been generated yet.
-  if (tragedy.cast.length === 0) {
+  if (script.cast.length === 0) {
     return <></>;
   }
 
   return (
     <Grid container spacing={2}>
       <Grid item xs={12} md={6}>
-        <MastermindCard tragedy={tragedy} />
+        <MastermindCard script={script} />
       </Grid>
       <Grid item xs={12} md={6}>
-        <PlayerCard tragedy={tragedy} />
+        <PlayerCard script={script} />
       </Grid>
     </Grid>
   );
 }
 
-function MastermindCard({ tragedy: tragedy }: TragedyViewProps): JSX.Element {
+function MastermindCard({ script: script }: ScriptViewProps): JSX.Element {
   const styles = useStyles();
 
-  const subplots = [...tragedy.subplots]
+  const subplots = [...script.subplots]
     .sort((a, b) => a.name.localeCompare(b.name))
     .map((sp) => (
       <ListItem key={sp.id}>
@@ -37,7 +37,7 @@ function MastermindCard({ tragedy: tragedy }: TragedyViewProps): JSX.Element {
       </ListItem>
     ));
 
-  const cast = [...tragedy.cast]
+  const cast = [...script.cast]
     .sort((a, b) => a.character.name.localeCompare(b.character.name))
     .map((c) => {
       const loopDesignator = getLoopDesignator(c.character);
@@ -49,7 +49,7 @@ function MastermindCard({ tragedy: tragedy }: TragedyViewProps): JSX.Element {
       );
     });
 
-  const incidents = [...tragedy.incidents]
+  const incidents = [...script.incidents]
     .sort((a, b) => a.day - b.day)
     .map((i) => {
       const msg = `${i.day} - ${i.incident.name} (${i.character.name})`;
@@ -63,8 +63,8 @@ function MastermindCard({ tragedy: tragedy }: TragedyViewProps): JSX.Element {
   return (
     <Paper className={styles.paper}>
       <Typography variant="h2">Mastermind</Typography>
-      <Typography>Tragedy Set: {tragedy.tragedySet}</Typography>
-      <Typography>Main Plot: {tragedy.mainPlot.name}</Typography>
+      <Typography>Tragedy Set: {script.tragedySet}</Typography>
+      <Typography>Main Plot: {script.mainPlot.name}</Typography>
       <Typography>Subplots:</Typography>
       <List dense>{subplots}</List>
       <Typography>Cast:</Typography>
@@ -75,10 +75,10 @@ function MastermindCard({ tragedy: tragedy }: TragedyViewProps): JSX.Element {
   );
 }
 
-function PlayerCard({ tragedy: tragedy }: TragedyViewProps): JSX.Element {
+function PlayerCard({ script: script }: ScriptViewProps): JSX.Element {
   const styles = useStyles();
 
-  const incidents = [...tragedy.incidents]
+  const incidents = [...script.incidents]
     .sort((a, b) => a.day - b.day)
     .map((i) => (
       <ListItem key={`p-${i.incident.id}`}>
@@ -89,7 +89,7 @@ function PlayerCard({ tragedy: tragedy }: TragedyViewProps): JSX.Element {
   return (
     <Paper className={styles.paper}>
       <Typography variant="h2">Players</Typography>
-      <Typography>Tragedy Set: {tragedy.tragedySet}</Typography>
+      <Typography>Tragedy Set: {script.tragedySet}</Typography>
       <Typography>Incidents:</Typography>
       <List dense>{incidents}</List>
     </Paper>

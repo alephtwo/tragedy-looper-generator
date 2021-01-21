@@ -46,7 +46,7 @@ function Application(): JSX.Element {
           </Button>
         </Grid>
       </Grid>
-      <ScriptView tragedy={script} />
+      <ScriptView script={script} />
     </Container>
   );
 }
