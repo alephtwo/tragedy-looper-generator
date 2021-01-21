@@ -6,6 +6,7 @@ export interface Character {
   readonly type: CharacterType;
   readonly gender: CharacterGender;
   readonly descriptors: Array<CharacterDescriptor>;
+  readonly entersOnLoop?: (loops: number) => number;
 }
 
 interface CastMember {

@@ -41,7 +41,7 @@ function MastermindCard({ script: script, loops: loops }: ScriptViewProps): JSX.
   const cast = [...script.cast]
     .sort((a, b) => a.character.name.localeCompare(b.character.name))
     .map((c) => {
-      const loopDesignator = getLoopDesignator(c.character);
+      const loopDesignator = getLoopDesignator(c.character, loops);
       const msg = `${c.character.name} (${c.role.name}) ${loopDesignator}`.trim();
       return (
         <ListItem key={c.character.id}>
@@ -99,10 +99,10 @@ function PlayerCard({ script: script, loops: loops }: ScriptViewProps): JSX.Elem
   );
 }
 
-function getLoopDesignator(character: Character): string {
-  // TODO: Actually put a loop number here!
-  if (character.id === AllCharacters.godlyBeing.id) {
-    return '(Enters on Loop X)';
+function getLoopDesignator(character: Character, loops: number): string {
+  if (character.entersOnLoop) {
+    const loop = character.entersOnLoop(loops);
+    return `(Enters on Loop ${loop})`;
   }
   return '';
 }

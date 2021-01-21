@@ -1,4 +1,5 @@
 import { Character } from '../types/Character';
+import * as _ from 'lodash';
 
 export const AllCharacters: CastDatabase = {
   // Base Game
@@ -92,6 +93,7 @@ export const AllCharacters: CastDatabase = {
     type: null,
     gender: 'All',
     descriptors: ['Man', 'Woman'],
+    entersOnLoop: (loops: number): number => _.random(1, loops),
   },
   popIdol: {
     id: '8d6ee9a7-6753-4abe-8444-13098820f516',
