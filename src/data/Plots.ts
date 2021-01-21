@@ -76,9 +76,9 @@ export const MainPlots: MainPlotDatabase = {
     name: 'Secret Record',
     roles: [Roles.keyPerson, Roles.brain, Roles.conspiracyTheorist],
     estimateLoops: (script: Script): number => {
-      // TODO: Calculate roles which will cause the matermind to win the game.
-      const winningRoles = 0;
+      const winningRoles = script.cast.filter((c) => Roles.friend.id === c.role.id).length;
 
+      // +0.5 for each role that, when revealed, kills the protagonists.
       return 1.0 + winningRoles * 0.5;
     },
   },
