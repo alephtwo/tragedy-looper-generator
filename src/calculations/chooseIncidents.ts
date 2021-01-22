@@ -23,7 +23,9 @@ export function chooseIncidents(args: ChooseIncidentsArgs): Array<Incident> {
     // Add it to our list of chosen incidents.
     chosenIncidents.push(incident);
     // Remove it from the pool.
-    _.remove(pool, (i: Incident) => i.id === incident.id);
+    // Use splice, since there might be more than one of the same incident.
+    const indexToRemove = pool.findIndex((i) => i.id === incident.id);
+    pool.splice(indexToRemove, 1);
     console.log(`Incident "${incident.name}" was added to the pool due to plot requirements.`);
   });
 

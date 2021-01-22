@@ -38,8 +38,11 @@ export function assignIncidents(args: AssignIncidentsArgs): Array<IncidentOcurre
       });
 
       // Remove the data we just added from all pools.
+
       _.remove(castPool, (c: CastMember) => c.character.id === castMember.character.id);
-      _.remove(incidentPool, (i: Incident) => i.id === chosenIncident.id);
+      // Use splice to remove an incident since there may be duplicates by ID.
+      const incidentIndexToRemove = incidentPool.findIndex((i) => i.id === chosenIncident.id);
+      incidentPool.splice(incidentIndexToRemove, 1);
       _.remove(daysPool, chosenDay);
       console.log(
         `${castMember.character.name} is the culprit of ${chosenIncident.name} on day ${chosenDay} due to plot requirements.`
