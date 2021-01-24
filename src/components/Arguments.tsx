@@ -90,7 +90,7 @@ export function Arguments({ args, setArgs }: ArgumentsProps): JSX.Element {
           />
         </Grid>
         <Grid item md={6} xs={12}>
-          <GeneratorSlider label="Days" value={args.days} min={4} max={10} announce={announceSlider('days')} />
+          <GeneratorSlider label="Days" value={args.days} min={4} max={8} announce={announceSlider('days')} />
         </Grid>
         <Grid item md={6} xs={12}>
           <GeneratorSlider

@@ -21,7 +21,8 @@ export function estimateLoops(script: Script): number {
   const estimate = Math.ceil(fromPlots + fromIncidents + fromNumberOfIncidents + fromDays + fromAdditionalFactors);
 
   // Assume we want at least two loops to be a good sport.
-  return Math.max(estimate, 2);
+  // That said, there is a maximum number of 7 loops.
+  return _.clamp(estimate, 2, 7);
 }
 
 function getLoopsFromDays(days: number) {
