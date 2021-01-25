@@ -53,9 +53,11 @@ function MastermindCard({ script: script, loops: loops }: ScriptViewProps): JSX.
     .sort((a, b) => a.day - b.day)
     .map((i) => {
       const msg = `${i.day} - ${i.incident.name} (${i.character.name})`;
+      const faked = i.incident.fakedIncident ? `(fake ${i.incident.fakedIncident.name})` : null;
+
       return (
         <ListItem key={`m-${i.incident.id}-${i.character.id}`}>
-          <ListItemText primary={msg} />
+          <ListItemText primary={msg} secondary={faked} />
         </ListItem>
       );
     });
@@ -81,11 +83,14 @@ function PlayerCard({ script: script, loops: loops }: ScriptViewProps): JSX.Elem
 
   const incidents = [...script.incidents]
     .sort((a, b) => a.day - b.day)
-    .map((i) => (
-      <ListItem key={`p-${i.incident.id}-${i.character.id}`}>
-        <ListItemText primary={`${i.day} - ${i.incident.name}`} />
-      </ListItem>
-    ));
+    .map((i) => {
+      const name = i.incident.fakedIncident ? i.incident.fakedIncident.name : i.incident.name;
+      return (
+        <ListItem key={`p-${i.incident.id}-${i.character.id}`}>
+          <ListItemText primary={`${i.day} - ${name}`} />
+        </ListItem>
+      );
+    });
 
   return (
     <Paper className={styles.paper}>

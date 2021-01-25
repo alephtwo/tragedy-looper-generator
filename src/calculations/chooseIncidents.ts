@@ -2,6 +2,7 @@ import { Incident } from '../types/Incident';
 import { Plot } from '../types/Plot';
 import * as _ from 'lodash';
 import { CastMember } from '../types/Character';
+import { Incidents } from '../data/Incidents';
 
 interface ChooseIncidentsArgs {
   incidents: Array<Incident>;
@@ -53,5 +54,21 @@ export function chooseIncidents(args: ChooseIncidentsArgs): Array<Incident> {
   // The same incident can happen more than once.
   const remaining = _.times<Incident>(numberOfMissingIncidents, () => _.sample(pool) as Incident);
 
-  return chosenIncidents.concat(remaining);
+  // Now we know what incidents we have!
+  // However, if there are any fake incidents, we need to set a "fake" incident that they are associated with.
+  const occurringIncidents = chosenIncidents.concat(remaining);
+  setFakeIncidents(occurringIncidents, [...args.incidents]);
+
+  // By now we've done all we can. Let's just return.
+  return occurringIncidents;
+}
+
+function setFakeIncidents(incidents: Array<Incident>, allIncidents: Array<Incident>) {
+  const nonFakedIncidents = allIncidents.filter((i) => i.id !== Incidents.fakeIncident.id);
+
+  incidents
+    .filter((i) => i.id === Incidents.fakeIncident.id)
+    .forEach((incident) => {
+      incident.fakedIncident = _.sample(nonFakedIncidents);
+    });
 }
