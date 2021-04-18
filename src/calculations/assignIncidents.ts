@@ -1,6 +1,6 @@
 import { CastMember } from '../types/Character';
 import { Incident } from '../types/Incident';
-import { IncidentOcurrence } from '../types/IncidentOcurrence';
+import { IncidentOccurrence } from '../types/IncidentOccurrence';
 import * as _ from 'lodash';
 
 interface AssignIncidentsArgs {
@@ -10,14 +10,14 @@ interface AssignIncidentsArgs {
   lastDay: number;
 }
 
-export function assignIncidents(args: AssignIncidentsArgs): Array<IncidentOcurrence> {
+export function assignIncidents(args: AssignIncidentsArgs): Array<IncidentOccurrence> {
   // Make our pools.
   const castPool = [...args.cast];
   const incidentPool = [...args.incidents];
   const daysPool = _.range(1, args.lastDay + 1);
 
   // A place to hold our results.
-  const assignedIncidents: Array<IncidentOcurrence> = [];
+  const assignedIncidents: Array<IncidentOccurrence> = [];
 
   // Knox's 7th: it is forbidden for the detective to be the culprit.
   // Remove anyone who can never be the culprit from the pool.
