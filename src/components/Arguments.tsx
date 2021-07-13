@@ -32,10 +32,12 @@ export function Arguments({ args, setArgs }: ArgumentsProps): JSX.Element {
     setArgs(clampedDays);
   };
 
-  const announceBoolean = (property: string) => (__: ChangeEvent<HTMLInputElement>, value: boolean): void => {
-    const next = extend(args, { [property]: value });
-    setArgs(next);
-  };
+  const announceBoolean =
+    (property: string) =>
+    (__: ChangeEvent<HTMLInputElement>, value: boolean): void => {
+      const next = extend(args, { [property]: value });
+      setArgs(next);
+    };
 
   const announceTragedySet = (id: string) => {
     const chosen = TragedySets.find((a) => a.id === id) || TragedySets[0];
