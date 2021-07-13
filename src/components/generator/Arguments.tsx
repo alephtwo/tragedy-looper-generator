@@ -11,9 +11,9 @@ import {
 } from '@material-ui/core';
 import * as React from 'react';
 import { ChangeEvent, Dispatch, SetStateAction } from 'react';
-import { TragedySets } from '../data/TragedySets';
-import { GeneratorArgs } from '../types/GeneratorArgs';
-import { TragedySetInfo } from '../types/TragedySetInfo';
+import { TragedySets } from '../../data/TragedySets';
+import { GeneratorArgs } from '../../types/GeneratorArgs';
+import { TragedySetInfo } from '../../types/TragedySetInfo';
 import * as _ from 'lodash';
 
 interface ArgumentsProps {
