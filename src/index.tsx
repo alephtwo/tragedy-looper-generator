@@ -1,14 +1,14 @@
 import * as React from 'react';
 import * as ReactDOM from 'react-dom';
 import Application from './components/Application';
-import { createMuiTheme, CssBaseline, MuiThemeProvider } from '@material-ui/core';
+import { createTheme, CssBaseline, MuiThemeProvider } from '@material-ui/core';
 import * as Colors from '@material-ui/core/colors';
 
-const theme = createMuiTheme({
+const theme = createTheme({
   palette: {
-    primary: Colors.deepOrange,
+    primary: Colors.amber,
     background: {
-      default: Colors.deepPurple[500],
+      default: Colors.grey[500],
     },
   },
 });

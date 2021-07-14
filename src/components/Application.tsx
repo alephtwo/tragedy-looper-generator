@@ -41,7 +41,7 @@ function Application(): JSX.Element {
   return (
     <Container>
       <Arguments args={args} setArgs={setArgs} />
-      <Grid container justify="center" alignItems="center">
+      <Grid container justifyContent="center" alignItems="center">
         <Grid item md={4} xs={12}>
           <Button variant="contained" color="primary" fullWidth onClick={generate}>
             Generate

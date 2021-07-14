@@ -51,7 +51,7 @@ export function Arguments({ args, setArgs }: ArgumentsProps): JSX.Element {
         <Grid item xs={6}>
           <TragedySetChooser announce={announceTragedySet} value={args.tragedySet} />
         </Grid>
-        <Grid container item justify="space-around" xs={6}>
+        <Grid container item justifyContent="space-around" xs={6}>
           <FormControlLabel
             label="Midnight Circle"
             control={

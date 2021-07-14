@@ -1,6 +1,16 @@
 import * as React from 'react';
 import { Script } from '../types/Script';
-import { Grid, List, ListItem, ListItemText, makeStyles, Paper, Typography } from '@material-ui/core';
+import {
+  Grid,
+  makeStyles,
+  Paper,
+  Table,
+  TableHead,
+  TableBody,
+  TableRow,
+  TableCell,
+  Typography,
+} from '@material-ui/core';
 import { Character } from '../types/Character';
 
 interface ScriptViewProps {
@@ -31,49 +41,83 @@ function MastermindCard({ script: script, loops: loops }: ScriptViewProps): JSX.
 
   const subplots = [...script.subplots]
     .sort((a, b) => a.name.localeCompare(b.name))
-    .map((sp) => (
-      <ListItem key={sp.id}>
-        <ListItemText primary={sp.name} />
-      </ListItem>
+    .map((sp, i) => (
+      <TableRow key={`m-sp-${sp.id}`}>
+        <TableCell key={sp.id} variant="head">
+          {i === 0 ? 'Subplots' : null}
+        </TableCell>
+        <TableCell>{sp.name}</TableCell>
+      </TableRow>
     ));
 
   const cast = [...script.cast]
     .sort((a, b) => a.character.name.localeCompare(b.character.name))
     .map((c) => {
       const loopDesignator = getLoopDesignator(c.character, loops);
-      const msg = `${c.character.name} (${c.role.name}) ${loopDesignator}`.trim();
+      const role = `${c.role.name} ${loopDesignator}`.trim();
       return (
-        <ListItem key={c.character.id}>
-          <ListItemText primary={msg} />
-        </ListItem>
+        <TableRow key={`cast-${c.character.id}`}>
+          <TableCell>{c.character.name}</TableCell>
+          <TableCell>{role}</TableCell>
+        </TableRow>
       );
     });
 
   const incidents = [...script.incidents]
     .sort((a, b) => a.day - b.day)
     .map((i) => {
-      const msg = `${i.day} - ${i.incident.name} (${i.character.name})`;
-      const faked = i.incident.fakedIncident ? `(fake ${i.incident.fakedIncident.name})` : null;
+      const faked = i.incident.fakedIncident ? ` (fake ${i.incident.fakedIncident.name})` : '';
 
       return (
-        <ListItem key={`m-${i.incident.id}-${i.character.id}`}>
-          <ListItemText primary={msg} secondary={faked} />
-        </ListItem>
+        <TableRow key={`m-${i.incident.id}-${i.character.id}`}>
+          <TableCell>{i.day}</TableCell>
+          <TableCell>{`${i.incident.name}${faked}`}</TableCell>
+          <TableCell>{i.character.name}</TableCell>
+        </TableRow>
       );
     });
 
   return (
     <Paper className={styles.paper}>
-      <Typography variant="h2">Mastermind</Typography>
-      <Typography>Tragedy Set: {script.tragedySet}</Typography>
-      <Typography>Loops: {loops}</Typography>
-      <Typography>Main Plot: {script.mainPlot.name}</Typography>
-      <Typography>Subplots:</Typography>
-      <List dense>{subplots}</List>
-      <Typography>Cast:</Typography>
-      <List dense>{cast}</List>
-      <Typography>Incidents:</Typography>
-      <List dense>{incidents}</List>
+      <Typography variant="h5">Mastermind</Typography>
+      <Table size="small" className={styles.table}>
+        <TableBody>
+          <TableRow>
+            <TableCell variant="head">Tragedy Set</TableCell>
+            <TableCell>{script.tragedySet}</TableCell>
+          </TableRow>
+          <TableRow>
+            <TableCell variant="head">Loops</TableCell>
+            <TableCell>{loops}</TableCell>
+          </TableRow>
+          <TableRow>
+            <TableCell variant="head">Main Plot</TableCell>
+            <TableCell>{script.mainPlot.name}</TableCell>
+          </TableRow>
+          {subplots}
+        </TableBody>
+      </Table>
+      <Typography variant="h6">Cast</Typography>
+      <Table size="small" className={styles.table}>
+        <TableHead>
+          <TableRow>
+            <TableCell>Character</TableCell>
+            <TableCell>Role</TableCell>
+          </TableRow>
+        </TableHead>
+        <TableBody>{cast}</TableBody>
+      </Table>
+      <Typography variant="h6">Incidents</Typography>
+      <Table size="small" className={styles.table}>
+        <TableHead>
+          <TableRow>
+            <TableCell>Day</TableCell>
+            <TableCell>Incident</TableCell>
+            <TableCell>Culprit</TableCell>
+          </TableRow>
+        </TableHead>
+        <TableBody>{incidents}</TableBody>
+      </Table>
     </Paper>
   );
 }
@@ -86,19 +130,38 @@ function PlayerCard({ script: script, loops: loops }: ScriptViewProps): JSX.Elem
     .map((i) => {
       const name = i.incident.fakedIncident ? i.incident.fakedIncident.name : i.incident.name;
       return (
-        <ListItem key={`p-${i.incident.id}-${i.character.id}`}>
-          <ListItemText primary={`${i.day} - ${name}`} />
-        </ListItem>
+        <TableRow key={`p-${i.incident.id}-${i.character.id}`}>
+          <TableCell>{i.day}</TableCell>
+          <TableCell>{name}</TableCell>
+        </TableRow>
       );
     });
 
   return (
     <Paper className={styles.paper}>
-      <Typography variant="h2">Players</Typography>
-      <Typography>Tragedy Set: {script.tragedySet}</Typography>
-      <Typography>Loops: {loops}</Typography>
-      <Typography>Incidents:</Typography>
-      <List dense>{incidents}</List>
+      <Typography variant="h5">Players</Typography>
+      <Table size="small" className={styles.table}>
+        <TableBody>
+          <TableRow>
+            <TableCell variant="head">Tragedy Set</TableCell>
+            <TableCell>{script.tragedySet}</TableCell>
+          </TableRow>
+          <TableRow>
+            <TableCell variant="head">Loops</TableCell>
+            <TableCell>{loops}</TableCell>
+          </TableRow>
+        </TableBody>
+      </Table>
+      <Typography variant="h6">Incidents</Typography>
+      <Table size="small" className={styles.table}>
+        <TableHead>
+          <TableRow>
+            <TableCell>Day</TableCell>
+            <TableCell>Incident</TableCell>
+          </TableRow>
+        </TableHead>
+        <TableBody>{incidents}</TableBody>
+      </Table>
     </Paper>
   );
 }
@@ -115,6 +178,9 @@ const useStyles = makeStyles((theme) => ({
   paper: {
     padding: theme.spacing(4),
     marginTop: theme.spacing(2),
+    marginBottom: theme.spacing(2),
+  },
+  table: {
     marginBottom: theme.spacing(2),
   },
 }));
