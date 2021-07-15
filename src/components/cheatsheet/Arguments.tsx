@@ -4,16 +4,16 @@ import {
   Button,
   Grid,
   makeStyles,
-  MenuItem,
   Paper,
-  Select,
   Typography,
   Table,
   TableHead,
   TableBody,
   TableRow,
   TableCell,
+  TextField,
 } from '@material-ui/core';
+import { Autocomplete, AutocompleteRenderInputParams } from '@material-ui/lab';
 import { CheatsheetState } from '../../types/CheatsheetState';
 import { CheatsheetMessage } from '../../reducers/cheatsheetReducer';
 import { TragedySets } from '../../data/TragedySets';
@@ -23,6 +23,9 @@ import { AllCharacters } from '../../data/Characters';
 import * as _ from 'lodash';
 import { Roles } from '../../data/Roles';
 import { CheatsheetCastRow } from '../../types/CheatsheetCastRow';
+import { TragedySetInfo } from '../../types/TragedySetInfo';
+import { Role } from '../../types/Role';
+import { Character } from '../../types/Character';
 
 interface CheatsheetArgumentsProps {
   state: CheatsheetState;
@@ -40,27 +43,29 @@ export function Arguments(props: CheatsheetArgumentsProps): JSX.Element {
           <Typography variant="h6">Plots</Typography>
           <Table size="small" className={styles.table}>
             <TableBody>
-              <TragedySetPicker value={state.tragedySet.id} dispatch={dispatch} />
-              <MainPlotPicker value={state.mainPlot.id} mainPlots={state.tragedySet.mainPlots} dispatch={dispatch} />
-              <SubplotPicker
-                values={state.subplots.map((s) => s.id)}
-                subplots={state.tragedySet.subplots}
-                dispatch={dispatch}
-              />
+              <TragedySetPicker value={state.tragedySet} dispatch={dispatch} />
+              <MainPlotPicker value={state.mainPlot} mainPlots={state.tragedySet.mainPlots} dispatch={dispatch} />
+              <SubplotPicker subplots={state.subplots} allSubplots={state.tragedySet.subplots} dispatch={dispatch} />
             </TableBody>
           </Table>
         </Grid>
         <Grid item xs={12}>
-          <Typography variant="h6">Cast</Typography>
-          <Button variant="contained" color="primary" fullWidth onClick={() => dispatch({ type: 'add-cast-member' })}>
-            Add Cast
-          </Button>
+          <Grid container>
+            <Grid item xs={6}>
+              <Typography variant="h6">Cast</Typography>
+            </Grid>
+            <Grid item xs={6} className={styles.alignRight}>
+              <Button variant="contained" color="primary" onClick={() => dispatch({ type: 'add-cast-member' })}>
+                Add Cast
+              </Button>
+            </Grid>
+          </Grid>
           <Table>
             <TableHead>
               <TableRow>
-                <TableCell className={styles.deleteColumn} />
-                <TableCell className={styles.limitColumnWidth}>Name</TableCell>
+                <TableCell className={styles.limitColumnWidth}>Character</TableCell>
                 <TableCell className={styles.limitColumnWidth}>Role</TableCell>
+                <TableCell className={styles.deleteColumn} />
               </TableRow>
             </TableHead>
             <CastPicker cast={state.cast} dispatch={dispatch} />
@@ -72,19 +77,15 @@ export function Arguments(props: CheatsheetArgumentsProps): JSX.Element {
 }
 
 interface TragedySetPickerProps {
-  value: string;
+  value: TragedySetInfo;
   dispatch: Dispatch<CheatsheetMessage>;
 }
 
 function TragedySetPicker(props: TragedySetPickerProps): JSX.Element {
   const styles = useStyles();
-  const items = [...TragedySets].map((ts) => (
-    <MenuItem key={`cs-ts-${ts.id}}`} value={ts.id}>
-      {ts.title}
-    </MenuItem>
-  ));
-  const handleChange = (value: string) => {
-    props.dispatch({ type: 'update-tragedy-set', id: value });
+  const handleChange = (tragedySet: TragedySetInfo | null) => {
+    console.debug(tragedySet);
+    props.dispatch({ type: 'update-tragedy-set', tragedySet: tragedySet });
   };
 
   return (
@@ -93,34 +94,28 @@ function TragedySetPicker(props: TragedySetPickerProps): JSX.Element {
         Tragedy Set
       </TableCell>
       <TableCell>
-        <Select
-          fullWidth
-          variant="outlined"
+        <Autocomplete
           value={props.value}
-          onChange={(e) => handleChange(e.target.value as string)}
-        >
-          {items}
-        </Select>
+          defaultValue={TragedySets[0]}
+          options={[...TragedySets]}
+          getOptionLabel={(ts) => ts.title}
+          onChange={(_, v) => handleChange(v)}
+          renderInput={renderAutocomplete}
+        />
       </TableCell>
     </TableRow>
   );
 }
 
 interface MainPlotPickerProps {
-  value: string;
+  value: Plot;
   mainPlots: Array<Plot>;
   dispatch: Dispatch<CheatsheetMessage>;
 }
 function MainPlotPicker(props: MainPlotPickerProps): JSX.Element {
   const styles = useStyles();
-  const items = [...props.mainPlots].map((mp) => (
-    <MenuItem key={`cs-mp-${mp.id}`} value={mp.id}>
-      {mp.name}
-    </MenuItem>
-  ));
-
-  const handleChange = (value: string) => {
-    props.dispatch({ type: 'update-main-plot', id: value });
+  const handleChange = (plot: Plot | null) => {
+    props.dispatch({ type: 'update-main-plot', plot: plot });
   };
 
   return (
@@ -129,33 +124,28 @@ function MainPlotPicker(props: MainPlotPickerProps): JSX.Element {
         Main Plot
       </TableCell>
       <TableCell>
-        <Select
-          fullWidth
-          variant="outlined"
+        <Autocomplete
           value={props.value}
-          onChange={(e) => handleChange(e.target.value as string)}
-        >
-          {items}
-        </Select>
+          defaultValue={props.mainPlots[0]}
+          options={[...props.mainPlots]}
+          getOptionLabel={(p) => p.name}
+          onChange={(_, v) => handleChange(v)}
+          renderInput={renderAutocomplete}
+        />
       </TableCell>
     </TableRow>
   );
 }
 
 interface SubplotPickerProps {
-  values: Array<string>;
   subplots: Array<Plot>;
+  allSubplots: Array<Plot>;
   dispatch: Dispatch<CheatsheetMessage>;
 }
 function SubplotPicker(props: SubplotPickerProps): JSX.Element {
   const styles = useStyles();
-  const items = [...props.subplots].map((sp) => (
-    <MenuItem key={`cs-sp-${sp.id}`} value={sp.id}>
-      {sp.name}
-    </MenuItem>
-  ));
-  const handleChange = (values: Array<string>) => {
-    props.dispatch({ type: 'update-subplots', ids: values });
+  const handleChange = (values: Array<Plot>) => {
+    props.dispatch({ type: 'update-subplots', subplots: values });
   };
   return (
     <TableRow>
@@ -163,16 +153,15 @@ function SubplotPicker(props: SubplotPickerProps): JSX.Element {
         Subplots
       </TableCell>
       <TableCell>
-        <Select
-          fullWidth
+        <Autocomplete
           multiple
-          variant="outlined"
-          maxRows={2}
-          value={props.values}
-          onChange={(e) => handleChange(e.target.value as Array<string>)}
-        >
-          {items}
-        </Select>
+          value={props.subplots}
+          defaultValue={[]}
+          options={[...props.allSubplots]}
+          getOptionLabel={(p) => p.name}
+          onChange={(_, v) => handleChange(v)}
+          renderInput={renderAutocomplete}
+        />
       </TableCell>
     </TableRow>
   );
@@ -186,6 +175,12 @@ function CastPicker(props: CastPickerProps): JSX.Element {
   const styles = useStyles();
   const cast = [...props.cast].map((c) => (
     <TableRow key={c.id}>
+      <TableCell className={styles.limitColumnWidth}>
+        <FullCastWithExceptionsPicker cheatsheetRow={c} dispatch={props.dispatch} />
+      </TableCell>
+      <TableCell className={styles.limitColumnWidth}>
+        <AllRolesWithExceptionsPicker cheatsheetRow={c} dispatch={props.dispatch} />
+      </TableCell>
       <TableCell>
         <Button
           variant="contained"
@@ -194,12 +189,6 @@ function CastPicker(props: CastPickerProps): JSX.Element {
         >
           <DeleteIcon />
         </Button>
-      </TableCell>
-      <TableCell className={styles.limitColumnWidth}>
-        <FullCastWithExceptionsPicker cheatsheetRow={c} dispatch={props.dispatch} />
-      </TableCell>
-      <TableCell className={styles.limitColumnWidth}>
-        <AllRolesWithExceptionsPicker cheatsheetRow={c} dispatch={props.dispatch} />
       </TableCell>
     </TableRow>
   ));
@@ -214,29 +203,22 @@ function FullCastWithExceptionsPicker(props: FullCastWithExceptionsPickerProps):
   const cast = [..._.values(AllCharacters)];
   cast.sort((a, b) => a.name.localeCompare(b.name));
 
-  const handleChange = (id: string) => {
+  const handleChange = (character: Character | null) => {
     props.dispatch({
       type: 'update-cast-character',
       id: props.cheatsheetRow.id,
-      characterId: id,
+      character: character || undefined,
     });
   };
 
-  const items = [...cast].map((c) => (
-    <MenuItem key={`cs-cast-select-${props.cheatsheetRow.id}-${c.id}`} value={c.id}>
-      {c.name}
-    </MenuItem>
-  ));
-
   return (
-    <Select
-      variant="outlined"
-      fullWidth
-      value={props.cheatsheetRow?.character?.id || ''}
-      onChange={(e) => handleChange(e.target.value as string)}
-    >
-      {items}
-    </Select>
+    <Autocomplete
+      value={props.cheatsheetRow.character || null}
+      onChange={(_, v) => handleChange(v)}
+      options={cast}
+      getOptionLabel={(p) => p.name}
+      renderInput={renderAutocomplete}
+    />
   );
 }
 
@@ -245,35 +227,31 @@ interface AllRolesWithExceptionsPickerProps {
   dispatch: Dispatch<CheatsheetMessage>;
 }
 function AllRolesWithExceptionsPicker(props: AllRolesWithExceptionsPickerProps): JSX.Element {
-  // Filter out roles that have already been chosen in other rows.
   const roles = [..._.values(Roles)];
   roles.sort((a, b) => a.name.localeCompare(b.name));
 
-  const handleChange = (id: string) => {
+  const handleChange = (role: Role | null) => {
     props.dispatch({
       type: 'update-cast-role',
       id: props.cheatsheetRow.id,
-      roleId: id,
+      role: role || undefined,
     });
   };
 
-  const items = [...roles].map((r) => (
-    <MenuItem key={`cs-role-select-${props.cheatsheetRow.id}-${r.id}`} value={r.id}>
-      {r.name}
-    </MenuItem>
-  ));
-
   return (
-    <Select
-      variant="outlined"
-      fullWidth
-      value={props.cheatsheetRow?.role?.id || ''}
-      onChange={(e) => handleChange(e.target.value as string)}
-    >
-      {items}
-    </Select>
+    <Autocomplete
+      value={props.cheatsheetRow.role || null}
+      onChange={(_, v) => handleChange(v)}
+      options={roles}
+      getOptionLabel={(p) => p.name}
+      renderInput={renderAutocomplete}
+    />
   );
 }
+
+const renderAutocomplete = (params: AutocompleteRenderInputParams) => (
+  <TextField {...params} size="small" variant="outlined" />
+);
 
 const useStyles = makeStyles((theme) => ({
   paper: {
@@ -293,5 +271,8 @@ const useStyles = makeStyles((theme) => ({
   table: {
     marginTop: theme.spacing(2),
     marginBottom: theme.spacing(2),
+  },
+  alignRight: {
+    textAlign: 'right',
   },
 }));

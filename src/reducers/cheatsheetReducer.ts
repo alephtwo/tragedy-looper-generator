@@ -4,72 +4,59 @@ import { TragedySets } from '../data/TragedySets';
 import { Plot } from '../types/Plot';
 import * as uuid from 'uuid';
 import { CheatsheetCastRow } from '../types/CheatsheetCastRow';
-import _ = require('lodash');
-import { AllCharacters } from '../data/Characters';
-import { Roles } from '../data/Roles';
+import { TragedySetInfo } from '../types/TragedySetInfo';
+import { Role } from '../types/Role';
+import { Character } from '../types/Character';
 
 export type CheatsheetMessage =
-  | { type: 'update-tragedy-set'; id: string }
-  | { type: 'update-main-plot'; id: string }
-  | { type: 'update-subplots'; ids: Array<string> }
+  | { type: 'update-tragedy-set'; tragedySet: TragedySetInfo | null }
+  | { type: 'update-main-plot'; plot: Plot | null }
+  | { type: 'update-subplots'; subplots: Array<Plot> }
   | { type: 'add-cast-member' }
   | { type: 'remove-cast-member'; id: string }
-  | { type: 'update-cast-character'; id: string; characterId: string }
-  | { type: 'update-cast-role'; id: string; roleId: string };
+  | { type: 'update-cast-character'; id: string; character?: Character }
+  | { type: 'update-cast-role'; id: string; role?: Role };
 
 export function reducer(state: CheatsheetState, action: CheatsheetMessage): CheatsheetState {
   switch (action.type) {
     case 'update-tragedy-set':
-      return updateTragedySet(state, action.id);
+      return updateTragedySet(state, action.tragedySet);
     case 'update-main-plot':
-      return updateMainPlot(state, action.id);
+      return updateMainPlot(state, action.plot);
     case 'update-subplots':
-      return updateSubplots(state, action.ids);
+      return updateSubplots(state, action.subplots);
     case 'add-cast-member':
       return addCastMember(state);
     case 'remove-cast-member':
       return removeCastMember(state, action.id);
     case 'update-cast-character':
-      return updateCastCharacter(state, action.id, action.characterId);
+      return updateCastCharacter(state, action.id, action.character);
     case 'update-cast-role':
-      return updateCastRole(state, action.id, action.roleId);
+      return updateCastRole(state, action.id, action.role);
     default:
       return state;
   }
 }
 
-function updateTragedySet(state: CheatsheetState, id: string): CheatsheetState {
+function updateTragedySet(state: CheatsheetState, tragedySet: TragedySetInfo | null): CheatsheetState {
   return produce(state, (next) => {
-    const chosen = TragedySets.find((ts) => ts.id === id);
-    if (chosen === undefined) {
-      console.error('Something went wrong: assuming default Tragedy Set');
-    }
-
-    const tragedySet = chosen || TragedySets[0];
-    next.tragedySet = tragedySet;
-    next.mainPlot = tragedySet.mainPlots[0];
+    const chosen = tragedySet || TragedySets[0];
+    next.tragedySet = chosen;
+    next.mainPlot = chosen.mainPlots[0];
     next.subplots = [];
   });
 }
 
-function updateMainPlot(state: CheatsheetState, id: string): CheatsheetState {
-  const mainPlots = state.tragedySet.mainPlots;
+function updateMainPlot(state: CheatsheetState, plot: Plot | null): CheatsheetState {
   return produce(state, (next) => {
-    const chosen = mainPlots.find((mp) => mp.id === id);
-    if (chosen === undefined) {
-      console.error('Something went wrong: assuming first Main Plot');
-    }
-    next.mainPlot = chosen || state.tragedySet.mainPlots[0];
+    next.mainPlot = plot || state.tragedySet.mainPlots[0];
   });
 }
 
-function updateSubplots(state: CheatsheetState, ids: Array<string>): CheatsheetState {
+function updateSubplots(state: CheatsheetState, subplots: Array<Plot>): CheatsheetState {
   return produce(state, (next) => {
-    next.subplots = ids
-      // Only allow two selections at max, and pick the last two in the list if there are more
-      .slice(-2)
-      .map((id) => state.tragedySet.subplots.find((sp) => sp.id === id))
-      .filter((sp) => sp !== undefined) as Array<Plot>;
+    // Only allow two selections at max, and pick the last two in the list if there are more
+    next.subplots = subplots.slice(-2);
   });
 }
 
@@ -87,16 +74,18 @@ function removeCastMember(state: CheatsheetState, id: string): CheatsheetState {
   });
 }
 
-function updateCastCharacter(state: CheatsheetState, id: string, characterId: string): CheatsheetState {
+function updateCastCharacter(state: CheatsheetState, id: string, character?: Character): CheatsheetState {
   return produce(state, (next) => {
-    const row = next.cast.find((c) => c.id === id) as CheatsheetCastRow; // this might break but who cares
-    row.character = _.values(AllCharacters).find((c) => c.id === characterId);
+    // this might break but who cares
+    const row = next.cast.find((c) => c.id === id) as CheatsheetCastRow;
+    row.character = character;
   });
 }
 
-function updateCastRole(state: CheatsheetState, id: string, roleId: string): CheatsheetState {
+function updateCastRole(state: CheatsheetState, id: string, role?: Role): CheatsheetState {
   return produce(state, (next) => {
-    const row = next.cast.find((c) => c.id === id) as CheatsheetCastRow; // this also might break but who cares
-    row.role = _.values(Roles).find((r) => r.id === roleId);
+    // this also might break but who cares
+    const row = next.cast.find((c) => c.id === id) as CheatsheetCastRow;
+    row.role = role;
   });
 }
