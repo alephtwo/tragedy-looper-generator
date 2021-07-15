@@ -15,6 +15,7 @@
     "@types/lodash": "4.14.171",
     "@types/react": "17.0.14",
     "@types/react-dom": "17.0.9",
+    "@types/uuid": "^8.3.1",
     "@typescript-eslint/eslint-plugin": "4.28.3",
     "@typescript-eslint/parser": "4.28.3",
     "clean-webpack-plugin": "4.0.0-alpha.0",
@@ -29,8 +30,11 @@
   },
   "dependencies": {
     "@material-ui/core": "4.12.1",
+    "@material-ui/icons": "^4.11.2",
+    "immer": "^9.0.5",
     "lodash": "4.17.21",
     "react": "17.0.2",
-    "react-dom": "17.0.2"
+    "react-dom": "17.0.2",
+    "uuid": "^3.4.0"
   }
 }

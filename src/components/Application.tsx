@@ -1,56 +1,49 @@
-import { Button, Container, Grid } from '@material-ui/core';
+import { Container, AppBar, Tabs, Tab, makeStyles } from '@material-ui/core';
 import * as React from 'react';
-import { useState } from 'react';
-import { generateScript } from '../calculations/generateScript';
-import { MainPlots } from '../data/Plots';
-import { TragedySets } from '../data/TragedySets';
-import { GeneratorArgs } from '../types/GeneratorArgs';
-import { Script } from '../types/Script';
-import { Arguments } from './Arguments';
-import { ScriptView } from './ScriptView';
-import { estimateLoops } from '../calculations/estimateLoops';
-
-const initialArgs: GeneratorArgs = {
-  tragedySet: TragedySets.find((ts) => ts.order === 0) || TragedySets[0],
-  subplots: 2,
-  castSize: 9,
-  days: 7,
-  incidents: 1,
-  useMidnightCircleCharacters: true,
-  useCosmicEvilCharacters: true,
-};
-
-const initialScript: Script = {
-  tragedySet: '',
-  mainPlot: MainPlots.murderPlan,
-  subplots: [],
-  cast: [],
-  incidents: [],
-  days: 6,
-};
+import { useState, ReactNode } from 'react';
+import { Generator } from './generator/Generator';
+import { Cheatsheet } from './cheatsheet/Cheatsheet';
 
 function Application(): JSX.Element {
-  const [args, setArgs] = useState<GeneratorArgs>(initialArgs);
-  const [script, setScript] = useState<Script>(initialScript);
-
-  const generate = () => {
-    const generated = generateScript(args);
-    setScript(generated);
-  };
+  const [currentTab, updateCurrentTab] = useState(0);
+  const styles = useStyles();
 
   return (
     <Container>
-      <Arguments args={args} setArgs={setArgs} />
-      <Grid container justifyContent="center" alignItems="center">
-        <Grid item md={4} xs={12}>
-          <Button variant="contained" color="primary" fullWidth onClick={generate}>
-            Generate
-          </Button>
-        </Grid>
-      </Grid>
-      <ScriptView script={script} loops={estimateLoops(script)} />
+      <AppBar position="static" className={styles.tabHeader}>
+        <Tabs value={currentTab} onChange={(e, v) => updateCurrentTab(v)}>
+          <Tab label="Generator" />
+          <Tab label="Cheatsheet" />
+        </Tabs>
+      </AppBar>
+      <TabPanel currentTab={currentTab} index={0}>
+        <Generator />
+      </TabPanel>
+      <TabPanel currentTab={currentTab} index={1}>
+        <Cheatsheet />
+      </TabPanel>
     </Container>
   );
 }
+
+interface TabPanelProps {
+  children: ReactNode;
+  currentTab: number;
+  index: number;
+}
+function TabPanel(props: TabPanelProps): JSX.Element {
+  return (
+    <div role="tabpanel" hidden={props.currentTab !== props.index} id={`tabpanel-${props.index}`}>
+      {props.children}
+    </div>
+  );
+}
+
+const useStyles = makeStyles((theme) => ({
+  tabHeader: {
+    marginTop: theme.spacing(2),
+    marginBottom: theme.spacing(2),
+  },
+}));
 
 export default Application;

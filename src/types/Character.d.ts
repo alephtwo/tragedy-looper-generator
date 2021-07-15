@@ -9,7 +9,7 @@ export interface Character {
   readonly entersOnLoop?: (loops: number) => number;
 }
 
-interface CastMember {
+export interface CastMember {
   readonly character: Character;
   readonly role: Role;
 }

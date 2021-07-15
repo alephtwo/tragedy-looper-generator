@@ -2,6 +2,8 @@ import { Role } from './Role';
 import { Character } from './Character';
 import { Incident } from './Incident';
 import { LoopEstimator } from './DifficultyGenerator';
+import { PlotRule } from './triggers/PlotRule';
+import { MastermindAbility } from './triggers/MastermindAbility';
 
 export interface Plot {
   readonly id: string;
@@ -14,4 +16,6 @@ export interface Plot {
   readonly incidents?: Array<Incident>;
   readonly mandatoryCharacters?: Array<Character>;
   readonly estimateLoops: LoopEstimator;
+  readonly rules: Array<PlotRule>;
+  readonly mastermindAbilities: Array<MastermindAbility>;
 }

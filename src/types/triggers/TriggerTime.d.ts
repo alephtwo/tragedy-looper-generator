@@ -1,0 +1,15 @@
+export type TriggerTime =
+  | 'Always'
+  | 'Loop Start'
+  | 'Loop End'
+  | 'Day Start'
+  | 'Day End'
+  | 'Day End (Last Day)'
+  | 'Card Resolve'
+  | 'Mastermind Action Step'
+  | 'Goodwill Ability Step'
+  | 'Incident Step'
+  | 'On Character Death'
+  | 'When the Loved One Dies'
+  | 'When the Lover Dies'
+  | 'When this Role is to be Revealed';

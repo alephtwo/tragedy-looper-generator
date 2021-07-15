@@ -1,5 +1,5 @@
 import * as React from 'react';
-import { Script } from '../types/Script';
+import { Script } from '../../types/Script';
 import {
   Grid,
   makeStyles,
@@ -11,7 +11,7 @@ import {
   TableCell,
   Typography,
 } from '@material-ui/core';
-import { Character } from '../types/Character';
+import { Character } from '../../types/Character';
 
 interface ScriptViewProps {
   script: Script;
