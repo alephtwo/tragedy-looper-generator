@@ -50,6 +50,16 @@ A couple of things to note things to note:
 - If there are more incidents than characters that can fulfill them, more
   characters will be added.
 
+## Cheatsheet
+
+Cheatsheets are a helpful way for the mastermind to get an overview of all
+relevant triggers and abilities that they will need during the game. This
+saves the effort of looking through a small-print reference card and can
+greatly speed up the resolution of said abilities.
+
+Right now, there is no direct connection between the Generator tab and the
+Cheatsheet tab.
+
 ## Development
 
 To start a local development server, just run:
