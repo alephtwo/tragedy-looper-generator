@@ -78,7 +78,7 @@ function MastermindCard({ script: script, loops: loops }: ScriptViewProps): JSX.
     });
 
   return (
-    <Paper className={styles.paper}>
+    <Paper className={`${styles.paper} ${styles.veryTall}`}>
       <Typography variant="h5">Mastermind</Typography>
       <Table size="small" className={styles.table}>
         <TableBody>
@@ -138,7 +138,7 @@ function PlayerCard({ script: script, loops: loops }: ScriptViewProps): JSX.Elem
     });
 
   return (
-    <Paper className={styles.paper}>
+    <Paper className={`${styles.paper} ${styles.veryTall}`}>
       <Typography variant="h5">Players</Typography>
       <Table size="small" className={styles.table}>
         <TableBody>
@@ -182,5 +182,8 @@ const useStyles = makeStyles((theme) => ({
   },
   table: {
     marginBottom: theme.spacing(2),
+  },
+  veryTall: {
+    height: '100%',
   },
 }));
