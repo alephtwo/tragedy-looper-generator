@@ -8,7 +8,7 @@ const theme = createTheme({
   palette: {
     primary: Colors.amber,
     background: {
-      default: Colors.grey[500],
+      default: Colors.grey[900],
     },
   },
   typography: {
