@@ -1,6 +1,6 @@
-import { Incident } from '../types/Incident';
+import { Incident } from '../types/data/Incident';
 
-export const Incidents: IncidentDatabase = {
+export const Incidents: IncidentsDatabase = {
   murder: {
     id: '4b50bb64-da08-448b-81ad-ad7765cf0e7d',
     name: 'Murder',
@@ -15,12 +15,10 @@ export const Incidents: IncidentDatabase = {
     id: '71e53334-02be-44e2-b33e-2126739b6310',
     name: 'Suicide',
     effect: 'The culprit dies.',
-    loopEstimate: 0.2,
   },
   hospitalIncident: {
     id: '2d4300de-801e-4436-9df6-20f8e3cebc4c',
     name: 'Hospital Incident',
-    loopEstimate: 0.4,
     effect:
       'If at least 1 Intrigue on Hospital: Everyone in Hospital dies.\nIf at least 2 Intrigue on Hospital, Protagonists die.',
   },
@@ -64,13 +62,11 @@ export const Incidents: IncidentDatabase = {
   fakeIncident: {
     id: 'ed52f5dc-0100-4394-869c-e5d08cced458',
     name: 'Fake Incident',
-    loopEstimate: 0.5,
     effect: "If there are at least 2 Intrigue on the culprit's starting location, the Protagonists die.",
   },
   breakthrough: {
     id: '40558603-fb7c-4bb8-9abd-1900c66f391b',
     name: 'Breakthrough',
-    loopEstimate: -0.2,
     effect: 'The Protagonist Leader chooses one location or character, and removes 2 Intrigue from there.',
   },
   fakedSuicide: {
@@ -95,7 +91,6 @@ export const Incidents: IncidentDatabase = {
     name: 'Terrorism',
     effect:
       'If at least 1 Intrigue on the City: Everyone in the City dies.\nIf at least 2 Intrigue on the City: The Protagonists die.',
-    loopEstimate: 0.4,
   },
   bestialMurder: {
     id: '3394cc8e-3c63-4c51-8312-696323d7bd5a',
@@ -151,7 +146,6 @@ export const Incidents: IncidentDatabase = {
     name: 'Night of Madness',
     effect:
       '[Mob incident: 0 (will always occur)] If there are 6 or more zombies when this Incident occurs, the Protagonists will die after the day has ended.',
-    loopEstimate: 0.2,
   },
   awakenedCurse: {
     id: 'bbeb6df0-cdd9-4919-aa29-9defd3e1d603',
@@ -163,7 +157,6 @@ export const Incidents: IncidentDatabase = {
     name: 'Evangelium of the Dead',
     effect:
       "[Mob incident: 2] Kill all characters in the culprit's location. Then, if that location has 5 or more corpses, the Protagonists are killed.",
-    loopEstimate: 0.6,
   },
   fountainOfFilth: {
     id: '444b1aa1-b4e4-4530-8d8d-858b088ef928',
@@ -184,14 +177,12 @@ export const Incidents: IncidentDatabase = {
     id: '882c2aa2-3c56-4d9f-8810-3763c3eb6111',
     name: 'Fire of Demise',
     effect: 'The first time this incident happens this game session, all characters and the Protagonists are killed.',
-    loopEstimate: 0.4,
   },
   houndDogScent: {
     id: '87d18693-1678-46ea-90bd-2b2fa807853b',
     name: 'Hound Dog Scent',
     effect:
       'When determining whether this incident occurs or not, count Intrigue instead of Paranoia.\nFor the rest of the loop, if another Incident occurs, the Protagonists are killed after the Incident step.',
-    loopEstimate: 0.4,
   },
   discovery: {
     id: 'dfdb1988-7d95-4553-94c4-1da003166cba',
@@ -205,7 +196,7 @@ export const Incidents: IncidentDatabase = {
   },
 };
 
-interface IncidentDatabase {
+interface IncidentsDatabase {
   murder: Incident;
   increasingUnease: Incident;
   suicide: Incident;

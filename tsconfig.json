@@ -1,6 +1,6 @@
 {
   "compilerOptions": {
-    "outDir": "target",
+    "outDir": "public",
     "sourceMap": true,
     "module": "commonjs",
     "lib": ["dom", "es2020"],

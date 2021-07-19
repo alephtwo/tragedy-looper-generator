@@ -1,6 +1,6 @@
 import * as React from 'react';
 import * as ReactDOM from 'react-dom';
-import Application from './components/Application';
+import { Application } from './Application';
 import { createTheme, CssBaseline, MuiThemeProvider } from '@material-ui/core';
 import * as Colors from '@material-ui/core/colors';
 
