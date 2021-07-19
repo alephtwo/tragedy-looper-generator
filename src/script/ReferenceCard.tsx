@@ -1,6 +1,20 @@
 import * as React from 'react';
-import { makeStyles, Paper, Table, TableBody, TableRow, TableCell, Typography } from '@material-ui/core';
+import {
+  Divider,
+  makeStyles,
+  Paper,
+  Table,
+  TableHead,
+  TableBody,
+  TableRow,
+  TableCell,
+  Typography,
+} from '@material-ui/core';
 import { Script } from '../types/Script';
+import { CastMember } from '../types/CastMember';
+import { Incident } from '../types/data/Incident';
+import { Character } from '../types/data/Character';
+import { Role } from '../types/data/Role';
 
 interface ReferenceCardProps {
   script: Script;
@@ -11,14 +25,19 @@ export function ReferenceCard(props: ReferenceCardProps): JSX.Element {
   const styles = useStyles();
 
   return (
-    <Paper className={styles.paper}>
-      <Typography variant="h1">{mastermind ? 'Mastermind' : 'Players'}</Typography>
-      <Table size="small">
+    <Paper className={`${styles.paper} ${styles.fullHeight}`}>
+      <Typography variant="h1" align="center">
+        {mastermind ? 'Mastermind' : 'Players'}
+      </Typography>
+      <Divider className={styles.extraBottomMargin} />
+      <Table size="small" className={styles.extraBottomMargin}>
         <TableBody>
           <TragedySetInformation script={script} />
           <PlotInformation script={script} mastermind={mastermind} />
         </TableBody>
       </Table>
+      <CastInformation cast={script.cast} mastermind={mastermind} />
+      <IncidentsInformation cast={script.cast} mastermind={mastermind} />
     </Paper>
   );
 }
@@ -71,8 +90,96 @@ function PlotInformation(props: PlotInformationProps): JSX.Element {
   );
 }
 
+interface CastMembersProps {
+  cast: Array<CastMember>;
+  mastermind: boolean;
+}
+function CastInformation(props: CastMembersProps): JSX.Element {
+  // Only the mastermind can see this.
+  if (!props.mastermind) {
+    return <></>;
+  }
+
+  const styles = useStyles();
+  const cast = props.cast.map((c) => (
+    <TableRow>
+      <TableCell>{c.character.name}</TableCell>
+      <TableCell>{c.role.name}</TableCell>
+    </TableRow>
+  ));
+
+  return (
+    <>
+      <Typography variant="h2">Cast</Typography>
+      <Table size="small" className={styles.extraBottomMargin}>
+        <TableHead>
+          <TableRow>
+            <TableCell>Character</TableCell>
+            <TableCell>Role</TableCell>
+          </TableRow>
+        </TableHead>
+        <TableBody>{cast}</TableBody>
+      </Table>
+    </>
+  );
+}
+
+interface IncidentsInformationProps {
+  cast: Array<CastMember>;
+  mastermind: boolean;
+}
+function IncidentsInformation(props: IncidentsInformationProps) {
+  const styles = useStyles();
+  const incidents = describeIncidents(props.cast).map((i) => (
+    <TableRow>
+      <TableCell>{i.day}</TableCell>
+      <TableCell>{i.incident.name}</TableCell>
+      {props.mastermind ? <TableCell>{i.character.name}</TableCell> : <></>}
+    </TableRow>
+  ));
+
+  return (
+    <>
+      <Typography variant="h2">Incidents</Typography>
+      <Table size="small" className={styles.extraBottomMargin}>
+        <TableHead>
+          <TableRow>
+            <TableCell>Day</TableCell>
+            <TableCell>Name</TableCell>
+            {props.mastermind ? <TableCell>Culprit</TableCell> : <></>}
+          </TableRow>
+        </TableHead>
+        <TableBody>{incidents}</TableBody>
+      </Table>
+    </>
+  );
+}
+
+interface IncidentMetadata {
+  day: number;
+  incident: Incident;
+  character: Character;
+  role: Role;
+}
+function describeIncidents(cast: Array<CastMember>): Array<IncidentMetadata> {
+  return cast.flatMap((c) =>
+    c.incidentTriggers.map((t) => ({
+      day: t.day,
+      incident: t.incident,
+      character: c.character,
+      role: c.role,
+    }))
+  );
+}
+
 const useStyles = makeStyles((theme) => ({
   paper: {
-    padding: theme.spacing(1),
+    padding: theme.spacing(2),
+  },
+  fullHeight: {
+    height: '100%',
+  },
+  extraBottomMargin: {
+    marginBottom: theme.spacing(2),
   },
 }));

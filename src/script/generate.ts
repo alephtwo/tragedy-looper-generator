@@ -22,6 +22,8 @@ export function generate(args: GenerateArgs): Script {
     loops: _.random(),
     mainPlot: mainPlot,
     subplots: subplots,
+    // TODO: Cast should be chosen
+    cast: [],
   };
 }
 

@@ -11,6 +11,16 @@ const theme = createTheme({
       default: Colors.grey[500],
     },
   },
+  typography: {
+    h1: {
+      fontSize: '2rem',
+      fontWeight: 500,
+    },
+    h2: {
+      fontSize: '1.5rem',
+      fontWeight: 400,
+    },
+  },
 });
 
 const app = (

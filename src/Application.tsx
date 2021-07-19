@@ -29,6 +29,7 @@ export function Application(): JSX.Element {
 
 const useStyles = makeStyles((theme) => ({
   application: {
-    margin: theme.spacing(1),
+    marginTop: theme.spacing(1),
+    marginBottom: theme.spacing(1),
   },
 }));

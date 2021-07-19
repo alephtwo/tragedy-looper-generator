@@ -1,3 +1,4 @@
+import { CastMember } from './CastMember';
 import { Plot } from './data/Plot';
 import { TragedySet } from './data/TragedySet';
 
@@ -6,4 +7,5 @@ export interface Script {
   loops: number;
   mainPlot: Plot;
   subplots: Array<Plot>;
+  cast: Array<CastMember>;
 }
