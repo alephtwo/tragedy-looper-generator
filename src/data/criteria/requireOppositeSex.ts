@@ -1,6 +1,7 @@
 import { CastMember } from '../../types/CastMember';
 import { Character } from '../../types/data/Character';
 import { Role } from '../../types/data/Role';
+import { Roles } from '../Roles';
 
 export const requireOppositeSex =
   (role: Role) =>
@@ -19,5 +20,5 @@ export const requireOppositeSex =
 
     // If the partner was found, we need to be of opposite sex.
     const pc = partner.character;
-    return pc.isFemale() ? pc.isMale() : pc.isFemale();
+    return character.isFemale() ? pc.isMale() : pc.isFemale();
   };
