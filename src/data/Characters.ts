@@ -1,4 +1,6 @@
+import * as _ from 'lodash';
 import { Character } from '../types/data/Character';
+import { Role } from '../types/data/Role';
 
 export const Characters: CharactersDatabase = {
   // Base
@@ -56,6 +58,13 @@ export const Characters: CharactersDatabase = {
     id: '19c491fa-25a1-4f3d-9a1e-1f270acde3da',
     name: 'Mystery Boy',
     descriptors: ['Student', 'Boy'],
+    roleLogic: (allRoles, plotRoles) => {
+      // The Mystery Boy must be assigned a role that does not appear in the plot.
+      const candidates = _.without(allRoles, ...plotRoles);
+      // Pick one of the candidate roles.
+      // NB: This cast might fail, but probably won't
+      return _.sample(candidates) as Role;
+    },
   }),
   alien: new Character({
     id: '694bf4d2-32fd-43bc-89a2-39cd5f8d324c',
