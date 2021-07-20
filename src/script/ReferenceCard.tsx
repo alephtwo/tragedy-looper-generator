@@ -74,7 +74,7 @@ function PlotInformation(props: PlotInformationProps): JSX.Element {
 
   const { script } = props;
   const subplots = _.sortBy(script.subplots, (s) => s.name).map((s, i) => (
-    <TableRow>
+    <TableRow key={`subplot-${s.id}`}>
       <TableCell variant="head">{i === 0 ? 'Subplots' : ''}</TableCell>
       <TableCell>{s.name}</TableCell>
     </TableRow>
@@ -103,7 +103,7 @@ function CastInformation(props: CastMembersProps): JSX.Element {
 
   const styles = useStyles();
   const cast = _.sortBy(props.cast, (p) => p.character.name).map((c) => (
-    <TableRow>
+    <TableRow key={`cast-${c.character.id}`}>
       <TableCell>{c.character.name}</TableCell>
       <TableCell>{c.role.name}</TableCell>
     </TableRow>

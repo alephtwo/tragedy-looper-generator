@@ -10,7 +10,7 @@ export function Application(): JSX.Element {
   const script = generate({
     // TODO: Accept these as input from user
     tragedySet: _.sample(TragedySets) || TragedySets.firstSteps,
-    castSize: 7,
+    castSize: 9,
   });
 
   return (
