@@ -1,6 +1,7 @@
 import * as _ from 'lodash';
+import { Roles } from '../data/Roles';
+import { CastMember } from '../types/CastMember';
 import { Plot } from '../types/data/Plot';
-import { Role } from '../types/data/Role';
 import { TragedySet } from '../types/data/TragedySet';
 import { Script } from '../types/Script';
 
@@ -13,8 +14,7 @@ export function generate(args: GenerateArgs): Script {
   const subplots = pickSubplots(args.tragedySet);
 
   // Initialize our character, role, and incident pools.
-  const pools = createPools(args.tragedySet, mainPlot, subplots);
-  console.debug(pools);
+  const cast = pickCast(args.tragedySet, args.castSize);
 
   return {
     tragedySet: args.tragedySet,
@@ -22,8 +22,7 @@ export function generate(args: GenerateArgs): Script {
     loops: _.random(),
     mainPlot: mainPlot,
     subplots: subplots,
-    // TODO: Cast should be chosen
-    cast: [],
+    cast: cast,
   };
 }
 
@@ -35,14 +34,13 @@ function pickSubplots(tragedySet: TragedySet): Array<Plot> {
   return _.sampleSize(tragedySet.subplots, 2);
 }
 
-function createPools(tragedySet: TragedySet, mainPlot: Plot, subplots: Array<Plot>) {
-  const roles: Array<Role> = [mainPlot]
-    .concat(subplots)
-    .flatMap((p) => (p.roles instanceof Function ? p.roles() : p.roles));
-
-  return {
-    characters: [...tragedySet.characters],
-    incidents: [...tragedySet.incidents],
-    roles: roles,
-  };
+function pickCast(tragedySet: TragedySet, size: number): Array<CastMember> {
+  const chosen = _.sampleSize(tragedySet.characters, size);
+  return chosen.map((c) => ({
+    character: c,
+    // Assume everybody's a person to start with.
+    role: Roles.person,
+    // Nobody triggers any incidents yet.
+    incidentTriggers: [],
+  }));
 }

@@ -1,4 +1,5 @@
 import * as React from 'react';
+import * as _ from 'lodash';
 import {
   Divider,
   makeStyles,
@@ -72,7 +73,7 @@ function PlotInformation(props: PlotInformationProps): JSX.Element {
   }
 
   const { script } = props;
-  const subplots = script.subplots.map((s, i) => (
+  const subplots = _.sortBy(script.subplots, (s) => s.name).map((s, i) => (
     <TableRow>
       <TableCell variant="head">{i === 0 ? 'Subplots' : ''}</TableCell>
       <TableCell>{s.name}</TableCell>
@@ -101,7 +102,7 @@ function CastInformation(props: CastMembersProps): JSX.Element {
   }
 
   const styles = useStyles();
-  const cast = props.cast.map((c) => (
+  const cast = _.sortBy(props.cast, (p) => p.character.name).map((c) => (
     <TableRow>
       <TableCell>{c.character.name}</TableCell>
       <TableCell>{c.role.name}</TableCell>
@@ -130,7 +131,7 @@ interface IncidentsInformationProps {
 }
 function IncidentsInformation(props: IncidentsInformationProps) {
   const styles = useStyles();
-  const incidents = describeIncidents(props.cast).map((i) => (
+  const incidents = _.sortBy(describeIncidents(props.cast), (i) => i.day).map((i) => (
     <TableRow>
       <TableCell>{i.day}</TableCell>
       <TableCell>{i.incident.name}</TableCell>
