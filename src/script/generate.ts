@@ -1,7 +1,7 @@
 import * as _ from 'lodash';
 import { Roles } from '../data/Roles';
 import { Plot } from '../types/data/Plot';
-import { Role } from '../types/data/Role';
+import { ConditionalRole, Role } from '../types/data/Role';
 import { TragedySet } from '../types/data/TragedySet';
 import { Script } from '../types/Script';
 
@@ -13,7 +13,6 @@ export function generate(args: GenerateArgs): Script {
   const mainPlot = pickMainPlot(args.tragedySet);
   const subplots = pickSubplots(args.tragedySet);
   const roles = getRoles([mainPlot].concat(subplots), args.castSize);
-
   console.debug(roles);
 
   return {
@@ -34,7 +33,7 @@ function pickSubplots(tragedySet: TragedySet): Array<Plot> {
   return _.sampleSize(tragedySet.subplots, 2);
 }
 
-function getRoles(plots: Array<Plot>, castSize: number): Array<Role> {
+function getRoles(plots: Array<Plot>, castSize: number): Array<Role | ConditionalRole> {
   const required = plots.flatMap((p) => (p.roles instanceof Function ? p.roles() : p.roles));
   // If the castSize is less than the number of required plots... sorry, users.
   const needed = Math.max(castSize, required.length);

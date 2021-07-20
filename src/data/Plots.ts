@@ -1,6 +1,8 @@
 import * as _ from 'lodash';
 import { Plot } from '../types/data/Plot';
 import { Role } from '../types/data/Role';
+import { requireDescriptor } from './criteria/requireDescriptor';
+import { requireOppositeSex } from './criteria/requireOppositeSex';
 import { Roles } from './Roles';
 
 export const MainPlots: MainPlotsDatabase = {
@@ -18,7 +20,12 @@ export const MainPlots: MainPlotsDatabase = {
   signWithMe: {
     id: '60d51048-dd95-49c1-9063-12bad472d9b5',
     name: 'Sign with me!',
-    roles: [Roles.keyPerson],
+    roles: [
+      {
+        role: Roles.keyPerson,
+        condition: requireDescriptor('Girl'),
+      },
+    ],
   },
   changeOfFuture: {
     id: '4abf382c-4dae-4692-9825-b6918b28f69d',
@@ -54,7 +61,12 @@ export const MainPlots: MainPlotsDatabase = {
   maleConfrontation: {
     id: 'b65ad9f2-7756-40a3-b0e1-3d91928ae99b',
     name: 'Male Confrontation',
-    roles: [Roles.ninja],
+    roles: [
+      {
+        role: Roles.ninja,
+        condition: requireDescriptor('Man'),
+      },
+    ],
   },
   theDevilsHand: {
     id: '03207e39-1c4f-43a9-91fe-9a33a9137d4d',
@@ -96,7 +108,16 @@ export const MainPlots: MainPlotsDatabase = {
   aNobleBloodline: {
     id: '16732658-6f01-4c88-af4b-d404ffdd7682',
     name: 'A Noble Bloodline',
-    roles: [Roles.keyPerson, Roles.vampire],
+    roles: [
+      {
+        role: Roles.keyPerson,
+        condition: requireOppositeSex(Roles.vampire),
+      },
+      {
+        role: Roles.vampire,
+        condition: requireOppositeSex(Roles.keyPerson),
+      },
+    ],
   },
   moonlightBeast: {
     id: '9f989bc8-fd71-495c-bb88-94938c1be142',
@@ -289,7 +310,12 @@ export const Subplots: SubplotsDatabase = {
   theKeyGirl: {
     id: '8d27e3b9-0351-4039-bef2-ddf7e09acb2a',
     name: 'The Key Girl',
-    roles: [Roles.keyPerson],
+    roles: [
+      {
+        role: Roles.keyPerson,
+        condition: requireDescriptor('Girl'),
+      },
+    ],
   },
   monsterIntrigue: {
     id: '73438252-52c1-43c2-aa07-df071ca959a8',
