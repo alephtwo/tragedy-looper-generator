@@ -12,6 +12,8 @@ export function ScriptGenerator(): JSX.Element {
   const [args, setArgs] = useState({
     tragedySet: TragedySets.basicTragedy,
     castSize: 9,
+    days: 7,
+    incidents: 4,
   });
 
   return (
@@ -35,7 +37,7 @@ interface ReferenceCardsProps {
   script: Script | null;
 }
 function ReferenceCards(props: ReferenceCardsProps): JSX.Element {
-  if (props.script == null) {
+  if (props.script === null) {
     return <></>;
   }
 

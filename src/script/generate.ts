@@ -13,6 +13,8 @@ import { Script } from '../types/Script';
 export interface GenerateArgs {
   tragedySet: TragedySet;
   castSize: number;
+  days: number;
+  incidents: number;
 }
 export function generate(args: GenerateArgs): Script {
   const mainPlot = pickMainPlot(args.tragedySet);

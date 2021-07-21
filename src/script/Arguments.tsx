@@ -14,31 +14,31 @@ interface ArgumentsProps {
 export function Arguments(props: ArgumentsProps): JSX.Element {
   const styles = useStyles();
 
-  const updateTragedySet = (ts: TragedySet | null): void => {
-    props.dispatch(
-      produce(props.state, (draft) => {
-        draft.tragedySet = ts || TragedySets.firstSteps;
-      })
-    );
-  };
-  const updateCastSize = (value: number): void => {
-    props.dispatch(
-      produce(props.state, (draft) => {
-        draft.castSize = value;
-      })
-    );
-  };
+  const onChanges = createOnChanges(props);
 
   return (
     <Paper className={styles.paper}>
       <Grid container spacing={2}>
         <Grid item xs={12} lg={6}>
           <Typography gutterBottom>Tragedy Set</Typography>
-          <TragedySetPicker value={props.state.tragedySet} onChange={updateTragedySet} />
+          <TragedySetPicker value={props.state.tragedySet} onChange={onChanges.tragedySet} />
         </Grid>
         <Grid item xs={12} lg={6}>
           <Typography gutterBottom>Cast Size</Typography>
-          <MarkedSlider min={6} max={11} value={props.state.castSize} onChange={updateCastSize} />
+          <MarkedSlider min={6} max={11} value={props.state.castSize} onChange={onChanges.castSize} />
+        </Grid>
+        <Grid item xs={12} lg={6}>
+          <Typography gutterBottom>Days</Typography>
+          <MarkedSlider min={4} max={8} value={props.state.days} onChange={onChanges.days} />
+        </Grid>
+        <Grid item xs={12} lg={6}>
+          <Typography gutterBottom>Incidents</Typography>
+          <MarkedSlider
+            min={0}
+            max={Math.min(props.state.days, 7)}
+            value={props.state.incidents}
+            onChange={onChanges.incidents}
+          />
         </Grid>
       </Grid>
     </Paper>
@@ -81,6 +81,40 @@ function MarkedSlider(props: MarkedSliderProps): JSX.Element {
       onChange={(_, v) => props.onChange(v as number)}
     />
   );
+}
+
+function createOnChanges(props: ArgumentsProps) {
+  return {
+    tragedySet: (ts: TragedySet | null): void => {
+      props.dispatch(
+        produce(props.state, (draft) => {
+          draft.tragedySet = ts || TragedySets.firstSteps;
+        })
+      );
+    },
+    castSize: (value: number): void => {
+      props.dispatch(
+        produce(props.state, (draft) => {
+          draft.castSize = value;
+        })
+      );
+    },
+    days: (value: number): void => {
+      props.dispatch(
+        produce(props.state, (draft) => {
+          draft.days = value;
+          draft.incidents = Math.min(draft.incidents, value);
+        })
+      );
+    },
+    incidents: (value: number): void => {
+      props.dispatch(
+        produce(props.state, (draft) => {
+          draft.incidents = value;
+        })
+      );
+    },
+  };
 }
 
 const useStyles = makeStyles((theme) => ({
