@@ -132,7 +132,7 @@ interface IncidentsInformationProps {
 function IncidentsInformation(props: IncidentsInformationProps) {
   const styles = useStyles();
   const incidents = _.sortBy(describeIncidents(props.cast), (i) => i.day).map((i) => (
-    <TableRow>
+    <TableRow key={`${props.mastermind ? 'm' : 'c'}-${i.incident.id}`}>
       <TableCell>{i.day}</TableCell>
       <TableCell>{i.incident.name}</TableCell>
       {props.mastermind ? <TableCell>{i.character.name}</TableCell> : <></>}
@@ -164,6 +164,7 @@ interface IncidentMetadata {
 }
 function describeIncidents(cast: Array<CastMember>): Array<IncidentMetadata> {
   return cast.flatMap((c) =>
+    // TODO: Handle fake incidents
     c.incidentTriggers.map((t) => ({
       day: t.day,
       incident: t.incident,

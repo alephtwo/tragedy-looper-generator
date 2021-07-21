@@ -8,6 +8,7 @@ import { Incident } from '../types/data/Incident';
 import { Plot } from '../types/data/Plot';
 import { ConditionalRole, Role } from '../types/data/Role';
 import { TragedySet } from '../types/data/TragedySet';
+import { IncidentOccurrence } from '../types/IncidentOccurrence';
 import { Script } from '../types/Script';
 
 export interface GenerateArgs {
@@ -28,22 +29,26 @@ export function generate(args: GenerateArgs): Script {
 
   // If there is any initial cast, we should account for their roles
   const roles = fillRemainingRoles(requiredRoles, args.castSize - initialCast.length);
-  const cast = roles.reduce(buildCast, {
+  const castWithoutIncidents = roles.reduce(buildCast, {
     cast: initialCast,
-    pools: {
-      // Assume that the mystery boy has already been assigned.
-      characters: args.tragedySet.characters.filter((c) => c.id !== Characters.mysteryBoy.id),
-      incidents: args.tragedySet.incidents,
-    },
+    // Assume that the mystery boy has already been assigned.
+    characters: args.tragedySet.characters.filter((c) => c.id !== Characters.mysteryBoy.id),
+  }).cast;
+
+  const incidents = pickIncidents({
+    incidents: args.tragedySet.incidents,
+    amount: args.incidents,
+    days: args.days,
   });
 
+  const cast = assignIncidentsToCast(castWithoutIncidents, incidents);
   return {
     tragedySet: args.tragedySet,
     // TODO: Calculate this.
     loops: _.random(),
     mainPlot: mainPlot,
     subplots: subplots,
-    cast: cast.cast,
+    cast: cast,
   };
 }
 
@@ -131,15 +136,12 @@ function initializeCast(args: GenerateArgs, requiredRoles: Array<Role | Conditio
 
 interface BuildCastAccumulator {
   cast: Array<CastMember>;
-  pools: {
-    characters: Array<Character>;
-    incidents: Array<Incident>;
-  };
+  characters: Array<Character>;
 }
 function buildCast(state: BuildCastAccumulator, crole: Role | ConditionalRole): BuildCastAccumulator {
   // Grab the real role.
   const role: Role = roleIsConditional(crole) ? (crole as ConditionalRole).role : (crole as Role);
-  const character = matchCharacter(state.pools.characters, crole, state.cast);
+  const character = matchCharacter(state.characters, crole, state.cast);
 
   return produce(state, (next) => {
     // Add the cast member.
@@ -150,7 +152,7 @@ function buildCast(state: BuildCastAccumulator, crole: Role | ConditionalRole): 
       incidentTriggers: [],
     });
     // Remove the character from the pool.
-    _.remove(next.pools.characters, (c) => c.id === character.id);
+    _.remove(next.characters, (c) => c.id === character.id);
   });
 }
 
@@ -168,4 +170,70 @@ function matchCharacter(pool: Array<Character>, role: Role | ConditionalRole, ca
 
 function roleIsConditional(role: Role | ConditionalRole): boolean {
   return !Object.keys(role).includes('id');
+}
+
+interface PickIncidentsArgs {
+  incidents: Array<Incident>;
+  amount: number;
+  days: number;
+}
+function pickIncidents(args: PickIncidentsArgs): Array<IncidentOccurrence> {
+  // Can't have more incidents than we do days.
+  // TODO: Account for whether or not we have roles that require incidents.
+  const amount = Math.min(args.amount, args.days);
+  const incidents = _.times(amount, () => _.sample(args.incidents) as Incident);
+  const assignedIncidents = incidents.reduce(assignDayToIncident, {
+    days: _.range(1, args.days + 1),
+    occurrences: [],
+  }).occurrences;
+
+  // For each of our assigned incidents, we want to actually go through and assign it.
+  return produce(assignedIncidents, (next) => {
+    next.forEach((incident) => {
+      if (incident.incident.fake !== undefined) {
+        incident.fakedIncident = incident.incident.fake(args.incidents);
+      }
+    });
+  });
+}
+
+interface AssignDayToIncidentState {
+  days: Array<number>;
+  occurrences: Array<IncidentOccurrence>;
+}
+function assignDayToIncident(state: AssignDayToIncidentState, incident: Incident): AssignDayToIncidentState {
+  // cool cast bro
+  const day = _.sample(state.days) as number;
+  return produce(state, (next) => {
+    _.pull(next.days, day);
+    next.occurrences.push({ incident: incident, day: day });
+  });
+}
+
+function assignIncidentsToCast(cast: Array<CastMember>, incidents: Array<IncidentOccurrence>): Array<CastMember> {
+  return produce(cast, (next) => {
+    // Who _could_ be a culprit here?
+    let culpritPool = [...next.filter((c) => c.role.culprit !== 'Never')];
+    incidents.forEach((incident) => {
+      // If there is a culprit candidate who is mandatory but hasn't yet been assigned, let's do that.
+      const required = culpritPool.filter((c) => c.role.culprit === 'Mandatory' && c.incidentTriggers.length === 0);
+
+      // Pick a culprit.
+      let culprit: CastMember;
+      if (required.length > 0) {
+        culprit = _.first(required) as CastMember;
+      } else {
+        culprit = _.sample(culpritPool) as CastMember;
+      }
+
+      // Take that culprit and assign it the incident.
+      culprit.incidentTriggers.push(incident);
+
+      // Remove the culprit from the pool of possibilities.
+      // TODO: Handle serial murder, which allows multiples to be done by the same person.
+      culpritPool = produce(culpritPool, (next) => {
+        _.remove(next, (c) => c.character.id === culprit.character.id);
+      });
+    });
+  });
 }
