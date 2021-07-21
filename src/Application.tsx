@@ -1,6 +1,5 @@
-import { Container, Grid, makeStyles } from '@material-ui/core';
-import _ = require('lodash');
 import * as React from 'react';
+import { Container, makeStyles } from '@material-ui/core';
 import { ScriptGenerator } from './script/ScriptGenerator';
 
 export function Application(): JSX.Element {

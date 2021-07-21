@@ -1,6 +1,4 @@
-import * as _ from 'lodash';
 import { Character } from '../types/data/Character';
-import { Role } from '../types/data/Role';
 
 export const Characters: CharactersDatabase = {
   // Base
