@@ -1,7 +1,12 @@
-import { Grid, makeStyles, Paper, Slider } from '@material-ui/core';
 import * as React from 'react';
+import { Grid, makeStyles, Paper } from '@material-ui/core';
+import { GenerateArgs } from './generate';
 
-export function Arguments(): JSX.Element {
+interface ArgumentsProps {
+  state: GenerateArgs;
+  dispatch: React.Dispatch<GenerateArgs>;
+}
+export function Arguments(props: ArgumentsProps): JSX.Element {
   const styles = useStyles();
   return (
     <Paper className={styles.paper}>
@@ -10,6 +15,10 @@ export function Arguments(): JSX.Element {
       </Grid>
     </Paper>
   );
+}
+
+function TragedySetPicker(): JSX.Element {
+  return <></>;
 }
 
 const useStyles = makeStyles((theme) => ({

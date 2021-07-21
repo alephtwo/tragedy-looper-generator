@@ -10,7 +10,7 @@ import { ConditionalRole, Role } from '../types/data/Role';
 import { TragedySet } from '../types/data/TragedySet';
 import { Script } from '../types/Script';
 
-interface GenerateArgs {
+export interface GenerateArgs {
   tragedySet: TragedySet;
   castSize: number;
 }
