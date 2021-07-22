@@ -1,6 +1,7 @@
 import produce from 'immer';
 import * as _ from 'lodash';
 import { Characters } from '../data/Characters';
+import { Incidents } from '../data/Incidents';
 import { Roles } from '../data/Roles';
 import { CastMember } from '../types/CastMember';
 import { Character } from '../types/data/Character';
@@ -215,6 +216,18 @@ function assignIncidentsToCast(cast: Array<CastMember>, incidents: Array<Inciden
     // Who _could_ be a culprit here?
     let culpritPool = [...next.filter((c) => c.role.culprit !== 'Never')];
     incidents.forEach((incident) => {
+      // If we are attempting to assign a serial murder and one has already been assigned, we MUST assign it to the same culprit.
+      if (incident.incident.id === Incidents.serialMurder.id) {
+        const serialMurderer = next.find((c) =>
+          c.incidentTriggers.some((i) => i.incident.id === Incidents.serialMurder.id)
+        );
+        if (serialMurderer !== undefined) {
+          serialMurderer.incidentTriggers.push(incident);
+          return;
+        }
+      }
+
+      // We know we're not dealing with a serial murderer here.
       // If there is a culprit candidate who is mandatory but hasn't yet been assigned, let's do that.
       const required = culpritPool.filter((c) => c.role.culprit === 'Mandatory' && c.incidentTriggers.length === 0);
 
@@ -230,7 +243,6 @@ function assignIncidentsToCast(cast: Array<CastMember>, incidents: Array<Inciden
       culprit.incidentTriggers.push(incident);
 
       // Remove the culprit from the pool of possibilities.
-      // TODO: Handle serial murder, which allows multiples to be done by the same person.
       culpritPool = produce(culpritPool, (next) => {
         _.remove(next, (c) => c.character.id === culprit.character.id);
       });
