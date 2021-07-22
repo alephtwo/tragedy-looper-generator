@@ -131,10 +131,24 @@ interface IncidentsInformationProps {
 }
 function IncidentsInformation(props: IncidentsInformationProps) {
   const styles = useStyles();
+  const wrapFakeIncident = (meta: IncidentMetadata) => {
+    // If there's no fake incident, we're done. Just say what it's called.
+    if (meta.fakeIncident === undefined) {
+      return meta.incident.name;
+    }
+    // By now, we know this incident has been faked.
+    if (props.mastermind) {
+      // Masterminds know what the fake incident actually is.
+      return `${meta.incident.name} (${meta.fakeIncident.name})`;
+    }
+    // Players only see the fake incident.
+    return meta.fakeIncident.name;
+  };
+
   const incidents = _.sortBy(describeIncidents(props.cast), (i) => i.day).map((i) => (
-    <TableRow key={`${props.mastermind ? 'm' : 'c'}-${i.incident.id}`}>
+    <TableRow key={`${props.mastermind ? 'm' : 'c'}-${i.incident.id}-${i.day}`}>
       <TableCell>{i.day}</TableCell>
-      <TableCell>{i.incident.name}</TableCell>
+      <TableCell>{wrapFakeIncident(i)}</TableCell>
       {props.mastermind ? <TableCell>{i.character.name}</TableCell> : <></>}
     </TableRow>
   ));
@@ -159,18 +173,21 @@ function IncidentsInformation(props: IncidentsInformationProps) {
 interface IncidentMetadata {
   day: number;
   incident: Incident;
+  fakeIncident?: Incident;
   character: Character;
   role: Role;
 }
 function describeIncidents(cast: Array<CastMember>): Array<IncidentMetadata> {
   return cast.flatMap((c) =>
-    // TODO: Handle fake incidents
-    c.incidentTriggers.map((t) => ({
-      day: t.day,
-      incident: t.incident,
-      character: c.character,
-      role: c.role,
-    }))
+    c.incidentTriggers.map((t) => {
+      return {
+        day: t.day,
+        incident: t.incident,
+        fakeIncident: t.fakedIncident,
+        character: c.character,
+        role: c.role,
+      };
+    })
   );
 }
 
