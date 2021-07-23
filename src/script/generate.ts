@@ -11,6 +11,7 @@ import { ConditionalRole, Role } from '../types/data/Role';
 import { TragedySet } from '../types/data/TragedySet';
 import { IncidentOccurrence } from '../types/IncidentOccurrence';
 import { Script } from '../types/Script';
+import { estimateLoops } from './estimateLoops';
 
 export interface GenerateArgs {
   tragedySet: TragedySet;
@@ -45,14 +46,16 @@ export function generate(args: GenerateArgs): Script {
   });
 
   const cast = assignIncidentsToCast(castWithoutIncidents, incidents);
-  return {
+  const script: Script = {
     tragedySet: args.tragedySet,
-    // TODO: Calculate this.
-    loops: _.random(),
+    loops: 0, // So, right now we don't have this information. We'll set it in a second.
     mainPlot: mainPlot,
     subplots: subplots,
     cast: cast,
   };
+  return produce(script, (draft) => {
+    draft.loops = estimateLoops(draft);
+  });
 }
 
 function getRequiredRoles(plots: Array<Plot>): Array<Role | ConditionalRole> {
