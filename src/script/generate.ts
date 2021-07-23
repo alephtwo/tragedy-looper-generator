@@ -21,11 +21,12 @@ export interface GenerateArgs {
 export function generate(args: GenerateArgs): Script {
   const mainPlot = pickMainPlot(args.tragedySet);
   const subplots = pickSubplots(args.tragedySet);
+  const plots = [mainPlot].concat(subplots);
 
   // Find the required roles.
   // Notably, the Mystery Boy might appear in the initial cast. If he does,
   // then we have to account for his role slot already being filled.
-  const requiredRoles = getRequiredRoles([mainPlot].concat(subplots));
+  const requiredRoles = getRequiredRoles(plots);
   const initialCast = initializeCast(args, requiredRoles);
 
   // If there is any initial cast, we should account for their roles
@@ -40,6 +41,7 @@ export function generate(args: GenerateArgs): Script {
     incidents: args.tragedySet.incidents,
     amount: args.incidents,
     days: args.days,
+    plots: plots,
   });
 
   const cast = assignIncidentsToCast(castWithoutIncidents, incidents);
@@ -177,12 +179,19 @@ interface PickIncidentsArgs {
   incidents: Array<Incident>;
   amount: number;
   days: number;
+  plots: Array<Plot>;
 }
 function pickIncidents(args: PickIncidentsArgs): Array<IncidentOccurrence> {
+  const required = args.plots.flatMap((p) => p.requiredIncidents);
+
   // Can't have more incidents than we do days.
   // TODO: Account for whether or not we have roles that require incidents.
-  const amount = Math.min(args.amount, args.days);
-  const incidents = _.times(amount, () => _.sample(args.incidents) as Incident);
+  // We also might have some that are required, in which case we don't want to double count those.
+  const amount = Math.min(args.amount, args.days) - required.length;
+  // Pick however many we still need at random.
+  const remainingIncidents = _.times(amount, () => _.sample(args.incidents) as Incident);
+
+  const incidents = required.concat(remainingIncidents);
   const assignedIncidents = incidents.reduce(assignDayToIncident, {
     days: _.range(1, args.days + 1),
     occurrences: [],
