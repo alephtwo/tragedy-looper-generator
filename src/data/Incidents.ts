@@ -1,4 +1,3 @@
-import * as _ from 'lodash';
 import { Incident } from '../types/data/Incident';
 
 export const Incidents: IncidentsDatabase = {
@@ -75,10 +74,6 @@ export const Incidents: IncidentsDatabase = {
     id: 'ed52f5dc-0100-4394-869c-e5d08cced458',
     name: 'Fake Incident',
     effect: "If there are at least 2 Intrigue on the culprit's starting location, the Protagonists die.",
-    fake: (incidents: Array<Incident>) => {
-      const candidates = incidents.filter((i) => i.id !== Incidents.fakeIncident.id);
-      return _.sample(candidates) as Incident;
-    },
     loopEstimate: 0.5,
   },
   breakthrough: {

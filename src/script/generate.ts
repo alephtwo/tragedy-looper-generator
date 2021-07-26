@@ -203,11 +203,12 @@ function pickIncidents(args: PickIncidentsArgs): Array<IncidentOccurrence> {
 
   // For each of our assigned incidents, we want to actually go through and assign it.
   return produce(assignedIncidents, (next) => {
-    next.forEach((incident) => {
-      if (incident.incident.fake !== undefined) {
-        incident.fakedIncident = incident.incident.fake(args.incidents);
-      }
-    });
+    next
+      .filter((i) => i.incident.id === Incidents.fakeIncident.id)
+      .forEach((incident) => {
+        const candidates = incidents.filter((i) => i.id !== Incidents.fakeIncident.id);
+        incident.fakedIncident = _.sample(candidates) as Incident;
+      });
   });
 }
 

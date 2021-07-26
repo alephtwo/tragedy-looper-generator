@@ -3,5 +3,4 @@ export interface Incident {
   readonly name: string;
   readonly effect: string;
   readonly loopEstimate: number;
-  readonly fake?: (incidents: Array<Incident>) => Incident;
 }
