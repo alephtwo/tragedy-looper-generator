@@ -1,3 +1,4 @@
+import _ = require('lodash');
 import { Character } from '../types/data/Character';
 
 export const Characters: CharactersDatabase = {
@@ -66,6 +67,7 @@ export const Characters: CharactersDatabase = {
     id: 'f6b30162-4e8f-49f0-b51f-c8d27e111536',
     name: 'Godly Being',
     descriptors: ['Man', 'Woman'],
+    entersOnLoop: (loops: number) => _.random(2, loops),
   }),
   popIdol: new Character({
     id: '8d6ee9a7-6753-4abe-8444-13098820f516',

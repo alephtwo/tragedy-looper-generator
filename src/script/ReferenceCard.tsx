@@ -106,12 +106,19 @@ function CastInformation(props: CastMembersProps): JSX.Element {
   }
 
   const styles = useStyles();
-  const cast = _.sortBy(props.cast, (p) => p.character.name).map((c) => (
-    <TableRow key={`cast-${c.character.id}`}>
-      <TableCell>{c.character.name}</TableCell>
-      <TableCell>{c.role.name}</TableCell>
-    </TableRow>
-  ));
+  const cast = _.sortBy(props.cast, (p) => p.character.name).map((c) => {
+    const name =
+      c.character.loopToEnter > 1
+        ? `${c.character.name} (enters on Loop ${c.character.loopToEnter})`
+        : c.character.name;
+
+    return (
+      <TableRow key={`cast-${c.character.id}`}>
+        <TableCell>{name}</TableCell>
+        <TableCell>{c.role.name}</TableCell>
+      </TableRow>
+    );
+  });
 
   return (
     <>

@@ -55,6 +55,11 @@ export function generate(args: GenerateArgs): Script {
     cast: cast,
   };
   return produce(script, (draft) => {
+    // Estimate the number of loops.
+    const loops = estimateLoops(draft);
+
+    // If a character enters on a given loop, we've gotta set those now.
+    draft.cast.forEach((c) => c.character.setLoopToEnter(loops));
     draft.loops = estimateLoops(draft);
   });
 }
