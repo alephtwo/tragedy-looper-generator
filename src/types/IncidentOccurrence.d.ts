@@ -1,8 +1,7 @@
-import { Incident } from './Incident';
-import { Character } from './Character';
+import { Incident } from './data/Incident';
 
 export interface IncidentOccurrence {
-  readonly character: Character;
-  readonly incident: Incident;
-  readonly day: number;
+  incident: Incident;
+  day: number;
+  fakedIncident?: Incident;
 }

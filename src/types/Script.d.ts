@@ -1,12 +1,12 @@
-import { CastMember } from './Character';
-import { Plot } from './Plot';
-import { IncidentOccurrence } from './IncidentOccurrence';
+import { CastMember } from './CastMember';
+import { Plot } from './data/Plot';
+import { TragedySet } from './data/TragedySet';
 
 export interface Script {
-  readonly tragedySet: string;
-  readonly mainPlot: Plot;
-  readonly subplots: Array<Plot>;
-  readonly cast: Array<CastMember>;
-  readonly incidents: Array<IncidentOccurrence>;
-  readonly days: number;
+  tragedySet: TragedySet;
+  loops: number;
+  days: number;
+  mainPlot: Plot;
+  subplots: Array<Plot>;
+  cast: Array<CastMember>;
 }

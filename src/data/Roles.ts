@@ -1,559 +1,245 @@
-import { Role } from '../types/Role';
+import { Role } from '../types/data/Role';
 
-export const Roles: RoleDatabase = {
-  person: {
+export const Roles: RolesDatabase = {
+  person: new Role({
     id: '45041819-44ec-4fbd-aa6e-2cf816097cdc',
     name: 'Person',
-    abilities: [],
-    mastermindAbilities: [],
-  },
-  keyPerson: {
+    culprit: 'Optional',
+    unkillable: false,
+  }),
+  keyPerson: new Role({
     id: '95d137b0-8652-4576-ae64-a7dc34a5f3f4',
     name: 'Key Person',
-    abilities: [
-      {
-        time: 'On Character Death',
-        effect: 'Protagonists lose and the game ends immediately.',
-        winCondition: true,
-        optional: false,
-      },
-    ],
-    mastermindAbilities: [],
-  },
-  killer: {
+    culprit: 'Optional',
+    unkillable: false,
+  }),
+  killer: new Role({
     id: '0fa54005-f68b-4fc1-9c44-3c8db0b4b367',
     name: 'Killer',
-    abilities: [
-      {
-        time: 'Day End',
-        effect: 'The Key Person has at least 2 Intrigue and is in the same location: Key Person dies.',
-        winCondition: true,
-        optional: true,
-      },
-      {
-        time: 'Day End',
-        effect: 'This character has at least 4 Intrigue: Protagonists die.',
-        winCondition: true,
-        optional: true,
-      },
-    ],
-    mastermindAbilities: [],
-  },
-  brain: {
+    culprit: 'Optional',
+    goodwillRefusal: 'Optional',
+    unkillable: false,
+  }),
+  brain: new Role({
     id: '00e756b6-652f-4bc7-a85c-76c3d018074b',
     name: 'Brain',
-    abilities: [],
-    mastermindAbilities: [
-      {
-        effect: 'Place 1 Intrigue on this location or character in this location.',
-        optional: true,
-      },
-    ],
-  },
-  cultist: {
+    culprit: 'Optional',
+    goodwillRefusal: 'Optional',
+    unkillable: false,
+  }),
+  cultist: new Role({
     id: 'c5796a2b-012f-4e63-9421-3821ebd96faa',
     name: 'Cultist',
-    abilities: [
-      {
-        time: 'Card Resolve',
-        effect: 'Ignore Forbid Intrigue effects in this locatino or on characters in this location.',
-        optional: true,
-        winCondition: false,
-      },
-    ],
-    mastermindAbilities: [],
-  },
-  conspiracyTheorist: {
+    culprit: 'Optional',
+    goodwillRefusal: 'Mandatory',
+    unkillable: false,
+  }),
+  conspiracyTheorist: new Role({
     id: '87a2518e-9e79-4dae-ae5f-1e58bd785887',
     name: 'Conspiracy Theorist',
+    culprit: 'Optional',
     max: 1,
-    abilities: [],
-    mastermindAbilities: [
-      {
-        effect: 'Place 1 Paranoia on a character in this location.',
-        optional: true,
-      },
-    ],
-  },
-  serialKiller: {
+    unkillable: false,
+  }),
+  serialKiller: new Role({
     id: '85a0c633-fdf1-463c-9971-9b45bdc0cfcf',
     name: 'Serial Killer',
-    abilities: [
-      {
-        time: 'Day End',
-        effect: 'Exactly 1 other character in this location: That character dies.',
-        optional: false,
-        winCondition: false,
-      },
-    ],
-    mastermindAbilities: [],
-  },
-  curmudgeon: {
+    culprit: 'Optional',
+    unkillable: false,
+  }),
+  curmudgeon: new Role({
     id: '9bf6604e-f0e8-4807-bebf-63b7a3b838b3',
     name: 'Curmudgeon',
-    abilities: [],
-    mastermindAbilities: [],
-  },
-  friend: {
+    culprit: 'Optional',
+    goodwillRefusal: 'Optional',
+    unkillable: false,
+  }),
+  friend: new Role({
     id: 'ef68b5d1-adf6-4935-a298-2434e240f859',
     name: 'Friend',
+    culprit: 'Optional',
     max: 2,
-    abilities: [
-      {
-        time: 'Loop End',
-        effect: 'If this character is dead, reveal its role.',
-        optional: false,
-        winCondition: false,
-      },
-      {
-        time: 'Loop Start',
-        effect: "If this character's role has been revealed, this character gets 1 Goodwill.",
-        optional: false,
-        winCondition: false,
-      },
-    ],
-    mastermindAbilities: [],
-  },
-  timeTraveller: {
+    unkillable: false,
+  }),
+  timeTraveller: new Role({
     id: '7774f887-6c8f-483f-aa1c-fab32835f867',
     name: 'Time Traveller',
-    abilities: [
-      {
-        time: 'Always',
-        effect: 'This character cannot die.',
-        optional: false,
-        winCondition: false,
-      },
-      {
-        time: 'Card Resolve',
-        effect: 'Ignore Forbid Goodwill for this character.',
-        optional: false,
-        winCondition: false,
-      },
-      {
-        time: 'Day End (Last Day)',
-        effect: 'If 2 Goodwill or fewer on this character: Playerse lose, loop ends.',
-        optional: true,
-        winCondition: true,
-      },
-    ],
-    mastermindAbilities: [],
-  },
-  lover: {
+    culprit: 'Optional',
+    unkillable: true,
+  }),
+  lover: new Role({
     id: '82094e99-b591-4470-974a-782f4e1e752e',
     name: 'Lover',
-    abilities: [
-      {
-        time: 'When the Loved One Dies',
-        effect: 'This character gets 6 Paranoia.',
-        optional: false,
-        winCondition: false,
-      },
-    ],
-    mastermindAbilities: [],
-  },
-  lovedOne: {
+    culprit: 'Optional',
+    unkillable: false,
+  }),
+  lovedOne: new Role({
     id: '2910bfd8-8a87-4541-98ab-c01980efba10',
     name: 'Loved One',
-    abilities: [
-      {
-        time: 'When the Lover Dies',
-        effect: 'This character gets 6 Paranoia.',
-        optional: false,
-        winCondition: false,
-      },
-      {
-        time: 'Day End',
-        effect: 'If this character has at least 3 Paranoia and at least 1 Intrigue, the Protagonists die.',
-        optional: true,
-        winCondition: true,
-      },
-    ],
-    mastermindAbilities: [],
-  },
-  factor: {
+    culprit: 'Optional',
+    unkillable: false,
+  }),
+  factor: new Role({
     id: '9293559d-01db-47a5-84d1-e37430f714f5',
     name: 'Factor',
-    abilities: [
-      {
-        time: 'Always',
-        effect:
-          "If at least 2 Intrigue on the School: This character gains the Conspiracy Theorist's ability (but not its role).",
-        optional: false,
-        winCondition: false,
-      },
-      {
-        time: 'Always',
-        effect: "If at least 2 Intrigue in the City: This character gains the Key Person's ability (but not its role).",
-        optional: false,
-        winCondition: false,
-      },
-    ],
-    mastermindAbilities: [],
-  },
-  witch: {
+    culprit: 'Optional',
+    goodwillRefusal: 'Optional',
+    unkillable: false,
+  }),
+  witch: new Role({
     id: '011c23fd-15b1-435e-a08e-b91e4d18ba51',
     name: 'Witch',
-    abilities: [],
-    mastermindAbilities: [],
-  },
-  magician: {
+    culprit: 'Optional',
+    goodwillRefusal: 'Mandatory',
+    unkillable: false,
+  }),
+  magician: new Role({
     id: 'ce40a35a-ffce-4226-b519-2a66979a091d',
     name: 'Magician',
-    abilities: [
-      {
-        time: 'On Character Death',
-        effect: 'When this character dies, remove all Paranoia from its corpse.',
-        optional: false,
-        winCondition: false,
-      },
-    ],
-    mastermindAbilities: [
-      {
-        effect:
-          'Move one character with at least one Paranoia from this location to an adjacent location (not diagonal).',
-        optional: true,
-        timesPerLoop: 1,
-      },
-    ],
-  },
-  ninja: {
+    culprit: 'Optional',
+    unkillable: false,
+  }),
+  ninja: new Role({
     id: '8dc41278-0a96-4ee4-ab01-f33267e3a955',
     name: 'Ninja',
-    abilities: [
-      {
-        time: 'When this Role is to be Revealed',
-        effect: 'Instead of saying the truth, state any other non-Person role that is in this script.',
-        optional: true,
-        winCondition: false,
-      },
-      {
-        time: 'Day End',
-        effect: 'If there is any character with at least 2 Intrigue in this location, you may kill that character.',
-        optional: true,
-        winCondition: false,
-      },
-    ],
-    mastermindAbilities: [],
-  },
-  obstinate: {
+    culprit: 'Optional',
+    goodwillRefusal: 'Optional',
+    unkillable: false,
+  }),
+  obstinate: new Role({
     id: '58ff6ee3-dd0f-4c59-96ad-06b840e1b169',
     name: 'Obstinate',
-    isCulprit: 'always',
-    abilities: [
-      {
-        time: 'Incident Step',
-        effect: 'This character always triggers its incidents, regardless of the amount of Paranoia on it.',
-        optional: false,
-        winCondition: false,
-      },
-    ],
-    mastermindAbilities: [],
-  },
-  prophet: {
+    culprit: 'Mandatory',
+    goodwillRefusal: 'Mandatory',
+    unkillable: false,
+  }),
+  prophet: new Role({
     id: '3e425296-3ffc-499e-b4ea-b7b799587335',
     name: 'Prophet',
-    abilities: [
-      {
-        time: 'Mastermind Action Step',
-        effect: 'The Mastermind cannot place cards on this character.',
-        optional: false,
-        winCondition: false,
-      },
-      {
-        time: 'Incident Step',
-        effect:
-          'When determining whether an incident triggers, and the culprit is another character in this location, that Incident does not trigger, regardless of the number of Paranoia on the culprit.',
-        optional: false,
-        winCondition: false,
-      },
-    ],
-    mastermindAbilities: [],
-  },
-  immortal: {
+    culprit: 'Optional',
+    unkillable: false,
+  }),
+  immortal: new Role({
     id: '0b016916-baae-430a-962a-6eb70fc927e2',
     name: 'Immortal',
-    abilities: [],
-    mastermindAbilities: [],
-  },
-  poisoner: {
+    culprit: 'Optional',
+    unkillable: true,
+  }),
+  poisoner: new Role({
     id: '06e6e832-dfe2-4fa0-bb09-8d9ace844bef',
     name: 'Poisoner',
-    abilities: [
-      {
-        time: 'Day End',
-        effect: 'If the Extra Gauge is at 2 or more, any one character in this location dies.',
-        optional: false,
-        winCondition: false,
-      },
-      {
-        time: 'Day End',
-        effect: 'If the Extra Gauge is on 4 or more, the Protagonists die.',
-        optional: false,
-        winCondition: true,
-      },
-    ],
-    mastermindAbilities: [],
-  },
-  fool: {
+    culprit: 'Optional',
+    goodwillRefusal: 'Optional',
+    unkillable: false,
+  }),
+  fool: new Role({
     id: '42860f15-bf07-4a96-81d9-5ba184655018',
     name: 'Fool',
+    culprit: 'Mandatory',
     max: 1,
-    isCulprit: 'always',
-    abilities: [
-      {
-        time: 'Incident Step',
-        effect: 'After this character has triggered an Incident, remove all Paranoia from its card.',
-        optional: false,
-        winCondition: false,
-      },
-    ],
-    mastermindAbilities: [],
-  },
-  privateInvestigator: {
+    unkillable: false,
+  }),
+  privateInvestigator: new Role({
     id: '1f74472f-0029-402f-b0ba-7b9958f70af6',
     name: 'Private Investigator',
-    isCulprit: 'never',
-    abilities: [
-      {
-        time: 'Always',
-        effect: 'This character cannot die.',
-        optional: false,
-        winCondition: false,
-      },
-      {
-        time: 'Incident Step',
-        effect:
-          'If the Extra Gauge is 0, and the culprit is in this location, the Incident triggers regardless of the number of Paranoia on the culprit.',
-        optional: false,
-        winCondition: false,
-      },
-    ],
-    mastermindAbilities: [],
-  },
-  paranoiac: {
+    culprit: 'Never',
+    unkillable: true,
+  }),
+  paranoiac: new Role({
     id: '216548f7-2a29-4e57-b76b-567661aa2d36',
     name: 'Paranoiac',
-    abilities: [],
-    mastermindAbilities: [
-      {
-        effect: 'You may place an Intrigue or Paranoia on this character.',
-        optional: true,
-      },
-    ],
-  },
-  twin: {
+    culprit: 'Optional',
+    goodwillRefusal: 'Mandatory',
+    unkillable: false,
+  }),
+  twin: new Role({
     id: '2ded16d0-b220-470b-a1c1-7eb2ea3f44b2',
     name: 'Twin',
-    isCulprit: 'always',
-    abilities: [
-      {
-        time: 'Incident Step',
-        effect:
-          'When this character triggers an Incident, it is considered as being on the diagonally opposite location.',
-        optional: false,
-        winCondition: false,
-      },
-    ],
-    mastermindAbilities: [],
-  },
-  therapist: {
+    culprit: 'Mandatory',
+    unkillable: false,
+  }),
+  therapist: new Role({
     id: '8e2bfcf8-1669-4414-84ca-e4903a6afc89',
     name: 'Therapist',
-    abilities: [],
-    mastermindAbilities: [
-      {
-        effect: 'If the Extra Gauge is 1 or above, remove 1 Paranoia from any other character in this location.',
-        optional: false,
-      },
-    ],
-  },
-  vampire: {
+    culprit: 'Optional',
+    unkillable: false,
+  }),
+  vampire: new Role({
     id: 'da697bd7-9170-4587-a060-92e7229f1340',
     name: 'Vampire',
-    abilities: [
-      {
-        time: 'On Character Death',
-        effect: 'When this character dies, the Protagonists immediately lose and the loop ends.',
-        optional: false,
-        winCondition: true,
-      },
-    ],
-    mastermindAbilities: [],
-  },
-  werewolf: {
+    culprit: 'Optional',
+    goodwillRefusal: 'Optional',
+    unkillable: true,
+  }),
+  werewolf: new Role({
     id: '6f7453ad-6dde-40b2-9355-00b2ff1f5626',
     name: 'Werewolf',
-    abilities: [
-      {
-        time: 'Day End',
-        effect: 'If Night of Madness occurred this day, you may kill the Protagonists.',
-        optional: true,
-        winCondition: true,
-      },
-      {
-        time: 'Mastermind Action Step',
-        effect: 'The Mastermind cannot place cards on this character.',
-        optional: false,
-        winCondition: false,
-      },
-    ],
-    mastermindAbilities: [],
-  },
-  nightmare: {
+    culprit: 'Optional',
+    goodwillRefusal: 'Optional',
+    unkillable: false,
+  }),
+  nightmare: new Role({
     id: 'cf36a815-8c0c-4511-8897-590ca0791265',
     name: 'Nightmare',
-    abilities: [
-      {
-        time: 'Day End',
-        effect: 'You may kill one character who is in this location.',
-        optional: true,
-        winCondition: false,
-      },
-      {
-        time: 'Day End',
-        effect: 'If there are 3 or more Intrigue on all corpses in total, you may kill the Protagonists.',
-        optional: true,
-        winCondition: true,
-      },
-    ],
-    mastermindAbilities: [],
-  },
-  ghost: {
+    culprit: 'Optional',
+    goodwillRefusal: 'Optional',
+    unkillable: true,
+  }),
+  ghost: new Role({
     id: '51493ed0-0870-49a1-bd54-c63ba3406923',
     name: 'Ghost',
+    culprit: 'Optional',
     max: 1,
-    abilities: [],
-    mastermindAbilities: [
-      {
-        effect:
-          "If this card is a corpse, place 1 Paranoia on any character in this location, or any character in the Ghost's starting location.",
-        optional: false,
-      },
-    ],
-  },
-  showOff: {
+    unkillable: false,
+  }),
+  showOff: new Role({
     id: '6b1049dd-3690-4181-b56e-6452d565cbcc',
     name: 'Show-Off',
-    abilities: [
-      {
-        time: 'Always',
-        effect:
-          'If this character has more than 2 Paranoia, they lose the Unkillable aspect and gains Mandatory Goodwill Refusal.',
-        optional: false,
-        winCondition: false,
-      },
-    ],
-    mastermindAbilities: [],
-  },
-  coward: {
+    culprit: 'Optional',
+    unkillable: true,
+  }),
+  coward: new Role({
     id: 'b18d3c56-a096-4897-a533-76967eddc3d7',
     name: 'Coward',
-    abilities: [],
-    mastermindAbilities: [
-      {
-        effect: 'If this character has 2 or more Paranoia, pick a neighboring location, and move the character there.',
-        optional: false,
-      },
-    ],
-  },
-  sacrifice: {
+    culprit: 'Optional',
+    unkillable: false,
+  }),
+  sacrifice: new Role({
     id: '6d11f30c-f04f-4136-8c16-368ba803f816',
     name: 'Sacrifice',
-    abilities: [
-      {
-        time: 'Day End',
-        effect:
-          'If this character has at least 2 Intrigue and at least 2 Paranoia, you may kill all characters and the Protagonists.',
-        optional: true,
-        winCondition: true,
-      },
-      {
-        time: 'Incident Step',
-        effect:
-          'When determining whether an incident, for which this character is the culprit, will occur or not, also treat Intrigue as Paranoia.',
-        optional: false,
-        winCondition: false,
-      },
-    ],
-    mastermindAbilities: [],
-  },
-  deepOne: {
+    culprit: 'Mandatory',
+    unkillable: true,
+  }),
+  deepOne: new Role({
     id: '94807217-c0ba-4481-949d-82877399c129',
     name: 'Deep One',
-    max: 1,
-    abilities: [
-      {
-        time: 'On Character Death',
-        effect: 'When this character dies, reveal its role and increase the extra Gauge 1 step.',
-        optional: false,
-        winCondition: false,
-      },
-    ],
-    mastermindAbilities: [
-      {
-        effect: 'You may place 1 Intrigue on this location or on any character in this location.',
-        optional: true,
-      },
-    ],
-  },
-  witness: {
+    culprit: 'Optional',
+    goodwillRefusal: 'Optional',
+    unkillable: false,
+  }),
+  witness: new Role({
     id: 'a342d418-7eb3-470a-b1b0-cb5509c2ce38',
     name: 'Witness',
-    abilities: [
-      {
-        time: 'Day End',
-        effect:
-          'If this character has 4 or more Paranoia, this character dies, and the Extra Gauge increases with 1 step.',
-        optional: false,
-        winCondition: false,
-      },
-    ],
-    mastermindAbilities: [],
-  },
-  faceless: {
+    culprit: 'Optional',
+    unkillable: false,
+  }),
+  faceless: new Role({
     id: 'eba1ca5a-4a7d-4f1a-8177-8f5fa9059b6c',
     name: 'Faceless',
-    abilities: [
-      {
-        time: 'Always',
-        effect: 'If the Extra Gauge is 1 or less, this character gains the abilities of a Conspiracy Theorist.',
-        optional: false,
-        winCondition: false,
-      },
-      {
-        time: 'Always',
-        effect: 'If the Extra Gauge is 2 or more, this character gains the abilities of a Deep One.',
-        optional: false,
-        winCondition: false,
-      },
-    ],
-    mastermindAbilities: [],
-  },
-  wizard: {
+    culprit: 'Optional',
+    goodwillRefusal: 'Optional',
+    unkillable: true,
+  }),
+  wizard: new Role({
     id: '15807f5c-e3e1-4d8d-be73-9958acf2084b',
     name: 'Wizard',
+    culprit: 'Optional',
     max: 1,
-    abilities: [
-      {
-        time: 'Loop End',
-        effect: 'If this character is dead, the Protagonists lose.',
-        optional: false,
-        winCondition: true,
-      },
-      {
-        time: 'Goodwill Ability Step',
-        effect:
-          "When this character's Goodwill abilitiy is used, reveal its role after this resolution. Then, the leader may increase the Extra Gauge one step.",
-        optional: false,
-        winCondition: false,
-      },
-    ],
-    mastermindAbilities: [],
-  },
+    unkillable: false,
+  }),
 };
 
-interface RoleDatabase {
+interface RolesDatabase {
   person: Role;
   keyPerson: Role;
   killer: Role;

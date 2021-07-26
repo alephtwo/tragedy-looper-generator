@@ -1,38 +1,38 @@
 import { Script } from '../types/Script';
 import * as _ from 'lodash';
+import { Characters } from '../data/Characters';
 import { Roles } from '../data/Roles';
-import { AllCharacters } from '../data/Characters';
 import { Incidents } from '../data/Incidents';
 import { MainPlots } from '../data/Plots';
 import { AdditionalDifficultyFactors, DifficultyFactor } from './AdditionalDifficultyFactors';
 
 export function estimateLoops(script: Script): number {
   const plots = [script.mainPlot].concat(script.subplots);
+  const incidents = script.cast.filter((c) => c.incidentTriggers.length > 0).flatMap((c) => c.incidentTriggers);
 
-  const fromPlots = _.sum(plots.map((plot) => plot.estimateLoops(script)));
-  const fromIncidents = _.sum(script.incidents.map((i) => i.incident.loopEstimate || 0));
-  // For each Incident above/below 4, +/- 0.5.
-  // This deviates from the base game but it is far more realistic.
-  const fromNumberOfIncidents = (script.incidents.length - 4) * 0.5;
-  const fromDays = getLoopsFromDays(script.days);
-
-  const fromAdditionalFactors = _.sum(additionalFactors.map((af) => af(script) * 0.2));
-
-  const estimate = Math.ceil(fromPlots + fromIncidents + fromNumberOfIncidents + fromDays + fromAdditionalFactors);
+  const estimate = _.sum([
+    // From plots...
+    _.sum(plots.map((plot) => plot.estimateLoops(script))),
+    // From incidents...
+    _.sum(incidents.map((i) => i.incident.loopEstimate)),
+    // For each Incident above/below 4, +/- 0.5.
+    // This deviates from the base game but it is far more realistic.
+    (incidents.length - 4) * 0.5,
+    // If there are 6 days or less, it's easier. Otherwise, it's harder.
+    script.days <= 6 ? -0.6 : -0.2,
+    // From additional factors
+    _.sum(additionalFactors.map((af) => af(script) * 0.2)),
+  ]);
 
   // Assume we want at least two loops to be a good sport.
   // That said, there is a maximum number of 7 loops.
-  return _.clamp(estimate, 2, 7);
-}
-
-function getLoopsFromDays(days: number) {
-  return days <= 6 ? -0.6 : -0.2;
+  return _.ceil(_.clamp(estimate, 2, 7));
 }
 
 // Additional factors can either increase the difficulty or decrease it.
 // If they do not apply to the scenario, then a 0 should be returned so
 // the number of loops is not affected.
-export const additionalFactors: Array<(script: Script) => DifficultyFactor> = [
+const additionalFactors: Array<(script: Script) => DifficultyFactor> = [
   // Things that increase difficulty
   // Setting a girl as a Key Person
   AdditionalDifficultyFactors.increaseIfGirlHasRole(Roles.keyPerson),
@@ -40,18 +40,18 @@ export const additionalFactors: Array<(script: Script) => DifficultyFactor> = [
   AdditionalDifficultyFactors.increaseIfGirlHasRole(Roles.killer),
   AdditionalDifficultyFactors.increaseIfGirlHasRole(Roles.lovedOne),
   // Setting Godly Being or the Patient as the Witch.
-  AdditionalDifficultyFactors.modifyIfCharacterHasRole(AllCharacters.godlyBeing, Roles.witch, 1),
-  AdditionalDifficultyFactors.modifyIfCharacterHasRole(AllCharacters.patient, Roles.witch, 1),
+  AdditionalDifficultyFactors.modifyIfCharacterHasRole(Characters.godlyBeing, Roles.witch, 1),
+  AdditionalDifficultyFactors.modifyIfCharacterHasRole(Characters.patient, Roles.witch, 1),
   // Setting the Police Officer or the Patient as the Time Traveler.
-  AdditionalDifficultyFactors.modifyIfCharacterHasRole(AllCharacters.policeOfficer, Roles.timeTraveller, 1),
-  AdditionalDifficultyFactors.modifyIfCharacterHasRole(AllCharacters.patient, Roles.timeTraveller, 1),
+  AdditionalDifficultyFactors.modifyIfCharacterHasRole(Characters.policeOfficer, Roles.timeTraveller, 1),
+  AdditionalDifficultyFactors.modifyIfCharacterHasRole(Characters.patient, Roles.timeTraveller, 1),
   // Setting the Patient as a Friend.
-  AdditionalDifficultyFactors.modifyIfCharacterHasRole(AllCharacters.patient, Roles.friend, 1),
+  AdditionalDifficultyFactors.modifyIfCharacterHasRole(Characters.patient, Roles.friend, 1),
   // Having the culprit of an incident as the Conspiracy Theorist.
   AdditionalDifficultyFactors.increaseIfRoleIsCulprit(Roles.conspiracyTheorist),
   // Incidents triggered by the Rich Man's Daughter or the Henchman.
-  AdditionalDifficultyFactors.increaseIfCharacterIsCulprit(AllCharacters.richMansDaughter),
-  AdditionalDifficultyFactors.increaseIfCharacterIsCulprit(AllCharacters.henchman),
+  AdditionalDifficultyFactors.increaseIfCharacterIsCulprit(Characters.richMansDaughter),
+  AdditionalDifficultyFactors.increaseIfCharacterIsCulprit(Characters.henchman),
   // Incidents triggered by the Lover or Loved One.
   AdditionalDifficultyFactors.increaseIfRoleIsCulprit(Roles.lover),
   AdditionalDifficultyFactors.increaseIfRoleIsCulprit(Roles.lovedOne),
@@ -70,11 +70,11 @@ export const additionalFactors: Array<(script: Script) => DifficultyFactor> = [
 
   // Things that decrease difficulty
   // Setting the Office Worker as anything other than a person.
-  AdditionalDifficultyFactors.decreaseUnlessCharacterHasRole(AllCharacters.officeWorker, Roles.person),
+  AdditionalDifficultyFactors.decreaseUnlessCharacterHasRole(Characters.officeWorker, Roles.person),
   // Setting the Shrine Maiden, Pop Idol, or Boss as the Time Traveler.
-  AdditionalDifficultyFactors.modifyIfCharacterHasRole(AllCharacters.shrineMaiden, Roles.timeTraveller, -1),
-  AdditionalDifficultyFactors.modifyIfCharacterHasRole(AllCharacters.popIdol, Roles.timeTraveller, -1),
-  AdditionalDifficultyFactors.modifyIfCharacterHasRole(AllCharacters.boss, Roles.timeTraveller, -1),
+  AdditionalDifficultyFactors.modifyIfCharacterHasRole(Characters.shrineMaiden, Roles.timeTraveller, -1),
+  AdditionalDifficultyFactors.modifyIfCharacterHasRole(Characters.popIdol, Roles.timeTraveller, -1),
+  AdditionalDifficultyFactors.modifyIfCharacterHasRole(Characters.boss, Roles.timeTraveller, -1),
   // TODO: DECREASE: Having the Godly Being as something directly connected to the loss conditions.
   // TODO: DECREASE: Having a character with a forbidden area as something that connects to the board.
 ];
