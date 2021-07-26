@@ -7,7 +7,7 @@ import { CastMember } from '../types/CastMember';
 import { Character } from '../types/data/Character';
 import { Incident } from '../types/data/Incident';
 import { Plot } from '../types/data/Plot';
-import { ConditionalRole, Role } from '../types/data/Role';
+import { Role } from '../types/data/Role';
 import { TragedySet } from '../types/data/TragedySet';
 import { IncidentOccurrence } from '../types/IncidentOccurrence';
 import { Script } from '../types/Script';
@@ -59,13 +59,8 @@ export function generate(args: GenerateArgs): Script {
   });
 }
 
-function getRequiredRoles(plots: Array<Plot>): Array<Role | ConditionalRole> {
-  return (
-    plots
-      // Get the individual roles.
-      .flatMap((p) => (p.roles instanceof Function ? p.roles() : p.roles))
-      .reduce(enforceMaximumRoles, [])
-  );
+function getRequiredRoles(plots: Array<Plot>): Array<Role> {
+  return plots.flatMap((p) => p.roles()).reduce(enforceMaximumRoles, []);
 }
 
 function pickMainPlot(tragedySet: TragedySet): Plot {
@@ -77,7 +72,7 @@ function pickSubplots(tragedySet: TragedySet): Array<Plot> {
 }
 
 // Enforce maximums.
-function fillRemainingRoles(roles: Array<Role | ConditionalRole>, castSize: number): Array<Role | ConditionalRole> {
+function fillRemainingRoles(roles: Array<Role>, castSize: number): Array<Role> {
   // If the castSize is less than the number of required plots... sorry, users.
   const needed = Math.max(castSize, roles.length);
   if (needed != castSize) {
@@ -89,15 +84,8 @@ function fillRemainingRoles(roles: Array<Role | ConditionalRole>, castSize: numb
   return roles.concat(filler);
 }
 
-function enforceMaximumRoles(
-  roles: Array<Role | ConditionalRole>,
-  crole: Role | ConditionalRole
-): Array<Role | ConditionalRole> {
-  const role: Role = roleIsConditional(crole) ? (crole as ConditionalRole).role : (crole as Role);
-  const sameRoles = roles.filter((cr) => {
-    const r = roleIsConditional(cr) ? (cr as ConditionalRole).role : (cr as Role);
-    return r.id === role.id;
-  });
+function enforceMaximumRoles(roles: Array<Role>, role: Role): Array<Role> {
+  const sameRoles = roles.filter((r) => r.id === role.id);
 
   // If we have too many of the same role, we can't add it.
   if (sameRoles.length >= (role.max || Infinity)) {
@@ -105,11 +93,11 @@ function enforceMaximumRoles(
   }
 
   return produce(roles, (next) => {
-    next.push(crole);
+    next.push(role);
   });
 }
 
-function initializeCast(args: GenerateArgs, requiredRoles: Array<Role | ConditionalRole>): Array<CastMember> {
+function initializeCast(args: GenerateArgs, requiredRoles: Array<Role>): Array<CastMember> {
   const tragedySet = args.tragedySet;
 
   // We're going to pick a fake cast and if we get the Mystery Boy,
@@ -122,13 +110,10 @@ function initializeCast(args: GenerateArgs, requiredRoles: Array<Role | Conditio
 
   // Alright, we've got a mystery boy. Now we need to find a role for him.
   // Per the rules, he can't have a role dictated by the plot.
-  const requiredRoleIds = new Set(
-    requiredRoles.map((r) => (roleIsConditional(r) ? (r as ConditionalRole).role.id : (r as Role).id))
-  );
+  const requiredRoleIds = new Set(requiredRoles.map((r) => r.id));
   const candidateRoles = tragedySet.mainPlots
     .concat(tragedySet.subplots)
-    .flatMap((p) => (p.roles instanceof Function ? p.roles() : p.roles))
-    .flatMap((r) => (roleIsConditional(r) ? (r as ConditionalRole).role : (r as Role)))
+    .flatMap((p) => p.roles())
     .filter((r) => !requiredRoleIds.has(r.id));
 
   return [
@@ -145,10 +130,9 @@ interface BuildCastAccumulator {
   cast: Array<CastMember>;
   characters: Array<Character>;
 }
-function buildCast(state: BuildCastAccumulator, crole: Role | ConditionalRole): BuildCastAccumulator {
+function buildCast(state: BuildCastAccumulator, role: Role): BuildCastAccumulator {
   // Grab the real role.
-  const role: Role = roleIsConditional(crole) ? (crole as ConditionalRole).role : (crole as Role);
-  const character = matchCharacter(state.characters, crole, state.cast);
+  const character = matchCharacter(state.characters, role, state.cast);
 
   return produce(state, (next) => {
     // Add the cast member.
@@ -163,20 +147,13 @@ function buildCast(state: BuildCastAccumulator, crole: Role | ConditionalRole): 
   });
 }
 
-function matchCharacter(pool: Array<Character>, role: Role | ConditionalRole, cast: Array<CastMember>): Character {
+function matchCharacter(pool: Array<Character>, role: Role, cast: Array<CastMember>): Character {
   // Find characters that can meet that role.
-  let characters = pool;
-  if (roleIsConditional(role)) {
-    const condition = (role as ConditionalRole).condition;
-    characters = characters.filter((c) => condition(c, cast));
-  }
+  const characters = pool.filter((c) => role.condition === undefined || role.condition(c, cast));
+
   // Pick a random one of the matching characters.
   // This cast might cause problems but I'm really hoping it won't.
   return _.sample(characters) as Character;
-}
-
-function roleIsConditional(role: Role | ConditionalRole): boolean {
-  return !Object.keys(role).includes('id');
 }
 
 interface PickIncidentsArgs {
