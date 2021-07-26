@@ -55,6 +55,10 @@ function TragedySetInformation(props: TragedySetInformationProps) {
         <TableCell>{script.tragedySet.name}</TableCell>
       </TableRow>
       <TableRow>
+        <TableCell variant="head">Days</TableCell>
+        <TableCell>{script.days}</TableCell>
+      </TableRow>
+      <TableRow>
         <TableCell variant="head">Loops</TableCell>
         <TableCell>{script.loops}</TableCell>
       </TableRow>

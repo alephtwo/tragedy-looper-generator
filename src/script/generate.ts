@@ -49,6 +49,7 @@ export function generate(args: GenerateArgs): Script {
   const script: Script = {
     tragedySet: args.tragedySet,
     loops: 0, // So, right now we don't have this information. We'll set it in a second.
+    days: args.days,
     mainPlot: mainPlot,
     subplots: subplots,
     cast: cast,
