@@ -6,7 +6,7 @@ import * as Colors from '@material-ui/core/colors';
 
 const theme = createTheme({
   palette: {
-    primary: Colors.amber,
+    primary: Colors.red,
     background: {
       default: Colors.grey[900],
     },
