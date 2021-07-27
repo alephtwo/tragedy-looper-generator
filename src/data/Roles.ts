@@ -5,6 +5,7 @@ export const Roles: RolesDatabase = {
     id: '45041819-44ec-4fbd-aa6e-2cf816097cdc',
     name: 'Person',
     culprit: 'Optional',
+    connectedToBoard: false,
     unkillable: false,
     abilities: [],
     mastermindAbilities: [],
@@ -14,6 +15,7 @@ export const Roles: RolesDatabase = {
     name: 'Key Person',
     culprit: 'Optional',
     unkillable: false,
+    connectedToBoard: false,
     abilities: [
       {
         trigger: 'When Character Dies',
@@ -27,6 +29,7 @@ export const Roles: RolesDatabase = {
     id: '0fa54005-f68b-4fc1-9c44-3c8db0b4b367',
     name: 'Killer',
     culprit: 'Optional',
+    connectedToBoard: true,
     goodwillRefusal: 'Optional',
     unkillable: false,
     abilities: [
@@ -48,6 +51,7 @@ export const Roles: RolesDatabase = {
     id: '00e756b6-652f-4bc7-a85c-76c3d018074b',
     name: 'Brain',
     culprit: 'Optional',
+    connectedToBoard: true,
     goodwillRefusal: 'Optional',
     unkillable: false,
     abilities: [],
@@ -62,6 +66,7 @@ export const Roles: RolesDatabase = {
     id: 'c5796a2b-012f-4e63-9421-3821ebd96faa',
     name: 'Cultist',
     culprit: 'Optional',
+    connectedToBoard: true,
     goodwillRefusal: 'Mandatory',
     unkillable: false,
     abilities: [
@@ -77,6 +82,7 @@ export const Roles: RolesDatabase = {
     id: '87a2518e-9e79-4dae-ae5f-1e58bd785887',
     name: 'Conspiracy Theorist',
     culprit: 'Optional',
+    connectedToBoard: true,
     max: 1,
     unkillable: false,
     abilities: [],
@@ -91,6 +97,7 @@ export const Roles: RolesDatabase = {
     id: '85a0c633-fdf1-463c-9971-9b45bdc0cfcf',
     name: 'Serial Killer',
     culprit: 'Optional',
+    connectedToBoard: true,
     unkillable: false,
     abilities: [
       {
@@ -105,6 +112,7 @@ export const Roles: RolesDatabase = {
     id: '9bf6604e-f0e8-4807-bebf-63b7a3b838b3',
     name: 'Curmudgeon',
     culprit: 'Optional',
+    connectedToBoard: false,
     goodwillRefusal: 'Optional',
     unkillable: false,
     abilities: [],
@@ -114,6 +122,7 @@ export const Roles: RolesDatabase = {
     id: 'ef68b5d1-adf6-4935-a298-2434e240f859',
     name: 'Friend',
     culprit: 'Optional',
+    connectedToBoard: false,
     max: 2,
     unkillable: false,
     abilities: [
@@ -134,6 +143,7 @@ export const Roles: RolesDatabase = {
     id: '7774f887-6c8f-483f-aa1c-fab32835f867',
     name: 'Time Traveller',
     culprit: 'Optional',
+    connectedToBoard: false,
     unkillable: true,
     abilities: [
       {
@@ -153,6 +163,7 @@ export const Roles: RolesDatabase = {
     id: '82094e99-b591-4470-974a-782f4e1e752e',
     name: 'Lover',
     culprit: 'Optional',
+    connectedToBoard: false,
     unkillable: false,
     abilities: [
       {
@@ -167,6 +178,7 @@ export const Roles: RolesDatabase = {
     id: '2910bfd8-8a87-4541-98ab-c01980efba10',
     name: 'Loved One',
     culprit: 'Optional',
+    connectedToBoard: false,
     unkillable: false,
     abilities: [
       {
@@ -186,6 +198,7 @@ export const Roles: RolesDatabase = {
     id: '9293559d-01db-47a5-84d1-e37430f714f5',
     name: 'Factor',
     culprit: 'Optional',
+    connectedToBoard: false,
     goodwillRefusal: 'Optional',
     unkillable: false,
     abilities: [
@@ -208,6 +221,7 @@ export const Roles: RolesDatabase = {
     id: '011c23fd-15b1-435e-a08e-b91e4d18ba51',
     name: 'Witch',
     culprit: 'Optional',
+    connectedToBoard: false,
     goodwillRefusal: 'Mandatory',
     unkillable: false,
     abilities: [],
@@ -217,6 +231,7 @@ export const Roles: RolesDatabase = {
     id: 'ce40a35a-ffce-4226-b519-2a66979a091d',
     name: 'Magician',
     culprit: 'Optional',
+    connectedToBoard: true,
     unkillable: false,
     abilities: [
       {
@@ -238,6 +253,7 @@ export const Roles: RolesDatabase = {
     id: '8dc41278-0a96-4ee4-ab01-f33267e3a955',
     name: 'Ninja',
     culprit: 'Optional',
+    connectedToBoard: true,
     goodwillRefusal: 'Optional',
     unkillable: false,
     abilities: [
@@ -258,6 +274,7 @@ export const Roles: RolesDatabase = {
     id: '58ff6ee3-dd0f-4c59-96ad-06b840e1b169',
     name: 'Obstinate',
     culprit: 'Mandatory',
+    connectedToBoard: false,
     goodwillRefusal: 'Mandatory',
     unkillable: false,
     abilities: [
@@ -273,6 +290,7 @@ export const Roles: RolesDatabase = {
     id: '3e425296-3ffc-499e-b4ea-b7b799587335',
     name: 'Prophet',
     culprit: 'Optional',
+    connectedToBoard: true,
     unkillable: false,
     abilities: [
       {
@@ -293,6 +311,7 @@ export const Roles: RolesDatabase = {
     id: '0b016916-baae-430a-962a-6eb70fc927e2',
     name: 'Immortal',
     culprit: 'Optional',
+    connectedToBoard: false,
     unkillable: true,
     abilities: [],
     mastermindAbilities: [],
@@ -301,6 +320,7 @@ export const Roles: RolesDatabase = {
     id: '06e6e832-dfe2-4fa0-bb09-8d9ace844bef',
     name: 'Poisoner',
     culprit: 'Optional',
+    connectedToBoard: true,
     goodwillRefusal: 'Optional',
     unkillable: false,
     abilities: [
@@ -322,6 +342,7 @@ export const Roles: RolesDatabase = {
     id: '42860f15-bf07-4a96-81d9-5ba184655018',
     name: 'Fool',
     culprit: 'Mandatory',
+    connectedToBoard: true,
     max: 1,
     unkillable: false,
     abilities: [
@@ -337,6 +358,7 @@ export const Roles: RolesDatabase = {
     id: '1f74472f-0029-402f-b0ba-7b9958f70af6',
     name: 'Private Investigator',
     culprit: 'Never',
+    connectedToBoard: true,
     unkillable: true,
     abilities: [
       {
@@ -352,6 +374,7 @@ export const Roles: RolesDatabase = {
     id: '216548f7-2a29-4e57-b76b-567661aa2d36',
     name: 'Paranoiac',
     culprit: 'Optional',
+    connectedToBoard: false,
     goodwillRefusal: 'Mandatory',
     unkillable: false,
     abilities: [],
@@ -366,6 +389,7 @@ export const Roles: RolesDatabase = {
     id: '2ded16d0-b220-470b-a1c1-7eb2ea3f44b2',
     name: 'Twin',
     culprit: 'Mandatory',
+    connectedToBoard: true,
     unkillable: false,
     abilities: [
       {
@@ -381,6 +405,7 @@ export const Roles: RolesDatabase = {
     id: '8e2bfcf8-1669-4414-84ca-e4903a6afc89',
     name: 'Therapist',
     culprit: 'Optional',
+    connectedToBoard: false,
     unkillable: false,
     abilities: [],
     mastermindAbilities: [
@@ -394,13 +419,14 @@ export const Roles: RolesDatabase = {
     id: 'da697bd7-9170-4587-a060-92e7229f1340',
     name: 'Vampire',
     culprit: 'Optional',
+    connectedToBoard: true,
     goodwillRefusal: 'Optional',
     unkillable: true,
     abilities: [
       {
         trigger: 'Day End',
         effect:
-          "If the Key Person ahs at least 2 Intrigue and is in this character's location, you may kill the Key Person.",
+          "If the Key Person has at least 2 Intrigue and is in this character's location, you may kill the Key Person.",
         optional: true,
       },
       {
@@ -415,6 +441,7 @@ export const Roles: RolesDatabase = {
     id: '6f7453ad-6dde-40b2-9355-00b2ff1f5626',
     name: 'Werewolf',
     culprit: 'Optional',
+    connectedToBoard: false,
     goodwillRefusal: 'Optional',
     unkillable: false,
     abilities: [
@@ -435,6 +462,7 @@ export const Roles: RolesDatabase = {
     id: 'cf36a815-8c0c-4511-8897-590ca0791265',
     name: 'Nightmare',
     culprit: 'Optional',
+    connectedToBoard: true,
     goodwillRefusal: 'Optional',
     unkillable: true,
     abilities: [
@@ -455,6 +483,7 @@ export const Roles: RolesDatabase = {
     id: '51493ed0-0870-49a1-bd54-c63ba3406923',
     name: 'Ghost',
     culprit: 'Optional',
+    connectedToBoard: true,
     max: 1,
     unkillable: false,
     abilities: [],
@@ -470,6 +499,7 @@ export const Roles: RolesDatabase = {
     id: '6b1049dd-3690-4181-b56e-6452d565cbcc',
     name: 'Show-Off',
     culprit: 'Optional',
+    connectedToBoard: false,
     unkillable: true,
     abilities: [
       {
@@ -485,6 +515,7 @@ export const Roles: RolesDatabase = {
     id: 'b18d3c56-a096-4897-a533-76967eddc3d7',
     name: 'Coward',
     culprit: 'Optional',
+    connectedToBoard: true,
     unkillable: false,
     abilities: [],
     mastermindAbilities: [
@@ -498,6 +529,7 @@ export const Roles: RolesDatabase = {
     id: '6d11f30c-f04f-4136-8c16-368ba803f816',
     name: 'Sacrifice',
     culprit: 'Mandatory',
+    connectedToBoard: false,
     unkillable: true,
     abilities: [
       {
@@ -519,6 +551,7 @@ export const Roles: RolesDatabase = {
     id: '94807217-c0ba-4481-949d-82877399c129',
     name: 'Deep One',
     culprit: 'Optional',
+    connectedToBoard: false,
     goodwillRefusal: 'Optional',
     unkillable: false,
     abilities: [
@@ -539,6 +572,7 @@ export const Roles: RolesDatabase = {
     id: 'a342d418-7eb3-470a-b1b0-cb5509c2ce38',
     name: 'Witness',
     culprit: 'Optional',
+    connectedToBoard: false,
     unkillable: false,
     abilities: [
       {
@@ -553,6 +587,7 @@ export const Roles: RolesDatabase = {
     id: 'eba1ca5a-4a7d-4f1a-8177-8f5fa9059b6c',
     name: 'Faceless',
     culprit: 'Optional',
+    connectedToBoard: false,
     goodwillRefusal: 'Optional',
     unkillable: true,
     abilities: [
@@ -573,6 +608,7 @@ export const Roles: RolesDatabase = {
     id: '15807f5c-e3e1-4d8d-be73-9958acf2084b',
     name: 'Wizard',
     culprit: 'Optional',
+    connectedToBoard: false,
     max: 1,
     unkillable: false,
     abilities: [

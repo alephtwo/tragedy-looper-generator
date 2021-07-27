@@ -94,6 +94,13 @@ export const increaseIfCharacterHasAnyGoodwillRefusalWithIncient =
     return characterHasGoodwillRefusal && incidentPresent ? 1 : 0;
   };
 
+export const increaseIfCharacterIsRelatedToBoard =
+  (character: Character) =>
+  (script: Script): DifficultyFactor => {
+    const met = script.cast.some((c) => c.character.id === character.id && c.role.connectedToBoard);
+    return met ? 1 : 0;
+  };
+
 function determineIfIncidentIsPresent(script: Script, incident: Incident) {
   return script.getIncidents().some((it) => it.incident.id === incident.id);
 }
