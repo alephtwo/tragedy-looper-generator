@@ -1,5 +1,7 @@
 import { CastMember } from '../CastMember';
 import { Character } from './Character';
+import { MastermindAbility } from './MastermindAbility';
+import { RoleAbility } from './RoleAbility';
 
 export class Role {
   readonly id: string;
@@ -8,6 +10,8 @@ export class Role {
   readonly culprit: 'Never' | 'Optional' | 'Mandatory';
   readonly max?: number;
   readonly goodwillRefusal?: 'Optional' | 'Mandatory';
+  readonly abilities: Array<RoleAbility>;
+  readonly mastermindAbilities: Array<MastermindAbility>;
   readonly condition?: RoleCondition;
 
   constructor(role: RoleArgs, condition?: RoleCondition) {
@@ -17,6 +21,8 @@ export class Role {
     this.culprit = role.culprit;
     this.max = role.max;
     this.goodwillRefusal = role.goodwillRefusal;
+    this.abilities = role.abilities;
+    this.mastermindAbilities = role.mastermindAbilities;
     this.condition = condition;
   }
 }
@@ -35,6 +41,8 @@ interface RoleArgs {
   readonly culprit: 'Never' | 'Optional' | 'Mandatory';
   readonly max?: number;
   readonly goodwillRefusal?: 'Optional' | 'Mandatory';
+  readonly abilities: Array<RoleAbility>;
+  readonly mastermindAbilities: Array<MastermindAbility>;
 }
 
 // Create it with a role _and_ a condition for assigning that role.

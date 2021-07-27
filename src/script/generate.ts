@@ -11,7 +11,6 @@ import { Role } from '../types/data/Role';
 import { TragedySet } from '../types/data/TragedySet';
 import { IncidentOccurrence } from '../types/IncidentOccurrence';
 import { Script } from '../types/Script';
-import { estimateLoops } from './estimateLoops';
 
 export interface GenerateArgs {
   tragedySet: TragedySet;

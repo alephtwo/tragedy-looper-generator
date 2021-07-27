@@ -464,6 +464,7 @@ export const Subplots: SubplotsDatabase = {
       {
         effect: 'You may place 1 Intrigue in any location.',
         timesPerLoop: 1,
+        optional: true,
       },
     ],
   },
@@ -573,6 +574,7 @@ export const Subplots: SubplotsDatabase = {
       {
         effect: "Place 1 Intrigue on the (living) Factor's location.",
         timesPerLoop: 1,
+        optional: true,
       },
     ],
   },
@@ -756,6 +758,7 @@ export const Subplots: SubplotsDatabase = {
         effect: 'You may place an Intrigue on one location where a character with Goowill Refusal is.',
         timesPerDay: 1,
         timesPerLoop: 2,
+        optional: true,
       },
     ],
   },
@@ -789,6 +792,7 @@ export const Subplots: SubplotsDatabase = {
       {
         effect: 'The Mastermind may add an Intrigue to a location of their choice.',
         timesPerLoop: 1,
+        optional: true,
       },
     ],
   },
