@@ -15,6 +15,8 @@ export const MainPlots: MainPlotsDatabase = {
     roles: () => [Roles.keyPerson, Roles.killer, Roles.brain],
     requiredIncidents: [],
     estimateLoops: () => 1.8,
+    plotRules: [],
+    mastermindAbilities: [],
   },
   theSealedItem: {
     id: 'ec4950ad-ff5f-4709-b9e5-bcc2a75f7bd7',
@@ -22,6 +24,13 @@ export const MainPlots: MainPlotsDatabase = {
     roles: () => [Roles.brain, Roles.cultist],
     requiredIncidents: [],
     estimateLoops: () => 1.5,
+    plotRules: [
+      {
+        trigger: 'Loop End',
+        effect: 'If there are at least 2 Intrigue counters on the Shrine, the Protagonists lose.',
+      },
+    ],
+    mastermindAbilities: [],
   },
   signWithMe: {
     id: '60d51048-dd95-49c1-9063-12bad472d9b5',
@@ -38,6 +47,13 @@ export const MainPlots: MainPlotsDatabase = {
       // + 0.4 per girl in the game
       return 1.0 + 0.4 * girls;
     },
+    plotRules: [
+      {
+        trigger: 'Loop End',
+        effect: 'If there are at least 2 Intrigue counters on the Key Person, the Protagonists lose.',
+      },
+    ],
+    mastermindAbilities: [],
   },
   changeOfFuture: {
     id: '4abf382c-4dae-4692-9825-b6918b28f69d',
@@ -52,6 +68,13 @@ export const MainPlots: MainPlotsDatabase = {
       // +0.5 per Butterfly Effect Incident
       return 1.3 + 0.5 * butterflyIncidents;
     },
+    plotRules: [
+      {
+        trigger: 'Loop End',
+        effect: 'If the "Butterfly Effect" incident has occurred this loop, the Protagonists lose.',
+      },
+    ],
+    mastermindAbilities: [],
   },
   giantTimeBomb: {
     id: 'b2c799fa-bf11-4ad5-b03d-7a0218544dd0',
@@ -59,6 +82,13 @@ export const MainPlots: MainPlotsDatabase = {
     roles: () => [Roles.witch],
     requiredIncidents: [],
     estimateLoops: () => 1.0,
+    plotRules: [
+      {
+        trigger: 'Loop End',
+        effect: "If there are at least 2 Intrigue counters on the Witch's starting location, the Protagonists lose.",
+      },
+    ],
+    mastermindAbilities: [],
   },
   lightOfTheAvenger: {
     id: '33d87741-b161-47ce-8392-68dd6bd21fa0',
@@ -67,6 +97,13 @@ export const MainPlots: MainPlotsDatabase = {
     requiredIncidents: [],
     // The game does not specify a loop estimate for this plot
     estimateLoops: () => 0,
+    plotRules: [
+      {
+        trigger: 'Loop End',
+        effect: "If there are at least 2 Intrigue counters on the Brain's starting location, the Protagonists lose.",
+      },
+    ],
+    mastermindAbilities: [],
   },
   aPlaceToProtect: {
     id: '107953b0-402b-45bc-b5b4-777bdfef9490',
@@ -75,6 +112,13 @@ export const MainPlots: MainPlotsDatabase = {
     requiredIncidents: [],
     // The game does not specify a loop estimate for this plot
     estimateLoops: () => 0,
+    plotRules: [
+      {
+        trigger: 'Loop End',
+        effect: 'If there are at least 2 Intrigue counters on the School, the Protagonists lose.',
+      },
+    ],
+    mastermindAbilities: [],
   },
   // Midnight Zone
   theSealedItem2: {
@@ -84,6 +128,13 @@ export const MainPlots: MainPlotsDatabase = {
     requiredIncidents: [],
     // The game does not specify a loop estimate for this plot
     estimateLoops: () => 0,
+    plotRules: [
+      {
+        trigger: 'Loop End',
+        effect: 'If there are at least 2 Intrigue counters on the Shrine, the Protagonists lose.',
+      },
+    ],
+    mastermindAbilities: [],
   },
   secretRecord: {
     id: '61494789-8d76-4b60-8850-1370bf4e323c',
@@ -96,6 +147,13 @@ export const MainPlots: MainPlotsDatabase = {
       // +0.5 for each role that, when revealed, kills the protagonists.
       return 1.0 + winningRoles * 0.5;
     },
+    plotRules: [
+      {
+        trigger: 'Loop End',
+        effect: 'If the Brain, Factor, or Magician were revealed during this loop, the Protagonists lose.',
+      },
+    ],
+    mastermindAbilities: [],
   },
   maleConfrontation: {
     id: 'b65ad9f2-7756-40a3-b0e1-3d91928ae99b',
@@ -113,6 +171,13 @@ export const MainPlots: MainPlotsDatabase = {
       // +0.4 for each man in the script
       return 0.4 + men * 0.4;
     },
+    plotRules: [
+      {
+        trigger: 'Loop End',
+        effect: 'If the Ninja (or its corpse) has at least 2 Intrigue, the Protagonists lose.',
+      },
+    ],
+    mastermindAbilities: [],
   },
   theDevilsHand: {
     id: '03207e39-1c4f-43a9-91fe-9a33a9137d4d',
@@ -120,6 +185,8 @@ export const MainPlots: MainPlotsDatabase = {
     roles: () => [Roles.keyPerson, Roles.cultist, Roles.ninja],
     requiredIncidents: [],
     estimateLoops: () => 1.4,
+    plotRules: [],
+    mastermindAbilities: [],
   },
   fatedConnections: {
     id: 'cb193092-3d9a-4f7b-8b00-9e855585dfb6',
@@ -127,6 +194,14 @@ export const MainPlots: MainPlotsDatabase = {
     roles: () => [Roles.conspiracyTheorist, Roles.friend, Roles.serialKiller],
     requiredIncidents: [],
     estimateLoops: () => 1.6,
+    plotRules: [
+      {
+        trigger: 'Loop Start',
+        effect:
+          'Choosen one character that died during the previous loop. Place any Extra Card on that character. Character(s) with an Extra card have their role changed into a Key Person.',
+      },
+    ],
+    mastermindAbilities: [],
   },
   // Mystery Circle
   murderPlan2: {
@@ -135,6 +210,8 @@ export const MainPlots: MainPlotsDatabase = {
     roles: () => [Roles.keyPerson, Roles.brain, Roles.killer],
     requiredIncidents: [],
     estimateLoops: () => 1.8,
+    plotRules: [],
+    mastermindAbilities: [],
   },
   aQuiltOfIncidents: {
     id: 'd53e2adc-ec83-4cfd-bd28-71d7e33b87c9',
@@ -147,6 +224,13 @@ export const MainPlots: MainPlotsDatabase = {
       // +0.2 for every incident
       return 0.6 + incidents * 0.2;
     },
+    plotRules: [
+      {
+        trigger: 'Loop End',
+        effect: 'If the Extra Gauge is 3 or more, the Protagonists lose.',
+      },
+    ],
+    mastermindAbilities: [],
   },
   tightropePlan: {
     id: '1bba4a6c-59bb-4680-8786-92da9c9821f5',
@@ -159,6 +243,13 @@ export const MainPlots: MainPlotsDatabase = {
       // -0.2 for every incident
       return 2.8 + -0.2 * incidents;
     },
+    plotRules: [
+      {
+        trigger: 'Loop End',
+        effect: 'If the Extra Gauge is 1 or lower, the Protagonists lose.',
+      },
+    ],
+    mastermindAbilities: [],
   },
   theBlackSchool: {
     id: '12aeb24d-2238-4439-a414-37d25f499b1d',
@@ -166,6 +257,14 @@ export const MainPlots: MainPlotsDatabase = {
     roles: () => [Roles.brain],
     requiredIncidents: [],
     estimateLoops: () => 1.6,
+    plotRules: [
+      {
+        trigger: 'Loop End',
+        effect:
+          'If there are at least X Intrigue on the School, the Protagonists lose. X is 1 less than the current loop number.',
+      },
+    ],
+    mastermindAbilities: [],
   },
   aDropOfStrychnine: {
     id: 'b9877c5a-5406-4934-b437-c01a37ff007e',
@@ -173,6 +272,13 @@ export const MainPlots: MainPlotsDatabase = {
     roles: () => [Roles.keyPerson, Roles.poisoner, Roles.fool],
     requiredIncidents: [],
     estimateLoops: () => 1.6,
+    plotRules: [
+      {
+        trigger: 'Incident Step',
+        effect: 'When determining whether "Serial Murder" or "Suicide" triggers, count Intrigue also as Paranoia.',
+      },
+    ],
+    mastermindAbilities: [],
   },
   // Prime Evil
   aNobleBloodline: {
@@ -190,6 +296,8 @@ export const MainPlots: MainPlotsDatabase = {
     ],
     requiredIncidents: [],
     estimateLoops: () => 2.6,
+    plotRules: [],
+    mastermindAbilities: [],
   },
   moonlightBeast: {
     id: '9f989bc8-fd71-495c-bb88-94938c1be142',
@@ -197,6 +305,8 @@ export const MainPlots: MainPlotsDatabase = {
     roles: () => [Roles.werewolf],
     requiredIncidents: [],
     estimateLoops: () => 1.8,
+    plotRules: [],
+    mastermindAbilities: [],
   },
   nightMistNightmare: {
     id: 'e82a5e06-4b04-488e-9eb8-9f046f7235a0',
@@ -204,6 +314,8 @@ export const MainPlots: MainPlotsDatabase = {
     roles: () => [Roles.nightmare],
     requiredIncidents: [],
     estimateLoops: () => 1.6,
+    plotRules: [],
+    mastermindAbilities: [],
   },
   theOnesFromTheGrave: {
     id: '9c790fb8-4748-433b-924c-b1dd22d75ee2',
@@ -211,6 +323,13 @@ export const MainPlots: MainPlotsDatabase = {
     roles: () => [],
     requiredIncidents: [],
     estimateLoops: () => 1.8,
+    plotRules: [
+      {
+        trigger: 'Always',
+        effect: 'All corpses that had the role Person, Coward, or Show-Off change into having the role of Zombie.',
+      },
+    ],
+    mastermindAbilities: [],
   },
   theCursedLand: {
     id: 'e2878437-6e36-4099-ab94-4b7f97ca2fc6',
@@ -218,6 +337,17 @@ export const MainPlots: MainPlotsDatabase = {
     roles: () => [Roles.ghost, Roles.showOff],
     requiredIncidents: [],
     estimateLoops: () => 1.4,
+    plotRules: [
+      {
+        trigger: 'Loop Start',
+        effect: "You may place a Curse on the Ghost's starting location.",
+      },
+      {
+        trigger: 'Day End',
+        effect: 'Unless all Location Curses can be attached to characters, you may kill the protagonists.',
+      },
+    ],
+    mastermindAbilities: [],
   },
   // Cosmic Mythology
   choirToTheOutsideGod: {
@@ -226,6 +356,13 @@ export const MainPlots: MainPlotsDatabase = {
     roles: () => [Roles.keyPerson, Roles.sacrifice, Roles.immortal],
     requiredIncidents: [],
     estimateLoops: () => 1.8,
+    plotRules: [
+      {
+        trigger: 'Loop End',
+        effect: 'If there are at least 5 characters with Intrigue on them, the Protagonists lose.',
+      },
+    ],
+    mastermindAbilities: [],
   },
   theSacredWordsOfDagon: {
     id: 'e6333431-f648-4cdd-bd53-638070e06cb0',
@@ -233,6 +370,14 @@ export const MainPlots: MainPlotsDatabase = {
     roles: () => [Roles.keyPerson, Roles.cultist, Roles.deepOne],
     requiredIncidents: [],
     estimateLoops: () => 2.0,
+    plotRules: [
+      {
+        trigger: 'Loop End',
+        effect:
+          'If there are as many or more Intrigue on the Shrine than the Extra Gauge shows, the Protagonists lose (if the Extra Gauge is at zero, the Protagonists always lose.)',
+      },
+    ],
+    mastermindAbilities: [],
   },
   theKingInYellow: {
     id: '6f3ebebd-5d82-4bf0-8a80-2ee7dfac0643',
@@ -240,6 +385,13 @@ export const MainPlots: MainPlotsDatabase = {
     roles: () => [Roles.sacrifice, Roles.cultist],
     requiredIncidents: [],
     estimateLoops: () => 1.0,
+    plotRules: [
+      {
+        trigger: 'Loop End',
+        effect: 'If the Extra Gauge has increased at all this loop, the Protagonists lose.',
+      },
+    ],
+    mastermindAbilities: [],
   },
   giantTimeBombAgain: {
     id: 'ab783db0-205d-432d-8411-e7ad0e2030b8',
@@ -247,6 +399,13 @@ export const MainPlots: MainPlotsDatabase = {
     roles: () => [Roles.witch, Roles.deepOne],
     requiredIncidents: [],
     estimateLoops: () => 1.6,
+    plotRules: [
+      {
+        trigger: 'Loop End',
+        effect: "If there are 2 or more Intrigue on the Witch's sstarting location, the Protagonists lose.",
+      },
+    ],
+    mastermindAbilities: [],
   },
   bloodyRites: {
     id: '50cb0340-6f44-4e75-b129-23553cdbb4c0',
@@ -254,6 +413,14 @@ export const MainPlots: MainPlotsDatabase = {
     roles: () => [Roles.witch, Roles.immortal],
     requiredIncidents: [],
     estimateLoops: () => 1.8,
+    plotRules: [
+      {
+        trigger: 'Loop End',
+        effect:
+          'If there are as many or more corpses as the Extra Gauge shows, the Protagonists lose. If the Extra Gauge is on zero, the Protagonists automatically lose.',
+      },
+    ],
+    mastermindAbilities: [],
   },
 };
 
@@ -265,6 +432,8 @@ export const Subplots: SubplotsDatabase = {
     roles: () => [Roles.friend, Roles.friend, Roles.conspiracyTheorist],
     requiredIncidents: [],
     estimateLoops: () => 1.0,
+    plotRules: [],
+    mastermindAbilities: [],
   },
   aLoveAffair: {
     id: '02d443d7-d43a-45ad-91cc-1ec93646767b',
@@ -272,6 +441,8 @@ export const Subplots: SubplotsDatabase = {
     roles: () => [Roles.lover, Roles.lovedOne],
     requiredIncidents: [],
     estimateLoops: () => 1.0,
+    plotRules: [],
+    mastermindAbilities: [],
   },
   theHiddenFreak: {
     id: '78038f0a-b3be-4899-ae76-01ccd7a706f7',
@@ -279,6 +450,8 @@ export const Subplots: SubplotsDatabase = {
     roles: () => [Roles.friend, Roles.serialKiller],
     requiredIncidents: [],
     estimateLoops: () => 0.8,
+    plotRules: [],
+    mastermindAbilities: [],
   },
   anUnsettlingRumor: {
     id: 'cc6ab933-71a4-42ff-a92a-7c05c1f86ea4',
@@ -286,6 +459,13 @@ export const Subplots: SubplotsDatabase = {
     roles: () => [Roles.conspiracyTheorist],
     requiredIncidents: [],
     estimateLoops: () => 0.5,
+    plotRules: [],
+    mastermindAbilities: [
+      {
+        effect: 'You may place 1 Intrigue in any location.',
+        timesPerLoop: 1,
+      },
+    ],
   },
   paranoiaVirus: {
     id: '33317eb1-c0de-4460-b64e-f5ee6a650899',
@@ -293,6 +473,13 @@ export const Subplots: SubplotsDatabase = {
     roles: () => [Roles.conspiracyTheorist],
     requiredIncidents: [],
     estimateLoops: () => 0,
+    plotRules: [
+      {
+        trigger: 'Always',
+        effect: 'All Persons with at least 3 Paranoia turn into Serial Killers.',
+      },
+    ],
+    mastermindAbilities: [],
   },
   threadsOfFate: {
     id: '20079bae-734d-4195-a4af-be56e8c6c8ac',
@@ -300,6 +487,13 @@ export const Subplots: SubplotsDatabase = {
     roles: () => [],
     requiredIncidents: [],
     estimateLoops: () => 0.5,
+    plotRules: [
+      {
+        trigger: 'Loop Start',
+        effect: 'Place 2 Paranoia on all characters who or whose corpse had Goodwill last loop.',
+      },
+    ],
+    mastermindAbilities: [],
   },
   unknownFactorX: {
     id: 'b96a9ba3-6858-440c-b74d-552fb7ef82d3',
@@ -307,6 +501,8 @@ export const Subplots: SubplotsDatabase = {
     roles: () => [Roles.factor],
     requiredIncidents: [],
     estimateLoops: () => 0.8,
+    plotRules: [],
+    mastermindAbilities: [],
   },
   shadowOfTheRipper: {
     id: 'fa8b66bf-ba7d-41c9-84de-9e7641bfbdfa',
@@ -315,6 +511,8 @@ export const Subplots: SubplotsDatabase = {
     requiredIncidents: [],
     // The game does not provide a value for this
     estimateLoops: () => 0,
+    plotRules: [],
+    mastermindAbilities: [],
   },
   aHideousScript: {
     id: '69755afc-80b4-4b55-a17f-3fcb2cb39e25',
@@ -328,6 +526,8 @@ export const Subplots: SubplotsDatabase = {
     requiredIncidents: [],
     // The game does not provide a value for this
     estimateLoops: () => 0,
+    plotRules: [],
+    mastermindAbilities: [],
   },
   // Midnight Zone
   loveHateSpiral: {
@@ -336,6 +536,8 @@ export const Subplots: SubplotsDatabase = {
     roles: () => [Roles.friend, Roles.obstinate],
     requiredIncidents: [],
     estimateLoops: () => 0.5,
+    plotRules: [],
+    mastermindAbilities: [],
   },
   witchesTeaTime: {
     id: '3afb64de-e67a-472f-af69-e232aad90d23',
@@ -343,6 +545,8 @@ export const Subplots: SubplotsDatabase = {
     roles: () => [Roles.conspiracyTheorist, Roles.friend, Roles.witch, Roles.witch],
     requiredIncidents: [],
     estimateLoops: () => 0.8,
+    plotRules: [],
+    mastermindAbilities: [],
   },
   diceOfTheGods: {
     id: '066d20aa-2830-4c9d-8354-0413a0e1b2e3',
@@ -350,6 +554,13 @@ export const Subplots: SubplotsDatabase = {
     roles: () => [Roles.serialKiller, Roles.obstinate],
     requiredIncidents: [],
     estimateLoops: () => 0.7,
+    plotRules: [
+      {
+        trigger: 'Loop Start',
+        effect: 'Choose one character that died during the previous loop and place any Extra card on that character.',
+      },
+    ],
+    mastermindAbilities: [],
   },
   unsafeTrigger: {
     id: '133e4874-1815-4880-a880-400f190a039e',
@@ -357,6 +568,13 @@ export const Subplots: SubplotsDatabase = {
     roles: () => [Roles.factor],
     requiredIncidents: [],
     estimateLoops: () => 1.0,
+    plotRules: [],
+    mastermindAbilities: [
+      {
+        effect: "Place 1 Intrigue on the (living) Factor's location.",
+        timesPerLoop: 1,
+      },
+    ],
   },
   showtimeOfDeath: {
     id: '813e7a16-0417-416a-a144-45a63c5d5441',
@@ -368,6 +586,13 @@ export const Subplots: SubplotsDatabase = {
       const above7 = Math.max(0, characters - 7);
       return 2.2 + -0.5 * above7;
     },
+    plotRules: [
+      {
+        trigger: 'Loop End',
+        effect: 'If there are 6 or less characters alive, the Protagonists lose.',
+      },
+    ],
+    mastermindAbilities: [],
   },
   unansweredHeart: {
     id: '2d65bd0c-4469-44bd-8a0d-1c8d650cabb9',
@@ -375,6 +600,13 @@ export const Subplots: SubplotsDatabase = {
     roles: () => [Roles.conspiracyTheorist, Roles.magician],
     requiredIncidents: [],
     estimateLoops: (script: Script): number => (script.mainPlot.id === MainPlots.theSealedItem2.id ? 1.7 : 0.7),
+    plotRules: [
+      {
+        trigger: 'Always',
+        effect: '"Forbid Goodwill" also has the effect of "Forbid Movement."',
+      },
+    ],
+    mastermindAbilities: [],
   },
   worshippersOfTheApocalypse: {
     id: 'e77efda5-4b07-4ff4-8b64-096bd6562f14',
@@ -382,6 +614,14 @@ export const Subplots: SubplotsDatabase = {
     roles: () => [Roles.prophet],
     requiredIncidents: [Incidents.suicide],
     estimateLoops: () => 0.8,
+    plotRules: [
+      {
+        trigger: 'Incident Step',
+        effect:
+          'When determining whether an Incident triggers, and the culprit is a Person, if the Prophet is alive, the culprit is regarded as having one 1 less than its printed Paranoia limit.',
+      },
+    ],
+    mastermindAbilities: [],
   },
   // Mystery Circle
   theHiddenFreak2: {
@@ -390,6 +630,8 @@ export const Subplots: SubplotsDatabase = {
     roles: () => [Roles.friend, Roles.serialKiller],
     requiredIncidents: [],
     estimateLoops: () => 0.8,
+    plotRules: [],
+    mastermindAbilities: [],
   },
   isolatedInstitutionPsycho: {
     id: 'ea84db6e-2d0e-4b3c-a964-90f108572c2b',
@@ -397,6 +639,13 @@ export const Subplots: SubplotsDatabase = {
     roles: () => [Roles.conspiracyTheorist, Roles.therapist, Roles.paranoiac],
     requiredIncidents: [],
     estimateLoops: () => 0.5,
+    plotRules: [
+      {
+        trigger: 'Loop Start',
+        effect: 'If the Extra Gauge was 2 or less at the end of the previous loop, increase it by 1.',
+      },
+    ],
+    mastermindAbilities: [],
   },
   smellOfGunpowder: {
     id: 'a74b8d79-077d-40f8-bfc2-d977642fa546',
@@ -404,6 +653,13 @@ export const Subplots: SubplotsDatabase = {
     roles: () => [Roles.serialKiller],
     requiredIncidents: [],
     estimateLoops: (script: Script): number => 0.2 + 0.2 * script.days,
+    plotRules: [
+      {
+        trigger: 'Loop End',
+        effect: 'If there are a total of 12 or more Paranoia on the remaining characters, the Protagonists lose.',
+      },
+    ],
+    mastermindAbilities: [],
   },
   iAmAMasterDetective: {
     id: 'cb9e521f-113f-4599-8482-4f640a18310f',
@@ -411,6 +667,8 @@ export const Subplots: SubplotsDatabase = {
     roles: () => [Roles.conspiracyTheorist, Roles.friend, Roles.privateInvestigator],
     requiredIncidents: [],
     estimateLoops: () => 1.2,
+    plotRules: [],
+    mastermindAbilities: [],
   },
   danceOfFools: {
     id: '51482a2a-13d6-4b0c-b2d5-379a98ed0e54',
@@ -418,6 +676,8 @@ export const Subplots: SubplotsDatabase = {
     roles: () => [Roles.fool, Roles.friend],
     requiredIncidents: [],
     estimateLoops: () => 0.4,
+    plotRules: [],
+    mastermindAbilities: [],
   },
   anAbsoluteWill: {
     id: 'de83f0f3-63fe-45bc-87ef-5ac086fd548c',
@@ -425,6 +685,8 @@ export const Subplots: SubplotsDatabase = {
     roles: () => [Roles.obstinate],
     requiredIncidents: [],
     estimateLoops: () => 0.6,
+    plotRules: [],
+    mastermindAbilities: [],
   },
   trickyTwins: {
     id: 'aa04f330-7a55-44a7-a534-f36fd2267995',
@@ -432,6 +694,8 @@ export const Subplots: SubplotsDatabase = {
     roles: () => [Roles.paranoiac, Roles.twin],
     requiredIncidents: [],
     estimateLoops: () => 0.5,
+    plotRules: [],
+    mastermindAbilities: [],
   },
   // Prime Evil
   thoseWithHabits: {
@@ -440,6 +704,8 @@ export const Subplots: SubplotsDatabase = {
     roles: () => [Roles.ghost, Roles.serialKiller, Roles.lovedOne],
     requiredIncidents: [],
     estimateLoops: () => 1.0,
+    plotRules: [],
+    mastermindAbilities: [],
   },
   aLoveAffair2: {
     id: '6c191eba-6505-4230-a5c9-5dd0f7e2a6ab',
@@ -447,6 +713,8 @@ export const Subplots: SubplotsDatabase = {
     roles: () => [Roles.lover, Roles.lovedOne],
     requiredIncidents: [],
     estimateLoops: () => 1.0,
+    plotRules: [],
+    mastermindAbilities: [],
   },
   witchsCurse: {
     id: '9d41e7bd-c30f-4607-adad-79264884aa8e',
@@ -454,6 +722,13 @@ export const Subplots: SubplotsDatabase = {
     roles: () => [Roles.conspiracyTheorist, Roles.witch],
     requiredIncidents: [],
     estimateLoops: () => 0.6,
+    plotRules: [
+      {
+        trigger: 'Loop Start',
+        effect: "You may place a Curse on the Witch's starting location.",
+      },
+    ],
+    mastermindAbilities: [],
   },
   theKeyGirl: {
     id: '8d27e3b9-0351-4039-bef2-ddf7e09acb2a',
@@ -466,6 +741,8 @@ export const Subplots: SubplotsDatabase = {
     ],
     requiredIncidents: [],
     estimateLoops: () => 0.8,
+    plotRules: [],
+    mastermindAbilities: [],
   },
   monsterIntrigue: {
     id: '73438252-52c1-43c2-aa07-df071ca959a8',
@@ -473,6 +750,14 @@ export const Subplots: SubplotsDatabase = {
     roles: () => [Roles.conspiracyTheorist],
     requiredIncidents: [],
     estimateLoops: () => 0.5,
+    plotRules: [],
+    mastermindAbilities: [
+      {
+        effect: 'You may place an Intrigue on one location where a character with Goowill Refusal is.',
+        timesPerDay: 1,
+        timesPerLoop: 2,
+      },
+    ],
   },
   panicAndObsession: {
     id: '2f294d6f-0b0f-495d-b9e4-0e383973a37d',
@@ -480,6 +765,8 @@ export const Subplots: SubplotsDatabase = {
     roles: () => [Roles.serialKiller, Roles.coward, Roles.witch],
     requiredIncidents: [],
     estimateLoops: () => 0.3,
+    plotRules: [],
+    mastermindAbilities: [],
   },
   peopleWhoDontListen: {
     id: 'aa2b8699-b738-4140-bf08-5dd42dd6064e',
@@ -487,6 +774,8 @@ export const Subplots: SubplotsDatabase = {
     roles: () => [Roles.showOff, Roles.conspiracyTheorist, Roles.coward],
     requiredIncidents: [],
     estimateLoops: () => 0.4,
+    plotRules: [],
+    mastermindAbilities: [],
   },
   // Cosmic Evil
   anUnsettlingRumor2: {
@@ -495,6 +784,13 @@ export const Subplots: SubplotsDatabase = {
     roles: () => [Roles.conspiracyTheorist],
     requiredIncidents: [],
     estimateLoops: () => 0.5,
+    plotRules: [],
+    mastermindAbilities: [
+      {
+        effect: 'The Mastermind may add an Intrigue to a location of their choice.',
+        timesPerLoop: 1,
+      },
+    ],
   },
   theResistance: {
     id: '3758b139-f56d-4ad6-b686-711f2e03d587',
@@ -502,6 +798,8 @@ export const Subplots: SubplotsDatabase = {
     roles: () => [Roles.conspiracyTheorist, Roles.wizard, Roles.serialKiller],
     requiredIncidents: [],
     estimateLoops: () => 0.8,
+    plotRules: [],
+    mastermindAbilities: [],
   },
   peopleWhoSaw: {
     id: 'adc8b9f9-40f2-4efb-8803-b27f5febfc98',
@@ -509,6 +807,8 @@ export const Subplots: SubplotsDatabase = {
     roles: () => [Roles.conspiracyTheorist, Roles.witness],
     requiredIncidents: [],
     estimateLoops: () => 0.5,
+    plotRules: [],
+    mastermindAbilities: [],
   },
   theProfoundRace: {
     id: 'b5db08e9-c946-4b53-b482-69c0137c97f9',
@@ -516,6 +816,8 @@ export const Subplots: SubplotsDatabase = {
     roles: () => [Roles.serialKiller, Roles.timeTraveller],
     requiredIncidents: [],
     estimateLoops: () => 0.8,
+    plotRules: [],
+    mastermindAbilities: [],
   },
   whispersFromTheDeep: {
     id: 'cdd00e27-63e5-40a2-b9c2-b9ae20f4cd38',
@@ -523,6 +825,13 @@ export const Subplots: SubplotsDatabase = {
     roles: () => [Roles.deepOne, Roles.paranoiac],
     requiredIncidents: [],
     estimateLoops: () => 1.2,
+    plotRules: [
+      {
+        trigger: 'Always',
+        effect: 'The Paranoiac gains all the abilities of the Key Person.',
+      },
+    ],
+    mastermindAbilities: [],
   },
   theFacelessGod: {
     id: 'b5b7fb70-9f22-488f-ad9e-9fbf10bd6866',
@@ -530,6 +839,8 @@ export const Subplots: SubplotsDatabase = {
     roles: () => [Roles.faceless, Roles.wizard],
     requiredIncidents: [],
     estimateLoops: () => 0.9,
+    plotRules: [],
+    mastermindAbilities: [],
   },
   aTwistedTruth: {
     id: '54c3dd3a-b6c0-491b-a42d-49d8eff8412f',
@@ -537,6 +848,8 @@ export const Subplots: SubplotsDatabase = {
     roles: () => [Roles.paranoiac],
     requiredIncidents: [],
     estimateLoops: () => 1.2,
+    plotRules: [],
+    mastermindAbilities: [],
   },
 };
 
