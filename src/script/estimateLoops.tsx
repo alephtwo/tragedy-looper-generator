@@ -12,6 +12,7 @@ import {
   increaseIfCharacterHasAnyGoodwillRefusalWithIncient,
   increaseIfCharacterHasMandatoryGoodwillRefusal,
   increaseIfCharacterHasRole,
+  increaseIfCharacterHasRoleThatIsOnlyInOnePlot,
   increaseIfCharacterIsCulprit,
   increaseIfCharacterIsRelatedToBoard,
   increaseIfGirlHasRole,
@@ -86,7 +87,8 @@ const additionalFactors: Array<(script: Script) => DifficultyFactor> = [
   increaseIfCharacterHasAnyGoodwillRefusalWithIncient(Characters.doctor, Incidents.spreading),
   // Setting the Boss as something that connects to the board (Conspiracy Theorist, Serial Killer)
   increaseIfCharacterIsRelatedToBoard(Characters.boss),
-  // TODO: INCREASE: Giving the Mystery Boy a role that exists in only 1 plot.
+  // Giving the Mystery Boy a role that exists in only 1 plot.
+  increaseIfCharacterHasRoleThatIsOnlyInOnePlot(Characters.mysteryBoy),
 
   // Things that decrease difficulty
   // Setting the Office Worker as anything other than a person.

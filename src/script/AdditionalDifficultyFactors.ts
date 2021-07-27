@@ -3,6 +3,7 @@ import { Incident } from '../types/data/Incident';
 import { Plot } from '../types/data/Plot';
 import { Role } from '../types/data/Role';
 import { Script } from '../types/Script';
+import * as _ from 'lodash';
 
 export type DifficultyFactor = -1 | 0 | 1;
 
@@ -98,6 +99,24 @@ export const increaseIfCharacterIsRelatedToBoard =
   (character: Character) =>
   (script: Script): DifficultyFactor => {
     const met = script.cast.some((c) => c.character.id === character.id && c.role.connectedToBoard);
+    return met ? 1 : 0;
+  };
+
+export const increaseIfCharacterHasRoleThatIsOnlyInOnePlot =
+  (character: Character) =>
+  (script: Script): DifficultyFactor => {
+    // Get all the plots.
+    const plots = script.tragedySet.mainPlots.concat(script.tragedySet.subplots);
+    // Turn roles into ids, essentially.
+    const roleIdSets = plots.map((p) => new Set(p.roles().map((r) => r.id)));
+    // Get a unique set of all the role ids we have in this tragedy set.
+    const allRoleIds = _.uniq(roleIdSets.flatMap((s) => Array.from(s.values())));
+    // Filter this list to just ones that are in a single plot
+    const rolesOnlyInOnePlot = new Set(
+      allRoleIds.filter((i) => _.sum(roleIdSets.map((s) => (s.has(i) ? 1 : 0))) === 1)
+    );
+
+    const met = script.cast.some((c) => c.character.id === character.id && rolesOnlyInOnePlot.has(c.role.id));
     return met ? 1 : 0;
   };
 
