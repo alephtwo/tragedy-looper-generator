@@ -9,6 +9,7 @@ export class Role {
   readonly unkillable: boolean;
   readonly culprit: 'Never' | 'Optional' | 'Mandatory';
   readonly connectedToBoard: boolean;
+  readonly connectedToLossCondition: boolean;
   readonly max?: number;
   readonly goodwillRefusal?: 'Optional' | 'Mandatory';
   readonly abilities: Array<RoleAbility>;
@@ -21,6 +22,7 @@ export class Role {
     this.unkillable = role.unkillable;
     this.culprit = role.culprit;
     this.connectedToBoard = role.connectedToBoard;
+    this.connectedToLossCondition = role.connectedToLossCondition;
     this.max = role.max;
     this.goodwillRefusal = role.goodwillRefusal;
     this.abilities = role.abilities;
@@ -42,6 +44,7 @@ interface RoleArgs {
   readonly unkillable: boolean;
   readonly culprit: 'Never' | 'Optional' | 'Mandatory';
   readonly connectedToBoard: boolean;
+  readonly connectedToLossCondition: boolean;
   readonly max?: number;
   readonly goodwillRefusal?: 'Optional' | 'Mandatory';
   readonly abilities: Array<RoleAbility>;

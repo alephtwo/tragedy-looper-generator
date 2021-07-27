@@ -7,6 +7,7 @@ import { MainPlots } from '../data/Plots';
 import {
   decreaseForEveryCharacterThatHasForbiddenAreasAndConnectsToBoard,
   decreaseIfCharacterHasRole,
+  decreaseIfCharacterIsConnectedToLossConditions,
   decreaseUnlessCharacterHasRole,
   DifficultyFactor,
   increaseIfCharacterHasAnyGoodwillRefusal,
@@ -93,7 +94,6 @@ function getAdditionalFactors(script: Script): Array<(script: Script) => Difficu
     increaseIfCharacterIsRelatedToBoard(Characters.boss),
     // Giving the Mystery Boy a role that exists in only 1 plot.
     increaseIfCharacterHasRoleThatIsOnlyInOnePlot(Characters.mysteryBoy),
-
     // Things that decrease difficulty
     // Setting the Office Worker as anything other than a person.
     decreaseUnlessCharacterHasRole(Characters.officeWorker, Roles.person),
@@ -101,8 +101,9 @@ function getAdditionalFactors(script: Script): Array<(script: Script) => Difficu
     decreaseIfCharacterHasRole(Characters.shrineMaiden, Roles.timeTraveller),
     decreaseIfCharacterHasRole(Characters.popIdol, Roles.timeTraveller),
     decreaseIfCharacterHasRole(Characters.boss, Roles.timeTraveller),
+    // Having the Godly Being as something directly connected to the loss conditions.
+    decreaseIfCharacterIsConnectedToLossConditions(Characters.godlyBeing),
     // Having a character with a forbidden area as something that connects to the board.
     ...decreaseForEveryCharacterThatHasForbiddenAreasAndConnectsToBoard(script),
-    // TODO: DECREASE: Having the Godly Being as something directly connected to the loss conditions.
   ];
 }

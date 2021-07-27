@@ -6,6 +6,7 @@ export const Roles: RolesDatabase = {
     name: 'Person',
     culprit: 'Optional',
     connectedToBoard: false,
+    connectedToLossCondition: false,
     unkillable: false,
     abilities: [],
     mastermindAbilities: [],
@@ -16,6 +17,7 @@ export const Roles: RolesDatabase = {
     culprit: 'Optional',
     unkillable: false,
     connectedToBoard: false,
+    connectedToLossCondition: true,
     abilities: [
       {
         trigger: 'When Character Dies',
@@ -30,6 +32,7 @@ export const Roles: RolesDatabase = {
     name: 'Killer',
     culprit: 'Optional',
     connectedToBoard: true,
+    connectedToLossCondition: true,
     goodwillRefusal: 'Optional',
     unkillable: false,
     abilities: [
@@ -52,6 +55,7 @@ export const Roles: RolesDatabase = {
     name: 'Brain',
     culprit: 'Optional',
     connectedToBoard: true,
+    connectedToLossCondition: false,
     goodwillRefusal: 'Optional',
     unkillable: false,
     abilities: [],
@@ -67,6 +71,7 @@ export const Roles: RolesDatabase = {
     name: 'Cultist',
     culprit: 'Optional',
     connectedToBoard: true,
+    connectedToLossCondition: false,
     goodwillRefusal: 'Mandatory',
     unkillable: false,
     abilities: [
@@ -83,6 +88,7 @@ export const Roles: RolesDatabase = {
     name: 'Conspiracy Theorist',
     culprit: 'Optional',
     connectedToBoard: true,
+    connectedToLossCondition: false,
     max: 1,
     unkillable: false,
     abilities: [],
@@ -98,6 +104,7 @@ export const Roles: RolesDatabase = {
     name: 'Serial Killer',
     culprit: 'Optional',
     connectedToBoard: true,
+    connectedToLossCondition: false,
     unkillable: false,
     abilities: [
       {
@@ -113,6 +120,7 @@ export const Roles: RolesDatabase = {
     name: 'Curmudgeon',
     culprit: 'Optional',
     connectedToBoard: false,
+    connectedToLossCondition: false,
     goodwillRefusal: 'Optional',
     unkillable: false,
     abilities: [],
@@ -123,6 +131,7 @@ export const Roles: RolesDatabase = {
     name: 'Friend',
     culprit: 'Optional',
     connectedToBoard: false,
+    connectedToLossCondition: false,
     max: 2,
     unkillable: false,
     abilities: [
@@ -144,6 +153,7 @@ export const Roles: RolesDatabase = {
     name: 'Time Traveller',
     culprit: 'Optional',
     connectedToBoard: false,
+    connectedToLossCondition: true,
     unkillable: true,
     abilities: [
       {
@@ -164,6 +174,7 @@ export const Roles: RolesDatabase = {
     name: 'Lover',
     culprit: 'Optional',
     connectedToBoard: false,
+    connectedToLossCondition: false,
     unkillable: false,
     abilities: [
       {
@@ -179,6 +190,7 @@ export const Roles: RolesDatabase = {
     name: 'Loved One',
     culprit: 'Optional',
     connectedToBoard: false,
+    connectedToLossCondition: false,
     unkillable: false,
     abilities: [
       {
@@ -199,6 +211,7 @@ export const Roles: RolesDatabase = {
     name: 'Factor',
     culprit: 'Optional',
     connectedToBoard: false,
+    connectedToLossCondition: false,
     goodwillRefusal: 'Optional',
     unkillable: false,
     abilities: [
@@ -222,6 +235,7 @@ export const Roles: RolesDatabase = {
     name: 'Witch',
     culprit: 'Optional',
     connectedToBoard: false,
+    connectedToLossCondition: false,
     goodwillRefusal: 'Mandatory',
     unkillable: false,
     abilities: [],
@@ -232,6 +246,7 @@ export const Roles: RolesDatabase = {
     name: 'Magician',
     culprit: 'Optional',
     connectedToBoard: true,
+    connectedToLossCondition: false,
     unkillable: false,
     abilities: [
       {
@@ -254,6 +269,7 @@ export const Roles: RolesDatabase = {
     name: 'Ninja',
     culprit: 'Optional',
     connectedToBoard: true,
+    connectedToLossCondition: false,
     goodwillRefusal: 'Optional',
     unkillable: false,
     abilities: [
@@ -275,6 +291,7 @@ export const Roles: RolesDatabase = {
     name: 'Obstinate',
     culprit: 'Mandatory',
     connectedToBoard: false,
+    connectedToLossCondition: false,
     goodwillRefusal: 'Mandatory',
     unkillable: false,
     abilities: [
@@ -291,6 +308,7 @@ export const Roles: RolesDatabase = {
     name: 'Prophet',
     culprit: 'Optional',
     connectedToBoard: true,
+    connectedToLossCondition: false,
     unkillable: false,
     abilities: [
       {
@@ -312,6 +330,7 @@ export const Roles: RolesDatabase = {
     name: 'Immortal',
     culprit: 'Optional',
     connectedToBoard: false,
+    connectedToLossCondition: false,
     unkillable: true,
     abilities: [],
     mastermindAbilities: [],
@@ -321,6 +340,7 @@ export const Roles: RolesDatabase = {
     name: 'Poisoner',
     culprit: 'Optional',
     connectedToBoard: true,
+    connectedToLossCondition: true,
     goodwillRefusal: 'Optional',
     unkillable: false,
     abilities: [
@@ -343,6 +363,7 @@ export const Roles: RolesDatabase = {
     name: 'Fool',
     culprit: 'Mandatory',
     connectedToBoard: true,
+    connectedToLossCondition: false,
     max: 1,
     unkillable: false,
     abilities: [
@@ -359,6 +380,7 @@ export const Roles: RolesDatabase = {
     name: 'Private Investigator',
     culprit: 'Never',
     connectedToBoard: true,
+    connectedToLossCondition: false,
     unkillable: true,
     abilities: [
       {
@@ -375,6 +397,7 @@ export const Roles: RolesDatabase = {
     name: 'Paranoiac',
     culprit: 'Optional',
     connectedToBoard: false,
+    connectedToLossCondition: false,
     goodwillRefusal: 'Mandatory',
     unkillable: false,
     abilities: [],
@@ -390,6 +413,7 @@ export const Roles: RolesDatabase = {
     name: 'Twin',
     culprit: 'Mandatory',
     connectedToBoard: true,
+    connectedToLossCondition: false,
     unkillable: false,
     abilities: [
       {
@@ -406,6 +430,7 @@ export const Roles: RolesDatabase = {
     name: 'Therapist',
     culprit: 'Optional',
     connectedToBoard: false,
+    connectedToLossCondition: false,
     unkillable: false,
     abilities: [],
     mastermindAbilities: [
@@ -420,6 +445,7 @@ export const Roles: RolesDatabase = {
     name: 'Vampire',
     culprit: 'Optional',
     connectedToBoard: true,
+    connectedToLossCondition: true,
     goodwillRefusal: 'Optional',
     unkillable: true,
     abilities: [
@@ -442,6 +468,7 @@ export const Roles: RolesDatabase = {
     name: 'Werewolf',
     culprit: 'Optional',
     connectedToBoard: false,
+    connectedToLossCondition: true,
     goodwillRefusal: 'Optional',
     unkillable: false,
     abilities: [
@@ -463,6 +490,7 @@ export const Roles: RolesDatabase = {
     name: 'Nightmare',
     culprit: 'Optional',
     connectedToBoard: true,
+    connectedToLossCondition: true,
     goodwillRefusal: 'Optional',
     unkillable: true,
     abilities: [
@@ -484,6 +512,7 @@ export const Roles: RolesDatabase = {
     name: 'Ghost',
     culprit: 'Optional',
     connectedToBoard: true,
+    connectedToLossCondition: false,
     max: 1,
     unkillable: false,
     abilities: [],
@@ -500,6 +529,7 @@ export const Roles: RolesDatabase = {
     name: 'Show-Off',
     culprit: 'Optional',
     connectedToBoard: false,
+    connectedToLossCondition: false,
     unkillable: true,
     abilities: [
       {
@@ -516,6 +546,7 @@ export const Roles: RolesDatabase = {
     name: 'Coward',
     culprit: 'Optional',
     connectedToBoard: true,
+    connectedToLossCondition: false,
     unkillable: false,
     abilities: [],
     mastermindAbilities: [
@@ -530,6 +561,7 @@ export const Roles: RolesDatabase = {
     name: 'Sacrifice',
     culprit: 'Mandatory',
     connectedToBoard: false,
+    connectedToLossCondition: true,
     unkillable: true,
     abilities: [
       {
@@ -552,6 +584,7 @@ export const Roles: RolesDatabase = {
     name: 'Deep One',
     culprit: 'Optional',
     connectedToBoard: false,
+    connectedToLossCondition: false,
     goodwillRefusal: 'Optional',
     unkillable: false,
     abilities: [
@@ -573,6 +606,7 @@ export const Roles: RolesDatabase = {
     name: 'Witness',
     culprit: 'Optional',
     connectedToBoard: false,
+    connectedToLossCondition: false,
     unkillable: false,
     abilities: [
       {
@@ -588,6 +622,7 @@ export const Roles: RolesDatabase = {
     name: 'Faceless',
     culprit: 'Optional',
     connectedToBoard: false,
+    connectedToLossCondition: false,
     goodwillRefusal: 'Optional',
     unkillable: true,
     abilities: [
@@ -609,6 +644,7 @@ export const Roles: RolesDatabase = {
     name: 'Wizard',
     culprit: 'Optional',
     connectedToBoard: false,
+    connectedToLossCondition: true,
     max: 1,
     unkillable: false,
     abilities: [

@@ -120,6 +120,13 @@ export const increaseIfCharacterHasRoleThatIsOnlyInOnePlot =
     return met ? 1 : 0;
   };
 
+export const decreaseIfCharacterIsConnectedToLossConditions =
+  (character: Character) =>
+  (script: Script): DifficultyFactor => {
+    const met = script.cast.some((c) => c.character.id === character.id && c.role.connectedToLossCondition);
+    return met ? -1 : 0;
+  };
+
 export function decreaseForEveryCharacterThatHasForbiddenAreasAndConnectsToBoard(
   script: Script
 ): Array<() => DifficultyFactor> {
