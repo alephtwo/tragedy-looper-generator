@@ -22,7 +22,7 @@ import {
 
 export function estimateLoops(script: Script): number {
   const plots = [script.mainPlot].concat(script.subplots);
-  const incidents = script.cast.filter((c) => c.incidentTriggers.length > 0).flatMap((c) => c.incidentTriggers);
+  const incidents = script.getIncidents();
 
   const estimate = _.sum([
     // From plots...

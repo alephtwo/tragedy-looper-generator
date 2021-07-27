@@ -45,8 +45,8 @@ export const MainPlots: MainPlotsDatabase = {
     roles: () => [Roles.cultist, Roles.timeTraveller],
     requiredIncidents: [],
     estimateLoops: (script: Script): number => {
-      const butterflyIncidents = script.cast
-        .flatMap((c) => c.incidentTriggers)
+      const butterflyIncidents = script
+        .getIncidents()
         .filter((i) => i.incident.id === Incidents.butterflyEffect.id).length;
 
       // +0.5 per Butterfly Effect Incident
@@ -142,7 +142,7 @@ export const MainPlots: MainPlotsDatabase = {
     roles: () => [Roles.fool, Roles.conspiracyTheorist],
     requiredIncidents: [],
     estimateLoops: (script: Script): number => {
-      const incidents = script.cast.flatMap((c) => c.incidentTriggers).length;
+      const incidents = script.getIncidents().length;
 
       // +0.2 for every incident
       return 0.6 + incidents * 0.2;
@@ -154,7 +154,7 @@ export const MainPlots: MainPlotsDatabase = {
     roles: () => [Roles.brain, Roles.killer],
     requiredIncidents: [],
     estimateLoops: (script: Script): number => {
-      const incidents = script.cast.flatMap((c) => c.incidentTriggers).length;
+      const incidents = script.getIncidents().length;
 
       // -0.2 for every incident
       return 2.8 + -0.2 * incidents;

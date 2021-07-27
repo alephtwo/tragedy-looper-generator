@@ -42,13 +42,13 @@ export const increaseIfCharacterIsCulprit =
 export const increaseIfIncidentPresent =
   (incident: Incident) =>
   (script: Script): DifficultyFactor => {
-    return determineIfIncidentIsPresent(script.cast, incident) ? 1 : 0;
+    return determineIfIncidentIsPresent(script, incident) ? 1 : 0;
   };
 
 export const increaseIfIncidentPresentWithRole =
   (incident: Incident, role: Role) =>
   (script: Script): DifficultyFactor => {
-    const incidentPresent = determineIfIncidentIsPresent(script.cast, incident);
+    const incidentPresent = determineIfIncidentIsPresent(script, incident);
     const rolePresent = script.cast.some((c) => c.role.id === role.id);
 
     return incidentPresent && rolePresent ? 1 : 0;
@@ -58,7 +58,7 @@ export const increaseIfIncidentWithMainPlot =
   (incident: Incident, plot: Plot) =>
   (script: Script): DifficultyFactor => {
     const mainPlotMatches = script.mainPlot.id === plot.id;
-    const incidentPresent = determineIfIncidentIsPresent(script.cast, incident);
+    const incidentPresent = determineIfIncidentIsPresent(script, incident);
 
     return mainPlotMatches && incidentPresent ? 1 : 0;
   };
@@ -90,11 +90,11 @@ export const increaseIfCharacterHasAnyGoodwillRefusalWithIncient =
     const characterHasGoodwillRefusal = script.cast.some(
       (c) => c.character.id === character.id && c.role.goodwillRefusal !== undefined
     );
-    const incidentPresent = determineIfIncidentIsPresent(script.cast, incident);
+    const incidentPresent = determineIfIncidentIsPresent(script, incident);
 
     return characterHasGoodwillRefusal && incidentPresent ? 1 : 0;
   };
 
-function determineIfIncidentIsPresent(cast: Array<CastMember>, incident: Incident) {
-  return cast.flatMap((c) => c.incidentTriggers).some((it) => it.incident.id === incident.id);
+function determineIfIncidentIsPresent(script: Script, incident: Incident) {
+  return script.getIncidents().some((it) => it.incident.id === incident.id);
 }

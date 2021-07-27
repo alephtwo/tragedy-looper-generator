@@ -46,21 +46,12 @@ export function generate(args: GenerateArgs): Script {
   });
 
   const cast = assignIncidentsToCast(castWithoutIncidents, incidents);
-  const script: Script = {
+  return new Script({
     tragedySet: args.tragedySet,
-    loops: 0, // So, right now we don't have this information. We'll set it in a second.
     days: args.days,
     mainPlot: mainPlot,
     subplots: subplots,
     cast: cast,
-  };
-  return produce(script, (draft) => {
-    // Estimate the number of loops.
-    const loops = estimateLoops(draft);
-
-    // If a character enters on a given loop, we've gotta set those now.
-    draft.cast.forEach((c) => c.character.setLoopToEnter(loops));
-    draft.loops = estimateLoops(draft);
   });
 }
 
