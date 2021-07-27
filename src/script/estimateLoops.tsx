@@ -5,6 +5,7 @@ import { Roles } from '../data/Roles';
 import { Incidents } from '../data/Incidents';
 import { MainPlots } from '../data/Plots';
 import {
+  decreaseForEveryCharacterThatHasForbiddenAreasAndConnectsToBoard,
   decreaseIfCharacterHasRole,
   decreaseUnlessCharacterHasRole,
   DifficultyFactor,
@@ -25,6 +26,8 @@ import {
 export function estimateLoops(script: Script): number {
   const plots = [script.mainPlot].concat(script.subplots);
   const incidents = script.getIncidents();
+
+  const additionalFactors = getAdditionalFactors(script);
 
   const estimate = _.sum([
     // From plots...
@@ -48,55 +51,58 @@ export function estimateLoops(script: Script): number {
 // Additional factors can either increase the difficulty or decrease it.
 // If they do not apply to the scenario, then a 0 should be returned so
 // the number of loops is not affected.
-const additionalFactors: Array<(script: Script) => DifficultyFactor> = [
-  // Things that increase difficulty
-  // Setting a girl as a Key Person
-  increaseIfGirlHasRole(Roles.keyPerson),
-  // Setting a girl as the Killer or the Loved One
-  increaseIfGirlHasRole(Roles.killer),
-  increaseIfGirlHasRole(Roles.lovedOne),
-  // Setting Godly Being or the Patient as the Witch.
-  increaseIfCharacterHasRole(Characters.godlyBeing, Roles.witch),
-  increaseIfCharacterHasRole(Characters.patient, Roles.witch),
-  // Setting the Police Officer or the Patient as the Time Traveler.
-  increaseIfCharacterHasRole(Characters.policeOfficer, Roles.timeTraveller),
-  increaseIfCharacterHasRole(Characters.patient, Roles.timeTraveller),
-  // Setting the Patient as a Friend.
-  increaseIfCharacterHasRole(Characters.patient, Roles.friend),
-  // Having the culprit of an incident as the Conspiracy Theorist.
-  increaseIfRoleIsCulprit(Roles.conspiracyTheorist),
-  // Incidents triggered by the Rich Man's Daughter or the Henchman.
-  increaseIfCharacterIsCulprit(Characters.richMansDaughter),
-  increaseIfCharacterIsCulprit(Characters.henchman),
-  // Incidents triggered by the Lover or Loved One.
-  increaseIfRoleIsCulprit(Roles.lover),
-  increaseIfRoleIsCulprit(Roles.lovedOne),
-  // Hospital Incident, if you intend to trigger it. (Assume we do.)
-  increaseIfIncidentPresent(Incidents.hospitalIncident),
-  // Faraway Murder in scripts where you have a Key Person or a Friend.
-  increaseIfIncidentPresentWithRole(Incidents.farawayMurder, Roles.keyPerson),
-  increaseIfIncidentPresentWithRole(Incidents.farawayMurder, Roles.friend),
-  // Foul Evil when you have the Sealed Item as the main plot.
-  increaseIfIncidentWithMainPlot(Incidents.foulEvil, MainPlots.theSealedItem),
-  // Having Goodwill Refusal on the Shrine Maiden or Doctor
-  increaseIfCharacterHasAnyGoodwillRefusal(Characters.shrineMaiden),
-  increaseIfCharacterHasAnyGoodwillRefusal(Characters.doctor),
-  // Having Mandatory Goodwill Refusal on the Nurse
-  increaseIfCharacterHasMandatoryGoodwillRefusal(Characters.nurse),
-  // Spreading, when the Doctor has Goodwill Refusal.
-  increaseIfCharacterHasAnyGoodwillRefusalWithIncient(Characters.doctor, Incidents.spreading),
-  // Setting the Boss as something that connects to the board (Conspiracy Theorist, Serial Killer)
-  increaseIfCharacterIsRelatedToBoard(Characters.boss),
-  // Giving the Mystery Boy a role that exists in only 1 plot.
-  increaseIfCharacterHasRoleThatIsOnlyInOnePlot(Characters.mysteryBoy),
+function getAdditionalFactors(script: Script): Array<(script: Script) => DifficultyFactor> {
+  return [
+    // Things that increase difficulty
+    // Setting a girl as a Key Person
+    increaseIfGirlHasRole(Roles.keyPerson),
+    // Setting a girl as the Killer or the Loved One
+    increaseIfGirlHasRole(Roles.killer),
+    increaseIfGirlHasRole(Roles.lovedOne),
+    // Setting Godly Being or the Patient as the Witch.
+    increaseIfCharacterHasRole(Characters.godlyBeing, Roles.witch),
+    increaseIfCharacterHasRole(Characters.patient, Roles.witch),
+    // Setting the Police Officer or the Patient as the Time Traveler.
+    increaseIfCharacterHasRole(Characters.policeOfficer, Roles.timeTraveller),
+    increaseIfCharacterHasRole(Characters.patient, Roles.timeTraveller),
+    // Setting the Patient as a Friend.
+    increaseIfCharacterHasRole(Characters.patient, Roles.friend),
+    // Having the culprit of an incident as the Conspiracy Theorist.
+    increaseIfRoleIsCulprit(Roles.conspiracyTheorist),
+    // Incidents triggered by the Rich Man's Daughter or the Henchman.
+    increaseIfCharacterIsCulprit(Characters.richMansDaughter),
+    increaseIfCharacterIsCulprit(Characters.henchman),
+    // Incidents triggered by the Lover or Loved One.
+    increaseIfRoleIsCulprit(Roles.lover),
+    increaseIfRoleIsCulprit(Roles.lovedOne),
+    // Hospital Incident, if you intend to trigger it. (Assume we do.)
+    increaseIfIncidentPresent(Incidents.hospitalIncident),
+    // Faraway Murder in scripts where you have a Key Person or a Friend.
+    increaseIfIncidentPresentWithRole(Incidents.farawayMurder, Roles.keyPerson),
+    increaseIfIncidentPresentWithRole(Incidents.farawayMurder, Roles.friend),
+    // Foul Evil when you have the Sealed Item as the main plot.
+    increaseIfIncidentWithMainPlot(Incidents.foulEvil, MainPlots.theSealedItem),
+    // Having Goodwill Refusal on the Shrine Maiden or Doctor
+    increaseIfCharacterHasAnyGoodwillRefusal(Characters.shrineMaiden),
+    increaseIfCharacterHasAnyGoodwillRefusal(Characters.doctor),
+    // Having Mandatory Goodwill Refusal on the Nurse
+    increaseIfCharacterHasMandatoryGoodwillRefusal(Characters.nurse),
+    // Spreading, when the Doctor has Goodwill Refusal.
+    increaseIfCharacterHasAnyGoodwillRefusalWithIncient(Characters.doctor, Incidents.spreading),
+    // Setting the Boss as something that connects to the board (Conspiracy Theorist, Serial Killer)
+    increaseIfCharacterIsRelatedToBoard(Characters.boss),
+    // Giving the Mystery Boy a role that exists in only 1 plot.
+    increaseIfCharacterHasRoleThatIsOnlyInOnePlot(Characters.mysteryBoy),
 
-  // Things that decrease difficulty
-  // Setting the Office Worker as anything other than a person.
-  decreaseUnlessCharacterHasRole(Characters.officeWorker, Roles.person),
-  // Setting the Shrine Maiden, Pop Idol, or Boss as the Time Traveler.
-  decreaseIfCharacterHasRole(Characters.shrineMaiden, Roles.timeTraveller),
-  decreaseIfCharacterHasRole(Characters.popIdol, Roles.timeTraveller),
-  decreaseIfCharacterHasRole(Characters.boss, Roles.timeTraveller),
-  // TODO: DECREASE: Having the Godly Being as something directly connected to the loss conditions.
-  // TODO: DECREASE: Having a character with a forbidden area as something that connects to the board.
-];
+    // Things that decrease difficulty
+    // Setting the Office Worker as anything other than a person.
+    decreaseUnlessCharacterHasRole(Characters.officeWorker, Roles.person),
+    // Setting the Shrine Maiden, Pop Idol, or Boss as the Time Traveler.
+    decreaseIfCharacterHasRole(Characters.shrineMaiden, Roles.timeTraveller),
+    decreaseIfCharacterHasRole(Characters.popIdol, Roles.timeTraveller),
+    decreaseIfCharacterHasRole(Characters.boss, Roles.timeTraveller),
+    // Having a character with a forbidden area as something that connects to the board.
+    ...decreaseForEveryCharacterThatHasForbiddenAreasAndConnectsToBoard(script),
+    // TODO: DECREASE: Having the Godly Being as something directly connected to the loss conditions.
+  ];
+}

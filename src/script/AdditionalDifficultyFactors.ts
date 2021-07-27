@@ -120,6 +120,18 @@ export const increaseIfCharacterHasRoleThatIsOnlyInOnePlot =
     return met ? 1 : 0;
   };
 
+export function decreaseForEveryCharacterThatHasForbiddenAreasAndConnectsToBoard(
+  script: Script
+): Array<() => DifficultyFactor> {
+  return (
+    script.cast
+      // If a character has less than 4 locations they are forbidden from entering at least one.
+      .filter((c) => c.character.locations.size !== 4 && c.role.connectedToBoard)
+      // For these, we want each to just decrease the difficulty
+      .map(() => () => -1)
+  );
+}
+
 function determineIfIncidentIsPresent(script: Script, incident: Incident) {
   return script.getIncidents().some((it) => it.incident.id === incident.id);
 }

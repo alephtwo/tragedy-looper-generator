@@ -1,7 +1,11 @@
+import { Location } from './Location';
+
 export class Character {
   readonly id: string;
   readonly name: string;
   readonly descriptors: Set<Descriptor>;
+  readonly locations: Set<Location>;
+  readonly startingLocation: Location | 'Choose Every Loop';
   readonly #entersOnLoop?: (loops: number) => number;
   loopToEnter: number;
 
@@ -9,6 +13,8 @@ export class Character {
     this.id = fields.id;
     this.name = fields.name;
     this.descriptors = new Set(fields.descriptors);
+    this.locations = new Set(fields.locations);
+    this.startingLocation = fields.startingLocation;
     this.#entersOnLoop = fields.entersOnLoop;
     this.loopToEnter = 1; // by default
   }
@@ -32,6 +38,8 @@ interface Fields {
   readonly id: string;
   readonly name: string;
   readonly descriptors: Array<Descriptor>;
+  readonly locations: Array<Location>;
+  readonly startingLocation: Location | 'Choose Every Loop';
   readonly entersOnLoop?: (loops: number) => number;
 }
 
