@@ -202,7 +202,10 @@ function assignIncidentsToCast(cast: Array<CastMember>, incidents: Array<Inciden
     // Who _could_ be a culprit here?
     let culpritPool = [...next.filter((c) => c.role.culprit !== 'Never')];
     incidents.forEach((incident) => {
-      // If we are attempting to assign a serial murder and one has already been assigned, we MUST assign it to the same culprit.
+      // If we are attempting to assign a serial murder and one has already been assigned, we will assign it to the same culprit.
+      // TODO: Support that it _might_ be the same culprit, but doesn't have to be. Coin flip?
+      // If you're working on a script that doesn't want the same role to be responsible for all of the serial murders,
+      // you should probably just write a script manually and not generate one at random.
       if (incident.incident.id === Incidents.serialMurder.id) {
         const serialMurderer = next.find((c) =>
           c.incidentTriggers.some((i) => i.incident.id === Incidents.serialMurder.id)
@@ -218,12 +221,7 @@ function assignIncidentsToCast(cast: Array<CastMember>, incidents: Array<Inciden
       const required = culpritPool.filter((c) => c.role.culprit === 'Mandatory' && c.incidentTriggers.length === 0);
 
       // Pick a culprit.
-      let culprit: CastMember;
-      if (required.length > 0) {
-        culprit = _.first(required) as CastMember;
-      } else {
-        culprit = _.sample(culpritPool) as CastMember;
-      }
+      const culprit = (required.length > 0 ? _.first(required) : _.sample(culpritPool)) as CastMember;
 
       // Take that culprit and assign it the incident.
       culprit.incidentTriggers.push(incident);
