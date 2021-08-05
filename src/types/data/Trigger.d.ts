@@ -1,4 +1,10 @@
-export type Trigger =
+export interface Trigger {
+  id: string;
+  description: TriggerDescription;
+  order: number;
+}
+
+type TriggerDescription =
   | 'Always'
   | 'Loop Start'
   | 'Card Resolve'
