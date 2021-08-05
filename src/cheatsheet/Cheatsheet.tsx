@@ -23,25 +23,28 @@ export function Cheatsheet(props: CheatsheetProps): JSX.Element {
     return <></>;
   }
 
-  const mastermindAbilities = extractMastermindAbilities(props.script).map((ma) => (
+  const mastermindAbilities = extractMastermindAbilities(props.script).map((mat) => (
     <TableRow>
-      <TableCell>{ma.optional ? 'Optional' : 'Mandatory'}</TableCell>
-      <TableCell>{ma.effect}</TableCell>
-      <TableCell>{ma.timesPerDay}</TableCell>
-      <TableCell>{ma.timesPerLoop}</TableCell>
+      <TableCell>{mat.ability.optional ? 'Optional' : 'Mandatory'}</TableCell>
+      <TableCell>{mat.triggerer}</TableCell>
+      <TableCell>{mat.ability.effect}</TableCell>
+      <TableCell>{mat.ability.timesPerDay}</TableCell>
+      <TableCell>{mat.ability.timesPerLoop}</TableCell>
     </TableRow>
   ));
 
-  const roleAbilities = props.script.cast
-    .flatMap((c) => c.role.abilities)
-    .map((a) => (
+  // TODO: Sort this by order.
+  const roleAbilities = props.script.cast.flatMap((c) => {
+    return c.role.abilities.map((a) => (
       <TableRow>
         <TableCell>{a.trigger}</TableCell>
         <TableCell>{a.optional ? 'Optional' : 'Mandatory'}</TableCell>
+        <TableCell>{`${c.character.name} (${c.role.name})`}</TableCell>
         <TableCell>{a.effect}</TableCell>
         <TableCell>{a.timesPerLoop}</TableCell>
       </TableRow>
     ));
+  });
 
   return (
     <Paper className={styles.paper}>
@@ -52,6 +55,7 @@ export function Cheatsheet(props: CheatsheetProps): JSX.Element {
         <TableHead>
           <TableRow>
             <TableCell>Mandatory</TableCell>
+            <TableCell>Triggered By</TableCell>
             <TableCell>Effect</TableCell>
             <TableCell>Per Day</TableCell>
             <TableCell>Per Loop</TableCell>
@@ -65,6 +69,7 @@ export function Cheatsheet(props: CheatsheetProps): JSX.Element {
           <TableRow>
             <TableCell>Trigger</TableCell>
             <TableCell>Mandatory</TableCell>
+            <TableCell>Triggered By</TableCell>
             <TableCell>Effect</TableCell>
             <TableCell>Per Loop</TableCell>
           </TableRow>
@@ -75,12 +80,19 @@ export function Cheatsheet(props: CheatsheetProps): JSX.Element {
   );
 }
 
-function extractMastermindAbilities(script: Script): Array<MastermindAbility> {
-  const fromPlots = [script.mainPlot].concat(script.subplots).flatMap((p) => p.mastermindAbilities);
-  const fromRoles = script.cast.flatMap((c) => c.role.mastermindAbilities);
-
-  console.debug(fromPlots);
-  console.debug(fromRoles);
+function extractMastermindAbilities(script: Script): Array<MastermindAbilityTriggerer> {
+  const fromPlots = [script.mainPlot].concat(script.subplots).flatMap((p) => {
+    return p.mastermindAbilities.map((ma) => ({
+      ability: ma,
+      triggerer: p.name,
+    }));
+  });
+  const fromRoles = script.cast.flatMap((c) => {
+    return c.role.mastermindAbilities.map((ma) => ({
+      ability: ma,
+      triggerer: `${c.character.name} (${c.role.name})`,
+    }));
+  });
   return fromPlots.concat(fromRoles);
 }
 
@@ -92,3 +104,8 @@ const useStyles = makeStyles((theme) => ({
     marginBottom: theme.spacing(2),
   },
 }));
+
+interface MastermindAbilityTriggerer {
+  ability: MastermindAbility;
+  triggerer: string;
+}
