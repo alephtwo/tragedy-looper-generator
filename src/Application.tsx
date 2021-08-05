@@ -4,6 +4,7 @@ import { Container, Grid, makeStyles } from '@material-ui/core';
 import { ScriptGenerator } from './script/ScriptGenerator';
 import { Script } from './types/Script';
 import { ReferenceCards } from './referenceCard/ReferenceCards';
+import { Cheatsheet } from './cheatsheet/Cheatsheet';
 
 export function Application(): JSX.Element {
   const styles = useStyles();
@@ -17,6 +18,9 @@ export function Application(): JSX.Element {
         </Grid>
         <Grid item xs={12}>
           <ReferenceCards script={script} />
+        </Grid>
+        <Grid item xs={12}>
+          <Cheatsheet script={script} />
         </Grid>
       </Grid>
     </Container>
