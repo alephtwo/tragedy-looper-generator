@@ -4,11 +4,11 @@ import { Script } from '../types/Script';
 import { ReferenceCard } from './ReferenceCard';
 
 interface ReferenceCardsProps {
-  script: Script | null;
+  script: Script;
 }
 
 export function ReferenceCards(props: ReferenceCardsProps): JSX.Element {
-  if (props.script === null) {
+  if (!props.script.isValid()) {
     return <></>;
   }
 

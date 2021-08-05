@@ -19,7 +19,7 @@ interface CheatsheetProps {
 export function Cheatsheet(props: CheatsheetProps): JSX.Element {
   const styles = useStyles();
 
-  if (props.script === null) {
+  if (!props.script.isValid()) {
     return <></>;
   }
 

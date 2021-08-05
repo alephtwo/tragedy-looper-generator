@@ -27,6 +27,10 @@ export class Script {
   getIncidents(): Array<IncidentOccurrence> {
     return this.cast.flatMap((c) => c.incidentTriggers);
   }
+
+  isValid(): boolean {
+    return this.cast.length > 0;
+  }
 }
 
 interface ScriptArgs {
