@@ -1,0 +1,25 @@
+import { Grid } from '@material-ui/core';
+import * as React from 'react';
+import { Script } from '../types/Script';
+import { ReferenceCard } from './ReferenceCard';
+
+interface ReferenceCardsProps {
+  script: Script | null;
+}
+
+export function ReferenceCards(props: ReferenceCardsProps): JSX.Element {
+  if (props.script === null) {
+    return <></>;
+  }
+
+  return (
+    <Grid container spacing={1}>
+      <Grid item xs={12} md={6}>
+        <ReferenceCard script={props.script} mastermind={true} />
+      </Grid>
+      <Grid item xs={12} md={6}>
+        <ReferenceCard script={props.script} mastermind={false} />
+      </Grid>
+    </Grid>
+  );
+}

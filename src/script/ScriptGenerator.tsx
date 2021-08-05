@@ -5,10 +5,11 @@ import { TragedySets } from '../data/TragedySets';
 import { Script } from '../types/Script';
 import { Arguments } from './Arguments';
 import { generate } from './generate';
-import { ReferenceCard } from './ReferenceCard';
 
-export function ScriptGenerator(): JSX.Element {
-  const [script, setScript] = useState(null as unknown as Script);
+interface ScriptGeneratorProps {
+  setScript: React.Dispatch<Script>;
+}
+export function ScriptGenerator(props: ScriptGeneratorProps): JSX.Element {
   const [args, setArgs] = useState({
     tragedySet: TragedySets.basicTragedy,
     castSize: 9,
@@ -17,38 +18,15 @@ export function ScriptGenerator(): JSX.Element {
   });
 
   return (
-    <>
-      <Grid container spacing={1}>
-        <Grid item xs={12}>
-          <Arguments state={args} dispatch={setArgs} />
-        </Grid>
-        <Grid container item xs={12} justifyContent="center">
-          <Button onClick={() => setScript(generate(args))} variant="outlined" color="primary">
-            Generate
-          </Button>
-        </Grid>
-        <ReferenceCards script={script} />
+    <Grid container spacing={1}>
+      <Grid item xs={12}>
+        <Arguments state={args} dispatch={setArgs} />
       </Grid>
-    </>
-  );
-}
-
-interface ReferenceCardsProps {
-  script: Script | null;
-}
-function ReferenceCards(props: ReferenceCardsProps): JSX.Element {
-  if (props.script === null) {
-    return <></>;
-  }
-
-  return (
-    <>
-      <Grid item xs={12} md={6}>
-        <ReferenceCard script={props.script} mastermind={true} />
+      <Grid container item xs={12} justifyContent="center">
+        <Button onClick={() => props.setScript(generate(args))} variant="outlined" color="primary">
+          Generate
+        </Button>
       </Grid>
-      <Grid item xs={12} md={6}>
-        <ReferenceCard script={props.script} mastermind={false} />
-      </Grid>
-    </>
+    </Grid>
   );
 }
