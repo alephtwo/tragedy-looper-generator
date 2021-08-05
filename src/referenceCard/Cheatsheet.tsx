@@ -49,7 +49,7 @@ export function Cheatsheet(props: CheatsheetProps): JSX.Element {
     <Paper className={styles.paper}>
       <Typography variant="h1">Cheatsheet</Typography>
       <Divider className={styles.extraBottomMargin} />
-      <Typography variant="h2">Mastermind</Typography>
+      <Typography variant="h2">Mastermind Abilities</Typography>
       <Table size="small" className={styles.extraBottomMargin}>
         <TableHead>
           <TableRow>

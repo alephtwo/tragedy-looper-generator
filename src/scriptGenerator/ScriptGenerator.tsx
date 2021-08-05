@@ -27,7 +27,7 @@ export function ScriptGenerator(props: ScriptGeneratorProps): JSX.Element {
       </Grid>
       <Grid container item xs={12} justifyContent="center">
         <Button onClick={() => props.setScript(generate(args))} variant="outlined" color="primary">
-          Generate
+          Generate Script
         </Button>
       </Grid>
     </Grid>
