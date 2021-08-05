@@ -113,7 +113,7 @@ function CastInformation(props: CastMembersProps): JSX.Element {
         : c.character.name;
 
     return (
-      <TableRow key={`cast-${c.character.id}`}>
+      <TableRow key={c.id}>
         <TableCell>{name}</TableCell>
         <TableCell>{c.role.name}</TableCell>
       </TableRow>

@@ -89,7 +89,7 @@ function extractMastermindAbilities(script: Script): Array<MastermindAbilityTrig
   const fromRoles = script.cast.flatMap((c) => {
     return c.role.mastermindAbilities.map((ma) => ({
       ability: ma,
-      triggerer: `${c.character.name} (${c.role.name})`,
+      triggerer: c.describe(),
     }));
   });
   return fromPlots.concat(fromRoles);
@@ -99,7 +99,7 @@ function extractRoleAbilities(script: Script): Array<RoleAbilityTrigger> {
   return script.cast.flatMap((c) => {
     return c.role.abilities.map((a) => ({
       ability: a,
-      triggerer: `${c.character.name} (${c.role.name})`,
+      triggerer: c.describe(),
     }));
   });
 }

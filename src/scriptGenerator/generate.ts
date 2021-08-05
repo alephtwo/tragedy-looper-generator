@@ -112,12 +112,12 @@ function initializeCast(args: GenerateArgs, requiredRoles: Array<Role>): Array<C
     .filter((r) => !requiredRoleIds.has(r.id));
 
   return [
-    {
+    new CastMember({
       character: Characters.mysteryBoy,
       // oh my what a hack
       role: _.sample(candidateRoles) as Role,
       incidentTriggers: [],
-    },
+    }),
   ];
 }
 
@@ -131,12 +131,14 @@ function buildCast(state: BuildCastAccumulator, role: Role): BuildCastAccumulato
 
   return produce(state, (next) => {
     // Add the cast member.
-    next.cast.push({
-      character: character,
-      role: role,
-      // We will assign incidents later.
-      incidentTriggers: [],
-    });
+    next.cast.push(
+      new CastMember({
+        character: character,
+        role: role,
+        // We will assign incidents later.
+        incidentTriggers: [],
+      })
+    );
     // Remove the character from the pool.
     _.remove(next.characters, (c) => c.id === character.id);
   });
