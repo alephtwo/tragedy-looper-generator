@@ -1,4 +1,4 @@
-import { estimateLoops } from '../generator/estimateLoops';
+import { estimateLoops } from '../scriptGenerator/estimateLoops';
 import { CastMember } from './CastMember';
 import { Plot } from './data/Plot';
 import { TragedySet } from './data/TragedySet';

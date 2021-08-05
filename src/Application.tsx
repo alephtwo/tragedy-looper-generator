@@ -1,10 +1,10 @@
 import * as React from 'react';
 import { useState } from 'react';
 import { AppBar, Container, Grid, makeStyles, Tab, Tabs } from '@material-ui/core';
-import { ScriptGenerator } from './generator/ScriptGenerator';
+import { ScriptGenerator } from './scriptGenerator/ScriptGenerator';
 import { Script } from './types/Script';
 import { ReferenceCards } from './referenceCard/ReferenceCards';
-import { Cheatsheet } from './cheatsheet/Cheatsheet';
+import { Cheatsheet } from './referenceCard/Cheatsheet';
 import { TragedySets } from './data/TragedySets';
 import { ScriptEditor } from './editor/ScriptEditor';
 
