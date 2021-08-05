@@ -181,7 +181,7 @@ function pickIncidents(args: PickIncidentsArgs): Array<IncidentOccurrence> {
       .filter((i) => i.incident.id === Incidents.fakeIncident.id)
       .forEach((incident) => {
         const candidates = incidents.filter((i) => i.id !== Incidents.fakeIncident.id);
-        incident.fakedIncident = _.sample(candidates) as Incident;
+        incident.setFake(_.sample(candidates) as Incident);
       });
   });
 }
@@ -195,7 +195,7 @@ function assignDayToIncident(state: AssignDayToIncidentState, incident: Incident
   const day = _.sample(state.days) as number;
   return produce(state, (next) => {
     _.pull(next.days, day);
-    next.occurrences.push({ incident: incident, day: day });
+    next.occurrences.push(new IncidentOccurrence({ incident: incident, day: day }));
   });
 }
 

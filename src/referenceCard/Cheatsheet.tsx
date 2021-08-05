@@ -45,6 +45,21 @@ export function Cheatsheet(props: CheatsheetProps): JSX.Element {
     </TableRow>
   ));
 
+  const allIncidents = props.script.cast.flatMap((c) => {
+    return c.incidentTriggers.map((it) => ({
+      castMember: c,
+      incidentTrigger: it,
+    }));
+  });
+  const incidents = _.sortBy(allIncidents, (i) => i.incidentTrigger.day).map(({ castMember, incidentTrigger }) => (
+    <TableRow key={`cheatsheet-i-${incidentTrigger.id}`}>
+      <TableCell>{incidentTrigger.day}</TableCell>
+      <TableCell>{incidentTrigger.incident.name}</TableCell>
+      <TableCell>{castMember.describe()}</TableCell>
+      <TableCell>{incidentTrigger.incident.effect}</TableCell>
+    </TableRow>
+  ));
+
   return (
     <Paper className={styles.paper}>
       <Typography variant="h1">Cheatsheet</Typography>
@@ -74,6 +89,18 @@ export function Cheatsheet(props: CheatsheetProps): JSX.Element {
           </TableRow>
         </TableHead>
         <TableBody>{roleAbilities}</TableBody>
+      </Table>
+      <Typography variant="h2">Incidents</Typography>
+      <Table size="small" className={styles.extraBottomMargin}>
+        <TableHead>
+          <TableRow>
+            <TableCell>Day</TableCell>
+            <TableCell>Incident</TableCell>
+            <TableCell>Culprit</TableCell>
+            <TableCell>Effect</TableCell>
+          </TableRow>
+        </TableHead>
+        <TableBody>{incidents}</TableBody>
       </Table>
     </Paper>
   );

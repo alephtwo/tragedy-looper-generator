@@ -113,7 +113,7 @@ function CastInformation(props: CastMembersProps): JSX.Element {
         : c.character.name;
 
     return (
-      <TableRow key={c.id}>
+      <TableRow key={`cast-${c.id}`}>
         <TableCell>{name}</TableCell>
         <TableCell>{c.role.name}</TableCell>
       </TableRow>
@@ -157,7 +157,7 @@ function IncidentsInformation(props: IncidentsInformationProps) {
   };
 
   const incidents = _.sortBy(describeIncidents(props.cast), (i) => i.day).map((i) => (
-    <TableRow key={`${props.mastermind ? 'm' : 'c'}-${i.incident.id}-${i.day}`}>
+    <TableRow key={`${props.mastermind ? 'm' : 'c'}-${i.id}`}>
       <TableCell>{i.day}</TableCell>
       <TableCell>{wrapFakeIncident(i)}</TableCell>
       {props.mastermind ? <TableCell>{i.character.name}</TableCell> : <></>}
@@ -182,6 +182,7 @@ function IncidentsInformation(props: IncidentsInformationProps) {
 }
 
 interface IncidentMetadata {
+  id: string;
   day: number;
   incident: Incident;
   fakeIncident?: Incident;
@@ -192,9 +193,10 @@ function describeIncidents(cast: Array<CastMember>): Array<IncidentMetadata> {
   return cast.flatMap((c) =>
     c.incidentTriggers.map((t) => {
       return {
+        id: t.id,
         day: t.day,
         incident: t.incident,
-        fakeIncident: t.fakedIncident,
+        fakeIncident: t.getFake(),
         character: c.character,
         role: c.role,
       };
