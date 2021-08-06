@@ -6,7 +6,7 @@ import { Script } from './types/Script';
 import { ReferenceCards } from './referenceCard/ReferenceCards';
 import { Cheatsheet } from './referenceCard/Cheatsheet';
 import { TragedySets } from './data/TragedySets';
-import { ScriptEditor } from './editor/ScriptEditor';
+import { ScriptEditor } from './scriptEditor/ScriptEditor';
 
 const initialScript: Script = new Script({
   tragedySet: TragedySets.basicTragedy,
