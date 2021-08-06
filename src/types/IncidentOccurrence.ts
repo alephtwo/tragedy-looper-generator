@@ -13,7 +13,7 @@ export class IncidentOccurrence {
     this.day = args.day;
   }
 
-  setFake(incident: Incident) {
+  setFake(incident: Incident): void {
     this.#fakedIncident = incident;
   }
 

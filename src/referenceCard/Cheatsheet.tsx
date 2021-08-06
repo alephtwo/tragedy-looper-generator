@@ -62,7 +62,7 @@ export function Cheatsheet(props: CheatsheetProps): JSX.Element {
 
   return (
     <Paper className={styles.paper}>
-      <Typography variant="h1">Cheatsheet</Typography>
+      <Typography variant="h1" align="center">Cheatsheet</Typography>
       <Divider className={styles.extraBottomMargin} />
       <Typography variant="h2">Mastermind Abilities</Typography>
       <Table size="small" className={styles.extraBottomMargin}>
