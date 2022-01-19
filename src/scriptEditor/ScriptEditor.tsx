@@ -1,23 +1,22 @@
 import * as React from 'react';
-import { makeStyles, Paper, Typography } from '@material-ui/core';
+import { Paper, Typography } from '@mui/material';
 import { Script } from '../types/Script';
 
 interface ScriptEditorProps {
   setScript: React.Dispatch<Script>;
 }
 export function ScriptEditor(props: ScriptEditorProps): JSX.Element {
-  const styles = useStyles();
   console.debug(props);
 
   return (
-    <Paper className={styles.paper}>
+    <Paper sx={styles.paper}>
       <Typography variant="h1">Coming Soon</Typography>
     </Paper>
   );
 }
 
-const useStyles = makeStyles((theme) => ({
+const styles = {
   paper: {
-    padding: theme.spacing(2),
+    padding: 2,
   },
-}));
+};

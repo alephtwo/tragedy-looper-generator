@@ -1,6 +1,6 @@
 import * as _ from 'lodash';
 import * as React from 'react';
-import { Autocomplete } from '@material-ui/lab';
+import { Autocomplete } from '@mui/material';
 import { TragedySet } from '../types/data/TragedySet';
 import { TragedySets } from '../data/TragedySets';
 import { renderAutocomplete } from './renderAutocomplete';

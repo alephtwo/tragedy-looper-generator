@@ -1,6 +1,6 @@
 import * as _ from 'lodash';
 import * as React from 'react';
-import { Slider } from '@material-ui/core';
+import { Slider } from '@mui/material';
 
 interface MarkedSliderProps {
   min: number;

@@ -1,4 +1,4 @@
-import { Button, Grid, makeStyles, Paper, Typography } from '@material-ui/core';
+import { Button, Grid, Paper, Typography } from '@mui/material';
 import * as React from 'react';
 import { useState } from 'react';
 import { TragedySets } from '../data/TragedySets';
@@ -39,12 +39,10 @@ interface ArgumentsProps {
   dispatch: React.Dispatch<GenerateArgs>;
 }
 function Arguments(props: ArgumentsProps): JSX.Element {
-  const styles = useStyles();
-
   const onChanges = createOnChanges(props);
 
   return (
-    <Paper className={styles.paper}>
+    <Paper sx={styles.paper}>
       <Grid container spacing={2}>
         <Grid item xs={12} lg={6}>
           <Typography gutterBottom>Tragedy Set</Typography>
@@ -116,8 +114,8 @@ function createOnChanges(props: ArgumentsProps) {
   };
 }
 
-const useStyles = makeStyles((theme) => ({
+const styles = {
   paper: {
-    padding: theme.spacing(2),
+    padding: 2,
   },
-}));
+};

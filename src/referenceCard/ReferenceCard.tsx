@@ -1,16 +1,6 @@
 import * as React from 'react';
 import * as _ from 'lodash';
-import {
-  Divider,
-  makeStyles,
-  Paper,
-  Table,
-  TableHead,
-  TableBody,
-  TableRow,
-  TableCell,
-  Typography,
-} from '@material-ui/core';
+import { Divider, Paper, Table, TableHead, TableBody, TableRow, TableCell, Typography } from '@mui/material';
 import { Script } from '../types/Script';
 import { CastMember } from '../types/CastMember';
 import { Incident } from '../types/data/Incident';
@@ -23,15 +13,14 @@ interface ReferenceCardProps {
 }
 export function ReferenceCard(props: ReferenceCardProps): JSX.Element {
   const { mastermind, script } = props;
-  const styles = useStyles();
 
   return (
-    <Paper className={`${styles.paper} ${styles.fullHeight}`}>
+    <Paper sx={{ padding: 2, height: '100%' }}>
       <Typography variant="h1" align="center">
         {mastermind ? 'Mastermind' : 'Players'}
       </Typography>
-      <Divider className={styles.extraBottomMargin} />
-      <Table size="small" className={styles.extraBottomMargin}>
+      <Divider sx={styles.extraBottomMargin} />
+      <Table size="small" sx={styles.extraBottomMargin}>
         <TableBody>
           <TragedySetInformation script={script} />
           <PlotInformation script={script} mastermind={mastermind} />
@@ -105,7 +94,6 @@ function CastInformation(props: CastMembersProps): JSX.Element {
     return <></>;
   }
 
-  const styles = useStyles();
   const cast = _.sortBy(props.cast, (p) => p.character.name).map((c) => {
     const name =
       c.character.loopToEnter > 1
@@ -123,7 +111,7 @@ function CastInformation(props: CastMembersProps): JSX.Element {
   return (
     <>
       <Typography variant="h2">Cast</Typography>
-      <Table size="small" className={styles.extraBottomMargin}>
+      <Table size="small" sx={styles.extraBottomMargin}>
         <TableHead>
           <TableRow>
             <TableCell>Character</TableCell>
@@ -141,7 +129,6 @@ interface IncidentsInformationProps {
   mastermind: boolean;
 }
 function IncidentsInformation(props: IncidentsInformationProps) {
-  const styles = useStyles();
   const wrapFakeIncident = (meta: IncidentMetadata) => {
     // If there's no fake incident, we're done. Just say what it's called.
     if (meta.fakeIncident === undefined) {
@@ -167,7 +154,7 @@ function IncidentsInformation(props: IncidentsInformationProps) {
   return (
     <>
       <Typography variant="h2">Incidents</Typography>
-      <Table size="small" className={styles.extraBottomMargin}>
+      <Table size="small" sx={styles.extraBottomMargin}>
         <TableHead>
           <TableRow>
             <TableCell>Day</TableCell>
@@ -204,14 +191,11 @@ function describeIncidents(cast: Array<CastMember>): Array<IncidentMetadata> {
   );
 }
 
-const useStyles = makeStyles((theme) => ({
+const styles = {
   paper: {
-    padding: theme.spacing(2),
-  },
-  fullHeight: {
-    height: '100%',
+    padding: 2,
   },
   extraBottomMargin: {
-    marginBottom: theme.spacing(2),
+    marginBottom: 2,
   },
-}));
+};

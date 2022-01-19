@@ -1,12 +1,12 @@
 import * as React from 'react';
 import * as ReactDOM from 'react-dom';
 import { Application } from './Application';
-import { createTheme, CssBaseline, MuiThemeProvider } from '@material-ui/core';
-import * as Colors from '@material-ui/core/colors';
+import { colors as Colors, createTheme, CssBaseline, ThemeProvider } from '@mui/material';
 
 const theme = createTheme({
   palette: {
     primary: Colors.red,
+    secondary: Colors.amber,
     background: {
       default: Colors.grey[900],
     },
@@ -24,10 +24,10 @@ const theme = createTheme({
 });
 
 const app = (
-  <MuiThemeProvider theme={theme}>
+  <ThemeProvider theme={theme}>
     <CssBaseline />
     <Application />
-  </MuiThemeProvider>
+  </ThemeProvider>
 );
 
 const mount = document.getElementById('app');

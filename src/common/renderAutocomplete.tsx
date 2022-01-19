@@ -1,6 +1,6 @@
 import * as React from 'react';
-import { AutocompleteRenderInputParams } from '@material-ui/lab';
-import { TextField } from '@material-ui/core';
+import { AutocompleteRenderInputParams } from '@mui/material';
+import { TextField } from '@mui/material';
 
 export function renderAutocomplete(params: AutocompleteRenderInputParams): JSX.Element {
   return <TextField {...params} size="small" variant="outlined" />;

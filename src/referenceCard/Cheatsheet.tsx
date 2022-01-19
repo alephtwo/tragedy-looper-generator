@@ -1,14 +1,4 @@
-import {
-  Divider,
-  makeStyles,
-  Paper,
-  Table,
-  TableBody,
-  TableCell,
-  TableHead,
-  TableRow,
-  Typography,
-} from '@material-ui/core';
+import { Divider, Paper, Table, TableBody, TableCell, TableHead, TableRow, Typography } from '@mui/material';
 import * as _ from 'lodash';
 import * as React from 'react';
 import { MastermindAbility } from '../types/data/MastermindAbility';
@@ -19,8 +9,6 @@ interface CheatsheetProps {
   script: Script;
 }
 export function Cheatsheet(props: CheatsheetProps): JSX.Element {
-  const styles = useStyles();
-
   if (!props.script.isValid()) {
     return <></>;
   }
@@ -61,13 +49,13 @@ export function Cheatsheet(props: CheatsheetProps): JSX.Element {
   ));
 
   return (
-    <Paper className={styles.paper}>
+    <Paper sx={styles.paper}>
       <Typography variant="h1" align="center">
         Cheatsheet
       </Typography>
-      <Divider className={styles.extraBottomMargin} />
+      <Divider sx={styles.extraBottomMargin} />
       <Typography variant="h2">Mastermind Abilities</Typography>
-      <Table size="small" className={styles.extraBottomMargin}>
+      <Table size="small" sx={styles.extraBottomMargin}>
         <TableHead>
           <TableRow>
             <TableCell>Mandatory</TableCell>
@@ -80,7 +68,7 @@ export function Cheatsheet(props: CheatsheetProps): JSX.Element {
         <TableBody>{mastermindAbilities}</TableBody>
       </Table>
       <Typography variant="h2">Role Abilities</Typography>
-      <Table size="small" className={styles.extraBottomMargin}>
+      <Table size="small" sx={styles.extraBottomMargin}>
         <TableHead>
           <TableRow>
             <TableCell>Trigger</TableCell>
@@ -93,7 +81,7 @@ export function Cheatsheet(props: CheatsheetProps): JSX.Element {
         <TableBody>{roleAbilities}</TableBody>
       </Table>
       <Typography variant="h2">Incidents</Typography>
-      <Table size="small" className={styles.extraBottomMargin}>
+      <Table size="small" sx={styles.extraBottomMargin}>
         <TableHead>
           <TableRow>
             <TableCell>Day</TableCell>
@@ -133,14 +121,14 @@ function extractRoleAbilities(script: Script): Array<RoleAbilityTrigger> {
   });
 }
 
-const useStyles = makeStyles((theme) => ({
+const styles = {
   paper: {
-    padding: theme.spacing(2),
+    padding: 2,
   },
   extraBottomMargin: {
-    marginBottom: theme.spacing(2),
+    marginBottom: 2,
   },
-}));
+};
 
 interface MastermindAbilityTrigger {
   ability: MastermindAbility;

@@ -1,4 +1,4 @@
-import { Grid } from '@material-ui/core';
+import { Grid } from '@mui/material';
 import * as React from 'react';
 import { Script } from '../types/Script';
 import { ReferenceCard } from './ReferenceCard';
