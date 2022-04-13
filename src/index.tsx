@@ -1,5 +1,5 @@
 import * as React from 'react';
-import * as ReactDOM from 'react-dom';
+import { createRoot } from 'react-dom/client';
 import { Application } from './Application';
 import { colors as Colors, createTheme, CssBaseline, ThemeProvider } from '@mui/material';
 
@@ -30,5 +30,5 @@ const app = (
   </ThemeProvider>
 );
 
-const mount = document.getElementById('app');
-ReactDOM.render(app, mount);
+const root = createRoot(document.getElementById('app') as HTMLDivElement);
+root.render(app);
