@@ -3,4 +3,5 @@ export interface Incident {
   readonly name: string;
   readonly effect: string;
   readonly loopEstimate: number;
+  readonly winCondition: boolean;
 }
