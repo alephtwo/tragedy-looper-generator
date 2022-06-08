@@ -31,6 +31,10 @@ export class Script {
   isValid(): boolean {
     return this.cast.length > 0;
   }
+
+  plots(): Array<Plot> {
+    return [this.mainPlot].concat(this.subplots);
+  }
 }
 
 interface ScriptArgs {

@@ -25,14 +25,13 @@ import {
 } from './AdditionalDifficultyFactors';
 
 export function estimateLoops(script: Script): number {
-  const plots = [script.mainPlot].concat(script.subplots);
   const incidents = script.getIncidents();
 
   const additionalFactors = getAdditionalFactors(script);
 
   const estimate = _.sum([
     // From plots...
-    _.sum(plots.map((plot) => plot.estimateLoops(script))),
+    _.sum(script.plots().map((plot) => plot.estimateLoops(script))),
     // From incidents...
     _.sum(incidents.map((i) => i.incident.loopEstimate)),
     // For each Incident above/below 4, +/- 0.5.
