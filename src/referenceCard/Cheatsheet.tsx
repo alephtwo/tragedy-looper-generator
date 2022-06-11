@@ -1,8 +1,13 @@
 import { Divider, Paper, Table, TableBody, TableCell, TableHead, TableRow, Typography } from '@mui/material';
 import * as _ from 'lodash';
 import * as React from 'react';
+import { CastMember } from '../types/CastMember';
+import { Incident } from '../types/data/Incident';
 import { MastermindAbility } from '../types/data/MastermindAbility';
+import { Plot } from '../types/data/Plot';
+import { PlotRule } from '../types/data/PlotRule';
 import { RoleAbility } from '../types/data/RoleAbility';
+import { IncidentOccurrence } from '../types/IncidentOccurrence';
 import { Script } from '../types/Script';
 
 interface CheatsheetProps {
@@ -28,51 +33,7 @@ export function Cheatsheet(props: CheatsheetProps): JSX.Element {
         Cheatsheet
       </Typography>
       <Divider sx={styles.extraBottomMargin} />
-      <Typography variant="h2">Win Conditions</Typography>
-      <Table size="small" sx={styles.extraBottomMargin}>
-        <TableHead>
-          <TableRow>
-            <TableCell>Mechanic</TableCell>
-            <TableCell>Source</TableCell>
-            <TableCell>Trigger</TableCell>
-            <TableCell>Effect</TableCell>
-          </TableRow>
-        </TableHead>
-        <TableBody>
-          {props.script
-            .plots()
-            .flatMap((p) => p.plotRules)
-            .filter((pr) => pr.winCondition === true)
-            .map((pr) => (
-              <TableRow>
-                <TableCell>Plot Rule</TableCell>
-                <TableCell />
-                <TableCell>{pr.trigger.description}</TableCell>
-                <TableCell>{pr.effect}</TableCell>
-              </TableRow>
-            ))}
-          {sortRoleAbilities(roleAbilities)
-            .filter((ra) => ra.ability.winCondition === true)
-            .map((ra) => (
-              <TableRow>
-                <TableCell>Role Ability</TableCell>
-                <TableCell>{ra.triggerer}</TableCell>
-                <TableCell>{ra.ability.trigger.description}</TableCell>
-                <TableCell>{ra.ability.effect}</TableCell>
-              </TableRow>
-            ))}
-          {allIncidents
-            .filter((i) => i.incidentTrigger.incident.winCondition === true)
-            .map((i) => (
-              <TableRow>
-                <TableCell>Incident</TableCell>
-                <TableCell>{i.incidentTrigger.incident.name}</TableCell>
-                <TableCell />
-                <TableCell>{i.incidentTrigger.incident.effect}</TableCell>
-              </TableRow>
-            ))}
-        </TableBody>
-      </Table>
+      <WinConditions plots={props.script.plots()} roleAbilities={roleAbilities} incidents={allIncidents} />
       <Typography variant="h2">Mastermind Abilities</Typography>
       <Table size="small" sx={styles.extraBottomMargin}>
         <TableHead>
@@ -144,6 +105,69 @@ export function Cheatsheet(props: CheatsheetProps): JSX.Element {
   );
 }
 
+interface WinConditionsProps {
+  plots: Array<Plot>;
+  roleAbilities: Array<RoleAbilityTrigger>;
+  incidents: Array<CastMemberIncidentTrigger>;
+}
+function WinConditions(props: WinConditionsProps): JSX.Element {
+  const fromPlotRules: Array<PlotRule> = props.plots
+    .flatMap((p) => p.plotRules)
+    .filter((pr) => pr.winCondition === true);
+
+  const fromRoleAbilities: Array<RoleAbilityTrigger> = props.roleAbilities.filter(
+    (ra) => ra.ability.winCondition === true
+  );
+
+  const fromIncidents: Array<Incident> = props.incidents
+    .map((i) => i.incidentTrigger.incident)
+    .filter((i) => i.winCondition === true);
+
+  return (
+    <>
+      <Typography variant="h2">Win Conditions</Typography>
+      <Table size="small" sx={styles.extraBottomMargin}>
+        <TableHead>
+          <TableRow>
+            <TableCell>Mechanic</TableCell>
+            <TableCell>Source</TableCell>
+            <TableCell>Trigger</TableCell>
+            <TableCell>Effect</TableCell>
+          </TableRow>
+        </TableHead>
+        <TableBody>
+          {_.uniqBy(fromPlotRules, (pr) => pr.id).map((pr) => (
+            <TableRow>
+              <TableCell>Plot Rule</TableCell>
+              <TableCell />
+              <TableCell>{pr.trigger.description}</TableCell>
+              <TableCell>{pr.effect}</TableCell>
+            </TableRow>
+          ))}
+          {sortRoleAbilities(
+            _.uniqWith(fromRoleAbilities, (a, b) => a.ability.id === b.ability.id && a.triggerer === b.triggerer)
+          ).map((ra) => (
+            <TableRow>
+              <TableCell>Role Ability</TableCell>
+              <TableCell>{ra.triggerer}</TableCell>
+              <TableCell>{ra.ability.trigger.description}</TableCell>
+              <TableCell>{ra.ability.effect}</TableCell>
+            </TableRow>
+          ))}
+          {_.uniqBy(fromIncidents, (i) => i.id).map((i) => (
+            <TableRow>
+              <TableCell>Incident</TableCell>
+              <TableCell>{i.name}</TableCell>
+              <TableCell />
+              <TableCell>{i.effect}</TableCell>
+            </TableRow>
+          ))}
+        </TableBody>
+      </Table>
+    </>
+  );
+}
+
 function extractMastermindAbilities(script: Script): Array<MastermindAbilityTrigger> {
   const fromPlots = script.plots().flatMap((p) => {
     return p.mastermindAbilities.map((ma) => ({
@@ -169,7 +193,7 @@ function extractRoleAbilities(script: Script): Array<RoleAbilityTrigger> {
   });
 }
 
-export function sortRoleAbilities(roleAbilities: Array<RoleAbilityTrigger>): Array<RoleAbilityTrigger> {
+function sortRoleAbilities(roleAbilities: Array<RoleAbilityTrigger>): Array<RoleAbilityTrigger> {
   return _.sortBy(roleAbilities, (a) => a.ability.trigger.order);
 }
 
@@ -190,4 +214,9 @@ interface MastermindAbilityTrigger {
 interface RoleAbilityTrigger {
   ability: RoleAbility;
   triggerer: string;
+}
+
+interface CastMemberIncidentTrigger {
+  castMember: CastMember;
+  incidentTrigger: IncidentOccurrence;
 }

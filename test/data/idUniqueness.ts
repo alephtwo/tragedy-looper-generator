@@ -20,6 +20,12 @@ describe('ID Uniqueness Check', () => {
       ..._.values(Roles).map((r) => r.id),
       ..._.values(TragedySets).map((ts) => ts.id),
       ..._.values(Triggers).map((t) => t.id),
+      // Plot Rules
+      ..._.values(MainPlots)
+        .concat(..._.values(Subplots))
+        .flatMap((mp) => mp.plotRules.map((pr) => pr.id)),
+      // Role Abilities
+      ..._.values(Roles).flatMap((r) => r.abilities.map((ra) => ra.id)),
     ];
 
     _.each(

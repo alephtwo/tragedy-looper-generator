@@ -27,6 +27,7 @@ export const MainPlots: MainPlotsDatabase = {
     estimateLoops: () => 1.5,
     plotRules: [
       {
+        id: '75fb33d8-64f2-419e-abe5-7e0fbc028b1d',
         trigger: Triggers.loopEnd,
         effect: 'If there are at least 2 Intrigue counters on the Shrine, the Protagonists lose.',
         winCondition: true,
@@ -51,6 +52,7 @@ export const MainPlots: MainPlotsDatabase = {
     },
     plotRules: [
       {
+        id: 'f3b4734f-e3ba-4f1e-babe-90324002a7b0',
         trigger: Triggers.loopEnd,
         effect: 'If there are at least 2 Intrigue counters on the Key Person, the Protagonists lose.',
         winCondition: true,
@@ -73,6 +75,7 @@ export const MainPlots: MainPlotsDatabase = {
     },
     plotRules: [
       {
+        id: 'abf6a9c5-d67e-460f-8a56-0e93ef77e87d',
         trigger: Triggers.loopEnd,
         effect: 'If the "Butterfly Effect" incident has occurred this loop, the Protagonists lose.',
         winCondition: true,
@@ -88,6 +91,7 @@ export const MainPlots: MainPlotsDatabase = {
     estimateLoops: () => 1.0,
     plotRules: [
       {
+        id: 'bb155eea-be47-4d78-8749-64c13d004c22',
         trigger: Triggers.loopEnd,
         effect: "If there are at least 2 Intrigue counters on the Witch's starting location, the Protagonists lose.",
         winCondition: true,
@@ -104,6 +108,7 @@ export const MainPlots: MainPlotsDatabase = {
     estimateLoops: () => 0,
     plotRules: [
       {
+        id: '30cff159-6cf6-404b-a33d-b30f1dc0c319',
         trigger: Triggers.loopEnd,
         effect: "If there are at least 2 Intrigue counters on the Brain's starting location, the Protagonists lose.",
         winCondition: true,
@@ -120,6 +125,7 @@ export const MainPlots: MainPlotsDatabase = {
     estimateLoops: () => 0,
     plotRules: [
       {
+        id: '001498bb-effe-4d46-bf45-1f328ebb1f3c',
         trigger: Triggers.loopEnd,
         effect: 'If there are at least 2 Intrigue counters on the School, the Protagonists lose.',
         winCondition: true,
@@ -137,6 +143,7 @@ export const MainPlots: MainPlotsDatabase = {
     estimateLoops: () => 0,
     plotRules: [
       {
+        id: '9438ec7a-85d2-4c82-9eb5-3c7ebb6ad726',
         trigger: Triggers.loopEnd,
         effect: 'If there are at least 2 Intrigue counters on the Shrine, the Protagonists lose.',
         winCondition: true,
@@ -157,6 +164,7 @@ export const MainPlots: MainPlotsDatabase = {
     },
     plotRules: [
       {
+        id: '6917f1e6-a122-4a13-a9e9-029a97c890a0',
         trigger: Triggers.loopEnd,
         effect: 'If the Brain, Factor, or Magician were revealed during this loop, the Protagonists lose.',
         winCondition: true,
@@ -182,6 +190,7 @@ export const MainPlots: MainPlotsDatabase = {
     },
     plotRules: [
       {
+        id: '71c5c632-4a30-4430-b750-0bfe7440defb',
         trigger: Triggers.loopEnd,
         effect: 'If the Ninja (or its corpse) has at least 2 Intrigue, the Protagonists lose.',
         winCondition: true,
@@ -206,6 +215,7 @@ export const MainPlots: MainPlotsDatabase = {
     estimateLoops: () => 1.6,
     plotRules: [
       {
+        id: 'f16d6c90-a5ac-4e38-a6b5-3982e6d24e07',
         trigger: Triggers.loopStart,
         effect:
           'Choosen one character that died during the previous loop. Place any Extra Card on that character. Character(s) with an Extra card have their role changed into a Key Person.',
@@ -237,6 +247,7 @@ export const MainPlots: MainPlotsDatabase = {
     },
     plotRules: [
       {
+        id: '99810ed1-7d8c-4a86-99b6-9ce576623f3a',
         trigger: Triggers.loopEnd,
         effect: 'If the Extra Gauge is 3 or more, the Protagonists lose.',
         winCondition: true,
@@ -257,6 +268,7 @@ export const MainPlots: MainPlotsDatabase = {
     },
     plotRules: [
       {
+        id: '5b88814d-52f7-47b1-9cba-e4a5b103a33d',
         trigger: Triggers.loopEnd,
         effect: 'If the Extra Gauge is 1 or lower, the Protagonists lose.',
         winCondition: true,
@@ -272,6 +284,7 @@ export const MainPlots: MainPlotsDatabase = {
     estimateLoops: () => 1.6,
     plotRules: [
       {
+        id: '3b53f8b7-729f-40e0-8b93-97db0d9a37ad',
         trigger: Triggers.loopEnd,
         effect:
           'If there are at least X Intrigue on the School, the Protagonists lose. X is 1 less than the current loop number.',
@@ -288,6 +301,7 @@ export const MainPlots: MainPlotsDatabase = {
     estimateLoops: () => 1.6,
     plotRules: [
       {
+        id: 'c2436eaf-4b4b-4cbf-ab2a-4714cc5657bb',
         trigger: Triggers.incidentStep,
         effect: 'When determining whether "Serial Murder" or "Suicide" triggers, count Intrigue also as Paranoia.',
         winCondition: false,
@@ -340,6 +354,7 @@ export const MainPlots: MainPlotsDatabase = {
     estimateLoops: () => 1.8,
     plotRules: [
       {
+        id: '68f939e1-4fd3-4638-bcfd-5bce0aa3cbc0',
         trigger: Triggers.always,
         effect: 'All corpses that had the role Person, Coward, or Show-Off change into having the role of Zombie.',
         winCondition: false,
@@ -355,11 +370,13 @@ export const MainPlots: MainPlotsDatabase = {
     estimateLoops: () => 1.4,
     plotRules: [
       {
+        id: 'a7167f92-fd71-4b99-a023-91d13a04fa1e',
         trigger: Triggers.loopStart,
         effect: "You may place a Curse on the Ghost's starting location.",
         winCondition: false,
       },
       {
+        id: 'cce0687f-da30-44a5-b474-876d9c1c060b',
         trigger: Triggers.dayEnd,
         effect: 'Unless all Location Curses can be attached to characters, you may kill the protagonists.',
         winCondition: true,
@@ -376,6 +393,7 @@ export const MainPlots: MainPlotsDatabase = {
     estimateLoops: () => 1.8,
     plotRules: [
       {
+        id: '1c438d51-68bf-41c8-9c91-7fb61c199674',
         trigger: Triggers.loopEnd,
         effect: 'If there are at least 5 characters with Intrigue on them, the Protagonists lose.',
         winCondition: true,
@@ -391,6 +409,7 @@ export const MainPlots: MainPlotsDatabase = {
     estimateLoops: () => 2.0,
     plotRules: [
       {
+        id: 'c1282b10-6378-4201-a157-ffc55e71e29e',
         trigger: Triggers.loopEnd,
         effect:
           'If there are as many or more Intrigue on the Shrine than the Extra Gauge shows, the Protagonists lose (if the Extra Gauge is at zero, the Protagonists always lose.)',
@@ -407,6 +426,7 @@ export const MainPlots: MainPlotsDatabase = {
     estimateLoops: () => 1.0,
     plotRules: [
       {
+        id: '325c8f7e-f010-40cb-8a66-b62a0e02c949',
         trigger: Triggers.loopEnd,
         effect: 'If the Extra Gauge has increased at all this loop, the Protagonists lose.',
         winCondition: true,
@@ -422,6 +442,7 @@ export const MainPlots: MainPlotsDatabase = {
     estimateLoops: () => 1.6,
     plotRules: [
       {
+        id: '83071e5f-2525-40e0-b4da-36cabc189e54',
         trigger: Triggers.loopEnd,
         effect: "If there are 2 or more Intrigue on the Witch's sstarting location, the Protagonists lose.",
         winCondition: true,
@@ -437,6 +458,7 @@ export const MainPlots: MainPlotsDatabase = {
     estimateLoops: () => 1.8,
     plotRules: [
       {
+        id: '6d936626-8482-46d5-ba2d-0d39a642d08d',
         trigger: Triggers.loopEnd,
         effect:
           'If there are as many or more corpses as the Extra Gauge shows, the Protagonists lose. If the Extra Gauge is on zero, the Protagonists automatically lose.',
@@ -499,6 +521,7 @@ export const Subplots: SubplotsDatabase = {
     estimateLoops: () => 0,
     plotRules: [
       {
+        id: '4006e514-0d29-4444-b709-9ca76dbf88e9',
         trigger: Triggers.always,
         effect: 'All Persons with at least 3 Paranoia turn into Serial Killers.',
         winCondition: false,
@@ -514,6 +537,7 @@ export const Subplots: SubplotsDatabase = {
     estimateLoops: () => 0.5,
     plotRules: [
       {
+        id: '00351e24-af09-40e0-8c43-9a6a83f7d41f',
         trigger: Triggers.loopStart,
         effect: 'Place 2 Paranoia on all characters who or whose corpse had Goodwill last loop.',
         winCondition: false,
@@ -582,6 +606,7 @@ export const Subplots: SubplotsDatabase = {
     estimateLoops: () => 0.7,
     plotRules: [
       {
+        id: '856fe994-7511-4f36-9b3d-b4f252232e95',
         trigger: Triggers.loopStart,
         effect: 'Choose one character that died during the previous loop and place any Extra card on that character.',
         winCondition: false,
@@ -616,6 +641,7 @@ export const Subplots: SubplotsDatabase = {
     },
     plotRules: [
       {
+        id: '75862e1e-f4a8-41e4-acc9-a3d3f3833d6d',
         trigger: Triggers.loopEnd,
         effect: 'If there are 6 or less characters alive, the Protagonists lose.',
         winCondition: true,
@@ -631,6 +657,7 @@ export const Subplots: SubplotsDatabase = {
     estimateLoops: (script: Script): number => (script.mainPlot.id === MainPlots.theSealedItem2.id ? 1.7 : 0.7),
     plotRules: [
       {
+        id: '681c1308-7ba5-4c2e-ba70-97dd64e7edef',
         trigger: Triggers.always,
         effect: '"Forbid Goodwill" also has the effect of "Forbid Movement."',
         winCondition: false,
@@ -646,6 +673,7 @@ export const Subplots: SubplotsDatabase = {
     estimateLoops: () => 0.8,
     plotRules: [
       {
+        id: 'be5c76dd-2ce0-43fd-9cbe-552054fb56eb',
         trigger: Triggers.incidentStep,
         effect:
           'When determining whether an Incident triggers, and the culprit is a Person, if the Prophet is alive, the culprit is regarded as having one 1 less than its printed Paranoia limit.',
@@ -672,6 +700,7 @@ export const Subplots: SubplotsDatabase = {
     estimateLoops: () => 0.5,
     plotRules: [
       {
+        id: 'ab30862d-ecf3-49a6-96c8-0ea270db90d5',
         trigger: Triggers.loopStart,
         effect: 'If the Extra Gauge was 2 or less at the end of the previous loop, increase it by 1.',
         winCondition: false,
@@ -687,6 +716,7 @@ export const Subplots: SubplotsDatabase = {
     estimateLoops: (script: Script): number => 0.2 + 0.2 * script.days,
     plotRules: [
       {
+        id: 'b7528433-56ed-42e0-8f28-d09288abc0d6',
         trigger: Triggers.loopEnd,
         effect: 'If there are a total of 12 or more Paranoia on the remaining characters, the Protagonists lose.',
         winCondition: true,
@@ -757,6 +787,7 @@ export const Subplots: SubplotsDatabase = {
     estimateLoops: () => 0.6,
     plotRules: [
       {
+        id: '223de339-63f0-4735-8422-c2e2157748f5',
         trigger: Triggers.loopStart,
         effect: "You may place a Curse on the Witch's starting location.",
         winCondition: false,
@@ -863,6 +894,7 @@ export const Subplots: SubplotsDatabase = {
     estimateLoops: () => 1.2,
     plotRules: [
       {
+        id: '90df15bb-d68c-469c-b261-f7a7dc81acff',
         trigger: Triggers.always,
         effect: 'The Paranoiac gains all the abilities of the Key Person.',
         winCondition: false,
