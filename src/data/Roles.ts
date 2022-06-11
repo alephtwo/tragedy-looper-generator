@@ -21,6 +21,7 @@ export const Roles: RolesDatabase = {
     connectedToLossCondition: true,
     abilities: [
       {
+        id: '6617251d-d944-4e54-bb79-30038b7f2624',
         trigger: Triggers.whenCharacterDies,
         effect: 'Protagonists lose and the loop ends immediately.',
         optional: false,
@@ -39,6 +40,7 @@ export const Roles: RolesDatabase = {
     unkillable: false,
     abilities: [
       {
+        id: 'c884ee1a-1266-4b56-a5d1-0f73b133d052',
         trigger: Triggers.dayEnd,
         effect:
           'If the Key Person has at least 2 Intrigue and is in the same location as the Killer, the Key Person dies.',
@@ -46,6 +48,7 @@ export const Roles: RolesDatabase = {
         winCondition: true,
       },
       {
+        id: '8cb53b2f-5b4d-4e9a-96cd-df5c9d570905',
         trigger: Triggers.dayEnd,
         effect: 'If this character has at least 4 Intrigue, the Protagonists die.',
         optional: true,
@@ -80,6 +83,7 @@ export const Roles: RolesDatabase = {
     unkillable: false,
     abilities: [
       {
+        id: 'f5f6dc6e-c0c2-4b49-afbd-74c72e48d1ab',
         trigger: Triggers.cardResolve,
         effect: 'Ignore Forbid Intrigue effects in this location or on characters in this location.',
         optional: true,
@@ -113,6 +117,7 @@ export const Roles: RolesDatabase = {
     unkillable: false,
     abilities: [
       {
+        id: '3ef9a3d5-bfc8-41b4-a4ba-31627ec7d6c4',
         trigger: Triggers.dayEnd,
         effect: 'If there is exactly 1 other character in this location, that character dies.',
         optional: false,
@@ -142,12 +147,14 @@ export const Roles: RolesDatabase = {
     unkillable: false,
     abilities: [
       {
+        id: '393d9873-15f2-4219-8b68-121144ccbb84',
         trigger: Triggers.loopEnd,
         effect: 'If this character is dead, reveal its role.',
         optional: true,
         winCondition: false,
       },
       {
+        id: '13cc8724-220d-4e2e-ab3e-a8afd1c86a47',
         trigger: Triggers.loopStart,
         effect: 'If this role has been revealed, this character gets 1 Goodwill.',
         optional: false,
@@ -165,12 +172,14 @@ export const Roles: RolesDatabase = {
     unkillable: true,
     abilities: [
       {
+        id: '20933daa-2da5-42ee-92c9-c03907caa890',
         trigger: Triggers.cardResolve,
         effect: 'Ignore Forbid Goodwill for this character.',
         optional: false,
         winCondition: false,
       },
       {
+        id: '65341f38-e6a3-4d16-9d89-ed7acd1ca532',
         trigger: Triggers.dayEndLastDay,
         effect: 'If there are 2 Goodwill or fewer on this character, the Protagonists lose.',
         optional: true,
@@ -188,6 +197,7 @@ export const Roles: RolesDatabase = {
     unkillable: false,
     abilities: [
       {
+        id: '7579c482-2be6-434b-8eba-95a2140c8bfe',
         trigger: Triggers.whenLovedOneDies,
         effect: 'This character gets 6 Paranoia.',
         optional: false,
@@ -205,12 +215,14 @@ export const Roles: RolesDatabase = {
     unkillable: false,
     abilities: [
       {
+        id: 'c45c4b81-494d-4d9f-b423-e44815f7b42e',
         trigger: Triggers.whenLoverDies,
         effect: 'This character gets 6 Paranoia.',
         optional: false,
         winCondition: false,
       },
       {
+        id: '655bb6b2-2c15-410b-b651-b55b49ad16ee',
         trigger: Triggers.dayEnd,
         effect: 'If this character has at least 3 Paranoia and at least 1 Intrigue, the Protagonists lose.',
         optional: true,
@@ -229,6 +241,7 @@ export const Roles: RolesDatabase = {
     unkillable: false,
     abilities: [
       {
+        id: '19735dca-4017-4d86-84cd-42a0b765359a',
         trigger: Triggers.always,
         effect:
           "If there are at least 2 Intrigue on the School, this character gains the Conspiracy Theorist's ability (but not its role).",
@@ -236,6 +249,7 @@ export const Roles: RolesDatabase = {
         winCondition: false,
       },
       {
+        id: '7a1016c4-0c2e-48cc-9716-64685b9405e5',
         trigger: Triggers.always,
         effect:
           "If there are at least 2 Intrigue in the City, this character gains the Key Person's ability (but not its role).",
@@ -265,6 +279,7 @@ export const Roles: RolesDatabase = {
     unkillable: false,
     abilities: [
       {
+        id: '5534c012-6674-4a54-8a50-855c2a648ffb',
         trigger: Triggers.whenCharacterDies,
         effect: 'Remove all Paranoia from its corpse.',
         optional: false,
@@ -290,12 +305,14 @@ export const Roles: RolesDatabase = {
     unkillable: false,
     abilities: [
       {
+        id: 'a03dac67-8b73-4011-853d-750ddb106c1c',
         trigger: Triggers.whenRoleIsRevealed,
         effect: 'Instead of saying the truth, state any other non-Person role that is in this script.',
         optional: false,
         winCondition: false,
       },
       {
+        id: '4371a360-ca49-4c5e-afa4-7ff6238b0f38',
         trigger: Triggers.dayEnd,
         effect: 'If there is any character with at least 2 Intrigue in this location, you may kill that character.',
         optional: false,
@@ -314,6 +331,7 @@ export const Roles: RolesDatabase = {
     unkillable: false,
     abilities: [
       {
+        id: '2731e7ca-fb2d-49fd-8caa-d42e535bc6f4',
         trigger: Triggers.incidentStep,
         effect: 'This character always triggers its Incidents, regardless of the amount of Paranoia on it.',
         optional: false,
@@ -331,12 +349,14 @@ export const Roles: RolesDatabase = {
     unkillable: false,
     abilities: [
       {
+        id: '385b903a-6623-46b1-b379-0ea929ac6675',
         trigger: Triggers.always,
         effect: 'The Mastermind cannot place cards on this character.',
         optional: false,
         winCondition: false,
       },
       {
+        id: 'd38c6f44-722f-45f3-8188-80290d76c34c',
         trigger: Triggers.incidentStep,
         effect:
           'When determining whether an Incident triggers, and the culprit is another character in this location, that Incident does not trigger, regardless of the number of Paranoia on the culprit.',
@@ -366,6 +386,7 @@ export const Roles: RolesDatabase = {
     unkillable: false,
     abilities: [
       {
+        id: '87b10333-4e23-48ec-95e8-0464f392dacc',
         trigger: Triggers.dayEnd,
         effect: 'If the Extra Gauge is at least 2 or more, any one character in this location dies.',
         optional: false,
@@ -373,6 +394,7 @@ export const Roles: RolesDatabase = {
         winCondition: false,
       },
       {
+        id: '8635d58d-9a4b-4c19-aa89-ae557e2d8f32',
         trigger: Triggers.dayEnd,
         effect: 'If the Extra Gauge is on 4 or more, the Protagonists lose.',
         optional: false,
@@ -391,6 +413,7 @@ export const Roles: RolesDatabase = {
     unkillable: false,
     abilities: [
       {
+        id: 'b12d8dd8-73ed-4eab-8468-2ac7f994285d',
         trigger: Triggers.incidentStep,
         effect: 'After this character has triggered an incident, remove all Paranoia from its card.',
         optional: false,
@@ -408,6 +431,7 @@ export const Roles: RolesDatabase = {
     unkillable: true,
     abilities: [
       {
+        id: '1317ca86-2d4f-4a8b-b6d0-5aff07fa9f45',
         trigger: Triggers.incidentStep,
         effect:
           'If the Extra Gauge is 0, and the culprit is in this location, the Incident triggers regardless of the number of Paranoia on the culprit.',
@@ -442,6 +466,7 @@ export const Roles: RolesDatabase = {
     unkillable: false,
     abilities: [
       {
+        id: 'd48359b5-8fd1-4abb-bf70-b9cfd83d0d7d',
         trigger: Triggers.incidentStep,
         effect:
           'When this character triggers an incident, it is considered as being on the diagonally opposite location.',
@@ -476,6 +501,7 @@ export const Roles: RolesDatabase = {
     unkillable: true,
     abilities: [
       {
+        id: '5d61679b-a5b0-4aef-9c4f-59bb8df3bfb7',
         trigger: Triggers.dayEnd,
         effect:
           "If the Key Person has at least 2 Intrigue and is in this character's location, you may kill the Key Person.",
@@ -483,6 +509,7 @@ export const Roles: RolesDatabase = {
         winCondition: true,
       },
       {
+        id: '9cbbb2b9-f26b-436f-ae17-ef466b1c9c6d',
         trigger: Triggers.dayEnd,
         effect: "If there are at least 2 corpses in this character's starting location, you may kill the Protagonists.",
         optional: true,
@@ -501,12 +528,14 @@ export const Roles: RolesDatabase = {
     unkillable: false,
     abilities: [
       {
+        id: 'd59177e9-2160-4874-93ab-0dc19b7271df',
         trigger: Triggers.dayEnd,
         effect: 'If Night of Madness occurred this day, you may kill the Protagonists.',
         optional: true,
         winCondition: true,
       },
       {
+        id: 'b18302c8-ba24-4329-8b71-e3c33544ab1b',
         trigger: Triggers.always,
         effect: 'The Mastermind cannot place cards on this character',
         optional: false,
@@ -525,12 +554,14 @@ export const Roles: RolesDatabase = {
     unkillable: true,
     abilities: [
       {
+        id: '06610871-f004-495e-bcd9-299fa7f58503',
         trigger: Triggers.dayEnd,
         effect: 'You may kill one character who is in this location.',
         optional: true,
         winCondition: false,
       },
       {
+        id: '6d54ddb7-bb2b-4c30-89df-b1e32834fae0',
         trigger: Triggers.dayEnd,
         effect: 'If there are 3 or more Intrigue on all corpses in total, you may kill the Protagonists.',
         optional: true,
@@ -565,6 +596,7 @@ export const Roles: RolesDatabase = {
     unkillable: true,
     abilities: [
       {
+        id: '7ad4fe78-d2fc-445d-9e3f-580c17832590',
         trigger: Triggers.always,
         effect:
           'If this character has more than 2 Paranoia, they lose the Unkillable aspect and gains Mandatory Goodwill Refusal.',
@@ -598,6 +630,7 @@ export const Roles: RolesDatabase = {
     unkillable: true,
     abilities: [
       {
+        id: 'fc913ff0-68ea-4b0d-9e75-8e9e8baccebf',
         trigger: Triggers.dayEnd,
         effect:
           'If this character has at least 2 Intrigue and at least 2 Paranoia, you may kill all characters and the Protagonists.',
@@ -605,6 +638,7 @@ export const Roles: RolesDatabase = {
         winCondition: true,
       },
       {
+        id: 'd6ef72d9-c803-4604-95f1-2e0d8adeb53a',
         trigger: Triggers.incidentStep,
         effect:
           'When determining whether an incident for which this character is the culprit will occur, also treat Intrigue as Paranoia.',
@@ -624,6 +658,7 @@ export const Roles: RolesDatabase = {
     unkillable: false,
     abilities: [
       {
+        id: 'f5dbd13a-ba2c-4dd0-b510-3da683a88665',
         trigger: Triggers.whenCharacterDies,
         effect: "Reveal this character's role and increase the Extra Gauge 1 step.",
         optional: false,
@@ -646,6 +681,7 @@ export const Roles: RolesDatabase = {
     unkillable: false,
     abilities: [
       {
+        id: 'b7526fe6-caca-4f8b-b070-35882189e986',
         trigger: Triggers.dayEnd,
         effect: 'If this character has 4 or more Paranoia, this character dies, and the Extra Gauge increases 1 step.',
         optional: false,
@@ -664,12 +700,14 @@ export const Roles: RolesDatabase = {
     unkillable: true,
     abilities: [
       {
+        id: '4d27482e-0e7f-48ee-9af5-24c70b1de7e8',
         trigger: Triggers.always,
         effect: 'If the Extra Gauge is 1 or less, this character gains the abilities of a Conspiracy Theorist.',
         optional: false,
         winCondition: false,
       },
       {
+        id: 'de282aca-0406-4736-84d1-417675c47bad',
         trigger: Triggers.always,
         effect: 'If the Extra Gauge is 2 or more, this character gains the abilities of a Deep One.',
         optional: false,
@@ -688,12 +726,14 @@ export const Roles: RolesDatabase = {
     unkillable: false,
     abilities: [
       {
+        id: '271ee1dd-1157-437d-81ad-60cbd83847dc',
         trigger: Triggers.loopEnd,
         effect: 'If this character is dead, the Protagonists lose.',
         optional: false,
         winCondition: true,
       },
       {
+        id: 'd6977ca2-8c73-430d-93a2-5b4678962364',
         trigger: Triggers.goodwillAbilityStep,
         effect:
           "When this character's Goodwill ability is used, reveal this role after resolution. Then, the leader may increase the Extra Gauge 1 step.",
