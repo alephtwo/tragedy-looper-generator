@@ -1,4 +1,4 @@
-import produce from 'immer';
+import { produce } from 'immer';
 import * as _ from 'lodash';
 import { Characters } from '../data/Characters';
 import { Incidents } from '../data/Incidents';
