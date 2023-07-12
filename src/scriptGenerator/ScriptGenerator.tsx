@@ -83,7 +83,7 @@ function createOnChanges(props: ArgumentsProps) {
       props.dispatch(
         produce(props.state, (draft) => {
           draft.tragedySet = ts || TragedySets.firstSteps;
-        })
+        }),
       );
     },
     castSize: (value: number): void => {
@@ -92,7 +92,7 @@ function createOnChanges(props: ArgumentsProps) {
           draft.castSize = value;
           // Need to drop incidents if we don't have enough cast or days.
           draft.incidents = Math.min(draft.incidents, value);
-        })
+        }),
       );
     },
     days: (value: number): void => {
@@ -101,14 +101,14 @@ function createOnChanges(props: ArgumentsProps) {
           draft.days = value;
           // Need to drop incidents if we don't have enough cast or days.
           draft.incidents = Math.min(draft.incidents, value);
-        })
+        }),
       );
     },
     incidents: (value: number): void => {
       props.dispatch(
         produce(props.state, (draft) => {
           draft.incidents = value;
-        })
+        }),
       );
     },
   };

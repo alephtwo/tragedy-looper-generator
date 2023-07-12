@@ -116,7 +116,7 @@ function WinConditions(props: WinConditionsProps): JSX.Element {
     .filter((pr) => pr.winCondition === true);
 
   const fromRoleAbilities: Array<RoleAbilityTrigger> = props.roleAbilities.filter(
-    (ra) => ra.ability.winCondition === true
+    (ra) => ra.ability.winCondition === true,
   );
 
   const fromIncidents: Array<Incident> = props.incidents
@@ -145,7 +145,7 @@ function WinConditions(props: WinConditionsProps): JSX.Element {
             </TableRow>
           ))}
           {sortRoleAbilities(
-            _.uniqWith(fromRoleAbilities, (a, b) => a.ability.id === b.ability.id && a.triggerer === b.triggerer)
+            _.uniqWith(fromRoleAbilities, (a, b) => a.ability.id === b.ability.id && a.triggerer === b.triggerer),
           ).map((ra) => (
             <TableRow>
               <TableCell>Role Ability</TableCell>

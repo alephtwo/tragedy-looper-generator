@@ -32,7 +32,7 @@ describe('ID Uniqueness Check', () => {
       _.countBy(ids, (a) => a),
       (v, k) => {
         assert.equal(v, 1, `${k} appears ${v} times`);
-      }
+      },
     );
   });
 });

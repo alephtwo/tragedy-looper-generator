@@ -187,7 +187,7 @@ function describeIncidents(cast: Array<CastMember>): Array<IncidentMetadata> {
         character: c.character,
         role: c.role,
       };
-    })
+    }),
   );
 }
 

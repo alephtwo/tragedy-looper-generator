@@ -137,7 +137,7 @@ function buildCast(state: BuildCastAccumulator, role: Role): BuildCastAccumulato
         role: role,
         // We will assign incidents later.
         incidentTriggers: [],
-      })
+      }),
     );
     // Remove the character from the pool.
     _.remove(next.characters, (c) => c.id === character.id);
@@ -210,7 +210,7 @@ function assignIncidentsToCast(cast: Array<CastMember>, incidents: Array<Inciden
       // you should probably just write a script manually and not generate one at random.
       if (incident.incident.id === Incidents.serialMurder.id) {
         const serialMurderer = next.find((c) =>
-          c.incidentTriggers.some((i) => i.incident.id === Incidents.serialMurder.id)
+          c.incidentTriggers.some((i) => i.incident.id === Incidents.serialMurder.id),
         );
         if (serialMurderer !== undefined) {
           serialMurderer.incidentTriggers.push(incident);

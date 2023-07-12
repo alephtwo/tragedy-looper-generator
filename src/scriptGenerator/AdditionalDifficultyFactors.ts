@@ -88,7 +88,7 @@ export const increaseIfCharacterHasAnyGoodwillRefusalWithIncient =
   (character: Character, incident: Incident) =>
   (script: Script): DifficultyFactor => {
     const characterHasGoodwillRefusal = script.cast.some(
-      (c) => c.character.id === character.id && c.role.goodwillRefusal !== undefined
+      (c) => c.character.id === character.id && c.role.goodwillRefusal !== undefined,
     );
     const incidentPresent = determineIfIncidentIsPresent(script, incident);
 
@@ -113,7 +113,7 @@ export const increaseIfCharacterHasRoleThatIsOnlyInOnePlot =
     const allRoleIds = _.uniq(roleIdSets.flatMap((s) => Array.from(s.values())));
     // Filter this list to just ones that are in a single plot
     const rolesOnlyInOnePlot = new Set(
-      allRoleIds.filter((i) => _.sum(roleIdSets.map((s) => (s.has(i) ? 1 : 0))) === 1)
+      allRoleIds.filter((i) => _.sum(roleIdSets.map((s) => (s.has(i) ? 1 : 0))) === 1),
     );
 
     const met = script.cast.some((c) => c.character.id === character.id && rolesOnlyInOnePlot.has(c.role.id));
@@ -128,7 +128,7 @@ export const decreaseIfCharacterIsConnectedToLossConditions =
   };
 
 export function decreaseForEveryCharacterThatHasForbiddenAreasAndConnectsToBoard(
-  script: Script
+  script: Script,
 ): Array<() => DifficultyFactor> {
   return (
     script.cast
