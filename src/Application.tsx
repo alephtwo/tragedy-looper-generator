@@ -1,12 +1,13 @@
 import * as React from 'react';
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 import { AppBar, Container, Grid, Tab, Tabs } from '@mui/material';
 import { ScriptGenerator } from './scriptGenerator/ScriptGenerator';
-import { Script } from './types/Script';
+import { Script } from './model/Script';
 import { ReferenceCards } from './referenceCard/ReferenceCards';
 import { Cheatsheet } from './referenceCard/Cheatsheet';
 import { TragedySets } from './data/TragedySets';
 import { ScriptEditor } from './scriptEditor/ScriptEditor';
+import { useTranslation } from 'react-i18next';
 
 const initialScript: Script = new Script({
   tragedySet: TragedySets.basicTragedy,
@@ -19,6 +20,11 @@ const initialScript: Script = new Script({
 export function Application(): JSX.Element {
   const [tab, setTab] = useState(0);
   const [script, setScript] = useState(initialScript);
+  const { t } = useTranslation();
+
+  useEffect(() => {
+    document.title = t('scaffolding.title');
+  });
 
   return (
     <Container sx={styles.application}>
@@ -26,8 +32,8 @@ export function Application(): JSX.Element {
         <Grid item xs={12}>
           <AppBar position="static">
             <Tabs value={tab} onChange={(_e, v: number) => setTab(v)} textColor="secondary" indicatorColor="secondary">
-              <Tab sx={{ color: 'white' }} label="Generator" />
-              <Tab sx={{ color: 'white' }} label="Editor" />
+              <Tab sx={{ color: 'white' }} label={t('scaffolding.generator')} />
+              <Tab sx={{ color: 'white' }} label={t('scaffolding.editor')} />
             </Tabs>
           </AppBar>
         </Grid>

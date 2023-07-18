@@ -1,4 +1,4 @@
-import { Script } from '../types/Script';
+import { Script } from '../model/Script';
 import * as _ from 'lodash';
 import { Characters } from '../data/Characters';
 import { Roles } from '../data/Roles';

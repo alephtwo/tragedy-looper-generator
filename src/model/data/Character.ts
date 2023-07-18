@@ -1,17 +1,18 @@
 import { Location } from './Location';
+import { ParseKeys } from 'i18next';
 
 export class Character {
   readonly id: string;
-  readonly name: string;
+  readonly name_i18n_key: ParseKeys;
   readonly descriptors: Set<Descriptor>;
   readonly locations: Set<Location>;
-  readonly startingLocation: Location | 'Choose Every Loop';
+  readonly startingLocation: Location;
   readonly #entersOnLoop?: (loops: number) => number;
   loopToEnter: number;
 
   constructor(fields: Fields) {
     this.id = fields.id;
-    this.name = fields.name;
+    this.name_i18n_key = fields.name_i18n_key;
     this.descriptors = new Set(fields.descriptors);
     this.locations = new Set(fields.locations);
     this.startingLocation = fields.startingLocation;
@@ -36,10 +37,10 @@ export class Character {
 
 interface Fields {
   readonly id: string;
-  readonly name: string;
+  readonly name_i18n_key: ParseKeys;
   readonly descriptors: Array<Descriptor>;
   readonly locations: Array<Location>;
-  readonly startingLocation: Location | 'Choose Every Loop';
+  readonly startingLocation: Location;
   readonly entersOnLoop?: (loops: number) => number;
 }
 

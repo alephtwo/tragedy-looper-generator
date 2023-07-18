@@ -1,6 +1,7 @@
 import * as React from 'react';
 import { createRoot } from 'react-dom/client';
 import { Application } from './Application';
+import './i18n';
 import { colors as Colors, createTheme, CssBaseline, ThemeProvider } from '@mui/material';
 
 const theme = createTheme({
@@ -24,10 +25,12 @@ const theme = createTheme({
 });
 
 const app = (
-  <ThemeProvider theme={theme}>
-    <CssBaseline />
-    <Application />
-  </ThemeProvider>
+  <React.Suspense fallback={<h1>Loading...</h1>}>
+    <ThemeProvider theme={theme}>
+      <CssBaseline />
+      <Application />
+    </ThemeProvider>
+  </React.Suspense>
 );
 
 const root = createRoot(document.getElementById('app') as HTMLDivElement);

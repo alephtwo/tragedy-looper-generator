@@ -6,6 +6,7 @@
     "lib": ["dom", "es2020"],
     "target": "es6",
     "jsx": "react",
+    "resolveJsonModule": true,
     "noImplicitAny": true,
     "strictNullChecks": true
   }

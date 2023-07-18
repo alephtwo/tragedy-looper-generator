@@ -1,6 +1,6 @@
 import { Grid } from '@mui/material';
 import * as React from 'react';
-import { Script } from '../types/Script';
+import { Script } from '../model/Script';
 import { ReferenceCard } from './ReferenceCard';
 
 interface ReferenceCardsProps {

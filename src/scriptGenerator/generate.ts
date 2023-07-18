@@ -3,14 +3,15 @@ import * as _ from 'lodash';
 import { Characters } from '../data/Characters';
 import { Incidents } from '../data/Incidents';
 import { Roles } from '../data/Roles';
-import { CastMember } from '../types/CastMember';
-import { Character } from '../types/data/Character';
-import { Incident } from '../types/data/Incident';
-import { Plot } from '../types/data/Plot';
-import { Role } from '../types/data/Role';
-import { TragedySet } from '../types/data/TragedySet';
-import { IncidentOccurrence } from '../types/IncidentOccurrence';
-import { Script } from '../types/Script';
+import { CastMember } from '../model/CastMember';
+import { Character } from '../model/data/Character';
+import { Incident } from '../model/data/Incident';
+import { Plot } from '../model/data/Plot';
+import { Role } from '../model/data/Role';
+import { TragedySet } from '../model/data/TragedySet';
+import { IncidentOccurrence } from '../model/IncidentOccurrence';
+import { Script } from '../model/Script';
+import { i18n as i18next } from 'i18next';
 
 export interface GenerateArgs {
   tragedySet: TragedySet;
@@ -18,7 +19,7 @@ export interface GenerateArgs {
   days: number;
   incidents: number;
 }
-export function generate(args: GenerateArgs): Script {
+export function generate(args: GenerateArgs, i18n: i18next): Script {
   const mainPlot = pickMainPlot(args.tragedySet);
   const subplots = pickSubplots(args.tragedySet);
   const plots = [mainPlot].concat(subplots);
@@ -30,7 +31,7 @@ export function generate(args: GenerateArgs): Script {
   const initialCast = initializeCast(args, requiredRoles);
 
   // If there is any initial cast, we should account for their roles
-  const roles = fillRemainingRoles(requiredRoles, args.castSize - initialCast.length);
+  const roles = fillRemainingRoles(requiredRoles, args.castSize - initialCast.length, i18n);
   const castWithoutIncidents = roles.reduce(buildCast, {
     cast: initialCast,
     // Assume that the mystery boy has already been assigned.
@@ -67,11 +68,11 @@ function pickSubplots(tragedySet: TragedySet): Array<Plot> {
 }
 
 // Enforce maximums.
-function fillRemainingRoles(roles: Array<Role>, castSize: number): Array<Role> {
+function fillRemainingRoles(roles: Array<Role>, castSize: number, i18n: i18next): Array<Role> {
   // If the castSize is less than the number of required plots... sorry, users.
   const needed = Math.max(castSize, roles.length);
   if (needed != castSize) {
-    console.warn(`Cast size has been overridden to ${needed} in order to have enough for each required role.`);
+    console.warn(`${i18n.t('warnings.castSizeOverridden', { needed })}`);
   }
   // We want to return an array of length equal to castSize.
   // Fill the rest with "Person" roles.
