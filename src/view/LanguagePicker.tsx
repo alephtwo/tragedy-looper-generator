@@ -2,7 +2,7 @@ import * as React from "react";
 import { Box, MenuItem, Select, SvgIcon } from "@mui/material";
 import SupportedLanguages, { SupportedLanguage } from "../@types/SupportedLanguages";
 import * as _ from "lodash";
-import { GB as UKFlag } from "country-flag-icons/react/3x2";
+import { GB as UKFlag, FR as FRFlag } from "country-flag-icons/react/3x2";
 
 interface LanguagePickerProps {
   value: SupportedLanguage;
@@ -26,4 +26,5 @@ export function LanguagePicker(props: LanguagePickerProps) {
 
 const flags: Record<SupportedLanguage, React.JSX.Element> = {
   en: <UKFlag />,
+  fr: <FRFlag />,
 };
