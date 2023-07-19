@@ -1,0 +1,567 @@
+{
+  "characters": {
+    "boyStudent": "Boy Student",
+    "girlStudent": "Girl Student",
+    "richMansDaughter": "Rich Man's Daughter",
+    "shrineMaiden": "Shrine Maiden",
+    "policeOfficer": "Police Officer",
+    "officeWorker": "Office Worker",
+    "informer": "Informer",
+    "doctor": "Doctor",
+    "patient": "Patient",
+    "classRep": "Class Rep",
+    "mysteryBoy": "Mystery Boy",
+    "alien": "Alien",
+    "godlyBeing": "Godly Being",
+    "popIdol": "Pop Idol",
+    "journalist": "Journalist",
+    "boss": "Boss",
+    "nurse": "Nurse",
+    "henchman": "Henchman",
+    "scientist": "Scientist",
+    "forensicSpecialist": "Forensic Specialist",
+    "ai": "A.I.",
+    "illusion": "Illusion",
+    "teacher": "Teacher",
+    "transferStudent": "Transfer Student",
+    "blackCat": "Black Cat",
+    "soldier": "Soldier"
+  },
+  "expansions": {
+    "base": "Base",
+    "midnightCircle": "Midnight Circle",
+    "cosmicEvil": "Cosmic Evil"
+  },
+  "incidents": {
+    "murder": {
+      "name": "Murder",
+      "effect": "One (1) other character in culprit's location dies."
+    },
+    "increasingUnease": {
+      "name": "Increasing Unease",
+      "effect": "Place 2 Paranoia on any character, and 1 Intrigue on another.\nPlace 2 Intrigue on the Shrine."
+    },
+    "suicide": {
+      "name": "Suicide",
+      "effect": "The culprit dies."
+    },
+    "hospitalIncident": {
+      "name": "Hospital Incident",
+      "effect": "If at least 1 Intrigue on Hospital: Everyone in Hospital dies.\nIf at least 2 Intrigue on Hospital, Protagonists die."
+    },
+    "farawayMurder": {
+      "name": "Faraway Murder",
+      "effect": "One character with at least 2 Intrigue dies."
+    },
+    "missingPerson": {
+      "name": "Missing Person",
+      "effect": "Move culprit to any location. Put 1 Intrigue on that location."
+    },
+    "spreading": {
+      "name": "Spreading",
+      "effect": "Move 2 Goodwill from any character to any other character."
+    },
+    "foulEvil": {
+      "name": "Foul Evil",
+      "effect": "Place 2 Intrigue on the Shrine."
+    },
+    "butterflyEffect": {
+      "name": "Butterfly Effect",
+      "effect": "Put any counter on any character in culprit's location."
+    },
+    "conspiracies": {
+      "name": "Conspiracies",
+      "effect": "[Check Intrigue instead of Paranoia to trigger incident.] Resolve either a \"Serial Murder\" or \"Missing Person\" incident."
+    },
+    "uproar": {
+      "name": "Uproar",
+      "effect": "If there is at least 1 Intrigue on the School: Everyone in the School dies.\nIf there is at least 1 Intrigue on the City, everyone in the City dies."
+    },
+    "fakeIncident": {
+      "name": "Fake Incident",
+      "effect": "If there are at least 2 Intrigue on the culprit's starting location, the Protagonists die."
+    },
+    "breakthrough": {
+      "name": "Breakthrough",
+      "effect": "The Protagonist Leader chooses one location or character, and removes 2 Intrigue from there."
+    },
+    "fakedSuicide": {
+      "name": "Faked Suicide",
+      "effect": "Place an Extra card on the culprit. During the remainder of the loop, the Protagonists may not play any cards on character(s) with Extra cards."
+    },
+    "confession": {
+      "name": "Confession",
+      "effect": "Reveal the culprit and the culprit's role."
+    },
+    "portent": {
+      "name": "Portent",
+      "effect": "[When determining whether this incident triggers or not, treat the culprit's Paranoia limit as 1 less than its printed limit.] Place 1 Paranoia on any character in the culprit's location."
+    },
+    "terrorism": {
+      "name": "Terrorism",
+      "effect": "If at least 1 Intrigue on the City: Everyone in the City dies.\nIf at least 2 Intrigue on the City: The Protagonists die."
+    },
+    "bestialMurder": {
+      "name": "Bestial Murder",
+      "effect": "[When determining whether this Incident triggers or not, treat the culprit's Paranoia limit as 1 more than its printed limit.] Resolve \"Serial Murder\" and \"Increasing Unease\" in that order. Then increase the Extra Gauge by 1 more step."
+    },
+    "aSuspiciousLetter": {
+      "name": "A Suspicious Letter",
+      "effect": "Move any character in the culprit's location to any location. If the character actually changed location, the character cannot be moved the next day."
+    },
+    "closedCircle": {
+      "name": "Closed Circle",
+      "effect": "Reveal the culprit's location. For 3 days, including the day the Incident occurred, any movement to or from that location is nullified."
+    },
+    "theSilverBullet": {
+      "name": "The Silver Bullet",
+      "effect": "The loop ends after this Incident step (resuliting in a Protagonist victory unless any loss condition is fulfilled). This incident does not increase the Extra Gauge."
+    },
+    "sacrilegiousMurder": {
+      "name": "Sacrilegious Murder",
+      "effect": "Either kill another character in the same location as the culprit, or place an Intrigue on the culprit's location."
+    },
+    "theExecutioner": {
+      "name": "The Executioner",
+      "effect": "The leader chooses on character. That character is killed."
+    },
+    "darkRumor": {
+      "name": "Dark Rumor",
+      "effect": "Attach a Curse on the culprit."
+    },
+    "barricade": {
+      "name": "Barricade",
+      "effect": "For each other character in the culprit's location, pick any other location and move the character there."
+    },
+    "evilContamination": {
+      "name": "Evil Contamination",
+      "effect": "Place 2 Intrigue on the Shrine."
+    },
+    "nightOfMadness": {
+      "name": "Night of Madness",
+      "effect": "[Mob incident: 0 (will always occur)] If there are 6 or more zombies when this Incident occurs, the Protagonists will die after the day has ended."
+    },
+    "awakenedCurse": {
+      "name": "Awakened Curse",
+      "effect": "[Mob incident: 1] Place a Curse on the culprit's location."
+    },
+    "evangeliumOfTheDead": {
+      "name": "Evangelium of the Dead",
+      "effect": "[Mob incident: 2] Kill all characters in the culprit's location. Then, if that location has 5 or more corpses, the Protagonists are killed."
+    },
+    "fountainOfFilth": {
+      "name": "Fountain of Filth",
+      "effect": "[Mob incident: 2] Place 2 Paranoia on any one character, and an Intrigue on any location."
+    },
+    "insaneMurder": {
+      "name": "Insane Murder",
+      "effect": "Kill any one character in the same location as the culprit."
+    },
+    "massSuicide": {
+      "name": "Mass Suicide",
+      "effect": "If the culprit has at least 1 Intrigue, all characters in the culprit's location are killed."
+    },
+    "fireOfDemise": {
+      "name": "Fire of Demise",
+      "effect": "The first time this incident happens this game session, all characters and the Protagonists are killed."
+    },
+    "houndDogScent": {
+      "name": "Hound Dog Scent",
+      "effect": "When determining whether this incident occurs or not, count Intrigue instead of Paranoia.\nFor the rest of the loop, if another Incident occurs, the Protagonists are killed after the Incident step."
+    },
+    "discovery": {
+      "name": "Discovery",
+      "effect": "Increase the Extra Gauge 1 step."
+    },
+    "serialMurder": {
+      "name": "Serial Murder",
+      "effect": "One other character in the culprit's location dies."
+    }
+  },
+  "locations": {
+    "city": "City",
+    "hospital": "Hospital",
+    "school": "School",
+    "shrine": "Shrine",
+    "chooseEveryLoop": "Choose Every Loop"
+  },
+  "plots": {
+    "murderPlanBasic": { "name": "Murder Plan (Basic)" },
+    "theSealedItemBasic": {
+      "name": "The Sealed Item (Basic)",
+      "plotRule": "If there are at least 2 Intrigue counters on the Shrine, the Protagonists lose."
+    },
+    "signWithMe": {
+      "name": "Sign with me!",
+      "plotRule": "If there are at least 2 Intrigue counters on the Key Person, the Protagonists lose."
+    },
+    "changeOfFuture": {
+      "name": "Change of Future",
+      "plotRule": "If the \"Butterfly Effect\" incident has occurred this loop, the Protagonists lose."
+    },
+    "giantTimeBomb": {
+      "name": "Giant Time Bomb",
+      "plotRule": "If there are at least 2 Intrigue counters on the Witch's starting location, the Protagonists lose."
+    },
+    "lightOfTheAvenger": {
+      "name": "Light of the Avenger",
+      "plotRule": "If there are at least 2 Intrigue counters on the Brain's starting location, the Protagonists lose."
+    },
+    "aPlaceToProtect": {
+      "name": "A Place to Protect",
+      "plotRule": "If there are at least 2 Intrigue counters on the School, the Protagonists lose."
+    },
+    "theSealedItemMidnightZone": {
+      "name": "The Sealed Item (Midnight Zone)",
+      "plotRule": "If there are at least 2 Intrigue counters on the Shrine, the Protagonists lose."
+    },
+    "secretRecord": {
+      "name": "Secret Record",
+      "plotRule": "If the Brain, Factor, or Magician were revealed during this loop, the Protagonists lose."
+    },
+    "maleConfrontation": {
+      "name": "Male Confrontation",
+      "plotRule": "If the Ninja (or its corpse) has at least 2 Intrigue, the Protagonists lose."
+    },
+    "theDevilsHand": { "name": "The Devil's Hand" },
+    "fatedConnections": {
+      "name": "Fated Connections",
+      "plotRule": "Choosen one character that died during the previous loop. Place any Extra Card on that character. Character(s) with an Extra card have their role changed into a Key Person."
+    },
+    "murderPlanMysteryCircle": { "name": "Murder Plan (Mystery Circle)" },
+    "aQuiltOfIncidents": {
+      "name": "A Quilt of Incidents",
+      "plotRule": "If the Extra Gauge is 3 or more, the Protagonists lose."
+    },
+    "tightropePlan": {
+      "name": "Tightrope Plan",
+      "plotRule": "If the Extra Gauge is 1 or lower, the Protagonists lose."
+    },
+    "theBlackSchool": {
+      "name": "The Black School",
+      "plotRule": "If there are at least X Intrigue on the School, the Protagonists lose. X is 1 less than the current loop number."
+    },
+    "aDropOfStrychnine": {
+      "name": "A Drop of Strychnine",
+      "plotRule": "When determining whether \"Serial Murder\" or \"Suicide\" triggers, count Intrigue also as Paranoia."
+    },
+    "aNobleBloodline": { "name": "A Noble Bloodline" },
+    "moonlightBeast": { "name": "Moonlight Beast" },
+    "nightMistNightmare": { "name": "Night Mist Nightmare" },
+    "theOnesFromTheGrave": {
+      "name": "The Ones from the Grave",
+      "plotRule": "All corpses that had the role Person, Coward, or Show-Off change into having the role of Zombie."
+    },
+    "theCursedLand": {
+      "name": "The Cursed Land",
+      "plotRule1": "You may place a Curse on the Ghost's starting location.",
+      "plotRule2": "Unless all Location Curses can be attached to characters, you may kill the protagonists."
+    },
+    "choirToTheOutsideGod": {
+      "name": "Choir to the Outside God",
+      "plotRule": "If there are at least 5 characters with Intrigue on them, the Protagonists lose."
+    },
+    "theSacredWordsOfDagon": {
+      "name": "The Sacred Words of Dagon",
+      "plotRule": "If there are as many or more Intrigue on the Shrine than the Extra Gauge shows, the Protagonists lose (if the Extra Gauge is at zero, the Protagonists always lose.)"
+    },
+    "theKingInYellow": {
+      "name": "The King in Yellow",
+      "plotRule": "If the Extra Gauge has increased at all this loop, the Protagonists lose."
+    },
+    "giantTimeBombAgain": {
+      "name": "Giant Time Bomb Again",
+      "plotRule": "If there are 2 or more Intrigue on the Witch's sstarting location, the Protagonists lose."
+    },
+    "bloodyRites": {
+      "name": "Bloody Rites",
+      "plotRule": "If there are as many or more corpses as the Extra Gauge shows, the Protagonists lose. If the Extra Gauge is on zero, the Protagonists automatically lose."
+    },
+    "circleOfFriends": { "name": "Circle of Friends" },
+    "aLoveAffairBasic": { "name": "A Love Affair (Basic)" },
+    "theHiddenFreakBasic": { "name": "The Hidden Freak (Basic)" },
+    "anUnsettlingRumorBasic": {
+      "name": "An Unsettling Rumor (Basic)",
+      "mastermindAbility": "You may place 1 Intrigue in any location."
+    },
+    "paranoiaVirus": {
+      "name": "Paranoia Virus",
+      "plotRule": "All Persons with at least 3 Paranoia turn into Serial Killers."
+    },
+    "threadsOfFate": {
+      "name": "Threads of Fate",
+      "plotRule": "Place 2 Paranoia on all characters who or whose corpse had Goodwill last loop."
+    },
+    "unknownFactorX": { "name": "Unknown Factor X" },
+    "shadowOfTheRipper": { "name": "Shadow of the Ripper" },
+    "aHideousScript": { "name": "A Hideous Script" },
+    "loveHateSpiral": { "name": "Love-Hate Spiral" },
+    "witchesTeaTime": { "name": "Witches Tea Time" },
+    "diceOfTheGods": {
+      "name": "Dice of the Gods",
+      "plotRule": "Choose one character that died during the previous loop and place any Extra card on that character."
+    },
+    "unsafeTrigger": {
+      "name": "Unsafe Trigger",
+      "mastermindAbility": "Place 1 Intrigue on the (living) Factor's location."
+    },
+    "showtimeOfDeath": {
+      "name": "Showtime of Death",
+      "plotRule": "If there are 6 or less characters alive, the Protagonists lose."
+    },
+    "unansweredHeart": {
+      "name": "Unanswered Heart",
+      "plotRule": "\"Forbid Goodwill\" also has the effect of \"Forbid Movement.\""
+    },
+    "worshippersOfTheApocalypse": {
+      "name": "Worshippers of the Apocalypse",
+      "plotRule": "When determining whether an Incident triggers, and the culprit is a Person, if the Prophet is alive, the culprit is regarded as having one 1 less than its printed Paranoia limit."
+    },
+    "theHiddenFreakMysteryCircle": { "name": "The Hidden Freak (Mystery Circle)" },
+    "isolatedInstitutionPsycho": {
+      "name": "Isolated Institution Psycho",
+      "plotRule": "If the Extra Gauge was 2 or less at the end of the previous loop, increase it by 1."
+    },
+    "smellOfGunpowder": {
+      "name": "Smell of Gunpowder",
+      "plotRule": "If there are a total of 12 or more Paranoia on the remaining characters, the Protagonists lose."
+    },
+    "iAmAMasterDetective": { "name": "I Am a Master Detective" },
+    "danceOfFools": { "name": "Dance of Fools" },
+    "anAbsoluteWill": { "name": "An Absolute Will" },
+    "trickyTwins": { "name": "Tricky Twins" },
+    "thoseWithHabits": { "name": "Those with Habits" },
+    "aLoveAffairPrimeEvil": { "name": "A Love Affair (Prime Evil)" },
+    "witchsCurse": { "name": "Witch's Curse", "plotRule": "You may place a Curse on the Witch's starting location." },
+    "theKeyGirl": { "name": "The Key Girl" },
+    "monsterIntrigue": {
+      "name": "Monster Intrigue",
+      "mastermindAbility": "You may place an Intrigue on one location where a character with Goowill Refusal is."
+    },
+    "panicAndObsession": { "name": "Panic and Obsession" },
+    "peopleWhoDon'tListen": { "name": "People Who Don't Listen" },
+    "anUnsettlingRumorCosmicEvil": {
+      "name": "An Unsettling Rumor (Cosmic Evil)",
+      "mastermindAbility": "The Mastermind may add an Intrigue to a location of their choice."
+    },
+    "theResistance": { "name": "The Resistance" },
+    "peopleWhoSaw": { "name": "People Who Saw" },
+    "theProfoundRace": { "name": "The Profound Race" },
+    "whispersFromTheDeep": {
+      "name": "Whispers from the Deep",
+      "plotRule": "The Paranoiac gains all the abilities of the Key Person."
+    },
+    "theFacelessGod": { "name": "The Faceless God" },
+    "aTwistedTruth": { "name": "A Twisted Truth" }
+  },
+  "roles": {
+    "person": { "name": "Person" },
+    "keyPerson": { "name": "Key Person", "roleAbility": "Protagonists lose and the loop ends immediately." },
+    "killer": {
+      "name": "Killer",
+      "roleAbility1": "If the Key Person has at least 2 Intrigue and is in the same location as the Killer, the Key Person dies.",
+      "roleAbility2": "If this character has at least 4 Intrigue, the Protagonists die."
+    },
+    "brain": { "name": "Brain", "roleAbility": "Place 1 Intrigue on this location or character in this location." },
+    "cultist": {
+      "name": "Cultist",
+      "roleAbility": "Ignore Forbid Intrigue effects in this location or on characters in this location."
+    },
+    "conspiracyTheorist": {
+      "name": "Conspiracy Theorist",
+      "mastermindAbility": "Place 1 Paranoia on a character in this location."
+    },
+    "serialKiller": {
+      "name": "Serial Killer",
+      "roleAbility": "If there is exactly 1 other character in this location, that character dies."
+    },
+    "curmudgeon": { "name": "Curmudgeon" },
+    "friend": {
+      "name": "Friend",
+      "roleAbility1": "If this character is dead, reveal its role.",
+      "roleAbility2": "If this role has been revealed, this character gets 1 Goodwill."
+    },
+    "timeTraveller": {
+      "name": "Time Traveller",
+      "roleAbility1": "Ignore Forbid Goodwill for this character.",
+      "roleAbility2": "If there are 2 Goodwill or fewer on this character, the Protagonists lose."
+    },
+    "lover": { "name": "Lover", "roleAbility": "This character gets 6 Paranoia." },
+    "lovedOne": {
+      "name": "Loved One",
+      "roleAbility1": "This character gets 6 Paranoia.",
+      "roleAbility2": "If this character has at least 3 Paranoia and at least 1 Intrigue, the Protagonists lose."
+    },
+    "factor": {
+      "name": "Factor",
+      "roleAbility1": "If there are at least 2 Intrigue on the School, this character gains the Conspiracy Theorist's ability (but not its role).",
+      "roleAbility2": "If there are at least 2 Intrigue in the City, this character gains the Key Person's ability (but not its role)."
+    },
+    "witch": { "name": "Witch" },
+    "magician": {
+      "name": "Magician",
+      "roleAbility": "Remove all Paranoia from its corpse.",
+      "mastermindAbility": "Move one character with at least one Paranoia from this location to an adjacent location (not diagonal)."
+    },
+    "ninja": {
+      "name": "Ninja",
+      "roleAbility1": "Instead of saying the truth, state any other non-Person role that is in this script.",
+      "roleAbility2": "If there is any character with at least 2 Intrigue in this location, you may kill that character."
+    },
+    "obstinate": {
+      "name": "Obstinate",
+      "roleAbility": "This character always triggers its Incidents, regardless of the amount of Paranoia on it."
+    },
+    "prophet": {
+      "name": "Prophet",
+      "roleAbility1": "The Mastermind cannot place cards on this character.",
+      "roleAbility2": "When determining whether an Incident triggers, and the culprit is another character in this location, that Incident does not trigger, regardless of the number of Paranoia on the culprit."
+    },
+    "immortal": { "name": "Immortal" },
+    "poisoner": {
+      "name": "Poisoner",
+      "roleAbility1": "If the Extra Gauge is at least 2 or more, any one character in this location dies.",
+      "roleAbility2": "If the Extra Gauge is on 4 or more, the Protagonists lose."
+    },
+    "fool": {
+      "name": "Fool",
+      "roleAbility": "After this character has triggered an incident, remove all Paranoia from its card."
+    },
+    "privateInvestigator": {
+      "name": "Private Investigator",
+      "roleAbility": "If the Extra Gauge is 0, and the culprit is in this location, the Incident triggers regardless of the number of Paranoia on the culprit."
+    },
+    "paranoiac": {
+      "name": "Paranoiac",
+      "mastermindAbility": "You may place an Intrigue or Paranoia on this character."
+    },
+    "twin": {
+      "name": "Twin",
+      "roleAbility": "When this character triggers an incident, it is considered as being on the diagonally opposite location."
+    },
+    "therapist": {
+      "name": "Therapist",
+      "mastermindAbility": "If the Extra Gauge is 1 or above, remove 1 Paranoia from any other character in this location."
+    },
+    "vampire": {
+      "name": "Vampire",
+      "roleAbility1": "If the Key Person has at least 2 Intrigue and is in this character's location, you may kill the Key Person.",
+      "roleAbility2": "If there are at least 2 corpses in this character's starting location, you may kill the Protagonists."
+    },
+    "werewolf": {
+      "name": "Werewolf",
+      "roleAbility1": "If Night of Madness occurred this day, you may kill the Protagonists.",
+      "roleAbility2": "The Mastermind cannot place cards on this character."
+    },
+    "nightmare": {
+      "name": "Nightmare",
+      "roleAbility1": "You may kill one character who is in this location.",
+      "roleAbility2": "If there are 3 or more Intrigue on all corpses in total, you may kill the Protagonists."
+    },
+    "ghost": {
+      "name": "Ghost",
+      "mastermindAbility": "If this card is a corpse, place 1 Paranoia on any character in this location, or any character in the Ghost's starting location."
+    },
+    "showOff": {
+      "name": "Show-Off",
+      "roleAbility": "If this character has more than 2 Paranoia, they lose the Unkillable aspect and gains Mandatory Goodwill Refusal."
+    },
+    "coward": {
+      "name": "Coward",
+      "roleAbility": "If this character has 2 or more Paranoia, pick a neighboring location and move this character there."
+    },
+    "sacrifice": {
+      "name": "Sacrifice",
+      "roleAbility1": "If this character has at least 2 Intrigue and at least 2 Paranoia, you may kill all characters and the Protagonists.",
+      "roleAbility2": "When determining whether an incident for which this character is the culprit will occur, also treat Intrigue as Paranoia."
+    },
+    "deepOne": {
+      "name": "Deep One",
+      "roleAbility": "Reveal this character's role and increase the Extra Gauge 1 step.",
+      "mastermindAbility": "You may place 1 Intrigue on this location or any character in this location."
+    },
+    "witness": {
+      "name": "Witness",
+      "roleAbility": "If this character has 4 or more Paranoia, this character dies, and the Extra Gauge increases 1 step."
+    },
+    "faceless": {
+      "name": "Faceless",
+      "roleAbility1": "If the Extra Gauge is 1 or less, this character gains the abilities of a Conspiracy Theorist.",
+      "roleAbility2": "If the Extra Gauge is 2 or more, this character gains the abilities of a Deep One."
+    },
+    "wizard": {
+      "name": "Wizard",
+      "roleAbility1": "If this character is dead, the Protagonists lose.",
+      "roleAbility2": "When this character's Goodwill ability is used, reveal this role after resolution. Then, the leader may increase the Extra Gauge 1 step."
+    }
+  },
+  "scaffolding": {
+    "title": "Tragedy Looper Generator",
+    "generator": "Generator",
+    "editor": "Editor",
+    "generateScript": "Generate Script",
+    "cheatsheet": "Cheatsheet",
+    "comingSoon": "Coming Soon"
+  },
+  "terms": {
+    "character_one": "Character",
+    "character_other": "Characters",
+    "role_one": "Role",
+    "role_other": "Roles",
+    "tragedySet": "Tragedy Set",
+    "castSize": "Cast Size",
+    "day_one": "Day",
+    "day_other": "Days",
+    "name": "Name",
+    "culprit": "Culprit",
+    "incident_one": "Incident",
+    "incident_other": "Incidents",
+    "loops": "Loops",
+    "mechanic": "Mechanic",
+    "mastermind": "Mastermind",
+    "player_one": "Player",
+    "player_other": "Players",
+    "mastermindAbilities": "Mastermind Abilities",
+    "mandatory": "Mandatory",
+    "optional": "Optional",
+    "triggeredBy": "Triggered By",
+    "effect": "Effect",
+    "perDay": "Per Day",
+    "perLoop": "Per Loop",
+    "mainPlot": "Main Plot",
+    "subplot_one": "Subplot",
+    "subplot_other": "Subplots",
+    "entersOnLoop": "(enters on Loop {{loop}})",
+    "source": "Source",
+    "trigger": "Trigger",
+    "plotRule": "Plot Rule",
+    "roleAbility_one": "Role Ability",
+    "roleAbility_other": "Role Abilities",
+    "winConditions": "Win Conditions"
+  },
+  "tragedySets": {
+    "firstSteps": "First Steps",
+    "basicTragedy": "Basic Tragedy",
+    "midnightZone": "Midnight Zone",
+    "mysteryCircle": "Mystery Circle",
+    "primeEvil": "Prime Evil",
+    "cosmicMythology": "Cosmic Mythology"
+  },
+  "triggers": {
+    "always": "Always",
+    "loopStart": "Loop Start",
+    "cardResolve": "Card Resolve",
+    "goodwillAbilityStep": "Goodwill Ability Step",
+    "incidentStep": "Incident Step",
+    "dayEnd": "Day End",
+    "dayEndLastDay": "Day End (Last Day)",
+    "loopEnd": "Loop End",
+    "whenThisRoleIsToBeRevealed": "When this Role is to be Revealed",
+    "whenCharacterDies": "When Character Dies",
+    "whenTheLoverDies": "When the Lover Dies",
+    "whenTheLovedOneDies": "When the Loved One Dies"
+  },
+  "warnings": {
+    "castSizeOverridden": "Cast size has been overridden to {{needed}} in order to have enough for each required role."
+  }
+}
