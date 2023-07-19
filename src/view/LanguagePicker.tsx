@@ -9,7 +9,7 @@ interface LanguagePickerProps {
 
 export function LanguagePicker(props: LanguagePickerProps) {
   return (
-    <Select value={props.value} onChange={(e) => props.onChange(e.target.value as SupportedLanguage)} size="small">
+    <Select value={props.value} onChange={(e) => props.onChange(e.target.value)} size="small">
       {SupportedLanguages.map((lang) => (
         <MenuItem key={`lng-${lang}`} value={lang}>
           <Box sx={{ display: "flex", flexDirection: "row", gap: 1 }}>
@@ -33,6 +33,15 @@ const flags: Record<SupportedLanguage, React.JSX.Element> = {
       <path d="M0,0 50,30M50,0 0,30" stroke="#fff" stroke-width="6" />
       <path d="M0,0 50,30M50,0 0,30" clip-path="url(#t)" stroke="#C8102E" stroke-width="4" />
       <path d="M-1 11h22v-12h8v12h22v8h-22v12h-8v-12h-22z" fill="#C8102E" stroke="#FFF" stroke-width="2" />
+    </svg>
+  ),
+  fr: (
+    // <https://upload.wikimedia.org/wikipedia/en/c/c3/Flag_of_France.svg>
+    // hand-edited viewBox to be legible
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 900 600" width="900" height="600">
+      <rect width="900" height="600" fill="#CE1126" />
+      <rect width="600" height="600" fill="#FFFFFF" />
+      <rect width="300" height="600" fill="#002654" />
     </svg>
   ),
 };
