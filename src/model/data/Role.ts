@@ -1,24 +1,29 @@
+import { ParseKeys } from 'i18next';
 import { CastMember } from '../CastMember';
 import { Character } from './Character';
 import { MastermindAbility } from './MastermindAbility';
 import { RoleAbility } from './RoleAbility';
 
+// no loc required, these types are just informational for generation - no ui
+type Culprit = 'Never' | 'Optional' | 'Mandatory';
+type GoodwillRefusal = 'Optional' | 'Mandatory';
+
 export class Role {
   readonly id: string;
-  readonly name: string;
+  readonly name_i18n_key: ParseKeys;
   readonly unkillable: boolean;
-  readonly culprit: 'Never' | 'Optional' | 'Mandatory';
+  readonly culprit: Culprit;
   readonly connectedToBoard: boolean;
   readonly connectedToLossCondition: boolean;
   readonly max?: number;
-  readonly goodwillRefusal?: 'Optional' | 'Mandatory';
+  readonly goodwillRefusal?: GoodwillRefusal;
   readonly abilities: Array<RoleAbility>;
   readonly mastermindAbilities: Array<MastermindAbility>;
   readonly condition?: RoleCondition;
 
   constructor(role: RoleArgs, condition?: RoleCondition) {
     this.id = role.id;
-    this.name = role.name;
+    this.name_i18n_key = role.name_i18n_key;
     this.unkillable = role.unkillable;
     this.culprit = role.culprit;
     this.connectedToBoard = role.connectedToBoard;
@@ -40,13 +45,13 @@ export class ConditionalRole extends Role {
 // Create it with just a base role.
 interface RoleArgs {
   readonly id: string;
-  readonly name: string;
+  readonly name_i18n_key: ParseKeys;
   readonly unkillable: boolean;
-  readonly culprit: 'Never' | 'Optional' | 'Mandatory';
+  readonly culprit: Culprit;
   readonly connectedToBoard: boolean;
   readonly connectedToLossCondition: boolean;
   readonly max?: number;
-  readonly goodwillRefusal?: 'Optional' | 'Mandatory';
+  readonly goodwillRefusal?: GoodwillRefusal;
   readonly abilities: Array<RoleAbility>;
   readonly mastermindAbilities: Array<MastermindAbility>;
 }

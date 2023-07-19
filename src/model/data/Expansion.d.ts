@@ -1,7 +1,8 @@
 import { TragedySet } from './TragedySet';
+import { ParseKeys } from 'i18next';
 
 export interface Expansion {
   readonly id: string;
-  readonly name: string;
+  readonly name_i18n_key: ParseKeys;
   readonly tragedySets: Array<TragedySet>;
 }

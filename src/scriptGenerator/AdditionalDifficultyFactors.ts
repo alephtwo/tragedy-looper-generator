@@ -1,8 +1,8 @@
-import { Character } from '../types/data/Character';
-import { Incident } from '../types/data/Incident';
-import { Plot } from '../types/data/Plot';
-import { Role } from '../types/data/Role';
-import { Script } from '../types/Script';
+import { Character } from '../model/data/Character';
+import { Incident } from '../model/data/Incident';
+import { Plot } from '../model/data/Plot';
+import { Role } from '../model/data/Role';
+import { Script } from '../model/Script';
 import * as _ from 'lodash';
 
 export type DifficultyFactor = -1 | 0 | 1;

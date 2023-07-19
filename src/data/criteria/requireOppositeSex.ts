@@ -1,6 +1,6 @@
-import { CastMember } from '../../types/CastMember';
-import { Character } from '../../types/data/Character';
-import { Role } from '../../types/data/Role';
+import { CastMember } from '../../model/CastMember';
+import { Character } from '../../model/data/Character';
+import { Role } from '../../model/data/Role';
 
 export const requireOppositeSex =
   (role: Role) =>

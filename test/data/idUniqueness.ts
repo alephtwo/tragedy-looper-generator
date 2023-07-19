@@ -4,6 +4,7 @@ import { describe } from 'mocha';
 import { Characters } from '../../src/data/Characters';
 import { Expansions } from '../../src/data/Expansions';
 import { Incidents } from '../../src/data/Incidents';
+import { Locations } from '../../src/data/Locations';
 import { MainPlots, Subplots } from '../../src/data/Plots';
 import { Roles } from '../../src/data/Roles';
 import { TragedySets } from '../../src/data/TragedySets';
@@ -15,6 +16,7 @@ describe('ID Uniqueness Check', () => {
       ..._.values(Characters).map((c) => c.id),
       ..._.values(Expansions).map((e) => e.id),
       ..._.values(Incidents).map((i) => i.id),
+      ..._.values(Locations).map((l) => l.id),
       ..._.values(MainPlots).map((i) => i.id),
       ..._.values(Subplots).map((i) => i.id),
       ..._.values(Roles).map((r) => r.id),

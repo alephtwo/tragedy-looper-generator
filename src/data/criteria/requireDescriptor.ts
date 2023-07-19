@@ -1,4 +1,4 @@
-import { Character, Descriptor } from '../../types/data/Character';
+import { Character, Descriptor } from '../../model/data/Character';
 
 export const requireDescriptor =
   (descriptor: Descriptor) =>

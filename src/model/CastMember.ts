@@ -2,6 +2,7 @@ import { Character } from './data/Character';
 import { Role } from './data/Role';
 import { IncidentOccurrence } from './IncidentOccurrence';
 import * as uuid from 'uuid';
+import { i18n as i18next } from 'i18next';
 
 export class CastMember {
   readonly id: string;
@@ -16,8 +17,8 @@ export class CastMember {
     this.incidentTriggers = args.incidentTriggers;
   }
 
-  describe(): string {
-    return `${this.character.name} (${this.role.name})`;
+  describe(i18n: i18next): string {
+    return `${i18n.t(this.character.name_i18n_key)} (${i18n.t(this.role.name_i18n_key)})`;
   }
 }
 
