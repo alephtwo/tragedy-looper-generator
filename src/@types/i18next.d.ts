@@ -1,8 +1,8 @@
-import * as en from '../static/locales/en.json';
+import * as en from "../static/locales/en.json";
 
-declare module 'i18next' {
+declare module "i18next" {
   interface CustomTypeOptions {
-    defaultNS: 'en';
+    defaultNS: "en";
     resources: {
       en: typeof en;
     };

@@ -1,16 +1,16 @@
-import { Divider, Paper, Table, TableBody, TableCell, TableHead, TableRow, Typography } from '@mui/material';
-import * as _ from 'lodash';
-import * as React from 'react';
-import { CastMember } from '../model/CastMember';
-import { Incident } from '../model/data/Incident';
-import { MastermindAbility } from '../model/data/MastermindAbility';
-import { Plot } from '../model/data/Plot';
-import { PlotRule } from '../model/data/PlotRule';
-import { RoleAbility } from '../model/data/RoleAbility';
-import { IncidentOccurrence } from '../model/IncidentOccurrence';
-import { Script } from '../model/Script';
-import { useTranslation } from 'react-i18next';
-import { i18n as i18next } from 'i18next';
+import { Divider, Paper, Table, TableBody, TableCell, TableHead, TableRow, Typography } from "@mui/material";
+import * as _ from "lodash";
+import * as React from "react";
+import { CastMember } from "../model/CastMember";
+import { Incident } from "../model/data/Incident";
+import { MastermindAbility } from "../model/data/MastermindAbility";
+import { Plot } from "../model/data/Plot";
+import { PlotRule } from "../model/data/PlotRule";
+import { RoleAbility } from "../model/data/RoleAbility";
+import { IncidentOccurrence } from "../model/IncidentOccurrence";
+import { Script } from "../model/Script";
+import { useTranslation } from "react-i18next";
+import { i18n as i18next } from "i18next";
 
 interface CheatsheetProps {
   script: Script;
@@ -33,25 +33,25 @@ export function Cheatsheet(props: CheatsheetProps): JSX.Element {
   return (
     <Paper sx={styles.paper}>
       <Typography variant="h1" align="center">
-        {t('scaffolding.cheatsheet')}
+        {t("scaffolding.cheatsheet")}
       </Typography>
       <Divider sx={styles.extraBottomMargin} />
       <WinConditions plots={props.script.plots()} roleAbilities={roleAbilities} incidents={allIncidents} />
-      <Typography variant="h2">{t('terms.mastermindAbilities')}</Typography>
+      <Typography variant="h2">{t("terms.mastermindAbilities")}</Typography>
       <Table size="small" sx={styles.extraBottomMargin}>
         <TableHead>
           <TableRow>
-            <TableCell>{t('terms.mandatory')}</TableCell>
-            <TableCell>{t('terms.triggeredBy')}</TableCell>
-            <TableCell>{t('terms.effect')}</TableCell>
-            <TableCell>{t('terms.perDay')}</TableCell>
-            <TableCell>{t('terms.perLoop')}</TableCell>
+            <TableCell>{t("terms.mandatory")}</TableCell>
+            <TableCell>{t("terms.triggeredBy")}</TableCell>
+            <TableCell>{t("terms.effect")}</TableCell>
+            <TableCell>{t("terms.perDay")}</TableCell>
+            <TableCell>{t("terms.perLoop")}</TableCell>
           </TableRow>
         </TableHead>
         <TableBody>
           {mastermindAbilities.map((mat, i) => (
             <TableRow key={`cheatsheet-ma-${i}`}>
-              <TableCell>{t(mat.ability.optional ? 'terms.optional' : 'terms.mandatory')}</TableCell>
+              <TableCell>{t(mat.ability.optional ? "terms.optional" : "terms.mandatory")}</TableCell>
               <TableCell>{mat.triggerer}</TableCell>
               <TableCell>{t(mat.ability.effect_i18n_key)}</TableCell>
               <TableCell>{mat.ability.timesPerDay}</TableCell>
@@ -60,22 +60,22 @@ export function Cheatsheet(props: CheatsheetProps): JSX.Element {
           ))}
         </TableBody>
       </Table>
-      <Typography variant="h2">{t('terms.roleAbility', { count: 2 })}</Typography>
+      <Typography variant="h2">{t("terms.roleAbility", { count: 2 })}</Typography>
       <Table size="small" sx={styles.extraBottomMargin}>
         <TableHead>
           <TableRow>
-            <TableCell>{t('terms.trigger')}</TableCell>
-            <TableCell>{t('terms.mandatory')}</TableCell>
-            <TableCell>{t('terms.triggeredBy')}</TableCell>
-            <TableCell>{t('terms.effect')}</TableCell>
-            <TableCell>{t('terms.perLoop')}</TableCell>
+            <TableCell>{t("terms.trigger")}</TableCell>
+            <TableCell>{t("terms.mandatory")}</TableCell>
+            <TableCell>{t("terms.triggeredBy")}</TableCell>
+            <TableCell>{t("terms.effect")}</TableCell>
+            <TableCell>{t("terms.perLoop")}</TableCell>
           </TableRow>
         </TableHead>
         <TableBody>
           {sortRoleAbilities(roleAbilities).map((a, i) => (
             <TableRow key={`cheatsheet-ra-${i}`}>
               <TableCell>{t(a.ability.trigger.description_i18n_key)}</TableCell>
-              <TableCell>{t(a.ability.optional ? 'terms.optional' : 'terms.mandatory')}</TableCell>
+              <TableCell>{t(a.ability.optional ? "terms.optional" : "terms.mandatory")}</TableCell>
               <TableCell>{a.triggerer}</TableCell>
               <TableCell>{t(a.ability.effect_i18n_key)}</TableCell>
               <TableCell>{a.ability.timesPerLoop}</TableCell>
@@ -83,14 +83,14 @@ export function Cheatsheet(props: CheatsheetProps): JSX.Element {
           ))}
         </TableBody>
       </Table>
-      <Typography variant="h2">{t('terms.incident', { count: 2 })}</Typography>
+      <Typography variant="h2">{t("terms.incident", { count: 2 })}</Typography>
       <Table size="small" sx={styles.extraBottomMargin}>
         <TableHead>
           <TableRow>
-            <TableCell>{t('terms.day_one')}</TableCell>
-            <TableCell>{t('terms.incident_one')}</TableCell>
-            <TableCell>{t('terms.culprit')}</TableCell>
-            <TableCell>{t('terms.effect')}</TableCell>
+            <TableCell>{t("terms.day_one")}</TableCell>
+            <TableCell>{t("terms.incident_one")}</TableCell>
+            <TableCell>{t("terms.culprit")}</TableCell>
+            <TableCell>{t("terms.effect")}</TableCell>
           </TableRow>
         </TableHead>
         <TableBody>
@@ -129,20 +129,20 @@ function WinConditions(props: WinConditionsProps): JSX.Element {
 
   return (
     <>
-      <Typography variant="h2">{t('terms.winConditions')}</Typography>
+      <Typography variant="h2">{t("terms.winConditions")}</Typography>
       <Table size="small" sx={styles.extraBottomMargin}>
         <TableHead>
           <TableRow>
-            <TableCell>{t('terms.mechanic')}</TableCell>
-            <TableCell>{t('terms.source')}</TableCell>
-            <TableCell>{t('terms.trigger')}</TableCell>
-            <TableCell>{t('terms.effect')}</TableCell>
+            <TableCell>{t("terms.mechanic")}</TableCell>
+            <TableCell>{t("terms.source")}</TableCell>
+            <TableCell>{t("terms.trigger")}</TableCell>
+            <TableCell>{t("terms.effect")}</TableCell>
           </TableRow>
         </TableHead>
         <TableBody>
           {_.uniqBy(fromPlotRules, (pr) => pr.id).map((pr) => (
             <TableRow key={`wc-${pr.id}`}>
-              <TableCell>{t('terms.plotRule')}</TableCell>
+              <TableCell>{t("terms.plotRule")}</TableCell>
               <TableCell />
               <TableCell>{t(pr.trigger.description_i18n_key)}</TableCell>
               <TableCell>{t(pr.effect_i18n_key)}</TableCell>
@@ -152,7 +152,7 @@ function WinConditions(props: WinConditionsProps): JSX.Element {
             _.uniqWith(fromRoleAbilities, (a, b) => a.ability.id === b.ability.id && a.triggerer === b.triggerer),
           ).map((ra) => (
             <TableRow key={`wc-${ra.ability.id}-${ra.triggerer}`}>
-              <TableCell>{t('terms.roleAbility_one')}</TableCell>
+              <TableCell>{t("terms.roleAbility_one")}</TableCell>
               <TableCell>{ra.triggerer}</TableCell>
               <TableCell>{t(ra.ability.trigger.description_i18n_key)}</TableCell>
               <TableCell>{t(ra.ability.effect_i18n_key)}</TableCell>
@@ -160,7 +160,7 @@ function WinConditions(props: WinConditionsProps): JSX.Element {
           ))}
           {_.uniqBy(fromIncidents, (i) => i.id).map((i) => (
             <TableRow key={`wc-${i.id}`}>
-              <TableCell>{t('terms.incident_one')}</TableCell>
+              <TableCell>{t("terms.incident_one")}</TableCell>
               <TableCell>{t(i.name_i18n_key)}</TableCell>
               <TableCell />
               <TableCell>{t(i.effect_i18n_key)}</TableCell>

@@ -1,13 +1,13 @@
-import * as React from 'react';
-import { useState, useEffect } from 'react';
-import { AppBar, Box, Container, Grid, MenuItem, Select, Tab, Tabs } from '@mui/material';
-import { ScriptGenerator } from './scriptGenerator/ScriptGenerator';
-import { Script } from './model/Script';
-import { ReferenceCards } from './referenceCard/ReferenceCards';
-import { Cheatsheet } from './referenceCard/Cheatsheet';
-import { TragedySets } from './data/TragedySets';
-import { ScriptEditor } from './scriptEditor/ScriptEditor';
-import { useTranslation } from 'react-i18next';
+import * as React from "react";
+import { useState, useEffect } from "react";
+import { AppBar, Box, Container, Grid, MenuItem, Select, Tab, Tabs } from "@mui/material";
+import { ScriptGenerator } from "./scriptGenerator/ScriptGenerator";
+import { Script } from "./model/Script";
+import { ReferenceCards } from "./referenceCard/ReferenceCards";
+import { Cheatsheet } from "./referenceCard/Cheatsheet";
+import { TragedySets } from "./data/TragedySets";
+import { ScriptEditor } from "./scriptEditor/ScriptEditor";
+import { useTranslation } from "react-i18next";
 
 const initialScript: Script = new Script({
   tragedySet: TragedySets.basicTragedy,
@@ -24,7 +24,7 @@ export function Application(): JSX.Element {
   const [lang, setLang] = useState(i18n.language);
 
   useEffect(() => {
-    document.title = t('scaffolding.title');
+    document.title = t("scaffolding.title");
   });
 
   return (
@@ -33,17 +33,17 @@ export function Application(): JSX.Element {
         <Grid item xs={12}>
           <AppBar position="static">
             <Tabs
-              sx={{ display: 'flex' }}
+              sx={{ display: "flex" }}
               value={tab}
               onChange={(_e, v: number) => setTab(v)}
               textColor="secondary"
               indicatorColor="secondary"
             >
-              <Tab sx={{ color: 'white' }} label={t('scaffolding.generator')} />
-              <Tab sx={{ color: 'white' }} label={t('scaffolding.editor')} />
-              <Box sx={{ margin: 1, flexGrow: 1, display: 'flex', justifyContent: 'flex-end' }}>
+              <Tab sx={{ color: "white" }} label={t("scaffolding.generator")} />
+              <Tab sx={{ color: "white" }} label={t("scaffolding.editor")} />
+              <Box sx={{ margin: 1, flexGrow: 1, display: "flex", justifyContent: "flex-end" }}>
                 <Select
-                  sx={{ color: 'white' }}
+                  sx={{ color: "white" }}
                   size="small"
                   variant="outlined"
                   value={lang}
@@ -52,7 +52,7 @@ export function Application(): JSX.Element {
                     setLang(e.target.value);
                   }}
                 >
-                  <MenuItem value={'en'}>🇬🇧 EN</MenuItem>
+                  <MenuItem value={"en"}>🇬🇧 EN</MenuItem>
                 </Select>
               </Box>
             </Tabs>

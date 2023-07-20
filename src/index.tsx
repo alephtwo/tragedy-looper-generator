@@ -1,8 +1,8 @@
-import * as React from 'react';
-import { createRoot } from 'react-dom/client';
-import { Application } from './Application';
-import './i18n';
-import { colors as Colors, createTheme, CssBaseline, ThemeProvider } from '@mui/material';
+import * as React from "react";
+import { createRoot } from "react-dom/client";
+import { Application } from "./Application";
+import "./i18n";
+import { colors as Colors, createTheme, CssBaseline, ThemeProvider } from "@mui/material";
 
 const theme = createTheme({
   palette: {
@@ -14,11 +14,11 @@ const theme = createTheme({
   },
   typography: {
     h1: {
-      fontSize: '2rem',
+      fontSize: "2rem",
       fontWeight: 500,
     },
     h2: {
-      fontSize: '1.5rem',
+      fontSize: "1.5rem",
       fontWeight: 400,
     },
   },
@@ -33,5 +33,5 @@ const app = (
   </React.Suspense>
 );
 
-const root = createRoot(document.getElementById('app') as HTMLDivElement);
+const root = createRoot(document.getElementById("app") as HTMLDivElement);
 root.render(app);

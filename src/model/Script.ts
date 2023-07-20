@@ -1,8 +1,8 @@
-import { estimateLoops } from '../scriptGenerator/estimateLoops';
-import { CastMember } from './CastMember';
-import { Plot } from './data/Plot';
-import { TragedySet } from './data/TragedySet';
-import { IncidentOccurrence } from './IncidentOccurrence';
+import { estimateLoops } from "../scriptGenerator/estimateLoops";
+import { CastMember } from "./CastMember";
+import { Plot } from "./data/Plot";
+import { TragedySet } from "./data/TragedySet";
+import { IncidentOccurrence } from "./IncidentOccurrence";
 
 export class Script {
   readonly tragedySet: TragedySet;

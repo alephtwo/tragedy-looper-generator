@@ -1,9 +1,9 @@
-import { ParseKeys } from 'i18next';
-import { Script } from '../Script';
-import { Incident } from './Incident';
-import { MastermindAbility } from './MastermindAbility';
-import { PlotRule } from './PlotRule';
-import { Role } from './Role';
+import { ParseKeys } from "i18next";
+import { Script } from "../Script";
+import { Incident } from "./Incident";
+import { MastermindAbility } from "./MastermindAbility";
+import { PlotRule } from "./PlotRule";
+import { Role } from "./Role";
 
 export interface Plot {
   readonly id: string;

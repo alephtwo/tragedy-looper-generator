@@ -1,12 +1,12 @@
-import * as React from 'react';
-import * as _ from 'lodash';
-import { Divider, Paper, Table, TableHead, TableBody, TableRow, TableCell, Typography } from '@mui/material';
-import { Script } from '../model/Script';
-import { CastMember } from '../model/CastMember';
-import { Incident } from '../model/data/Incident';
-import { Character } from '../model/data/Character';
-import { Role } from '../model/data/Role';
-import { useTranslation } from 'react-i18next';
+import * as React from "react";
+import * as _ from "lodash";
+import { Divider, Paper, Table, TableHead, TableBody, TableRow, TableCell, Typography } from "@mui/material";
+import { Script } from "../model/Script";
+import { CastMember } from "../model/CastMember";
+import { Incident } from "../model/data/Incident";
+import { Character } from "../model/data/Character";
+import { Role } from "../model/data/Role";
+import { useTranslation } from "react-i18next";
 
 interface ReferenceCardProps {
   script: Script;
@@ -17,9 +17,9 @@ export function ReferenceCard(props: ReferenceCardProps): JSX.Element {
   const { t } = useTranslation();
 
   return (
-    <Paper sx={{ padding: 2, height: '100%' }}>
+    <Paper sx={{ padding: 2, height: "100%" }}>
       <Typography variant="h1" align="center">
-        {mastermind ? t('terms.mastermind') : t('terms.player', { count: 2 })}
+        {mastermind ? t("terms.mastermind") : t("terms.player", { count: 2 })}
       </Typography>
       <Divider sx={styles.extraBottomMargin} />
       <Table size="small" sx={styles.extraBottomMargin}>
@@ -43,15 +43,15 @@ function TragedySetInformation(props: TragedySetInformationProps) {
   return (
     <>
       <TableRow>
-        <TableCell variant="head">{t('terms.tragedySet')}</TableCell>
+        <TableCell variant="head">{t("terms.tragedySet")}</TableCell>
         <TableCell>{t(script.tragedySet.name_i18n_key)}</TableCell>
       </TableRow>
       <TableRow>
-        <TableCell variant="head">{t('terms.castSize')}</TableCell>
+        <TableCell variant="head">{t("terms.castSize")}</TableCell>
         <TableCell>{script.days}</TableCell>
       </TableRow>
       <TableRow>
-        <TableCell variant="head">{t('terms.loops')}</TableCell>
+        <TableCell variant="head">{t("terms.loops")}</TableCell>
         <TableCell>{script.loops}</TableCell>
       </TableRow>
     </>
@@ -73,7 +73,7 @@ function PlotInformation(props: PlotInformationProps): JSX.Element {
 
   const subplots = _.sortBy(script.subplots, (s) => t(s.name_i18n_key)).map((s, i) => (
     <TableRow key={`subplot-${s.id}`}>
-      <TableCell variant="head">{i === 0 ? t('terms.subplot', { count: script.subplots.length }) : ''}</TableCell>
+      <TableCell variant="head">{i === 0 ? t("terms.subplot", { count: script.subplots.length }) : ""}</TableCell>
       <TableCell>{t(s.name_i18n_key)}</TableCell>
     </TableRow>
   ));
@@ -81,7 +81,7 @@ function PlotInformation(props: PlotInformationProps): JSX.Element {
   return (
     <>
       <TableRow>
-        <TableCell variant="head">{t('terms.mainPlot')}</TableCell>
+        <TableCell variant="head">{t("terms.mainPlot")}</TableCell>
         <TableCell>{t(props.script.mainPlot.name_i18n_key)}</TableCell>
       </TableRow>
       {subplots}
@@ -106,7 +106,7 @@ function CastInformation(props: CastMembersProps): JSX.Element {
     if (c.character.loopToEnter <= 1) {
       return name;
     }
-    return `${name} ${t('terms.entersOnLoop', { loop: c.character.loopToEnter })}`;
+    return `${name} ${t("terms.entersOnLoop", { loop: c.character.loopToEnter })}`;
   };
 
   const cast = _.sortBy(props.cast, (p) => t(p.character.name_i18n_key)).map((c) => {
@@ -126,8 +126,8 @@ function CastInformation(props: CastMembersProps): JSX.Element {
       <Table size="small" sx={styles.extraBottomMargin}>
         <TableHead>
           <TableRow>
-            <TableCell>{t('terms.character', { count: 1 })}</TableCell>
-            <TableCell>{t('terms.role', { count: 1 })}</TableCell>
+            <TableCell>{t("terms.character", { count: 1 })}</TableCell>
+            <TableCell>{t("terms.role", { count: 1 })}</TableCell>
           </TableRow>
         </TableHead>
         <TableBody>{cast}</TableBody>
@@ -157,7 +157,7 @@ function IncidentsInformation(props: IncidentsInformationProps) {
   };
 
   const incidents = _.sortBy(describeIncidents(props.cast), (i) => i.day).map((i) => (
-    <TableRow key={`${props.mastermind ? 'm' : 'c'}-${i.id}`}>
+    <TableRow key={`${props.mastermind ? "m" : "c"}-${i.id}`}>
       <TableCell>{i.day}</TableCell>
       <TableCell>{wrapFakeIncident(i)}</TableCell>
       {props.mastermind ? <TableCell>{t(i.character.name_i18n_key)}</TableCell> : <></>}
@@ -166,13 +166,13 @@ function IncidentsInformation(props: IncidentsInformationProps) {
 
   return (
     <>
-      <Typography variant="h2">{t('terms.incident', { count: incidents.length })}</Typography>
+      <Typography variant="h2">{t("terms.incident", { count: incidents.length })}</Typography>
       <Table size="small" sx={styles.extraBottomMargin}>
         <TableHead>
           <TableRow>
-            <TableCell>{t('terms.day', { count: 1 })}</TableCell>
-            <TableCell>{t('terms.name')}</TableCell>
-            {props.mastermind ? <TableCell>{t('terms.culprit')}</TableCell> : <></>}
+            <TableCell>{t("terms.day", { count: 1 })}</TableCell>
+            <TableCell>{t("terms.name")}</TableCell>
+            {props.mastermind ? <TableCell>{t("terms.culprit")}</TableCell> : <></>}
           </TableRow>
         </TableHead>
         <TableBody>{incidents}</TableBody>

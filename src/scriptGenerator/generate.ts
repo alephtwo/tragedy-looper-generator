@@ -1,17 +1,17 @@
-import { produce } from 'immer';
-import * as _ from 'lodash';
-import { Characters } from '../data/Characters';
-import { Incidents } from '../data/Incidents';
-import { Roles } from '../data/Roles';
-import { CastMember } from '../model/CastMember';
-import { Character } from '../model/data/Character';
-import { Incident } from '../model/data/Incident';
-import { Plot } from '../model/data/Plot';
-import { Role } from '../model/data/Role';
-import { TragedySet } from '../model/data/TragedySet';
-import { IncidentOccurrence } from '../model/IncidentOccurrence';
-import { Script } from '../model/Script';
-import { i18n as i18next } from 'i18next';
+import { produce } from "immer";
+import * as _ from "lodash";
+import { Characters } from "../data/Characters";
+import { Incidents } from "../data/Incidents";
+import { Roles } from "../data/Roles";
+import { CastMember } from "../model/CastMember";
+import { Character } from "../model/data/Character";
+import { Incident } from "../model/data/Incident";
+import { Plot } from "../model/data/Plot";
+import { Role } from "../model/data/Role";
+import { TragedySet } from "../model/data/TragedySet";
+import { IncidentOccurrence } from "../model/IncidentOccurrence";
+import { Script } from "../model/Script";
+import { i18n as i18next } from "i18next";
 
 export interface GenerateArgs {
   tragedySet: TragedySet;
@@ -72,7 +72,7 @@ function fillRemainingRoles(roles: Array<Role>, castSize: number, i18n: i18next)
   // If the castSize is less than the number of required plots... sorry, users.
   const needed = Math.max(castSize, roles.length);
   if (needed != castSize) {
-    console.warn(`${i18n.t('warnings.castSizeOverridden', { needed })}`);
+    console.warn(`${i18n.t("warnings.castSizeOverridden", { needed })}`);
   }
   // We want to return an array of length equal to castSize.
   // Fill the rest with "Person" roles.
@@ -203,7 +203,7 @@ function assignDayToIncident(state: AssignDayToIncidentState, incident: Incident
 function assignIncidentsToCast(cast: Array<CastMember>, incidents: Array<IncidentOccurrence>): Array<CastMember> {
   return produce(cast, (next) => {
     // Who _could_ be a culprit here?
-    let culpritPool = [...next.filter((c) => c.role.culprit !== 'Never')];
+    let culpritPool = [...next.filter((c) => c.role.culprit !== "Never")];
     incidents.forEach((incident) => {
       // If we are attempting to assign a serial murder and one has already been assigned, we will assign it to the same culprit.
       // TODO: Support that it _might_ be the same culprit, but doesn't have to be. Coin flip?
@@ -221,7 +221,7 @@ function assignIncidentsToCast(cast: Array<CastMember>, incidents: Array<Inciden
 
       // We know we're not dealing with a serial murderer here.
       // If there is a culprit candidate who is mandatory but hasn't yet been assigned, let's do that.
-      const required = culpritPool.filter((c) => c.role.culprit === 'Mandatory' && c.incidentTriggers.length === 0);
+      const required = culpritPool.filter((c) => c.role.culprit === "Mandatory" && c.incidentTriggers.length === 0);
 
       // Pick a culprit.
       const culprit = (required.length > 0 ? _.first(required) : _.sample(culpritPool)) as CastMember;

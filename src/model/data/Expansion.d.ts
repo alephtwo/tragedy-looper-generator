@@ -1,5 +1,5 @@
-import { TragedySet } from './TragedySet';
-import { ParseKeys } from 'i18next';
+import { TragedySet } from "./TragedySet";
+import { ParseKeys } from "i18next";
 
 export interface Expansion {
   readonly id: string;

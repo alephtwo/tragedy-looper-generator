@@ -1,17 +1,17 @@
-import { assert } from 'chai';
-import * as _ from 'lodash';
-import { describe } from 'mocha';
-import { Characters } from '../../src/data/Characters';
-import { Expansions } from '../../src/data/Expansions';
-import { Incidents } from '../../src/data/Incidents';
-import { Locations } from '../../src/data/Locations';
-import { MainPlots, Subplots } from '../../src/data/Plots';
-import { Roles } from '../../src/data/Roles';
-import { TragedySets } from '../../src/data/TragedySets';
-import { Triggers } from '../../src/data/Triggers';
+import { assert } from "chai";
+import * as _ from "lodash";
+import { describe } from "mocha";
+import { Characters } from "../../src/data/Characters";
+import { Expansions } from "../../src/data/Expansions";
+import { Incidents } from "../../src/data/Incidents";
+import { Locations } from "../../src/data/Locations";
+import { MainPlots, Subplots } from "../../src/data/Plots";
+import { Roles } from "../../src/data/Roles";
+import { TragedySets } from "../../src/data/TragedySets";
+import { Triggers } from "../../src/data/Triggers";
 
-describe('ID Uniqueness Check', () => {
-  it('Ensure uniqueness of all ids', () => {
+describe("ID Uniqueness Check", () => {
+  it("Ensure uniqueness of all ids", () => {
     const ids = [
       ..._.values(Characters).map((c) => c.id),
       ..._.values(Expansions).map((e) => e.id),

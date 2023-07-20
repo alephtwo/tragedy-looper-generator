@@ -1,12 +1,12 @@
-import { Incidents } from './Incidents';
-import { TragedySet } from '../model/data/TragedySet';
-import { MainPlots, Subplots } from './Plots';
-import { Characters } from './Characters';
+import { Incidents } from "./Incidents";
+import { TragedySet } from "../model/data/TragedySet";
+import { MainPlots, Subplots } from "./Plots";
+import { Characters } from "./Characters";
 
 export const TragedySets: TragedySetsDatabase = {
   firstSteps: {
-    id: 'a9c05e8e-b55c-4d98-8b40-714db57ca38f',
-    name_i18n_key: 'tragedySets.firstSteps',
+    id: "a9c05e8e-b55c-4d98-8b40-714db57ca38f",
+    name_i18n_key: "tragedySets.firstSteps",
     order: 1,
     characters: [
       Characters.boyStudent,
@@ -41,8 +41,8 @@ export const TragedySets: TragedySetsDatabase = {
     ],
   },
   basicTragedy: {
-    id: '6fc0092a-8a5b-429f-8fb9-8e1e8e5678d0',
-    name_i18n_key: 'tragedySets.basicTragedy',
+    id: "6fc0092a-8a5b-429f-8fb9-8e1e8e5678d0",
+    name_i18n_key: "tragedySets.basicTragedy",
     order: 2,
     characters: [
       Characters.boyStudent,
@@ -93,8 +93,8 @@ export const TragedySets: TragedySetsDatabase = {
     ],
   },
   midnightZone: {
-    id: '519c5fd0-2c3c-4fcf-92f0-1b9095a9abd8',
-    name_i18n_key: 'tragedySets.midnightZone',
+    id: "519c5fd0-2c3c-4fcf-92f0-1b9095a9abd8",
+    name_i18n_key: "tragedySets.midnightZone",
     order: 3,
     characters: [
       Characters.boyStudent,
@@ -151,8 +151,8 @@ export const TragedySets: TragedySetsDatabase = {
     ],
   },
   mysteryCircle: {
-    id: '91b319b1-9ecb-4dd4-8392-3bffdec3c712',
-    name_i18n_key: 'tragedySets.mysteryCircle',
+    id: "91b319b1-9ecb-4dd4-8392-3bffdec3c712",
+    name_i18n_key: "tragedySets.mysteryCircle",
     order: 4,
     characters: [
       Characters.boyStudent,
@@ -209,8 +209,8 @@ export const TragedySets: TragedySetsDatabase = {
     ],
   },
   primeEvil: {
-    id: '54b3babd-74f4-4631-a92e-fad8e4989fd5',
-    name_i18n_key: 'tragedySets.primeEvil',
+    id: "54b3babd-74f4-4631-a92e-fad8e4989fd5",
+    name_i18n_key: "tragedySets.primeEvil",
     order: 5,
     characters: [
       Characters.boyStudent,
@@ -267,8 +267,8 @@ export const TragedySets: TragedySetsDatabase = {
     ],
   },
   cosmicMythology: {
-    id: '1335ccdc-8187-48ae-83e7-56cdf1aa5a05',
-    name_i18n_key: 'tragedySets.cosmicMythology',
+    id: "1335ccdc-8187-48ae-83e7-56cdf1aa5a05",
+    name_i18n_key: "tragedySets.cosmicMythology",
     order: 6,
     characters: [
       Characters.boyStudent,

@@ -1,12 +1,12 @@
-import { ParseKeys } from 'i18next';
-import { CastMember } from '../CastMember';
-import { Character } from './Character';
-import { MastermindAbility } from './MastermindAbility';
-import { RoleAbility } from './RoleAbility';
+import { ParseKeys } from "i18next";
+import { CastMember } from "../CastMember";
+import { Character } from "./Character";
+import { MastermindAbility } from "./MastermindAbility";
+import { RoleAbility } from "./RoleAbility";
 
 // no loc required, these types are just informational for generation - no ui
-type Culprit = 'Never' | 'Optional' | 'Mandatory';
-type GoodwillRefusal = 'Optional' | 'Mandatory';
+type Culprit = "Never" | "Optional" | "Mandatory";
+type GoodwillRefusal = "Optional" | "Mandatory";
 
 export class Role {
   readonly id: string;

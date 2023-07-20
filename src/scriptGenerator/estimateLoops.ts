@@ -1,9 +1,9 @@
-import { Script } from '../model/Script';
-import * as _ from 'lodash';
-import { Characters } from '../data/Characters';
-import { Roles } from '../data/Roles';
-import { Incidents } from '../data/Incidents';
-import { MainPlots } from '../data/Plots';
+import { Script } from "../model/Script";
+import * as _ from "lodash";
+import { Characters } from "../data/Characters";
+import { Roles } from "../data/Roles";
+import { Incidents } from "../data/Incidents";
+import { MainPlots } from "../data/Plots";
 import {
   decreaseForEveryCharacterThatHasForbiddenAreasAndConnectsToBoard,
   decreaseIfCharacterHasRole,
@@ -22,7 +22,7 @@ import {
   increaseIfIncidentPresentWithRole,
   increaseIfIncidentWithMainPlot,
   increaseIfRoleIsCulprit,
-} from './AdditionalDifficultyFactors';
+} from "./AdditionalDifficultyFactors";
 
 export function estimateLoops(script: Script): number {
   const incidents = script.getIncidents();

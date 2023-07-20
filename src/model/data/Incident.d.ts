@@ -1,4 +1,4 @@
-import { ParseKeys } from 'i18next';
+import { ParseKeys } from "i18next";
 
 export interface Incident {
   readonly id: string;

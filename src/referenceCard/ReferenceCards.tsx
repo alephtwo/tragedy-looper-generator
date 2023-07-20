@@ -1,7 +1,7 @@
-import { Grid } from '@mui/material';
-import * as React from 'react';
-import { Script } from '../model/Script';
-import { ReferenceCard } from './ReferenceCard';
+import { Grid } from "@mui/material";
+import * as React from "react";
+import { Script } from "../model/Script";
+import { ReferenceCard } from "./ReferenceCard";
 
 interface ReferenceCardsProps {
   script: Script;

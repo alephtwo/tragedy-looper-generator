@@ -1,5 +1,5 @@
-import { Location } from './Location';
-import { ParseKeys } from 'i18next';
+import { Location } from "./Location";
+import { ParseKeys } from "i18next";
 
 export class Character {
   readonly id: string;
@@ -21,11 +21,11 @@ export class Character {
   }
 
   isMale(): boolean {
-    return this.descriptors.has('Boy') || this.descriptors.has('Man');
+    return this.descriptors.has("Boy") || this.descriptors.has("Man");
   }
 
   isFemale(): boolean {
-    return this.descriptors.has('Girl') || this.descriptors.has('Woman');
+    return this.descriptors.has("Girl") || this.descriptors.has("Woman");
   }
 
   setLoopToEnter(loops: number): void {
@@ -45,12 +45,12 @@ interface Fields {
 }
 
 export type Descriptor =
-  | 'Student'
-  | 'Boy'
-  | 'Girl'
-  | 'Adult'
-  | 'Man'
-  | 'Woman'
-  | 'Construct'
-  | 'Fabrication'
-  | 'Animal';
+  | "Student"
+  | "Boy"
+  | "Girl"
+  | "Adult"
+  | "Man"
+  | "Woman"
+  | "Construct"
+  | "Fabrication"
+  | "Animal";

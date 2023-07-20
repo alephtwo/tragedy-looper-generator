@@ -1,51 +1,51 @@
 ---
-name: 'Lint'
-'on': ['push']
+name: "Lint"
+"on": ["push"]
 jobs:
   eslint:
-    name: 'Run eslint'
-    runs-on: 'ubuntu-latest'
+    name: "Run eslint"
+    runs-on: "ubuntu-latest"
     steps:
-      - uses: 'actions/checkout@v3'
-      - uses: 'actions/setup-node@v3'
+      - uses: "actions/checkout@v3"
+      - uses: "actions/setup-node@v3"
         with:
-          node-version: 'lts/hydrogen'
-      - name: 'Install Dependencies'
-        run: 'npm ci'
-      - name: 'Run eslint'
-        run: 'npm run lint:ts'
+          node-version: "lts/hydrogen"
+      - name: "Install Dependencies"
+        run: "npm ci"
+      - name: "Run eslint"
+        run: "npm run lint:ts"
   prettier:
-    name: 'Run Prettier'
-    runs-on: 'ubuntu-latest'
+    name: "Run Prettier"
+    runs-on: "ubuntu-latest"
     steps:
-      - uses: 'actions/checkout@v3'
-      - uses: 'actions/setup-node@v3'
+      - uses: "actions/checkout@v3"
+      - uses: "actions/setup-node@v3"
         with:
-          node-version: 'lts/hydrogen'
-      - name: 'Install Dependencies'
-        run: 'npm ci'
-      - name: 'Run prettier'
-        run: 'npm run prettier'
+          node-version: "lts/hydrogen"
+      - name: "Install Dependencies"
+        run: "npm ci"
+      - name: "Run prettier"
+        run: "npm run prettier"
   markdownlint:
-    name: 'Run Markdownlint'
-    runs-on: 'ubuntu-latest'
+    name: "Run Markdownlint"
+    runs-on: "ubuntu-latest"
     steps:
-      - uses: 'actions/checkout@v3'
-      - uses: 'actions/setup-node@v3'
+      - uses: "actions/checkout@v3"
+      - uses: "actions/setup-node@v3"
         with:
-          node-version: 'lts/hydrogen'
-      - name: 'Install Dependencies'
-        run: 'npm ci'
-      - name: 'Run markdownlint'
-        run: 'npm run mdl'
+          node-version: "lts/hydrogen"
+      - name: "Install Dependencies"
+        run: "npm ci"
+      - name: "Run markdownlint"
+        run: "npm run mdl"
   yaml:
-    name: 'Lint YAML'
-    runs-on: 'ubuntu-latest'
+    name: "Lint YAML"
+    runs-on: "ubuntu-latest"
     container:
-      image: 'alpine:latest'
+      image: "alpine:latest"
     steps:
-      - uses: 'actions/checkout@v3'
-      - name: 'Install yamllint'
-        run: 'apk add yamllint'
-      - name: 'Run yamllint'
-        run: 'yamllint -s .'
+      - uses: "actions/checkout@v3"
+      - name: "Install yamllint"
+        run: "apk add yamllint"
+      - name: "Run yamllint"
+        run: "yamllint -s ."

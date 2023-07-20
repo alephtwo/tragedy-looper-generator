@@ -1,10 +1,10 @@
-import * as _ from 'lodash';
-import * as React from 'react';
-import { Autocomplete } from '@mui/material';
-import { TragedySet } from '../model/data/TragedySet';
-import { TragedySets } from '../data/TragedySets';
-import { renderAutocomplete } from './renderAutocomplete';
-import { useTranslation } from 'react-i18next';
+import * as _ from "lodash";
+import * as React from "react";
+import { Autocomplete } from "@mui/material";
+import { TragedySet } from "../model/data/TragedySet";
+import { TragedySets } from "../data/TragedySets";
+import { renderAutocomplete } from "./renderAutocomplete";
+import { useTranslation } from "react-i18next";
 
 interface TragedySetPickerProps {
   value: TragedySet;

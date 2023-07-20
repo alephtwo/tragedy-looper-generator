@@ -1,16 +1,16 @@
-import { Character } from '../model/data/Character';
-import { Incident } from '../model/data/Incident';
-import { Plot } from '../model/data/Plot';
-import { Role } from '../model/data/Role';
-import { Script } from '../model/Script';
-import * as _ from 'lodash';
+import { Character } from "../model/data/Character";
+import { Incident } from "../model/data/Incident";
+import { Plot } from "../model/data/Plot";
+import { Role } from "../model/data/Role";
+import { Script } from "../model/Script";
+import * as _ from "lodash";
 
 export type DifficultyFactor = -1 | 0 | 1;
 
 export const increaseIfGirlHasRole =
   (role: Role) =>
   (script: Script): DifficultyFactor => {
-    const met = script.cast.some((c) => c.character.descriptors.has('Girl') && c.role.id === role.id);
+    const met = script.cast.some((c) => c.character.descriptors.has("Girl") && c.role.id === role.id);
     return met ? 1 : 0;
   };
 
@@ -80,7 +80,7 @@ export const increaseIfCharacterHasAnyGoodwillRefusal =
 export const increaseIfCharacterHasMandatoryGoodwillRefusal =
   (character: Character) =>
   (script: Script): DifficultyFactor => {
-    const matches = script.cast.some((c) => c.character.id === character.id && c.role.goodwillRefusal === 'Mandatory');
+    const matches = script.cast.some((c) => c.character.id === character.id && c.role.goodwillRefusal === "Mandatory");
     return matches ? 1 : 0;
   };
 
