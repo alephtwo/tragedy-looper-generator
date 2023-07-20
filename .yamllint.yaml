@@ -1,5 +1,5 @@
 ---
-extends: default
+extends: "default"
 ignore:
   - "/node_modules"
   - "/public"
@@ -8,3 +8,6 @@ rules:
     max: 120
     allow-non-breakable-words: true
     allow-non-breakable-inline-mappings: true
+  quoted-strings:
+    quote-type: "double"
+    required: true
