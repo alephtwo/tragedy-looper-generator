@@ -152,7 +152,7 @@ function WinConditions(props: WinConditionsProps): JSX.Element {
             _.uniqWith(fromRoleAbilities, (a, b) => a.ability.id === b.ability.id && a.triggerer === b.triggerer),
           ).map((ra) => (
             <TableRow key={`wc-${ra.ability.id}-${ra.triggerer}`}>
-              <TableCell>{t('terms.roleAbility')}</TableCell>
+              <TableCell>{t('terms.roleAbility_one')}</TableCell>
               <TableCell>{ra.triggerer}</TableCell>
               <TableCell>{t(ra.ability.trigger.description_i18n_key)}</TableCell>
               <TableCell>{t(ra.ability.effect_i18n_key)}</TableCell>
