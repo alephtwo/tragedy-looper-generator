@@ -8,7 +8,9 @@
     "build": "webpack --mode production",
     "format": "prettier --write .",
     "lint:ts": "eslint --ext ts,tsx .",
-    "lint": "npm run lint:ts && prettier --check .",
+    "prettier": "prettier --check .",
+    "mdl": "markdownlint .",
+    "lint": "npm run lint:ts && npm run prettier",
     "test": "mocha --recursive"
   },
   "author": "",
@@ -27,6 +29,7 @@
     "copy-webpack-plugin": "11.0.0",
     "eslint": "8.45.0",
     "html-webpack-plugin": "5.5.3",
+    "markdownlint-cli": "0.35.0",
     "mocha": "10.2.0",
     "prettier": "3.0.0",
     "ts-loader": "9.4.4",

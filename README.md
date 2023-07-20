@@ -19,7 +19,7 @@ certain point, continuing to play the game will require effort from the
 Mastermind to write a new script. This is not conducive to impromptu "game
 night" play.
 
-## Have a computer make scripts for you!
+## Have a computer make scripts for you
 
 Use the generator to randomly create a script.
 
