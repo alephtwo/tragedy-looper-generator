@@ -1,7 +1,7 @@
-import { Character } from "../model/data/Character";
-import { Incident } from "../model/data/Incident";
-import { Plot } from "../model/data/Plot";
-import { Role } from "../model/data/Role";
+import { Character } from "../data/types/Character";
+import { Incident } from "../data/types/Incident";
+import { Plot } from "../data/types/Plot";
+import { Role } from "../data/types/Role";
 import { Script } from "../model/Script";
 import * as _ from "lodash";
 

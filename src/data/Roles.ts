@@ -1,4 +1,4 @@
-import { Role } from "../model/data/Role";
+import { Role } from "./types/Role";
 import { Triggers } from "./Triggers";
 
 export const Roles: RolesDatabase = {

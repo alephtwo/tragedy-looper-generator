@@ -2,7 +2,7 @@ import { Button, Grid, Paper, Typography } from "@mui/material";
 import * as React from "react";
 import { useState } from "react";
 import { TragedySets } from "../data/TragedySets";
-import { TragedySet } from "../model/data/TragedySet";
+import { TragedySet } from "../data/types/TragedySet";
 import { Script } from "../model/Script";
 import { generate, GenerateArgs } from "./generate";
 import { produce } from "immer";

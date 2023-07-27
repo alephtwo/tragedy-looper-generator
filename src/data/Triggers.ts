@@ -1,4 +1,4 @@
-import { Trigger } from "../model/data/Trigger";
+import { Trigger } from "./types/Trigger";
 
 export const Triggers: TriggersDatabase = {
   always: {

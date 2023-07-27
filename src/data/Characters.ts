@@ -1,5 +1,5 @@
 import _ = require("lodash");
-import { Character } from "../model/data/Character";
+import { Character } from "./types/Character";
 import { Locations } from "../data/Locations";
 
 export const Characters: CharactersDatabase = {

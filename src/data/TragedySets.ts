@@ -1,5 +1,5 @@
 import { Incidents } from "./Incidents";
-import { TragedySet } from "../model/data/TragedySet";
+import { TragedySet } from "./types/TragedySet";
 import { MainPlots, Subplots } from "./Plots";
 import { Characters } from "./Characters";
 

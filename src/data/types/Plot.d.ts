@@ -1,5 +1,5 @@
 import { ParseKeys } from "i18next";
-import { Script } from "../Script";
+import { Script } from "../../model/Script";
 import { Incident } from "./Incident";
 import { MastermindAbility } from "./MastermindAbility";
 import { PlotRule } from "./PlotRule";

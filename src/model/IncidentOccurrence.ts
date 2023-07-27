@@ -1,5 +1,5 @@
 import * as uuid from "uuid";
-import { Incident } from "./data/Incident";
+import { Incident } from "../data/types/Incident";
 
 export class IncidentOccurrence {
   readonly id: string;

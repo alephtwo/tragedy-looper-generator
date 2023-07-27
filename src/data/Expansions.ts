@@ -1,4 +1,4 @@
-import { Expansion } from "../model/data/Expansion";
+import { Expansion } from "./types/Expansion";
 import { TragedySets } from "./TragedySets";
 
 export const Expansions: ExpansionsDatabase = {

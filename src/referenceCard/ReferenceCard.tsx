@@ -3,9 +3,9 @@ import * as _ from "lodash";
 import { Divider, Paper, Table, TableHead, TableBody, TableRow, TableCell, Typography } from "@mui/material";
 import { Script } from "../model/Script";
 import { CastMember } from "../model/CastMember";
-import { Incident } from "../model/data/Incident";
-import { Character } from "../model/data/Character";
-import { Role } from "../model/data/Role";
+import { Incident } from "../data/types/Incident";
+import { Character } from "../data/types/Character";
+import { Role } from "../data/types/Role";
 import { useTranslation } from "react-i18next";
 
 interface ReferenceCardProps {

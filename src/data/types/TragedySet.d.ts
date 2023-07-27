@@ -1,5 +1,5 @@
 import { ParseKeys } from "i18next";
-import { Character } from "./Character";
+import { Character } from "../../data/types/Character";
 import { Incident } from "./Incident";
 import { Plot } from "./Plot";
 

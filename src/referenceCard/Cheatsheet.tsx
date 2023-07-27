@@ -2,11 +2,11 @@ import { Divider, Paper, Table, TableBody, TableCell, TableHead, TableRow, Typog
 import * as _ from "lodash";
 import * as React from "react";
 import { CastMember } from "../model/CastMember";
-import { Incident } from "../model/data/Incident";
-import { MastermindAbility } from "../model/data/MastermindAbility";
-import { Plot } from "../model/data/Plot";
-import { PlotRule } from "../model/data/PlotRule";
-import { RoleAbility } from "../model/data/RoleAbility";
+import { Incident } from "../data/types/Incident";
+import { MastermindAbility } from "../data/types/MastermindAbility";
+import { Plot } from "../data/types/Plot";
+import { PlotRule } from "../data/types/PlotRule";
+import { RoleAbility } from "../data/types/RoleAbility";
 import { IncidentOccurrence } from "../model/IncidentOccurrence";
 import { Script } from "../model/Script";
 import { useTranslation } from "react-i18next";

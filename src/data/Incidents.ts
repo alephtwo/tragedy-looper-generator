@@ -1,4 +1,4 @@
-import { Incident } from "../model/data/Incident";
+import { Incident } from "./types/Incident";
 
 export const Incidents: IncidentsDatabase = {
   murder: {

@@ -1,4 +1,4 @@
-import { Location } from "../model/data/Location";
+import { Location } from "./types/Location";
 
 export const Locations: LocationsDatabase = {
   city: {

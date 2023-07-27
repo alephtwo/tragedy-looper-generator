@@ -1,5 +1,5 @@
 import { ParseKeys } from "i18next";
-import { CastMember } from "../CastMember";
+import { CastMember } from "../../model/CastMember";
 import { Character } from "./Character";
 import { MastermindAbility } from "./MastermindAbility";
 import { RoleAbility } from "./RoleAbility";

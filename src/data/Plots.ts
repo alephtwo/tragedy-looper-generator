@@ -1,11 +1,11 @@
 import * as _ from "lodash";
-import { Plot } from "../model/data/Plot";
-import { ConditionalRole, Role } from "../model/data/Role";
+import { Plot } from "./types/Plot";
+import { ConditionalRole, Role } from "./types/Role";
 import { Script } from "../model/Script";
 import { Incidents } from "./Incidents";
 import { Roles } from "./Roles";
 import { Triggers } from "./Triggers";
-import { Character, Descriptor } from "../model/data/Character";
+import { Character, Descriptor } from "./types/Character";
 import { CastMember } from "../model/CastMember";
 
 export const MainPlots: MainPlotsDatabase = {
