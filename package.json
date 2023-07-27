@@ -16,6 +16,7 @@
   "author": "",
   "license": "ISC",
   "devDependencies": {
+    "@tailwindcss/forms": "0.5.4",
     "@types/chai": "4.3.5",
     "@types/lodash": "4.14.196",
     "@types/mocha": "10.0.1",

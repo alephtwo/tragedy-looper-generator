@@ -4,8 +4,9 @@ import { Incident } from "./Incident";
 import { MastermindAbility } from "./MastermindAbility";
 import { PlotRule } from "./PlotRule";
 import { Role } from "./Role";
+import { Identifiable } from "../../@types/Identifiable";
 
-export interface Plot {
+export interface Plot extends Identifiable {
   readonly id: string;
   readonly name_i18n_key: ParseKeys;
   readonly roles: () => Array<Role>;
