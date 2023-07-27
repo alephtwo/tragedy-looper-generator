@@ -1,16 +1,16 @@
 import { produce } from "immer";
 import * as _ from "lodash";
-import { Characters } from "../data/Characters";
-import { Incidents } from "../data/Incidents";
-import { Roles } from "../data/Roles";
-import { CastMember } from "../model/CastMember";
-import { Character } from "../data/types/Character";
-import { Incident } from "../data/types/Incident";
-import { Plot } from "../data/types/Plot";
-import { Role } from "../data/types/Role";
-import { TragedySet } from "../data/types/TragedySet";
-import { IncidentOccurrence } from "../model/IncidentOccurrence";
-import { Script } from "../model/Script";
+import { Characters } from "../../data/Characters";
+import { Incidents } from "../../data/Incidents";
+import { Roles } from "../../data/Roles";
+import { CastMember } from "../../model/CastMember";
+import { Character } from "../../data/types/Character";
+import { Incident } from "../../data/types/Incident";
+import { Plot } from "../../data/types/Plot";
+import { Role } from "../../data/types/Role";
+import { TragedySet } from "../../data/types/TragedySet";
+import { IncidentOccurrence } from "../../model/IncidentOccurrence";
+import { Script } from "../../model/Script";
 import { i18n as i18next } from "i18next";
 
 export interface GenerateArgs {
