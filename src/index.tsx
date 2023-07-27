@@ -2,6 +2,7 @@ import * as React from "react";
 import { createRoot } from "react-dom/client";
 import { Application } from "./Application";
 import "./i18n";
+import "./index.css";
 
 const app = (
   <React.Suspense fallback={<h1>Loading...</h1>}>
