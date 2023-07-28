@@ -16,10 +16,6 @@ export class CastMember {
     this.role = args.role;
     this.incidentTriggers = args.incidentTriggers;
   }
-
-  describe(i18n: i18next): string {
-    return `${i18n.t(this.character.name_i18n_key)} (${i18n.t(this.role.name_i18n_key)})`;
-  }
 }
 
 interface CastMemberArgs {

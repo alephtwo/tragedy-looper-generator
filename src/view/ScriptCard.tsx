@@ -64,7 +64,7 @@ interface GeneralInfoProps {
 function GeneralInfo({ mastermind, script }: GeneralInfoProps): React.JSX.Element {
   const { t } = useTranslation();
   return (
-    <table className="table-auto">
+    <table>
       <tbody>
         <tr>
           <th>{t("terms.tragedySet")}</th>
@@ -108,7 +108,7 @@ function Incidents({ mastermind, occurrences }: IncidentsProps): React.JSX.Eleme
   const { t } = useTranslation();
 
   return (
-    <table className="table-auto">
+    <table>
       <thead>
         <tr>
           <th>{t("terms.day", { count: 1 })}</th>
