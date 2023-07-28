@@ -185,7 +185,7 @@ interface IncidentsProps {
   incidents: Array<CastMemberIncidentTrigger>;
 }
 function Incidents({ incidents }: IncidentsProps): React.JSX.Element {
-  const { t, i18n } = useTranslation();
+  const { t } = useTranslation();
   if (incidents.length === 0) {
     return <></>;
   }

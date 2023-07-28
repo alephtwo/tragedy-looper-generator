@@ -2,7 +2,6 @@ import { Character } from "../data/types/Character";
 import { Role } from "../data/types/Role";
 import { IncidentOccurrence } from "./IncidentOccurrence";
 import * as uuid from "uuid";
-import { i18n as i18next } from "i18next";
 
 export class CastMember {
   readonly id: string;

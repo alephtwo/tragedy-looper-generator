@@ -9,9 +9,13 @@ interface ScriptGeneratorProps {
   dispatch: React.Dispatch<Message>;
 }
 export function ScriptGenerator(props: ScriptGeneratorProps): React.JSX.Element {
-  const { t, i18n } = useTranslation();
+  const { t } = useTranslation();
   const { dispatch } = props;
-  const { tragedySet, castSize, days, incidents } = props.state;
+  const { tragedySet, castSize, days, incidents, script } = props.state;
+
+  if (script !== null && script.cast.length > castSize) {
+    console.warn(t("warnings.castSizeOverridden", { needed: script.cast.length }));
+  }
 
   return (
     <div className="flex flex-col gap-2">
@@ -69,7 +73,7 @@ export function ScriptGenerator(props: ScriptGeneratorProps): React.JSX.Element 
         />
       </div>
       <div>
-        <button className="btn w-full" onClick={() => dispatch({ action: "generate", i18n: i18n })}>
+        <button className="btn w-full" onClick={() => dispatch({ action: "generate" })}>
           {t("scaffolding.generateScript")}
         </button>
       </div>

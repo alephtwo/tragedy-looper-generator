@@ -3,7 +3,6 @@ import { TragedySet } from "../data/types/TragedySet";
 import { Script } from "../model/Script";
 import { produce } from "immer";
 import { generate } from "./generator/generate";
-import { i18n } from "i18next";
 
 export interface State {
   tragedySet: TragedySet;
@@ -18,7 +17,7 @@ export type Message =
   | { action: "set-cast-size"; value: number }
   | { action: "set-days"; value: number }
   | { action: "set-incidents"; value: number }
-  | { action: "generate"; i18n: i18n };
+  | { action: "generate" };
 
 export function reducer(state: State, message: Message): State {
   switch (message.action) {
@@ -44,15 +43,12 @@ export function reducer(state: State, message: Message): State {
       });
     case "generate":
       return produce(state, (next) => {
-        next.script = generate(
-          {
-            tragedySet: state.tragedySet,
-            incidents: state.incidents,
-            days: state.days,
-            castSize: state.castSize,
-          },
-          message.i18n,
-        );
+        next.script = generate({
+          tragedySet: state.tragedySet,
+          incidents: state.incidents,
+          days: state.days,
+          castSize: state.castSize,
+        });
       });
     default:
       return state;
