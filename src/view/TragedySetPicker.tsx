@@ -27,11 +27,11 @@ export function TragedySetPicker(props: TragedySetPickerProps): React.JSX.Elemen
         props.onChange(chosen);
       }}
     >
-      {_.values(TragedySets)
-        .sort((a, b) => a.order - b.order)
-        .map((ts) => (
-          <option value={ts.id}>{t(ts.name_i18n_key)}</option>
-        ))}
+      {_.sortBy(_.values(TragedySets), (a) => a.order).map((ts) => (
+        <option key={`ts-${ts.id}`} value={ts.id}>
+          {t(ts.name_i18n_key)}
+        </option>
+      ))}
     </select>
   );
 }

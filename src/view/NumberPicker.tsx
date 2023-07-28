@@ -23,7 +23,9 @@ export function NumberPicker(props: NumberPickerProps): React.JSX.Element {
       />
       <ul className="flex justify-between text-xs p-1 -mt-1">
         {_.range(props.min, props.max + 1).map((n) => (
-          <li className="flex justify-center mw-2ch">{n}</li>
+          <li key={`${props.id}-${n}`} className="flex justify-center mw-2ch">
+            {n}
+          </li>
         ))}
       </ul>
     </div>
