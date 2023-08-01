@@ -1,0 +1,41 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@font-face {
+  font-family: "Sazanami Gothic";
+  src: url("./fonts/sazanami-gothic.ttf");
+}
+
+* {
+  font-family: "Sazanami Gothic", sans-serif;
+}
+
+.mw-2ch {
+  min-width: 2ch;
+}
+
+.btn {
+  @apply font-bold py-2 px-4 rounded shadow bg-blue-700 text-white;
+}
+
+.btn:hover {
+  @apply bg-blue-900;
+}
+
+h1 {
+  @apply font-bold text-xl mb-2;
+}
+
+table {
+  @apply text-left mb-2;
+}
+
+td,
+th {
+  @apply border border-solid border-black p-1;
+}
+
+tr {
+  @apply even:bg-gray-200 odd:bg-white;
+}

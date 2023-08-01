@@ -1,4 +1,4 @@
-import _ = require("lodash");
+import * as _ from "lodash";
 import { Character } from "./types/Character";
 import { Locations } from "../data/Locations";
 

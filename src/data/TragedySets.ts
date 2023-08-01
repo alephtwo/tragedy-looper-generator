@@ -326,7 +326,7 @@ export const TragedySets: TragedySetsDatabase = {
   },
 };
 
-interface TragedySetsDatabase {
+interface TragedySetsDatabase extends Record<string, TragedySet> {
   firstSteps: TragedySet;
   basicTragedy: TragedySet;
   midnightZone: TragedySet;
