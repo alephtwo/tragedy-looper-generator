@@ -18,7 +18,7 @@ export function ScriptGenerator(props: ScriptGeneratorProps): React.JSX.Element 
   }
 
   return (
-    <div className="flex flex-col gap-2">
+    <div className="grid grid-cols-2 gap-2 border border-black border-solid p-2">
       <div>
         <label className="block text-sm font-bold mb-2" htmlFor="tragedy-set">
           {t("terms.tragedySet")}
@@ -72,7 +72,7 @@ export function ScriptGenerator(props: ScriptGeneratorProps): React.JSX.Element 
           onChange={(n) => dispatch({ action: "set-incidents", value: n })}
         />
       </div>
-      <div>
+      <div className="col-span-2">
         <button className="btn w-full" onClick={() => dispatch({ action: "generate" })}>
           {t("scaffolding.generateScript")}
         </button>
