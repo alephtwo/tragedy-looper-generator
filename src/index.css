@@ -22,3 +22,20 @@
 .btn:hover {
   @apply bg-blue-900;
 }
+
+h1 {
+  @apply font-bold text-xl mb-2;
+}
+
+table {
+  @apply text-left mb-2;
+}
+
+td,
+th {
+  @apply border border-solid border-black p-1;
+}
+
+tr {
+  @apply even:bg-gray-200 odd:bg-white;
+}
