@@ -1,14 +1,14 @@
-import { assert } from "chai";
+import { describe, it, expect } from "@jest/globals";
+
 import * as _ from "lodash";
-import { describe } from "mocha";
-import { Characters } from "../../src/data/Characters";
-import { Expansions } from "../../src/data/Expansions";
-import { Incidents } from "../../src/data/Incidents";
-import { Locations } from "../../src/data/Locations";
-import { MainPlots, Subplots } from "../../src/data/Plots";
-import { Roles } from "../../src/data/Roles";
-import { TragedySets } from "../../src/data/TragedySets";
-import { Triggers } from "../../src/data/Triggers";
+import { Characters } from "../data/Characters";
+import { Expansions } from "../data/Expansions";
+import { Incidents } from "../data/Incidents";
+import { Locations } from "../data/Locations";
+import { MainPlots, Subplots } from "../data/Plots";
+import { Roles } from "../data/Roles";
+import { TragedySets } from "../data/TragedySets";
+import { Triggers } from "../data/Triggers";
 
 describe("ID Uniqueness Check", () => {
   it("Ensure uniqueness of all ids", () => {
@@ -32,8 +32,8 @@ describe("ID Uniqueness Check", () => {
 
     _.each(
       _.countBy(ids, (a) => a),
-      (v, k) => {
-        assert.equal(v, 1, `${k} appears ${v} times`);
+      (v, _k) => {
+        expect(v).toEqual(1);
       },
     );
   });

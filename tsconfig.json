@@ -1,11 +1,12 @@
 {
   "compilerOptions": {
-    "outDir": "public",
-    "sourceMap": true,
-    "module": "commonjs",
     "lib": ["dom", "es2022"],
     "target": "es6",
+    "outDir": "public",
+    "sourceMap": true,
     "jsx": "react",
+    "module": "es6",
+    "moduleResolution": "node",
     "resolveJsonModule": true,
     "noImplicitAny": true,
     "strictNullChecks": true
