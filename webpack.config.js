@@ -18,7 +18,7 @@ const rules = {
   },
   css: {
     test: /\.css$/,
-    use: [MiniCssExtractPlugin.loader, "css-loader", "postcss-loader"],
+    use: [MiniCssExtractPlugin.loader, "css-loader"],
   },
 };
 
