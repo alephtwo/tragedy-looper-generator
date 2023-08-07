@@ -3,6 +3,7 @@ import { useTranslation } from "react-i18next";
 import { TragedySetPicker } from "./TragedySetPicker";
 import { NumberPicker } from "./NumberPicker";
 import { Message, State } from "../logic/State";
+import { Button, Grid } from "@mui/material";
 
 interface ScriptGeneratorProps {
   state: State;
@@ -18,47 +19,38 @@ export function ScriptGenerator(props: ScriptGeneratorProps): React.JSX.Element 
   }
 
   return (
-    <div className="grid grid-cols-2 gap-2 border border-black border-solid p-2">
-      <div>
-        <label className="block text-sm font-bold mb-2" htmlFor="tragedy-set">
-          {t("terms.tragedySet")}
-        </label>
+    <Grid container spacing={2}>
+      <Grid item xs={12} sm={6}>
         <TragedySetPicker
           id="tragedy-set"
           selected={tragedySet}
           onChange={(ts) => dispatch({ action: "set-tragedy-set", value: ts })}
         />
-      </div>
-      <div>
-        <label className="block text-sm font-bold mb-2" htmlFor="cast-size">
-          {t("terms.castSize")}
-        </label>
+      </Grid>
+      <Grid item xs={12} sm={6}>
         <NumberPicker
           id="cast-size"
+          label={t("terms.castSize")}
           min={6}
           max={11}
-          selected={castSize}
+          value={castSize}
           onChange={(n) => dispatch({ action: "set-cast-size", value: n })}
         />
-      </div>
-      <div>
-        <label className="block text-sm font-bold mb-2" htmlFor="days">
-          {t("terms.day_other")}
-        </label>
+      </Grid>
+      <Grid item xs={12} sm={6}>
         <NumberPicker
           id="days"
+          label={t("terms.day", { count: 2 })}
           min={4}
           max={8}
-          selected={days}
+          value={days}
           onChange={(n) => dispatch({ action: "set-days", value: n })}
         />
-      </div>
-      <div>
-        <label className="block text-sm font-bold mb-2" htmlFor="incidents">
-          {t("terms.incident_other")}
-        </label>
+      </Grid>
+      <Grid item xs={12} sm={6}>
         <NumberPicker
           id="incidents"
+          label={t("terms.incident", { count: 2 })}
           min={0}
           // NB: The inclusion of cast size here isn't strictly accurate.
           // Serial Murder incidents can be perpetrated by the same cast member,
@@ -68,15 +60,15 @@ export function ScriptGenerator(props: ScriptGeneratorProps): React.JSX.Element 
           // If you're working on a script that goes against this, you should probably
           // just be writing it yourself anyway.
           max={Math.min(days, castSize, 7)}
-          selected={incidents}
+          value={incidents}
           onChange={(n) => dispatch({ action: "set-incidents", value: n })}
         />
-      </div>
-      <div className="col-span-2">
-        <button className="btn w-full" onClick={() => dispatch({ action: "generate" })}>
+      </Grid>
+      <Grid item xs={12}>
+        <Button variant="contained" onClick={() => dispatch({ action: "generate" })}>
           {t("scaffolding.generateScript")}
-        </button>
-      </div>
-    </div>
+        </Button>
+      </Grid>
+    </Grid>
   );
 }

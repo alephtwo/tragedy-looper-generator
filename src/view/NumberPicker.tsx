@@ -1,33 +1,34 @@
 import * as React from "react";
 import * as _ from "lodash";
+import { FormControl, FormLabel, Slider } from "@mui/material";
 
 interface NumberPickerProps {
   id: string;
+  label: string;
   min: number;
   max: number;
-  selected: number;
+  value: number;
   onChange: (n: number) => void;
 }
+
 export function NumberPicker(props: NumberPickerProps): React.JSX.Element {
+  const marks = _.range(props.min, props.max + 1).map((n) => ({
+    value: n,
+    label: n.toString(),
+  }));
+
   return (
-    <div className="flex flex-col mb-2">
-      <input
-        className="shadow"
-        type="range"
+    <FormControl fullWidth>
+      <FormLabel htmlFor={props.id}>{props.label}</FormLabel>
+      <Slider
         id={props.id}
         min={props.min}
         max={props.max}
-        value={props.selected}
-        list={`${props.id}-values`}
-        onChange={(e) => props.onChange(parseInt(e.target.value))}
+        value={props.value}
+        marks={marks}
+        size="small"
+        onChange={(_e, v) => props.onChange(v as number)}
       />
-      <ul className="flex justify-between text-xs p-1 -mt-1">
-        {_.range(props.min, props.max + 1).map((n) => (
-          <li key={`${props.id}-${n}`} className="flex justify-center mw-2ch">
-            {n}
-          </li>
-        ))}
-      </ul>
-    </div>
+    </FormControl>
   );
 }

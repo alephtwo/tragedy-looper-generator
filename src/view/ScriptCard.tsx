@@ -6,6 +6,7 @@ import { Incident } from "../data/types/Incident";
 import { Character } from "../data/types/Character";
 import { Role } from "../data/types/Role";
 import { CastMember } from "../model/CastMember";
+import { Stack, Table, TableBody, TableCell, TableHead, TableRow, Typography } from "@mui/material";
 
 interface ScriptCardProps {
   script: Script;
@@ -16,30 +17,31 @@ export function Mastermind({ script }: ScriptCardProps): React.JSX.Element {
   const occurrences = describeIncidents(script.cast);
 
   return (
-    <div className="p-2 bg-red-500">
-      <h1>{t("terms.mastermind")}</h1>
+    <Stack gap={1}>
+      <Typography variant="h2">{t("terms.mastermind")}</Typography>
       <GeneralInfo script={script} mastermind={true} />
+      <Typography variant="h3">{t("terms.incident", { count: 2 })}</Typography>
       <Incidents occurrences={occurrences} mastermind={true} />
-      <h1>{t("terms.cast")}</h1>
-      <table>
-        <thead>
-          <tr>
-            <th>{t("terms.character", { count: 1 })}</th>
-            <th>{t("terms.role", { count: 1 })}</th>
-          </tr>
-        </thead>
-        <tbody>
+      <Typography variant="h3">{t("terms.cast")}</Typography>
+      <Table size="small">
+        <TableHead>
+          <TableRow>
+            <TableCell variant="head">{t("terms.character", { count: 1 })}</TableCell>
+            <TableCell variant="head">{t("terms.role", { count: 1 })}</TableCell>
+          </TableRow>
+        </TableHead>
+        <TableBody>
           {_.sortBy(script.cast, (c) => t(c.character.name_i18n_key)).map((c) => (
-            <tr key={`cast-${c.id}`}>
-              <td>
+            <TableRow key={`cast-${c.id}`}>
+              <TableCell>
                 <CastMemberName castMember={c} />
-              </td>
-              <td>{t(c.role.name_i18n_key)}</td>
-            </tr>
+              </TableCell>
+              <TableCell>{t(c.role.name_i18n_key)}</TableCell>
+            </TableRow>
           ))}
-        </tbody>
-      </table>
-    </div>
+        </TableBody>
+      </Table>
+    </Stack>
   );
 }
 
@@ -48,12 +50,12 @@ export function Players({ script }: ScriptCardProps): React.JSX.Element {
   const occurrences = describeIncidents(script.cast);
 
   return (
-    <div className="p-2 bg-green-500">
-      <h1>{t("terms.player", { count: 2 })}</h1>
+    <Stack gap={1}>
+      <Typography variant="h2">{t("terms.player", { count: 2 })}</Typography>
       <GeneralInfo script={script} mastermind={false} />
-      <h1>{t("terms.incident", { count: occurrences.length })}</h1>
+      <Typography variant="h3">{t("terms.incident", { count: occurrences.length })}</Typography>
       <Incidents occurrences={occurrences} mastermind={false} />
-    </div>
+    </Stack>
   );
 }
 
@@ -64,39 +66,41 @@ interface GeneralInfoProps {
 function GeneralInfo({ mastermind, script }: GeneralInfoProps): React.JSX.Element {
   const { t } = useTranslation();
   return (
-    <table>
-      <tbody>
-        <tr>
-          <th>{t("terms.tragedySet")}</th>
-          <td>{t(script.tragedySet.name_i18n_key)}</td>
-        </tr>
-        <tr>
-          <th>{t("terms.castSize")}</th>
-          <td>{script.cast.length}</td>
-        </tr>
-        <tr>
-          <th>{t("terms.loops")}</th>
-          <td>{script.loops}</td>
-        </tr>
+    <Table size="small">
+      <TableBody>
+        <TableRow>
+          <TableCell variant="head">{t("terms.tragedySet")}</TableCell>
+          <TableCell>{t(script.tragedySet.name_i18n_key)}</TableCell>
+        </TableRow>
+        <TableRow>
+          <TableCell variant="head">{t("terms.castSize")}</TableCell>
+          <TableCell>{script.cast.length}</TableCell>
+        </TableRow>
+        <TableRow>
+          <TableCell variant="head">{t("terms.loops")}</TableCell>
+          <TableCell>{script.loops}</TableCell>
+        </TableRow>
         <MastermindOnly
           mastermind={mastermind}
           render={() => (
             <>
-              <tr>
-                <th>{t("terms.mainPlot")}</th>
-                <td>{t(script.mainPlot.name_i18n_key)}</td>
-              </tr>
+              <TableRow>
+                <TableCell variant="head">{t("terms.mainPlot")}</TableCell>
+                <TableCell>{t(script.mainPlot.name_i18n_key)}</TableCell>
+              </TableRow>
               {script.subplots.map((subplot, i) => (
-                <tr key={`subplot-${i}-${subplot.id}`}>
-                  <th>{i === 0 ? t("terms.subplot", { count: script.subplots.length }) : ""}</th>
-                  <td>{t(subplot.name_i18n_key)}</td>
-                </tr>
+                <TableRow key={`subplot-${i}-${subplot.id}`}>
+                  <TableCell variant="head">
+                    {i === 0 ? t("terms.subplot", { count: script.subplots.length }) : ""}
+                  </TableCell>
+                  <TableCell>{t(subplot.name_i18n_key)}</TableCell>
+                </TableRow>
               ))}
             </>
           )}
         />
-      </tbody>
-    </table>
+      </TableBody>
+    </Table>
   );
 }
 
@@ -108,26 +112,32 @@ function Incidents({ mastermind, occurrences }: IncidentsProps): React.JSX.Eleme
   const { t } = useTranslation();
 
   return (
-    <table>
-      <thead>
-        <tr>
-          <th>{t("terms.day", { count: 1 })}</th>
-          <th>{t("terms.name")}</th>
-          <MastermindOnly mastermind={mastermind} render={() => <th>{t("terms.culprit")}</th>} />
-        </tr>
-      </thead>
-      <tbody>
+    <Table size="small">
+      <TableHead>
+        <TableRow>
+          <TableCell variant="head">{t("terms.day", { count: 1 })}</TableCell>
+          <TableCell variant="head">{t("terms.name")}</TableCell>
+          <MastermindOnly
+            mastermind={mastermind}
+            render={() => <TableCell variant="head">{t("terms.culprit")}</TableCell>}
+          />
+        </TableRow>
+      </TableHead>
+      <TableBody>
         {_.sortBy(occurrences, (o) => o.day).map((occurrence) => (
-          <tr key={`occ-${occurrence.id}`}>
-            <td>{occurrence.day}</td>
-            <td>
+          <TableRow key={`occ-${occurrence.id}`}>
+            <TableCell>{occurrence.day}</TableCell>
+            <TableCell>
               <IncidentName mastermind={mastermind} occurrence={occurrence} />
-            </td>
-            <MastermindOnly mastermind={mastermind} render={() => <td>{t(occurrence.character.name_i18n_key)}</td>} />
-          </tr>
+            </TableCell>
+            <MastermindOnly
+              mastermind={mastermind}
+              render={() => <TableCell>{t(occurrence.character.name_i18n_key)}</TableCell>}
+            />
+          </TableRow>
         ))}
-      </tbody>
-    </table>
+      </TableBody>
+    </Table>
   );
 }
 

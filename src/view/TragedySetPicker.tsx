@@ -4,6 +4,7 @@ import { TragedySets } from "../data/TragedySets";
 import { useTranslation } from "react-i18next";
 import { TragedySet } from "../data/types/TragedySet";
 import { findById } from "../util/findById";
+import { FormControl, FormLabel, MenuItem, Select } from "@mui/material";
 
 interface TragedySetPickerProps {
   id?: string;
@@ -14,24 +15,21 @@ export function TragedySetPicker(props: TragedySetPickerProps): React.JSX.Elemen
   const { t } = useTranslation();
 
   return (
-    <select
-      id={props.id}
-      className="form-select rounded shadow w-full"
-      value={props.selected.id}
-      onChange={(e) => {
-        const chosen = findById(TragedySets, e.target.value);
-        if (chosen === undefined) {
-          console.error(`could not find tragedy set with id ${e.target.value}`);
-          return;
-        }
-        props.onChange(chosen);
-      }}
-    >
-      {_.sortBy(_.values(TragedySets), (a) => a.order).map((ts) => (
-        <option key={`ts-${ts.id}`} value={ts.id}>
-          {t(ts.name_i18n_key)}
-        </option>
-      ))}
-    </select>
+    <FormControl fullWidth>
+      <FormLabel htmlFor={props.id}>{t("terms.tragedySet")}</FormLabel>
+      <Select id={props.id} value={props.selected.id} onChange={(e) => props.onChange(findTragedySet(e.target.value))}>
+        {_.sortBy(Object.values(TragedySets), (a) => a.order).map((ts) => (
+          <MenuItem value={ts.id}>{t(ts.name_i18n_key)}</MenuItem>
+        ))}
+      </Select>
+    </FormControl>
   );
+}
+
+function findTragedySet(id: string): TragedySet {
+  const next = findById(TragedySets, id);
+  if (next === undefined) {
+    return TragedySets.basicTragedy;
+  }
+  return next;
 }

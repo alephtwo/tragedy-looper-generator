@@ -5,11 +5,14 @@ import { ScriptGenerator } from "./ScriptGenerator";
 import { reducer, initialState } from "../logic/State";
 import * as ScriptCard from "./ScriptCard";
 import { Cheatsheet } from "./Cheatsheet";
+import { LanguagePicker } from "./LanguagePicker";
+import { SupportedLanguage } from "../@types/SupportedLanguages";
+import { Box, Container, Stack, colors } from "@mui/material";
 
 export function Application(): JSX.Element {
   const { t, i18n } = useTranslation();
   const [state, dispatch] = useReducer(reducer, initialState);
-  const [lang, setLang] = useState("en");
+  const [lang, setLang] = useState<SupportedLanguage>("en");
   const { script } = state;
 
   useEffect(() => {
@@ -25,25 +28,29 @@ export function Application(): JSX.Element {
       return <></>;
     }
     return (
-      <>
-        <ScriptCard.Mastermind script={script} />
-        <ScriptCard.Players script={script} />
-        <Cheatsheet script={script} />
-      </>
+      <Stack gap={1}>
+        <Box sx={{ backgroundColor: colors.red[100] }}>
+          <ScriptCard.Mastermind script={script} />
+        </Box>
+        <Box sx={{ backgroundColor: colors.green[100] }}>
+          <ScriptCard.Players script={script} />
+        </Box>
+        <Box sx={{ backgroundColor: colors.blue[100] }}>
+          <Cheatsheet script={script} />
+        </Box>
+      </Stack>
     );
   }
 
   return (
-    <div className="container mx-auto">
-      <div className="flex flex-col p-2 gap-2">
-        <div className="flex justify-end">
-          <select className="form-select rounded shadow" value={lang} onChange={(e) => setLang(e.target.value)}>
-            <option value="en">🇬🇧 EN</option>
-          </select>
-        </div>
+    <Container sx={{ marginY: 1 }}>
+      <Stack gap={1}>
+        <Box sx={{ display: "flex", justifyContent: "flex-end" }}>
+          <LanguagePicker value={lang} onChange={setLang} />
+        </Box>
         <ScriptGenerator state={state} dispatch={dispatch} />
         <ScriptInfo />
-      </div>
-    </div>
+      </Stack>
+    </Container>
   );
 }
