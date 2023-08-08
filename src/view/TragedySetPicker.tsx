@@ -19,7 +19,9 @@ export function TragedySetPicker(props: TragedySetPickerProps): React.JSX.Elemen
       <FormLabel htmlFor={props.id}>{t("terms.tragedySet")}</FormLabel>
       <Select id={props.id} value={props.selected.id} onChange={(e) => props.onChange(findTragedySet(e.target.value))}>
         {_.sortBy(Object.values(TragedySets), (a) => a.order).map((ts) => (
-          <MenuItem value={ts.id}>{t(ts.name_i18n_key)}</MenuItem>
+          <MenuItem key={`ts-${ts.id}`} value={ts.id}>
+            {t(ts.name_i18n_key)}
+          </MenuItem>
         ))}
       </Select>
     </FormControl>

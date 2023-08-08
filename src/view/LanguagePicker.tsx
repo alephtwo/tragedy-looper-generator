@@ -12,7 +12,9 @@ export function LanguagePicker(props: LanguagePickerProps) {
   return (
     <Select value={props.value} onChange={(e) => props.onChange(e.target.value as SupportedLanguage)} size="small">
       {_.map(SupportedLanguages, (desc, lang) => (
-        <MenuItem value={lang}>{desc}</MenuItem>
+        <MenuItem key={`lng-${lang}`} value={lang}>
+          {desc}
+        </MenuItem>
       ))}
     </Select>
   );
