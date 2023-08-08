@@ -31,14 +31,14 @@ const plugins = {
     patterns: [{ from: paths.static, to: paths.target }],
   }),
   extractCss: new MiniCssExtractPlugin({
-    filename: "app.css",
+    filename: "app-[fullhash].css",
   }),
 };
 
 module.exports = {
   entry: paths.entry,
   output: {
-    filename: "app.js",
+    filename: "app-[fullhash].js",
     path: paths.target,
   },
   devtool: "source-map",

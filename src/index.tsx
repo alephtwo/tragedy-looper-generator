@@ -1,10 +1,16 @@
+import "./index.css";
 import * as React from "react";
 import { createRoot } from "react-dom/client";
 import { Application } from "./view/Application";
 import "./i18n";
 import { CssBaseline, ThemeProvider, createTheme } from "@mui/material";
 
-const theme = createTheme();
+const defaultTheme = createTheme();
+const theme = createTheme({
+  typography: {
+    fontFamily: `"Sazanami Gothic", ${defaultTheme.typography.fontFamily}`,
+  },
+});
 const app = (
   <ThemeProvider theme={theme}>
     <CssBaseline />
