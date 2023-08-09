@@ -4,7 +4,7 @@ import { TragedySets } from "../data/TragedySets";
 import { useTranslation } from "react-i18next";
 import { TragedySet } from "../data/types/TragedySet";
 import { findById } from "../util/findById";
-import { FormControl, FormLabel, MenuItem, Select, Stack } from "@mui/material";
+import { FormControl, FormLabel, MenuItem, Select, Typography } from "@mui/material";
 import * as Icons from "./Icons";
 
 interface TragedySetPickerProps {
@@ -18,10 +18,10 @@ export function TragedySetPicker(props: TragedySetPickerProps): React.JSX.Elemen
   return (
     <FormControl fullWidth>
       <FormLabel htmlFor={props.id}>
-        <Stack direction="row" spacing={1} alignItems="center">
+        <Typography sx={styles.headerWithIcon}>
           <Icons.TragedySet fontSize="small" />
           {t("terms.tragedySet")}
-        </Stack>
+        </Typography>
       </FormLabel>
       <Select
         sx={{ marginTop: 1 }}
@@ -47,3 +47,11 @@ function findTragedySet(id: string): TragedySet {
   }
   return next;
 }
+
+const styles = {
+  headerWithIcon: {
+    display: "flex",
+    alignItems: "center",
+    gap: 1,
+  },
+};

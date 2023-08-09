@@ -9,7 +9,7 @@ import { CastMember } from "../model/CastMember";
 import { IncidentOccurrence } from "../model/IncidentOccurrence";
 import { PlotRule } from "../data/types/PlotRule";
 import { Incident } from "../data/types/Incident";
-import { Paper, Stack, Table, TableBody, TableCell, TableHead, TableRow, Typography } from "@mui/material";
+import { Box, Divider, Paper, Table, TableBody, TableCell, TableHead, TableRow, Typography } from "@mui/material";
 import * as Icons from "./Icons";
 
 interface CheatsheetProps {
@@ -32,16 +32,17 @@ export function Cheatsheet({ script }: CheatsheetProps): React.JSX.Element {
 
   return (
     <Paper sx={{ padding: 2 }} elevation={1}>
-      <Stack spacing={1}>
+      <Box sx={styles.section}>
         <Typography variant="h2" sx={styles.headerWithIcon}>
           <Icons.Cheatsheet />
           {t("scaffolding.cheatsheet")}
         </Typography>
+        <Divider variant="fullWidth" />
         <WinConditions plots={script.plots()} roleAbilities={roleAbilities} incidents={allIncidents} />
         <MastermindAbilities mastermindAbilities={mastermindAbilities} />
         <RoleAbilities roleAbilities={roleAbilities} />
         <Incidents incidents={allIncidents} />
-      </Stack>
+      </Box>
     </Paper>
   );
 }
@@ -71,7 +72,7 @@ function WinConditions(props: WinConditionsProps): React.JSX.Element {
         <Icons.WinConditions />
         {t("terms.winConditions")}
       </Typography>
-      <Table size="small">
+      <Table size="small" sx={styles.extraBottomMargin}>
         <TableHead>
           <TableRow>
             <TableCell variant="head">{t("terms.mechanic")}</TableCell>
@@ -130,7 +131,7 @@ function MastermindAbilities({ mastermindAbilities }: MastermindAbilitiesProps):
         <Icons.MastermindAbilities />
         {t("terms.mastermindAbilities")}
       </Typography>
-      <Table size="small">
+      <Table size="small" sx={styles.extraBottomMargin}>
         <TableHead>
           <TableRow>
             <TableCell variant="head">{t("terms.mandatory")}</TableCell>
@@ -169,7 +170,7 @@ function RoleAbilities({ roleAbilities }: RoleAbilitiesProps): React.JSX.Element
         <Icons.RoleAbilities />
         {t("terms.roleAbility", { count: roleAbilities.length })}
       </Typography>
-      <Table size="small">
+      <Table size="small" sx={styles.extraBottomMargin}>
         <TableHead>
           <TableRow>
             <TableCell variant="head">{t("terms.trigger")}</TableCell>
@@ -316,5 +317,13 @@ const styles = {
     display: "flex",
     alignItems: "center",
     gap: 1,
+  },
+  section: {
+    display: "flex",
+    flexDirection: "column",
+    gap: 1,
+  },
+  extraBottomMargin: {
+    marginBottom: 2,
   },
 };

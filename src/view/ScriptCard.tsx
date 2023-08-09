@@ -6,7 +6,7 @@ import { Incident } from "../data/types/Incident";
 import { Character } from "../data/types/Character";
 import { Role } from "../data/types/Role";
 import { CastMember } from "../model/CastMember";
-import { Paper, Stack, Table, TableBody, TableCell, TableHead, TableRow, Typography } from "@mui/material";
+import { Box, Divider, Paper, Table, TableBody, TableCell, TableHead, TableRow, Typography } from "@mui/material";
 import * as Icons from "./Icons";
 
 interface ScriptCardProps {
@@ -19,40 +19,39 @@ export function Mastermind({ script }: ScriptCardProps): React.JSX.Element {
 
   return (
     <Paper sx={styles.paper} elevation={1}>
-      <Stack gap={1}>
+      <Box sx={styles.section}>
         <Typography variant="h2" sx={styles.headerWithIcon}>
           <Icons.Mastermind />
           {t("terms.mastermind")}
         </Typography>
+        <Divider variant="fullWidth" />
         <GeneralInfo script={script} mastermind={true} />
-        <Typography variant="h3" sx={styles.headerWithIcon}>
-          <Icons.Incidents />
-          {t("terms.incident", { count: occurrences.length })}
-        </Typography>
         <Incidents occurrences={occurrences} mastermind={true} />
-        <Typography variant="h3" sx={styles.headerWithIcon}>
-          <Icons.Cast />
-          {t("terms.cast")}
-        </Typography>
-        <Table size="small">
-          <TableHead>
-            <TableRow>
-              <TableCell variant="head">{t("terms.character", { count: 1 })}</TableCell>
-              <TableCell variant="head">{t("terms.role", { count: 1 })}</TableCell>
-            </TableRow>
-          </TableHead>
-          <TableBody>
-            {_.sortBy(script.cast, (c) => t(c.character.name_i18n_key)).map((c) => (
-              <TableRow key={`cast-${c.id}`}>
-                <TableCell>
-                  <CastMemberName castMember={c} />
-                </TableCell>
-                <TableCell>{t(c.role.name_i18n_key)}</TableCell>
+        <Box sx={styles.section}>
+          <Typography variant="h3" sx={styles.headerWithIcon}>
+            <Icons.Cast />
+            {t("terms.cast")}
+          </Typography>
+          <Table size="small">
+            <TableHead>
+              <TableRow>
+                <TableCell variant="head">{t("terms.character", { count: 1 })}</TableCell>
+                <TableCell variant="head">{t("terms.role", { count: 1 })}</TableCell>
               </TableRow>
-            ))}
-          </TableBody>
-        </Table>
-      </Stack>
+            </TableHead>
+            <TableBody>
+              {_.sortBy(script.cast, (c) => t(c.character.name_i18n_key)).map((c) => (
+                <TableRow key={`cast-${c.id}`}>
+                  <TableCell>
+                    <CastMemberName castMember={c} />
+                  </TableCell>
+                  <TableCell>{t(c.role.name_i18n_key)}</TableCell>
+                </TableRow>
+              ))}
+            </TableBody>
+          </Table>
+        </Box>
+      </Box>
     </Paper>
   );
 }
@@ -63,18 +62,15 @@ export function Players({ script }: ScriptCardProps): React.JSX.Element {
 
   return (
     <Paper sx={styles.paper} elevation={1}>
-      <Stack spacing={1}>
+      <Box sx={styles.section}>
         <Typography variant="h2" sx={styles.headerWithIcon}>
           <Icons.Players />
           {t("terms.player", { count: 2 })}
         </Typography>
+        <Divider variant="fullWidth" />
         <GeneralInfo script={script} mastermind={false} />
-        <Typography variant="h3" sx={styles.headerWithIcon}>
-          <Icons.Incidents />
-          {t("terms.incident", { count: occurrences.length })}
-        </Typography>
         <Incidents occurrences={occurrences} mastermind={false} />
-      </Stack>
+      </Box>
     </Paper>
   );
 }
@@ -86,7 +82,7 @@ interface GeneralInfoProps {
 function GeneralInfo({ mastermind, script }: GeneralInfoProps): React.JSX.Element {
   const { t } = useTranslation();
   return (
-    <Table size="small">
+    <Table size="small" sx={styles.extraBottomMargin}>
       <TableBody>
         <TableRow>
           <TableCell variant="head">{t("terms.tragedySet")}</TableCell>
@@ -132,32 +128,38 @@ function Incidents({ mastermind, occurrences }: IncidentsProps): React.JSX.Eleme
   const { t } = useTranslation();
 
   return (
-    <Table size="small">
-      <TableHead>
-        <TableRow>
-          <TableCell variant="head">{t("terms.day", { count: 1 })}</TableCell>
-          <TableCell variant="head">{t("terms.name")}</TableCell>
-          <MastermindOnly
-            mastermind={mastermind}
-            render={() => <TableCell variant="head">{t("terms.culprit")}</TableCell>}
-          />
-        </TableRow>
-      </TableHead>
-      <TableBody>
-        {_.sortBy(occurrences, (o) => o.day).map((occurrence) => (
-          <TableRow key={`occ-${occurrence.id}`}>
-            <TableCell>{occurrence.day}</TableCell>
-            <TableCell>
-              <IncidentName mastermind={mastermind} occurrence={occurrence} />
-            </TableCell>
+    <Box sx={styles.section}>
+      <Typography variant="h3" sx={styles.headerWithIcon}>
+        <Icons.Incidents />
+        {t("terms.incident", { count: occurrences.length })}
+      </Typography>
+      <Table size="small" sx={mastermind ? styles.extraBottomMargin : {}}>
+        <TableHead>
+          <TableRow>
+            <TableCell variant="head">{t("terms.day", { count: 1 })}</TableCell>
+            <TableCell variant="head">{t("terms.name")}</TableCell>
             <MastermindOnly
               mastermind={mastermind}
-              render={() => <TableCell>{t(occurrence.character.name_i18n_key)}</TableCell>}
+              render={() => <TableCell variant="head">{t("terms.culprit")}</TableCell>}
             />
           </TableRow>
-        ))}
-      </TableBody>
-    </Table>
+        </TableHead>
+        <TableBody>
+          {_.sortBy(occurrences, (o) => o.day).map((occurrence) => (
+            <TableRow key={`occ-${occurrence.id}`}>
+              <TableCell>{occurrence.day}</TableCell>
+              <TableCell>
+                <IncidentName mastermind={mastermind} occurrence={occurrence} />
+              </TableCell>
+              <MastermindOnly
+                mastermind={mastermind}
+                render={() => <TableCell>{t(occurrence.character.name_i18n_key)}</TableCell>}
+              />
+            </TableRow>
+          ))}
+        </TableBody>
+      </Table>
+    </Box>
   );
 }
 
@@ -250,5 +252,13 @@ const styles = {
     display: "flex",
     alignItems: "center",
     gap: 1,
+  },
+  section: {
+    display: "flex",
+    flexDirection: "column",
+    gap: 1,
+  },
+  extraBottomMargin: {
+    marginBottom: 2,
   },
 };

@@ -18,6 +18,16 @@ const theme = createTheme({
       fontWeight: "bold",
     },
   },
+  components: {
+    MuiTableCell: {
+      // Need to make it a little bit bolder
+      styleOverrides: {
+        head: {
+          fontWeight: 700,
+        },
+      },
+    },
+  },
 });
 const app = (
   <ThemeProvider theme={theme}>

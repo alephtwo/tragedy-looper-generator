@@ -1,6 +1,6 @@
 import * as React from "react";
 import * as _ from "lodash";
-import { FormControl, FormLabel, Slider, Stack } from "@mui/material";
+import { FormControl, FormLabel, Slider, Typography } from "@mui/material";
 
 interface NumberPickerProps {
   id: string;
@@ -21,10 +21,10 @@ export function NumberPicker(props: NumberPickerProps): React.JSX.Element {
   return (
     <FormControl fullWidth>
       <FormLabel htmlFor={props.id}>
-        <Stack direction="row" spacing={1} alignItems="center">
+        <Typography sx={styles.headerWithIcon}>
           {props.startIcon}
           {props.label}
-        </Stack>
+        </Typography>
       </FormLabel>
       <Slider
         id={props.id}
@@ -38,3 +38,11 @@ export function NumberPicker(props: NumberPickerProps): React.JSX.Element {
     </FormControl>
   );
 }
+
+const styles = {
+  headerWithIcon: {
+    display: "flex",
+    alignItems: "center",
+    gap: 1,
+  },
+};
