@@ -3,10 +3,13 @@ import * as React from "react";
 import { createRoot } from "react-dom/client";
 import { Application } from "./view/Application";
 import "./i18n";
-import { CssBaseline, ThemeProvider, createTheme } from "@mui/material";
+import { CssBaseline, ThemeProvider, colors, createTheme } from "@mui/material";
 
 const defaultTheme = createTheme();
 const theme = createTheme({
+  palette: {
+    primary: colors.red,
+  },
   typography: {
     fontFamily: `"Noto Sans", ${defaultTheme.typography.fontFamily}`,
     h2: {
@@ -29,6 +32,7 @@ const theme = createTheme({
     },
   },
 });
+
 const app = (
   <ThemeProvider theme={theme}>
     <CssBaseline />

@@ -29,10 +29,10 @@ export function Application(): JSX.Element {
     }
     return (
       <Grid container spacing={1}>
-        <Grid item xs={12} sm={6}>
+        <Grid item xs={12} md={6}>
           <ScriptCard.Mastermind script={script} />
         </Grid>
-        <Grid item xs={12} sm={6}>
+        <Grid item xs={12} md={6}>
           <ScriptCard.Players script={script} />
         </Grid>
         <Grid item xs={12}>
