@@ -1,7 +1,6 @@
 const { CleanWebpackPlugin } = require("clean-webpack-plugin");
 const CopyWebpackPlugin = require("copy-webpack-plugin");
 const HtmlWebpackPlugin = require("html-webpack-plugin");
-const MiniCssExtractPlugin = require("mini-css-extract-plugin");
 const path = require("path");
 
 const paths = {
@@ -16,10 +15,6 @@ const rules = {
     test: /.tsx?$/,
     loader: "ts-loader",
   },
-  css: {
-    test: /\.css$/,
-    use: [MiniCssExtractPlugin.loader, "css-loader"],
-  },
 };
 
 const plugins = {
@@ -30,15 +25,12 @@ const plugins = {
   copy: new CopyWebpackPlugin({
     patterns: [{ from: paths.static, to: paths.target }],
   }),
-  extractCss: new MiniCssExtractPlugin({
-    filename: "app-[fullhash].css",
-  }),
 };
 
 module.exports = {
   entry: paths.entry,
   output: {
-    filename: "app-[fullhash].js",
+    filename: "app-[contenthash].js",
     path: paths.target,
   },
   devtool: "source-map",
@@ -46,7 +38,7 @@ module.exports = {
     extensions: [".ts", ".tsx", ".js"],
   },
   module: {
-    rules: [rules.typescript, rules.css],
+    rules: [rules.typescript],
   },
-  plugins: [plugins.clean, plugins.copy, plugins.html, plugins.extractCss],
+  plugins: [plugins.clean, plugins.copy, plugins.html],
 };
