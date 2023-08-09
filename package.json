@@ -46,6 +46,7 @@
     "@emotion/styled": "11.11.0",
     "@mui/icons-material": "5.14.3",
     "@mui/material": "5.14.3",
+    "country-flag-icons": "1.5.7",
     "i18next": "23.4.1",
     "i18next-http-backend": "2.2.1",
     "immer": "10.0.2",

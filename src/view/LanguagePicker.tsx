@@ -1,7 +1,8 @@
 import * as React from "react";
-import { MenuItem, Select } from "@mui/material";
+import { MenuItem, Select, Stack, SvgIcon } from "@mui/material";
 import SupportedLanguages, { SupportedLanguage } from "../@types/SupportedLanguages";
 import * as _ from "lodash";
+import { GB as UKFlag } from "country-flag-icons/react/3x2";
 
 interface LanguagePickerProps {
   value: SupportedLanguage;
@@ -13,7 +14,10 @@ export function LanguagePicker(props: LanguagePickerProps) {
     <Select value={props.value} onChange={(e) => props.onChange(e.target.value as SupportedLanguage)} size="small">
       {SupportedLanguages.map((lang) => (
         <MenuItem key={`lng-${lang}`} value={lang}>
-          {flags[lang]}
+          <Stack direction="row" gap={1}>
+            <SvgIcon>{flags[lang]}</SvgIcon>
+            {lang.toUpperCase()}
+          </Stack>
         </MenuItem>
       ))}
     </Select>
@@ -21,5 +25,5 @@ export function LanguagePicker(props: LanguagePickerProps) {
 }
 
 const flags: Record<SupportedLanguage, React.JSX.Element> = {
-  en: <>🇬🇧 EN</>,
+  en: <UKFlag />,
 };
