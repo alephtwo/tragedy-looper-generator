@@ -9,6 +9,14 @@ const defaultTheme = createTheme();
 const theme = createTheme({
   typography: {
     fontFamily: `"Noto Sans", ${defaultTheme.typography.fontFamily}`,
+    h2: {
+      fontSize: "28px",
+      fontWeight: "bold",
+    },
+    h3: {
+      fontSize: "20px",
+      fontWeight: "bold",
+    },
   },
 });
 const app = (

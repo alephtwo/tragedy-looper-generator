@@ -10,6 +10,7 @@ import { IncidentOccurrence } from "../model/IncidentOccurrence";
 import { PlotRule } from "../data/types/PlotRule";
 import { Incident } from "../data/types/Incident";
 import { Paper, Stack, Table, TableBody, TableCell, TableHead, TableRow, Typography } from "@mui/material";
+import * as Icons from "./Icons";
 
 interface CheatsheetProps {
   script: Script;
@@ -32,7 +33,10 @@ export function Cheatsheet({ script }: CheatsheetProps): React.JSX.Element {
   return (
     <Paper sx={{ padding: 2 }} elevation={1}>
       <Stack gap={1}>
-        <Typography variant="h2">{t("scaffolding.cheatsheet")}</Typography>
+        <Typography variant="h2" sx={styles.headerWithIcon}>
+          <Icons.Cheatsheet />
+          {t("scaffolding.cheatsheet")}
+        </Typography>
         <WinConditions plots={script.plots()} roleAbilities={roleAbilities} incidents={allIncidents} />
         <MastermindAbilities mastermindAbilities={mastermindAbilities} />
         <RoleAbilities roleAbilities={roleAbilities} />
@@ -63,7 +67,10 @@ function WinConditions(props: WinConditionsProps): React.JSX.Element {
 
   return (
     <>
-      <Typography variant="h3">{t("terms.winConditions")}</Typography>
+      <Typography variant="h3" sx={styles.headerWithIcon}>
+        <Icons.WinConditions />
+        {t("terms.winConditions")}
+      </Typography>
       <Table size="small">
         <TableHead>
           <TableRow>
@@ -119,7 +126,10 @@ function MastermindAbilities({ mastermindAbilities }: MastermindAbilitiesProps):
 
   return (
     <>
-      <Typography variant="h3">{t("terms.mastermindAbilities")}</Typography>
+      <Typography variant="h3" sx={styles.headerWithIcon}>
+        <Icons.MastermindAbilities />
+        {t("terms.mastermindAbilities")}
+      </Typography>
       <Table size="small">
         <TableHead>
           <TableRow>
@@ -155,7 +165,10 @@ function RoleAbilities({ roleAbilities }: RoleAbilitiesProps): React.JSX.Element
   const { t } = useTranslation();
   return (
     <>
-      <Typography variant="h3">{t("terms.roleAbility", { count: 2 })}</Typography>
+      <Typography variant="h3" sx={styles.headerWithIcon}>
+        <Icons.RoleAbilities />
+        {t("terms.roleAbility", { count: roleAbilities.length })}
+      </Typography>
       <Table size="small">
         <TableHead>
           <TableRow>
@@ -195,7 +208,10 @@ function Incidents({ incidents }: IncidentsProps): React.JSX.Element {
 
   return (
     <>
-      <Typography variant="h3">{t("terms.incident", { count: 2 })}</Typography>
+      <Typography variant="h3" sx={styles.headerWithIcon}>
+        <Icons.Incidents />
+        {t("terms.incident", { count: incidents.length })}
+      </Typography>
       <Table size="small">
         <TableHead>
           <TableRow>
@@ -294,3 +310,11 @@ interface CastMemberIncidentTrigger {
   castMember: CastMember;
   incidentTrigger: IncidentOccurrence;
 }
+
+const styles = {
+  headerWithIcon: {
+    display: "flex",
+    alignItems: "center",
+    gap: 1,
+  },
+};

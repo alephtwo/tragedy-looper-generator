@@ -4,12 +4,7 @@ import { TragedySetPicker } from "./TragedySetPicker";
 import { NumberPicker } from "./NumberPicker";
 import { Message, State } from "../logic/State";
 import { Button, Grid, Paper } from "@mui/material";
-import {
-  Description as IconDescription,
-  DateRange as IconDateRange,
-  PeopleAlt as IconPeopleAlt,
-  CrisisAlert as IconCrisisAlert,
-} from "@mui/icons-material";
+import * as Icons from "./Icons";
 
 interface ScriptGeneratorProps {
   state: State;
@@ -38,7 +33,7 @@ export function ScriptGenerator(props: ScriptGeneratorProps): React.JSX.Element 
           <NumberPicker
             id="cast-size"
             label={t("terms.castSize")}
-            startIcon={<IconPeopleAlt fontSize="small" />}
+            startIcon={<Icons.Cast fontSize="small" />}
             min={6}
             max={11}
             value={castSize}
@@ -49,7 +44,7 @@ export function ScriptGenerator(props: ScriptGeneratorProps): React.JSX.Element 
           <NumberPicker
             id="days"
             label={t("terms.day", { count: 2 })}
-            startIcon={<IconDateRange fontSize="small" />}
+            startIcon={<Icons.Days fontSize="small" />}
             min={4}
             max={8}
             value={days}
@@ -60,7 +55,7 @@ export function ScriptGenerator(props: ScriptGeneratorProps): React.JSX.Element 
           <NumberPicker
             id="incidents"
             label={t("terms.incident", { count: 2 })}
-            startIcon={<IconCrisisAlert fontSize="small" />}
+            startIcon={<Icons.Incidents fontSize="small" />}
             min={0}
             // NB: The inclusion of cast size here isn't strictly accurate.
             // Serial Murder incidents can be perpetrated by the same cast member,
@@ -75,7 +70,11 @@ export function ScriptGenerator(props: ScriptGeneratorProps): React.JSX.Element 
           />
         </Grid>
         <Grid item xs={12} sx={{ display: "flex", justifyContent: "center" }}>
-          <Button startIcon={<IconDescription />} variant="contained" onClick={() => dispatch({ action: "generate" })}>
+          <Button
+            startIcon={<Icons.Generate fontSize="small" />}
+            variant="contained"
+            onClick={() => dispatch({ action: "generate" })}
+          >
             {t("scaffolding.generateScript")}
           </Button>
         </Grid>

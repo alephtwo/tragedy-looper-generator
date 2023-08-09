@@ -7,6 +7,7 @@ import { Character } from "../data/types/Character";
 import { Role } from "../data/types/Role";
 import { CastMember } from "../model/CastMember";
 import { Paper, Stack, Table, TableBody, TableCell, TableHead, TableRow, Typography } from "@mui/material";
+import * as Icons from "./Icons";
 
 interface ScriptCardProps {
   script: Script;
@@ -19,11 +20,20 @@ export function Mastermind({ script }: ScriptCardProps): React.JSX.Element {
   return (
     <Paper sx={styles.paper} elevation={1}>
       <Stack gap={1}>
-        <Typography variant="h2">{t("terms.mastermind")}</Typography>
+        <Typography variant="h2" sx={styles.headerWithIcon}>
+          <Icons.Mastermind />
+          {t("terms.mastermind")}
+        </Typography>
         <GeneralInfo script={script} mastermind={true} />
-        <Typography variant="h3">{t("terms.incident", { count: 2 })}</Typography>
+        <Typography variant="h3" sx={styles.headerWithIcon}>
+          <Icons.Incidents />
+          {t("terms.incident", { count: occurrences.length })}
+        </Typography>
         <Incidents occurrences={occurrences} mastermind={true} />
-        <Typography variant="h3">{t("terms.cast")}</Typography>
+        <Typography variant="h3" sx={styles.headerWithIcon}>
+          <Icons.Cast />
+          {t("terms.cast")}
+        </Typography>
         <Table size="small">
           <TableHead>
             <TableRow>
@@ -54,9 +64,15 @@ export function Players({ script }: ScriptCardProps): React.JSX.Element {
   return (
     <Paper sx={styles.paper} elevation={1}>
       <Stack gap={1}>
-        <Typography variant="h2">{t("terms.player", { count: 2 })}</Typography>
+        <Typography variant="h2" sx={styles.headerWithIcon}>
+          <Icons.Players />
+          {t("terms.player", { count: 2 })}
+        </Typography>
         <GeneralInfo script={script} mastermind={false} />
-        <Typography variant="h3">{t("terms.incident", { count: occurrences.length })}</Typography>
+        <Typography variant="h3" sx={styles.headerWithIcon}>
+          <Icons.Incidents />
+          {t("terms.incident", { count: occurrences.length })}
+        </Typography>
         <Incidents occurrences={occurrences} mastermind={false} />
       </Stack>
     </Paper>
@@ -228,5 +244,10 @@ function IncidentName({ occurrence, mastermind }: IncidentNameProps): React.JSX.
 const styles = {
   paper: {
     padding: 2,
+  },
+  headerWithIcon: {
+    display: "flex",
+    alignItems: "center",
+    gap: 1,
   },
 };

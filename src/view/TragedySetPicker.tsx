@@ -5,7 +5,7 @@ import { useTranslation } from "react-i18next";
 import { TragedySet } from "../data/types/TragedySet";
 import { findById } from "../util/findById";
 import { FormControl, FormLabel, MenuItem, Select, Stack } from "@mui/material";
-import { MenuBook as IconMenuBook } from "@mui/icons-material";
+import * as Icons from "./Icons";
 
 interface TragedySetPickerProps {
   id?: string;
@@ -19,7 +19,7 @@ export function TragedySetPicker(props: TragedySetPickerProps): React.JSX.Elemen
     <FormControl fullWidth>
       <FormLabel htmlFor={props.id}>
         <Stack direction="row" gap={1} alignItems="center">
-          <IconMenuBook fontSize="small" />
+          <Icons.TragedySet fontSize="small" />
           {t("terms.tragedySet")}
         </Stack>
       </FormLabel>
