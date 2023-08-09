@@ -20,7 +20,7 @@ export function ScriptGenerator(props: ScriptGeneratorProps): React.JSX.Element 
   }
 
   return (
-    <Paper sx={{ padding: 2 }} elevation={1}>
+    <Paper variant="transparent" sx={{ padding: 2 }} elevation={1}>
       <Grid container rowSpacing={2} columnSpacing={4}>
         <Grid item xs={12} sm={6} md={3}>
           <TragedySetPicker

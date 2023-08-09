@@ -18,7 +18,7 @@ export function Mastermind({ script }: ScriptCardProps): React.JSX.Element {
   const occurrences = describeIncidents(script.cast);
 
   return (
-    <Paper sx={styles.paper} elevation={1}>
+    <Paper variant="transparent" sx={styles.paper} elevation={1}>
       <Box sx={styles.section}>
         <Typography variant="h2" sx={styles.headerWithIcon}>
           <Icons.Mastermind />
@@ -61,7 +61,7 @@ export function Players({ script }: ScriptCardProps): React.JSX.Element {
   const occurrences = describeIncidents(script.cast);
 
   return (
-    <Paper sx={styles.paper} elevation={1}>
+    <Paper variant="transparent" sx={styles.paper} elevation={1}>
       <Box sx={styles.section}>
         <Typography variant="h2" sx={styles.headerWithIcon}>
           <Icons.Players />

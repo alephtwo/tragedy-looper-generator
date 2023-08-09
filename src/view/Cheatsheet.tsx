@@ -31,7 +31,7 @@ export function Cheatsheet({ script }: CheatsheetProps): React.JSX.Element {
   });
 
   return (
-    <Paper sx={{ padding: 2 }} elevation={1}>
+    <Paper variant="transparent" sx={{ padding: 2 }} elevation={1}>
       <Box sx={styles.section}>
         <Typography variant="h2" sx={styles.headerWithIcon}>
           <Icons.Cheatsheet />
