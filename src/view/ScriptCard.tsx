@@ -6,7 +6,7 @@ import { Incident } from "../data/types/Incident";
 import { Character } from "../data/types/Character";
 import { Role } from "../data/types/Role";
 import { CastMember } from "../model/CastMember";
-import { Stack, Table, TableBody, TableCell, TableHead, TableRow, Typography } from "@mui/material";
+import { Paper, Stack, Table, TableBody, TableCell, TableHead, TableRow, Typography } from "@mui/material";
 
 interface ScriptCardProps {
   script: Script;
@@ -17,31 +17,33 @@ export function Mastermind({ script }: ScriptCardProps): React.JSX.Element {
   const occurrences = describeIncidents(script.cast);
 
   return (
-    <Stack gap={1}>
-      <Typography variant="h2">{t("terms.mastermind")}</Typography>
-      <GeneralInfo script={script} mastermind={true} />
-      <Typography variant="h3">{t("terms.incident", { count: 2 })}</Typography>
-      <Incidents occurrences={occurrences} mastermind={true} />
-      <Typography variant="h3">{t("terms.cast")}</Typography>
-      <Table size="small">
-        <TableHead>
-          <TableRow>
-            <TableCell variant="head">{t("terms.character", { count: 1 })}</TableCell>
-            <TableCell variant="head">{t("terms.role", { count: 1 })}</TableCell>
-          </TableRow>
-        </TableHead>
-        <TableBody>
-          {_.sortBy(script.cast, (c) => t(c.character.name_i18n_key)).map((c) => (
-            <TableRow key={`cast-${c.id}`}>
-              <TableCell>
-                <CastMemberName castMember={c} />
-              </TableCell>
-              <TableCell>{t(c.role.name_i18n_key)}</TableCell>
+    <Paper sx={styles.paper} elevation={1}>
+      <Stack gap={1}>
+        <Typography variant="h2">{t("terms.mastermind")}</Typography>
+        <GeneralInfo script={script} mastermind={true} />
+        <Typography variant="h3">{t("terms.incident", { count: 2 })}</Typography>
+        <Incidents occurrences={occurrences} mastermind={true} />
+        <Typography variant="h3">{t("terms.cast")}</Typography>
+        <Table size="small">
+          <TableHead>
+            <TableRow>
+              <TableCell variant="head">{t("terms.character", { count: 1 })}</TableCell>
+              <TableCell variant="head">{t("terms.role", { count: 1 })}</TableCell>
             </TableRow>
-          ))}
-        </TableBody>
-      </Table>
-    </Stack>
+          </TableHead>
+          <TableBody>
+            {_.sortBy(script.cast, (c) => t(c.character.name_i18n_key)).map((c) => (
+              <TableRow key={`cast-${c.id}`}>
+                <TableCell>
+                  <CastMemberName castMember={c} />
+                </TableCell>
+                <TableCell>{t(c.role.name_i18n_key)}</TableCell>
+              </TableRow>
+            ))}
+          </TableBody>
+        </Table>
+      </Stack>
+    </Paper>
   );
 }
 
@@ -50,12 +52,14 @@ export function Players({ script }: ScriptCardProps): React.JSX.Element {
   const occurrences = describeIncidents(script.cast);
 
   return (
-    <Stack gap={1}>
-      <Typography variant="h2">{t("terms.player", { count: 2 })}</Typography>
-      <GeneralInfo script={script} mastermind={false} />
-      <Typography variant="h3">{t("terms.incident", { count: occurrences.length })}</Typography>
-      <Incidents occurrences={occurrences} mastermind={false} />
-    </Stack>
+    <Paper sx={styles.paper} elevation={1}>
+      <Stack gap={1}>
+        <Typography variant="h2">{t("terms.player", { count: 2 })}</Typography>
+        <GeneralInfo script={script} mastermind={false} />
+        <Typography variant="h3">{t("terms.incident", { count: occurrences.length })}</Typography>
+        <Incidents occurrences={occurrences} mastermind={false} />
+      </Stack>
+    </Paper>
   );
 }
 
@@ -220,3 +224,9 @@ function IncidentName({ occurrence, mastermind }: IncidentNameProps): React.JSX.
   // Players only see the fake incident.
   return <>{t(occurrence.fakeIncident.name_i18n_key)}</>;
 }
+
+const styles = {
+  paper: {
+    padding: 2,
+  },
+};

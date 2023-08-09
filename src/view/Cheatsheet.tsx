@@ -9,7 +9,7 @@ import { CastMember } from "../model/CastMember";
 import { IncidentOccurrence } from "../model/IncidentOccurrence";
 import { PlotRule } from "../data/types/PlotRule";
 import { Incident } from "../data/types/Incident";
-import { Stack, Table, TableBody, TableCell, TableHead, TableRow, Typography } from "@mui/material";
+import { Paper, Stack, Table, TableBody, TableCell, TableHead, TableRow, Typography } from "@mui/material";
 
 interface CheatsheetProps {
   script: Script;
@@ -30,13 +30,15 @@ export function Cheatsheet({ script }: CheatsheetProps): React.JSX.Element {
   });
 
   return (
-    <Stack gap={1}>
-      <Typography variant="h2">{t("scaffolding.cheatsheet")}</Typography>
-      <WinConditions plots={script.plots()} roleAbilities={roleAbilities} incidents={allIncidents} />
-      <MastermindAbilities mastermindAbilities={mastermindAbilities} />
-      <RoleAbilities roleAbilities={roleAbilities} />
-      <Incidents incidents={allIncidents} />
-    </Stack>
+    <Paper sx={{ padding: 2 }} elevation={1}>
+      <Stack gap={1}>
+        <Typography variant="h2">{t("scaffolding.cheatsheet")}</Typography>
+        <WinConditions plots={script.plots()} roleAbilities={roleAbilities} incidents={allIncidents} />
+        <MastermindAbilities mastermindAbilities={mastermindAbilities} />
+        <RoleAbilities roleAbilities={roleAbilities} />
+        <Incidents incidents={allIncidents} />
+      </Stack>
+    </Paper>
   );
 }
 

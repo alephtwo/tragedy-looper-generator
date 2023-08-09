@@ -7,7 +7,7 @@ import * as ScriptCard from "./ScriptCard";
 import { Cheatsheet } from "./Cheatsheet";
 import { LanguagePicker } from "./LanguagePicker";
 import { SupportedLanguage } from "../@types/SupportedLanguages";
-import { Box, Container, Stack, colors } from "@mui/material";
+import { Box, Container, Stack } from "@mui/material";
 
 export function Application(): JSX.Element {
   const { t, i18n } = useTranslation();
@@ -29,15 +29,9 @@ export function Application(): JSX.Element {
     }
     return (
       <Stack gap={1}>
-        <Box sx={{ backgroundColor: colors.red[100] }}>
-          <ScriptCard.Mastermind script={script} />
-        </Box>
-        <Box sx={{ backgroundColor: colors.green[100] }}>
-          <ScriptCard.Players script={script} />
-        </Box>
-        <Box sx={{ backgroundColor: colors.blue[100] }}>
-          <Cheatsheet script={script} />
-        </Box>
+        <ScriptCard.Mastermind script={script} />
+        <ScriptCard.Players script={script} />
+        <Cheatsheet script={script} />
       </Stack>
     );
   }
