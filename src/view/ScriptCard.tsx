@@ -63,7 +63,7 @@ export function Players({ script }: ScriptCardProps): React.JSX.Element {
 
   return (
     <Paper sx={styles.paper} elevation={1}>
-      <Stack gap={1}>
+      <Stack spacing={1}>
         <Typography variant="h2" sx={styles.headerWithIcon}>
           <Icons.Players />
           {t("terms.player", { count: 2 })}
@@ -244,6 +244,7 @@ function IncidentName({ occurrence, mastermind }: IncidentNameProps): React.JSX.
 const styles = {
   paper: {
     padding: 2,
+    height: "100%",
   },
   headerWithIcon: {
     display: "flex",

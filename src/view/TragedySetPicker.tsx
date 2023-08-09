@@ -18,7 +18,7 @@ export function TragedySetPicker(props: TragedySetPickerProps): React.JSX.Elemen
   return (
     <FormControl fullWidth>
       <FormLabel htmlFor={props.id}>
-        <Stack direction="row" gap={1} alignItems="center">
+        <Stack direction="row" spacing={1} alignItems="center">
           <Icons.TragedySet fontSize="small" />
           {t("terms.tragedySet")}
         </Stack>

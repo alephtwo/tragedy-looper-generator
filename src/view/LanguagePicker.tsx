@@ -14,7 +14,7 @@ export function LanguagePicker(props: LanguagePickerProps) {
     <Select value={props.value} onChange={(e) => props.onChange(e.target.value as SupportedLanguage)} size="small">
       {SupportedLanguages.map((lang) => (
         <MenuItem key={`lng-${lang}`} value={lang}>
-          <Stack direction="row" gap={1}>
+          <Stack direction="row" spacing={1}>
             <SvgIcon>{flags[lang]}</SvgIcon>
             {lang.toUpperCase()}
           </Stack>

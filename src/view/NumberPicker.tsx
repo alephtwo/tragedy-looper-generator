@@ -21,7 +21,7 @@ export function NumberPicker(props: NumberPickerProps): React.JSX.Element {
   return (
     <FormControl fullWidth>
       <FormLabel htmlFor={props.id}>
-        <Stack direction="row" gap={1} alignItems="center">
+        <Stack direction="row" spacing={1} alignItems="center">
           {props.startIcon}
           {props.label}
         </Stack>

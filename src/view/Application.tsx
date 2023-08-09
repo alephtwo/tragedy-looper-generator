@@ -7,7 +7,7 @@ import * as ScriptCard from "./ScriptCard";
 import { Cheatsheet } from "./Cheatsheet";
 import { LanguagePicker } from "./LanguagePicker";
 import { SupportedLanguage } from "../@types/SupportedLanguages";
-import { Box, Container, Stack } from "@mui/material";
+import { Box, Container, Grid, Stack } from "@mui/material";
 
 export function Application(): JSX.Element {
   const { t, i18n } = useTranslation();
@@ -28,11 +28,17 @@ export function Application(): JSX.Element {
       return <></>;
     }
     return (
-      <Stack gap={1}>
-        <ScriptCard.Mastermind script={script} />
-        <ScriptCard.Players script={script} />
-        <Cheatsheet script={script} />
-      </Stack>
+      <Grid container spacing={1}>
+        <Grid item xs={12} sm={6}>
+          <ScriptCard.Mastermind script={script} />
+        </Grid>
+        <Grid item xs={12} sm={6}>
+          <ScriptCard.Players script={script} />
+        </Grid>
+        <Grid item xs={12}>
+          <Cheatsheet script={script} />
+        </Grid>
+      </Grid>
     );
   }
 

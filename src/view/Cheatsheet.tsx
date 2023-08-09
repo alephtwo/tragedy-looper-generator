@@ -32,7 +32,7 @@ export function Cheatsheet({ script }: CheatsheetProps): React.JSX.Element {
 
   return (
     <Paper sx={{ padding: 2 }} elevation={1}>
-      <Stack gap={1}>
+      <Stack spacing={1}>
         <Typography variant="h2" sx={styles.headerWithIcon}>
           <Icons.Cheatsheet />
           {t("scaffolding.cheatsheet")}
