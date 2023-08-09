@@ -1,6 +1,4 @@
-const langs = {
-  en: "🇬🇧 EN",
-} as const;
+const langs = ["en"] as const;
 
 export default langs;
-export type SupportedLanguage = keyof typeof langs;
+export type SupportedLanguage = (typeof langs)[number];

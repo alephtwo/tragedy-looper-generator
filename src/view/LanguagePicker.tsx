@@ -11,11 +11,15 @@ interface LanguagePickerProps {
 export function LanguagePicker(props: LanguagePickerProps) {
   return (
     <Select value={props.value} onChange={(e) => props.onChange(e.target.value as SupportedLanguage)} size="small">
-      {_.map(SupportedLanguages, (desc, lang) => (
+      {SupportedLanguages.map((lang) => (
         <MenuItem key={`lng-${lang}`} value={lang}>
-          {desc}
+          {flags[lang]}
         </MenuItem>
       ))}
     </Select>
   );
 }
+
+const flags: Record<SupportedLanguage, React.JSX.Element> = {
+  en: <>🇬🇧 EN</>,
+};

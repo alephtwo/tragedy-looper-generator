@@ -7,7 +7,7 @@ i18n
   .use(initReactI18next)
   .use(HttpBackend)
   .init({
-    supportedLngs: Object.keys(SupportedLanguages),
+    supportedLngs: SupportedLanguages,
     fallbackLng: "en",
     backend: {
       loadPath: "/locales/{{lng}}.json",
