@@ -8,7 +8,7 @@ import { CssBaseline, ThemeProvider, createTheme } from "@mui/material";
 const defaultTheme = createTheme();
 const theme = createTheme({
   typography: {
-    fontFamily: `"Sazanami Gothic", ${defaultTheme.typography.fontFamily}`,
+    fontFamily: `"Noto Sans", ${defaultTheme.typography.fontFamily}`,
   },
 });
 const app = (
