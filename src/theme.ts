@@ -10,6 +10,10 @@ export const theme = createTheme({
   },
   typography: {
     fontFamily: `"Noto Sans", ${defaultTheme.typography.fontFamily}`,
+    h1: {
+      fontSize: "32px",
+      fontWeight: "bold",
+    },
     h2: {
       fontSize: "28px",
       fontWeight: "bold",

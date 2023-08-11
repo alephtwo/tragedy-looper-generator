@@ -28,6 +28,7 @@ export function NumberPicker(props: NumberPickerProps): React.JSX.Element {
       </FormLabel>
       <Slider
         id={props.id}
+        aria-label={props.label}
         min={props.min}
         max={props.max}
         value={props.value}
