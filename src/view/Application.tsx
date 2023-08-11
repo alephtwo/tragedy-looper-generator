@@ -7,7 +7,7 @@ import * as ScriptCard from "./ScriptCard";
 import { Cheatsheet } from "./Cheatsheet";
 import { LanguagePicker } from "./LanguagePicker";
 import { SupportedLanguage } from "../@types/SupportedLanguages";
-import { Box, Container, Grid, Stack } from "@mui/material";
+import { Container, Grid, Stack, Typography, colors } from "@mui/material";
 
 export function Application(): JSX.Element {
   const { t, i18n } = useTranslation();
@@ -21,6 +21,7 @@ export function Application(): JSX.Element {
 
   useEffect(() => {
     i18n.changeLanguage(lang).catch(console.error);
+    document.documentElement.setAttribute("lang", lang);
   }, [lang]);
 
   function ScriptInfo(): React.JSX.Element {
@@ -43,14 +44,64 @@ export function Application(): JSX.Element {
   }
 
   return (
-    <Container sx={{ marginY: 1 }}>
+    <Container sx={{ marginY: 1 }} component="main">
       <Stack gap={1}>
-        <Box sx={{ display: "flex", justifyContent: "flex-end" }}>
+        <Stack direction="row" justifyContent="space-between">
+          <PageTitle />
           <LanguagePicker value={lang} onChange={setLang} />
-        </Box>
+        </Stack>
         <ScriptGenerator state={state} dispatch={dispatch} />
         <ScriptInfo />
       </Stack>
     </Container>
   );
 }
+
+function PageTitle(): React.JSX.Element {
+  const { t } = useTranslation();
+  const title = t("scaffolding.title");
+
+  // Get fancy...
+  const tokens = title.split(" ");
+
+  return (
+    <Typography variant="h1" sx={{ ...styles.shadow, ...styles.grey }}>
+      {tokens.map((token, i) => {
+        // All but the last token are default font color.
+        if (i !== tokens.length - 1) {
+          return <span key={`title-${i}`}>{token} </span>;
+        }
+        return <QuarterRedText key={`title-${i}`} token={token} />;
+      })}
+    </Typography>
+  );
+}
+
+interface QuarterRedTextProps {
+  token: string;
+}
+function QuarterRedText(props: QuarterRedTextProps) {
+  const { token } = props;
+  // The first quarter of characters in the last token are red.
+  const quarter = Math.ceil(token.length / 4);
+  const begin = token.slice(0, quarter);
+  const end = token.slice(quarter);
+  return (
+    <>
+      <span style={styles.red}>{begin}</span>
+      <span>{end}</span>
+    </>
+  );
+}
+
+const styles = {
+  shadow: {
+    textShadow: new Array(6).fill("#000 0 0 2px").join(", "),
+  },
+  grey: {
+    color: colors.grey[200],
+  },
+  red: {
+    color: colors.red[900],
+  },
+};

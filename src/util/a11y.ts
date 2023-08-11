@@ -5,6 +5,6 @@ export async function reportAccessibility(App: typeof React, config?: Record<str
     const axe = await import("@axe-core/react");
     const ReactDOM = await import("react-dom");
 
-    axe.default(App, ReactDOM, 1_000, config);
+    await axe.default(App, ReactDOM, 1_000, config);
   }
 }
