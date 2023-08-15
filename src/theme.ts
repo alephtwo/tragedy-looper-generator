@@ -3,9 +3,9 @@ import { colors, createTheme } from "@mui/material";
 const defaultTheme = createTheme();
 export const theme = createTheme({
   palette: {
-    primary: colors.purple,
+    primary: colors.blueGrey,
     background: {
-      default: colors.deepPurple[500],
+      default: colors.blueGrey[700],
     },
   },
   typography: {
