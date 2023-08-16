@@ -5,11 +5,12 @@ import "./i18n";
 import { CssBaseline, ThemeProvider } from "@mui/material";
 import { theme } from "./theme";
 import { reportAccessibility } from "./util/a11y";
+import { Loading } from "./view/Loading";
 
 const app = (
   <ThemeProvider theme={theme}>
     <CssBaseline />
-    <React.Suspense fallback={<h1>Loading...</h1>}>
+    <React.Suspense fallback={<Loading />}>
       <Application />
     </React.Suspense>
   </ThemeProvider>
