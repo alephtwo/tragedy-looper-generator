@@ -1,13 +1,13 @@
-const { CleanWebpackPlugin } = require("clean-webpack-plugin");
-const CopyWebpackPlugin = require("copy-webpack-plugin");
-const HtmlWebpackPlugin = require("html-webpack-plugin");
-const path = require("path");
+import { CleanWebpackPlugin } from "clean-webpack-plugin";
+import CopyWebpackPlugin from "copy-webpack-plugin";
+import HtmlWebpackPlugin from "html-webpack-plugin";
+import path from "path";
 
 const paths = {
-  entry: path.resolve(__dirname, "src", "index.tsx"),
-  html: path.resolve(__dirname, "src", "index.html"),
-  static: path.resolve(__dirname, "src", "static"),
-  target: path.resolve(__dirname, "public"),
+  entry: path.resolve(import.meta.dirname, "src", "index.tsx"),
+  html: path.resolve(import.meta.dirname, "src", "index.html"),
+  static: path.resolve(import.meta.dirname, "src", "static"),
+  target: path.resolve(import.meta.dirname, "public"),
 };
 
 const rules = {
@@ -27,7 +27,7 @@ const plugins = {
   }),
 };
 
-module.exports = {
+export default {
   entry: paths.entry,
   output: {
     filename: "app-[contenthash].js",
