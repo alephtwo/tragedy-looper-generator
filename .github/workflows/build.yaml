@@ -1,15 +1,15 @@
 ---
 name: "Build"
-"on": ["push"]
+on: ["push"]
 jobs:
   test:
     name: "Run tests"
     runs-on: "ubuntu-latest"
     steps:
-      - uses: "actions/checkout@v3"
-      - uses: "actions/setup-node@v3"
+      - uses: "actions/checkout@v4"
+      - uses: "actions/setup-node@v4"
         with:
-          node-version: "lts/hydrogen"
+          node-version: "lts/iron"
       - name: "Install Dependencies"
         run: "npm ci"
       - name: "Run tests"
@@ -18,10 +18,10 @@ jobs:
     name: "Run build"
     runs-on: "ubuntu-latest"
     steps:
-      - uses: "actions/checkout@v3"
-      - uses: "actions/setup-node@v3"
+      - uses: "actions/checkout@v4"
+      - uses: "actions/setup-node@v4"
         with:
-          node-version: "lts/hydrogen"
+          node-version: "lts/iron"
       - name: "Install Dependencies"
         run: "npm ci"
       - name: "Run tests"

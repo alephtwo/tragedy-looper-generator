@@ -4,6 +4,8 @@ ignore:
   - "/node_modules"
   - "/public"
 rules:
+  truthy:
+    check-keys: false
   line-length:
     max: 120
     allow-non-breakable-words: true
