@@ -1,6 +1,10 @@
 ---
 name: "Lint"
-on: ["push"]
+on:
+  push:
+    branches-ignore:
+      - "main"
+  workflow_call:
 jobs:
   eslint:
     name: "Run eslint"
@@ -10,6 +14,7 @@ jobs:
       - uses: "actions/setup-node@v4"
         with:
           node-version: "lts/iron"
+          cache: "npm"
       - name: "Install Dependencies"
         run: "npm ci"
       - name: "Run eslint"
@@ -22,6 +27,7 @@ jobs:
       - uses: "actions/setup-node@v4"
         with:
           node-version: "lts/iron"
+          cache: "npm"
       - name: "Install Dependencies"
         run: "npm ci"
       - name: "Run prettier"
@@ -34,6 +40,7 @@ jobs:
       - uses: "actions/setup-node@v4"
         with:
           node-version: "lts/iron"
+          cache: "npm"
       - name: "Install Dependencies"
         run: "npm ci"
       - name: "Run markdownlint"
