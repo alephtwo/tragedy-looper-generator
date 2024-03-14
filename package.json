@@ -19,7 +19,7 @@
     "@axe-core/react": "4.8.5",
     "@jest/globals": "29.7.0",
     "@types/lodash": "4.17.0",
-    "@types/react": "18.2.65",
+    "@types/react": "18.2.66",
     "@types/react-dom": "18.2.22",
     "@types/uuid": "9.0.8",
     "clean-webpack-plugin": "4.0.0",
