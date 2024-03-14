@@ -2,7 +2,7 @@
 extends: "default"
 ignore:
   - "/node_modules"
-  - "/public"
+  - "/dist"
 rules:
   truthy:
     check-keys: false

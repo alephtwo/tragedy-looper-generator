@@ -10,7 +10,7 @@ i18n
     supportedLngs: SupportedLanguages,
     fallbackLng: "en",
     backend: {
-      loadPath: "/locales/{{lng}}.json",
+      loadPath: `${import.meta.env.BASE_URL}/locales/{{lng}}.json`,
     },
   })
   .catch((e) => console.error(e));
