@@ -1,4 +1,4 @@
-import { describe, it, expect } from "@jest/globals";
+import { describe, it, expect } from "vitest";
 
 import * as _ from "lodash";
 import { Characters } from "../data/Characters";
