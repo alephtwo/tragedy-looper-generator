@@ -11,40 +11,49 @@ jobs:
     runs-on: "ubuntu-latest"
     steps:
       - uses: "actions/checkout@v4"
+      - uses: "pnpm/action-setup/@v4"
+        with:
+          version: "latest"
       - uses: "actions/setup-node@v4"
         with:
           node-version: "lts/iron"
-          cache: "npm"
+          cache: "pnpm"
       - name: "Install Dependencies"
-        run: "npm ci"
+        run: "pnpm install --frozen-lockfile"
       - name: "Run eslint"
-        run: "npm run lint:ts"
+        run: "pnpm lint:ts"
   prettier:
     name: "Run Prettier"
     runs-on: "ubuntu-latest"
     steps:
       - uses: "actions/checkout@v4"
+      - uses: "pnpm/action-setup/@v4"
+        with:
+          version: "latest"
       - uses: "actions/setup-node@v4"
         with:
           node-version: "lts/iron"
-          cache: "npm"
+          cache: "pnpm"
       - name: "Install Dependencies"
-        run: "npm ci"
+        run: "pnpm install --frozen-lockfile"
       - name: "Run prettier"
-        run: "npm run prettier"
+        run: "pnpm prettier"
   markdownlint:
     name: "Run Markdownlint"
     runs-on: "ubuntu-latest"
     steps:
       - uses: "actions/checkout@v4"
+      - uses: "pnpm/action-setup/@v4"
+        with:
+          version: "latest"
       - uses: "actions/setup-node@v4"
         with:
           node-version: "lts/iron"
-          cache: "npm"
+          cache: "pnpm"
       - name: "Install Dependencies"
-        run: "npm ci"
+        run: "pnpm install --frozen-lockfile"
       - name: "Run markdownlint"
-        run: "npm run mdl"
+        run: "pnpm mdl"
   yaml:
     name: "Lint YAML"
     runs-on: "ubuntu-latest"
