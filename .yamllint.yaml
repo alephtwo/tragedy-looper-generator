@@ -3,6 +3,7 @@ extends: "default"
 ignore:
   - "/node_modules"
   - "/dist"
+  - "/pnpm-lock.yaml"
 rules:
   truthy:
     check-keys: false
