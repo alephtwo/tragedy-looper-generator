@@ -15,8 +15,12 @@ concurrency:
 jobs:
   lint:
     uses: "./.github/workflows/lint.yaml"
+  test:
+    uses: "./.github/workflows/test.yaml"
   deploy:
-    needs: "lint"
+    needs:
+      - "lint"
+      - "test"
     environment:
       name: "github-pages"
       url: "${{ steps.deployment.outputs.page_url }}"

@@ -53,7 +53,7 @@ jobs:
       - name: "Install Dependencies"
         run: "pnpm install --frozen-lockfile"
       - name: "Run markdownlint"
-        run: "pnpm mdl"
+        run: "pnpm lint:md"
   yaml:
     name: "Lint YAML"
     runs-on: "ubuntu-latest"

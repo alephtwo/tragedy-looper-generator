@@ -4,6 +4,8 @@ ignore:
   - "/node_modules"
   - "/dist"
   - "/pnpm-lock.yaml"
+  - "/coverage"
+  - "/reports"
 rules:
   truthy:
     check-keys: false
