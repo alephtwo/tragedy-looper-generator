@@ -23,19 +23,19 @@
     "@stryker-mutator/core": "8.6.0",
     "@stryker-mutator/vitest-runner": "8.6.0",
     "@types/lodash": "4.17.13",
-    "@types/node": "22.9.3",
+    "@types/node": "22.10.0",
     "@types/react": "18.3.12",
     "@types/react-dom": "18.3.1",
     "@types/uuid": "10.0.0",
-    "@vitejs/plugin-react-swc": "3.7.1",
+    "@vitejs/plugin-react-swc": "3.7.2",
     "eslint": "9.15.0",
     "markdownlint": "0.36.1",
     "markdownlint-cli": "0.43.0",
-    "prettier": "3.3.3",
+    "prettier": "3.4.1",
     "typescript": "5.7.2",
-    "typescript-eslint": "8.15.0",
-    "vite": "5.4.11",
-    "vitest": "2.1.5"
+    "typescript-eslint": "8.16.0",
+    "vite": "6.0.0",
+    "vitest": "2.1.6"
   },
   "dependencies": {
     "@emotion/react": "11.13.5",
@@ -43,13 +43,13 @@
     "@mui/icons-material": "6.1.8",
     "@mui/material": "6.1.8",
     "country-flag-icons": "1.5.13",
-    "i18next": "24.0.0",
+    "i18next": "24.0.2",
     "i18next-http-backend": "3.0.1",
     "immer": "10.1.1",
     "lodash": "4.17.21",
     "react": "18.3.1",
     "react-dom": "18.3.1",
-    "react-i18next": "15.1.1",
+    "react-i18next": "15.1.2",
     "uuid": "11.0.3"
   }
 }
