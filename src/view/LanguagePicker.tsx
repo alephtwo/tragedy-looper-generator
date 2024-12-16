@@ -1,7 +1,6 @@
 import * as React from "react";
 import { Box, MenuItem, Select, SvgIcon } from "@mui/material";
 import SupportedLanguages, { SupportedLanguage } from "../@types/SupportedLanguages";
-import * as _ from "lodash";
 
 interface LanguagePickerProps {
   value: SupportedLanguage;
