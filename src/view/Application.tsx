@@ -9,7 +9,7 @@ import { LanguagePicker } from "./LanguagePicker";
 import { SupportedLanguage } from "../@types/SupportedLanguages";
 import { Container, Grid, Stack, Typography, colors } from "@mui/material";
 
-export function Application(): JSX.Element {
+export function Application(): React.JSX.Element {
   const { t, i18n } = useTranslation();
   const [state, dispatch] = useReducer(reducer, initialState);
   const [lang, setLang] = useState<SupportedLanguage>("en");
