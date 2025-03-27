@@ -30,13 +30,13 @@ export function Application(): React.JSX.Element {
     }
     return (
       <Grid container spacing={1}>
-        <Grid item xs={12} md={6}>
+        <Grid size={{ xs: 12, md: 6 }}>
           <ScriptCard.Mastermind script={script} />
         </Grid>
-        <Grid item xs={12} md={6}>
+        <Grid size={{ xs: 12, md: 6 }}>
           <ScriptCard.Players script={script} />
         </Grid>
-        <Grid item xs={12}>
+        <Grid size={{ xs: 12 }}>
           <Cheatsheet script={script} />
         </Grid>
       </Grid>

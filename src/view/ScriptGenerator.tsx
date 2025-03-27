@@ -22,14 +22,14 @@ export function ScriptGenerator(props: ScriptGeneratorProps): React.JSX.Element 
   return (
     <Paper variant="transparent" sx={{ padding: 2 }} elevation={1}>
       <Grid container rowSpacing={2} columnSpacing={4}>
-        <Grid item xs={12} sm={6} md={3}>
+        <Grid size={{ xs: 12, sm: 6, md: 3 }}>
           <TragedySetPicker
             id="tragedy-set"
             selected={tragedySet}
             onChange={(ts) => dispatch({ action: "set-tragedy-set", value: ts })}
           />
         </Grid>
-        <Grid item xs={12} sm={6} md={3}>
+        <Grid size={{ xs: 12, sm: 6, md: 3 }}>
           <NumberPicker
             id="cast-size"
             label={t("terms.castSize")}
@@ -40,7 +40,7 @@ export function ScriptGenerator(props: ScriptGeneratorProps): React.JSX.Element 
             onChange={(n) => dispatch({ action: "set-cast-size", value: n })}
           />
         </Grid>
-        <Grid item xs={12} sm={6} md={3}>
+        <Grid size={{ xs: 12, sm: 6, md: 3 }}>
           <NumberPicker
             id="days"
             label={t("terms.day", { count: 2 })}
@@ -51,7 +51,7 @@ export function ScriptGenerator(props: ScriptGeneratorProps): React.JSX.Element 
             onChange={(n) => dispatch({ action: "set-days", value: n })}
           />
         </Grid>
-        <Grid item xs={12} sm={6} md={3}>
+        <Grid size={{ xs: 12, sm: 6, md: 3 }}>
           <NumberPicker
             id="incidents"
             label={t("terms.incident", { count: 2 })}
@@ -69,7 +69,7 @@ export function ScriptGenerator(props: ScriptGeneratorProps): React.JSX.Element 
             onChange={(n) => dispatch({ action: "set-incidents", value: n })}
           />
         </Grid>
-        <Grid item xs={12} sx={{ display: "flex", justifyContent: "center" }}>
+        <Grid size={{ xs: 12 }} sx={{ display: "flex", justifyContent: "center" }}>
           <Button
             startIcon={<Icons.Generate fontSize="small" />}
             variant="contained"
