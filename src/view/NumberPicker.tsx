@@ -34,7 +34,7 @@ export function NumberPicker(props: NumberPickerProps): React.JSX.Element {
         value={props.value}
         marks={marks}
         size="small"
-        onChange={(_e, v) => props.onChange(v as number)}
+        onChange={(_e, v) => props.onChange(v)}
       />
     </FormControl>
   );
