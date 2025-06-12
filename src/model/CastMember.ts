@@ -1,16 +1,16 @@
+import { UUID } from "crypto";
 import { Character } from "../data/types/Character";
 import { Role } from "../data/types/Role";
 import { IncidentOccurrence } from "./IncidentOccurrence";
-import * as uuid from "uuid";
 
 export class CastMember {
-  readonly id: string;
+  readonly id: UUID;
   readonly character: Character;
   readonly role: Role;
   readonly incidentTriggers: Array<IncidentOccurrence>;
 
   constructor(args: CastMemberArgs) {
-    this.id = uuid.v4();
+    this.id = crypto.randomUUID();
     this.character = args.character;
     this.role = args.role;
     this.incidentTriggers = args.incidentTriggers;

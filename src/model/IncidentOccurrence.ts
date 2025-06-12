@@ -1,14 +1,14 @@
-import * as uuid from "uuid";
+import { UUID } from "crypto";
 import { Incident } from "../data/types/Incident";
 
 export class IncidentOccurrence {
-  readonly id: string;
+  readonly id: UUID;
   readonly incident: Incident;
   readonly day: number;
   #fakedIncident: Incident | undefined;
 
   constructor(args: IncidentOccurrenceArgs) {
-    this.id = uuid.v4();
+    this.id = crypto.randomUUID();
     this.incident = args.incident;
     this.day = args.day;
   }

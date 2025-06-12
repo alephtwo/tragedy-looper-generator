@@ -4,13 +4,14 @@ import { Character } from "./Character";
 import { MastermindAbility } from "./MastermindAbility";
 import { RoleAbility } from "./RoleAbility";
 import { Identifiable } from "../../@types/Identifiable";
+import { UUID } from "crypto";
 
 // no loc required, these types are just informational for generation - no ui
 type Culprit = "Never" | "Optional" | "Mandatory";
 type GoodwillRefusal = "Optional" | "Mandatory";
 
 export class Role implements Identifiable {
-  readonly id: string;
+  readonly id: UUID;
   readonly name_i18n_key: ParseKeys;
   readonly unkillable: boolean;
   readonly culprit: Culprit;
@@ -45,7 +46,7 @@ export class ConditionalRole extends Role {
 
 // Create it with just a base role.
 interface RoleArgs {
-  readonly id: string;
+  readonly id: UUID;
   readonly name_i18n_key: ParseKeys;
   readonly unkillable: boolean;
   readonly culprit: Culprit;

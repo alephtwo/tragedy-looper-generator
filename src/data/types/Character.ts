@@ -1,9 +1,10 @@
+import { UUID } from "crypto";
 import { Identifiable } from "../../@types/Identifiable";
 import { Location } from "./Location";
 import { ParseKeys } from "i18next";
 
 export class Character implements Identifiable {
-  readonly id: string;
+  readonly id: UUID;
   readonly name_i18n_key: ParseKeys;
   readonly descriptors: Set<Descriptor>;
   readonly locations: Set<Location>;
@@ -37,7 +38,7 @@ export class Character implements Identifiable {
 }
 
 interface Fields {
-  readonly id: string;
+  readonly id: UUID;
   readonly name_i18n_key: ParseKeys;
   readonly descriptors: Array<Descriptor>;
   readonly locations: Array<Location>;
