@@ -14,4 +14,6 @@ export interface Plot extends Identifiable {
   readonly estimateLoops: (script: Script) => number;
   readonly plotRules: Array<PlotRule>;
   readonly mastermindAbilities: Array<MastermindAbility>;
+  // Only plots that are fully implemented properly should be choosable.
+  readonly enabled: boolean;
 }

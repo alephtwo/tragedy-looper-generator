@@ -63,7 +63,10 @@ function pickMainPlot(tragedySet: TragedySet): Plot {
 }
 
 function pickSubplots(tragedySet: TragedySet): Array<Plot> {
-  return _.sampleSize(tragedySet.subplots, 2);
+  return _.sampleSize(
+    tragedySet.subplots.filter((s) => s.enabled),
+    2,
+  );
 }
 
 // Enforce maximums.

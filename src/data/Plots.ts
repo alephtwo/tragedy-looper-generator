@@ -18,6 +18,7 @@ export const MainPlots: MainPlotsDatabase = {
     estimateLoops: () => 1.8,
     plotRules: [],
     mastermindAbilities: [],
+    enabled: true,
   },
   theSealedItem: {
     id: "ec4950ad-ff5f-4709-b9e5-bcc2a75f7bd7",
@@ -34,6 +35,7 @@ export const MainPlots: MainPlotsDatabase = {
       },
     ],
     mastermindAbilities: [],
+    enabled: true,
   },
   signWithMe: {
     id: "60d51048-dd95-49c1-9063-12bad472d9b5",
@@ -59,6 +61,7 @@ export const MainPlots: MainPlotsDatabase = {
       },
     ],
     mastermindAbilities: [],
+    enabled: true,
   },
   changeOfFuture: {
     id: "4abf382c-4dae-4692-9825-b6918b28f69d",
@@ -82,6 +85,7 @@ export const MainPlots: MainPlotsDatabase = {
       },
     ],
     mastermindAbilities: [],
+    enabled: true,
   },
   giantTimeBomb: {
     id: "b2c799fa-bf11-4ad5-b03d-7a0218544dd0",
@@ -98,6 +102,7 @@ export const MainPlots: MainPlotsDatabase = {
       },
     ],
     mastermindAbilities: [],
+    enabled: true,
   },
   lightOfTheAvenger: {
     id: "33d87741-b161-47ce-8392-68dd6bd21fa0",
@@ -115,6 +120,7 @@ export const MainPlots: MainPlotsDatabase = {
       },
     ],
     mastermindAbilities: [],
+    enabled: true,
   },
   aPlaceToProtect: {
     id: "107953b0-402b-45bc-b5b4-777bdfef9490",
@@ -132,6 +138,7 @@ export const MainPlots: MainPlotsDatabase = {
       },
     ],
     mastermindAbilities: [],
+    enabled: true,
   },
   // Midnight Zone
   theSealedItem2: {
@@ -150,6 +157,7 @@ export const MainPlots: MainPlotsDatabase = {
       },
     ],
     mastermindAbilities: [],
+    enabled: true,
   },
   secretRecord: {
     id: "61494789-8d76-4b60-8850-1370bf4e323c",
@@ -171,6 +179,7 @@ export const MainPlots: MainPlotsDatabase = {
       },
     ],
     mastermindAbilities: [],
+    enabled: true,
   },
   maleConfrontation: {
     id: "b65ad9f2-7756-40a3-b0e1-3d91928ae99b",
@@ -197,6 +206,7 @@ export const MainPlots: MainPlotsDatabase = {
       },
     ],
     mastermindAbilities: [],
+    enabled: true,
   },
   theDevilsHand: {
     id: "03207e39-1c4f-43a9-91fe-9a33a9137d4d",
@@ -206,6 +216,7 @@ export const MainPlots: MainPlotsDatabase = {
     estimateLoops: () => 1.4,
     plotRules: [],
     mastermindAbilities: [],
+    enabled: true,
   },
   fatedConnections: {
     id: "cb193092-3d9a-4f7b-8b00-9e855585dfb6",
@@ -222,6 +233,7 @@ export const MainPlots: MainPlotsDatabase = {
       },
     ],
     mastermindAbilities: [],
+    enabled: true,
   },
   // Mystery Circle
   murderPlan2: {
@@ -232,6 +244,7 @@ export const MainPlots: MainPlotsDatabase = {
     estimateLoops: () => 1.8,
     plotRules: [],
     mastermindAbilities: [],
+    enabled: true,
   },
   aQuiltOfIncidents: {
     id: "d53e2adc-ec83-4cfd-bd28-71d7e33b87c9",
@@ -253,6 +266,7 @@ export const MainPlots: MainPlotsDatabase = {
       },
     ],
     mastermindAbilities: [],
+    enabled: true,
   },
   tightropePlan: {
     id: "1bba4a6c-59bb-4680-8786-92da9c9821f5",
@@ -274,6 +288,7 @@ export const MainPlots: MainPlotsDatabase = {
       },
     ],
     mastermindAbilities: [],
+    enabled: true,
   },
   theBlackSchool: {
     id: "12aeb24d-2238-4439-a414-37d25f499b1d",
@@ -290,6 +305,7 @@ export const MainPlots: MainPlotsDatabase = {
       },
     ],
     mastermindAbilities: [],
+    enabled: true,
   },
   aDropOfStrychnine: {
     id: "b9877c5a-5406-4934-b437-c01a37ff007e",
@@ -306,6 +322,7 @@ export const MainPlots: MainPlotsDatabase = {
       },
     ],
     mastermindAbilities: [],
+    enabled: true,
   },
   // Prime Evil
   aNobleBloodline: {
@@ -325,6 +342,7 @@ export const MainPlots: MainPlotsDatabase = {
     estimateLoops: () => 2.6,
     plotRules: [],
     mastermindAbilities: [],
+    enabled: true,
   },
   moonlightBeast: {
     id: "9f989bc8-fd71-495c-bb88-94938c1be142",
@@ -334,6 +352,7 @@ export const MainPlots: MainPlotsDatabase = {
     estimateLoops: () => 1.8,
     plotRules: [],
     mastermindAbilities: [],
+    enabled: true,
   },
   nightMistNightmare: {
     id: "e82a5e06-4b04-488e-9eb8-9f046f7235a0",
@@ -343,6 +362,7 @@ export const MainPlots: MainPlotsDatabase = {
     estimateLoops: () => 1.6,
     plotRules: [],
     mastermindAbilities: [],
+    enabled: true,
   },
   theOnesFromTheGrave: {
     id: "9c790fb8-4748-433b-924c-b1dd22d75ee2",
@@ -359,6 +379,7 @@ export const MainPlots: MainPlotsDatabase = {
       },
     ],
     mastermindAbilities: [],
+    enabled: true,
   },
   theCursedLand: {
     id: "e2878437-6e36-4099-ab94-4b7f97ca2fc6",
@@ -381,6 +402,7 @@ export const MainPlots: MainPlotsDatabase = {
       },
     ],
     mastermindAbilities: [],
+    enabled: true,
   },
   // Cosmic Mythology
   choirToTheOutsideGod: {
@@ -398,6 +420,7 @@ export const MainPlots: MainPlotsDatabase = {
       },
     ],
     mastermindAbilities: [],
+    enabled: true,
   },
   theSacredWordsOfDagon: {
     id: "e6333431-f648-4cdd-bd53-638070e06cb0",
@@ -414,6 +437,7 @@ export const MainPlots: MainPlotsDatabase = {
       },
     ],
     mastermindAbilities: [],
+    enabled: true,
   },
   theKingInYellow: {
     id: "6f3ebebd-5d82-4bf0-8a80-2ee7dfac0643",
@@ -430,6 +454,7 @@ export const MainPlots: MainPlotsDatabase = {
       },
     ],
     mastermindAbilities: [],
+    enabled: true,
   },
   giantTimeBombAgain: {
     id: "ab783db0-205d-432d-8411-e7ad0e2030b8",
@@ -446,6 +471,7 @@ export const MainPlots: MainPlotsDatabase = {
       },
     ],
     mastermindAbilities: [],
+    enabled: true,
   },
   bloodyRites: {
     id: "50cb0340-6f44-4e75-b129-23553cdbb4c0",
@@ -462,6 +488,7 @@ export const MainPlots: MainPlotsDatabase = {
       },
     ],
     mastermindAbilities: [],
+    enabled: true,
   },
 };
 
@@ -475,6 +502,7 @@ export const Subplots: SubplotsDatabase = {
     estimateLoops: () => 1.0,
     plotRules: [],
     mastermindAbilities: [],
+    enabled: true,
   },
   aLoveAffair: {
     id: "02d443d7-d43a-45ad-91cc-1ec93646767b",
@@ -484,6 +512,7 @@ export const Subplots: SubplotsDatabase = {
     estimateLoops: () => 1.0,
     plotRules: [],
     mastermindAbilities: [],
+    enabled: true,
   },
   theHiddenFreak: {
     id: "78038f0a-b3be-4899-ae76-01ccd7a706f7",
@@ -493,6 +522,7 @@ export const Subplots: SubplotsDatabase = {
     estimateLoops: () => 0.8,
     plotRules: [],
     mastermindAbilities: [],
+    enabled: true,
   },
   anUnsettlingRumor: {
     id: "cc6ab933-71a4-42ff-a92a-7c05c1f86ea4",
@@ -508,6 +538,7 @@ export const Subplots: SubplotsDatabase = {
         optional: true,
       },
     ],
+    enabled: true,
   },
   paranoiaVirus: {
     id: "33317eb1-c0de-4460-b64e-f5ee6a650899",
@@ -524,6 +555,7 @@ export const Subplots: SubplotsDatabase = {
       },
     ],
     mastermindAbilities: [],
+    enabled: true,
   },
   threadsOfFate: {
     id: "20079bae-734d-4195-a4af-be56e8c6c8ac",
@@ -540,6 +572,7 @@ export const Subplots: SubplotsDatabase = {
       },
     ],
     mastermindAbilities: [],
+    enabled: true,
   },
   unknownFactorX: {
     id: "b96a9ba3-6858-440c-b74d-552fb7ef82d3",
@@ -549,6 +582,7 @@ export const Subplots: SubplotsDatabase = {
     estimateLoops: () => 0.8,
     plotRules: [],
     mastermindAbilities: [],
+    enabled: true,
   },
   shadowOfTheRipper: {
     id: "fa8b66bf-ba7d-41c9-84de-9e7641bfbdfa",
@@ -559,6 +593,7 @@ export const Subplots: SubplotsDatabase = {
     estimateLoops: () => 0,
     plotRules: [],
     mastermindAbilities: [],
+    enabled: true,
   },
   aHideousScript: {
     id: "69755afc-80b4-4b55-a17f-3fcb2cb39e25",
@@ -574,6 +609,7 @@ export const Subplots: SubplotsDatabase = {
     estimateLoops: () => 0,
     plotRules: [],
     mastermindAbilities: [],
+    enabled: true,
   },
   // Midnight Zone
   loveHateSpiral: {
@@ -584,6 +620,7 @@ export const Subplots: SubplotsDatabase = {
     estimateLoops: () => 0.5,
     plotRules: [],
     mastermindAbilities: [],
+    enabled: true,
   },
   witchesTeaTime: {
     id: "3afb64de-e67a-472f-af69-e232aad90d23",
@@ -593,6 +630,7 @@ export const Subplots: SubplotsDatabase = {
     estimateLoops: () => 0.8,
     plotRules: [],
     mastermindAbilities: [],
+    enabled: true,
   },
   diceOfTheGods: {
     id: "066d20aa-2830-4c9d-8354-0413a0e1b2e3",
@@ -609,6 +647,7 @@ export const Subplots: SubplotsDatabase = {
       },
     ],
     mastermindAbilities: [],
+    enabled: true,
   },
   unsafeTrigger: {
     id: "133e4874-1815-4880-a880-400f190a039e",
@@ -624,6 +663,7 @@ export const Subplots: SubplotsDatabase = {
         optional: true,
       },
     ],
+    enabled: true,
   },
   showtimeOfDeath: {
     id: "813e7a16-0417-416a-a144-45a63c5d5441",
@@ -644,6 +684,7 @@ export const Subplots: SubplotsDatabase = {
       },
     ],
     mastermindAbilities: [],
+    enabled: true,
   },
   unansweredHeart: {
     id: "2d65bd0c-4469-44bd-8a0d-1c8d650cabb9",
@@ -660,6 +701,7 @@ export const Subplots: SubplotsDatabase = {
       },
     ],
     mastermindAbilities: [],
+    enabled: true,
   },
   worshippersOfTheApocalypse: {
     id: "e77efda5-4b07-4ff4-8b64-096bd6562f14",
@@ -676,6 +718,7 @@ export const Subplots: SubplotsDatabase = {
       },
     ],
     mastermindAbilities: [],
+    enabled: true,
   },
   // Mystery Circle
   theHiddenFreak2: {
@@ -686,6 +729,7 @@ export const Subplots: SubplotsDatabase = {
     estimateLoops: () => 0.8,
     plotRules: [],
     mastermindAbilities: [],
+    enabled: true,
   },
   isolatedInstitutionPsycho: {
     id: "ea84db6e-2d0e-4b3c-a964-90f108572c2b",
@@ -702,6 +746,7 @@ export const Subplots: SubplotsDatabase = {
       },
     ],
     mastermindAbilities: [],
+    enabled: true,
   },
   smellOfGunpowder: {
     id: "a74b8d79-077d-40f8-bfc2-d977642fa546",
@@ -718,6 +763,7 @@ export const Subplots: SubplotsDatabase = {
       },
     ],
     mastermindAbilities: [],
+    enabled: true,
   },
   iAmAMasterDetective: {
     id: "cb9e521f-113f-4599-8482-4f640a18310f",
@@ -727,6 +773,7 @@ export const Subplots: SubplotsDatabase = {
     estimateLoops: () => 1.2,
     plotRules: [],
     mastermindAbilities: [],
+    enabled: true,
   },
   danceOfFools: {
     id: "51482a2a-13d6-4b0c-b2d5-379a98ed0e54",
@@ -736,6 +783,7 @@ export const Subplots: SubplotsDatabase = {
     estimateLoops: () => 0.4,
     plotRules: [],
     mastermindAbilities: [],
+    enabled: true,
   },
   anAbsoluteWill: {
     id: "de83f0f3-63fe-45bc-87ef-5ac086fd548c",
@@ -745,6 +793,7 @@ export const Subplots: SubplotsDatabase = {
     estimateLoops: () => 0.6,
     plotRules: [],
     mastermindAbilities: [],
+    enabled: true,
   },
   trickyTwins: {
     id: "aa04f330-7a55-44a7-a534-f36fd2267995",
@@ -754,6 +803,7 @@ export const Subplots: SubplotsDatabase = {
     estimateLoops: () => 0.5,
     plotRules: [],
     mastermindAbilities: [],
+    enabled: true,
   },
   // Prime Evil
   thoseWithHabits: {
@@ -764,6 +814,7 @@ export const Subplots: SubplotsDatabase = {
     estimateLoops: () => 1.0,
     plotRules: [],
     mastermindAbilities: [],
+    enabled: true,
   },
   aLoveAffair2: {
     id: "6c191eba-6505-4230-a5c9-5dd0f7e2a6ab",
@@ -773,6 +824,7 @@ export const Subplots: SubplotsDatabase = {
     estimateLoops: () => 1.0,
     plotRules: [],
     mastermindAbilities: [],
+    enabled: true,
   },
   witchsCurse: {
     id: "9d41e7bd-c30f-4607-adad-79264884aa8e",
@@ -789,6 +841,7 @@ export const Subplots: SubplotsDatabase = {
       },
     ],
     mastermindAbilities: [],
+    enabled: true,
   },
   theKeyGirl: {
     id: "8d27e3b9-0351-4039-bef2-ddf7e09acb2a",
@@ -803,6 +856,7 @@ export const Subplots: SubplotsDatabase = {
     estimateLoops: () => 0.8,
     plotRules: [],
     mastermindAbilities: [],
+    enabled: true,
   },
   monsterIntrigue: {
     id: "73438252-52c1-43c2-aa07-df071ca959a8",
@@ -819,6 +873,7 @@ export const Subplots: SubplotsDatabase = {
         optional: true,
       },
     ],
+    enabled: true,
   },
   panicAndObsession: {
     id: "2f294d6f-0b0f-495d-b9e4-0e383973a37d",
@@ -828,6 +883,7 @@ export const Subplots: SubplotsDatabase = {
     estimateLoops: () => 0.3,
     plotRules: [],
     mastermindAbilities: [],
+    enabled: true,
   },
   peopleWhoDontListen: {
     id: "aa2b8699-b738-4140-bf08-5dd42dd6064e",
@@ -837,6 +893,7 @@ export const Subplots: SubplotsDatabase = {
     estimateLoops: () => 0.4,
     plotRules: [],
     mastermindAbilities: [],
+    enabled: true,
   },
   // Cosmic Evil
   anUnsettlingRumor2: {
@@ -853,6 +910,7 @@ export const Subplots: SubplotsDatabase = {
         optional: true,
       },
     ],
+    enabled: true,
   },
   theResistance: {
     id: "3758b139-f56d-4ad6-b686-711f2e03d587",
@@ -862,6 +920,7 @@ export const Subplots: SubplotsDatabase = {
     estimateLoops: () => 0.8,
     plotRules: [],
     mastermindAbilities: [],
+    enabled: true,
   },
   peopleWhoSaw: {
     id: "adc8b9f9-40f2-4efb-8803-b27f5febfc98",
@@ -871,6 +930,7 @@ export const Subplots: SubplotsDatabase = {
     estimateLoops: () => 0.5,
     plotRules: [],
     mastermindAbilities: [],
+    enabled: true,
   },
   theProfoundRace: {
     id: "b5db08e9-c946-4b53-b482-69c0137c97f9",
@@ -880,6 +940,7 @@ export const Subplots: SubplotsDatabase = {
     estimateLoops: () => 0.8,
     plotRules: [],
     mastermindAbilities: [],
+    enabled: true,
   },
   whispersFromTheDeep: {
     id: "cdd00e27-63e5-40a2-b9c2-b9ae20f4cd38",
@@ -896,6 +957,7 @@ export const Subplots: SubplotsDatabase = {
       },
     ],
     mastermindAbilities: [],
+    enabled: true,
   },
   theFacelessGod: {
     id: "b5b7fb70-9f22-488f-ad9e-9fbf10bd6866",
@@ -905,6 +967,7 @@ export const Subplots: SubplotsDatabase = {
     estimateLoops: () => 0.9,
     plotRules: [],
     mastermindAbilities: [],
+    enabled: true,
   },
   aTwistedTruth: {
     id: "54c3dd3a-b6c0-491b-a42d-49d8eff8412f",
@@ -914,6 +977,9 @@ export const Subplots: SubplotsDatabase = {
     estimateLoops: () => 1.2,
     plotRules: [],
     mastermindAbilities: [],
+    // A Twisted Truth requires a bit too much care for now and it's not fully
+    // implemented. It should not be selectable by the randomizer.
+    enabled: false,
   },
 };
 
