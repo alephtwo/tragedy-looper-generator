@@ -732,7 +732,7 @@ export const Roles: RolesDatabase = {
   }),
 };
 
-interface RolesDatabase {
+interface RolesDatabase extends Record<string, Role> {
   person: Role;
   keyPerson: Role;
   killer: Role;

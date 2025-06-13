@@ -1,5 +1,5 @@
 import * as React from "react";
-import * as _ from "lodash";
+import * as _ from "radash";
 import { FormControl, FormLabel, Slider, Typography } from "@mui/material";
 
 interface NumberPickerProps {
@@ -13,7 +13,7 @@ interface NumberPickerProps {
 }
 
 export function NumberPicker(props: NumberPickerProps): React.JSX.Element {
-  const marks = _.range(props.min, props.max + 1).map((n) => ({
+  const marks = _.list(props.min, props.max).map((n) => ({
     value: n,
     label: n.toString(),
   }));

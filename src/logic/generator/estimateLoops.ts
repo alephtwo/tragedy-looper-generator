@@ -1,5 +1,5 @@
 import { Script } from "../../model/Script";
-import * as _ from "lodash";
+import * as _ from "radash";
 import { Characters } from "../../data/Characters";
 import { Roles } from "../../data/Roles";
 import { Incidents } from "../../data/Incidents";
@@ -45,7 +45,7 @@ export function estimateLoops(script: Script): number {
 
   // Assume we want at least two loops to be a good sport.
   // That said, there is a maximum number of 7 loops.
-  return _.ceil(_.clamp(estimate, 2, 7));
+  return Math.ceil(Math.min(Math.max(estimate, 2), 7));
 }
 
 // Additional factors can either increase the difficulty or decrease it.

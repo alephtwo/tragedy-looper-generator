@@ -63,7 +63,7 @@ export const Triggers: TriggersDatabase = {
   },
 };
 
-interface TriggersDatabase {
+interface TriggersDatabase extends Record<string, Trigger> {
   always: Trigger;
   loopStart: Trigger;
   cardResolve: Trigger;

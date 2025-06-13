@@ -255,7 +255,7 @@ export const Incidents: IncidentsDatabase = {
   },
 };
 
-interface IncidentsDatabase {
+interface IncidentsDatabase extends Record<string, Incident> {
   murder: Incident;
   increasingUnease: Incident;
   suicide: Incident;
