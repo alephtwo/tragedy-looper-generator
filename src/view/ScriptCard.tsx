@@ -1,5 +1,5 @@
 import * as React from "react";
-import * as _ from "lodash";
+import * as _ from "radash";
 import { useTranslation } from "react-i18next";
 import { Script } from "../model/Script";
 import { Incident } from "../data/types/Incident";
@@ -40,7 +40,7 @@ export function Mastermind({ script }: ScriptCardProps): React.JSX.Element {
               </TableRow>
             </TableHead>
             <TableBody>
-              {_.sortBy(script.cast, (c) => t(c.character.name_i18n_key)).map((c) => (
+              {_.alphabetical(script.cast, (c) => t(c.character.name_i18n_key)).map((c) => (
                 <TableRow key={`cast-${c.id}`}>
                   <TableCell>
                     <CastMemberName castMember={c} />
@@ -145,7 +145,7 @@ function Incidents({ mastermind, occurrences }: IncidentsProps): React.JSX.Eleme
           </TableRow>
         </TableHead>
         <TableBody>
-          {_.sortBy(occurrences, (o) => o.day).map((occurrence) => (
+          {_.sort(occurrences, (o) => o.day).map((occurrence) => (
             <TableRow key={`occ-${occurrence.id}`}>
               <TableCell>{occurrence.day}</TableCell>
               <TableCell>

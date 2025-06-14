@@ -19,7 +19,7 @@ export const Expansions: ExpansionsDatabase = {
   },
 };
 
-interface ExpansionsDatabase {
+interface ExpansionsDatabase extends Record<string, Expansion> {
   base: Expansion;
   midnightCircle: Expansion;
   cosmicEvil: Expansion;

@@ -1,6 +1,6 @@
 import { describe, it, expect } from "vitest";
 
-import * as _ from "lodash";
+import * as _ from "radash";
 import { Characters } from "../data/Characters";
 import { Expansions } from "../data/Expansions";
 import { Incidents } from "../data/Incidents";
@@ -13,28 +13,23 @@ import { Triggers } from "../data/Triggers";
 describe("ID Uniqueness Check", () => {
   it("Ensure uniqueness of all ids", () => {
     const ids = [
-      ..._.values(Characters).map((c) => c.id),
-      ..._.values(Expansions).map((e) => e.id),
-      ..._.values(Incidents).map((i) => i.id),
-      ..._.values(Locations).map((l) => l.id),
-      ..._.values(MainPlots).map((i) => i.id),
-      ..._.values(Subplots).map((i) => i.id),
-      ..._.values(Roles).map((r) => r.id),
-      ..._.values(TragedySets).map((ts) => ts.id),
-      ..._.values(Triggers).map((t) => t.id),
+      ...Object.values(Characters).map((c) => c.id),
+      ...Object.values(Expansions).map((e) => e.id),
+      ...Object.values(Incidents).map((i) => i.id),
+      ...Object.values(Locations).map((l) => l.id),
+      ...Object.values(MainPlots).map((i) => i.id),
+      ...Object.values(Subplots).map((i) => i.id),
+      ...Object.values(Roles).map((r) => r.id),
+      ...Object.values(TragedySets).map((ts) => ts.id),
+      ...Object.values(Triggers).map((t) => t.id),
       // Plot Rules
-      ..._.values(MainPlots)
-        .concat(..._.values(Subplots))
+      ...Object.values(MainPlots)
+        .concat(...Object.values(Subplots))
         .flatMap((mp) => mp.plotRules.map((pr) => pr.id)),
       // Role Abilities
-      ..._.values(Roles).flatMap((r) => r.abilities.map((ra) => ra.id)),
+      ...Object.values(Roles).flatMap((r) => r.abilities.map((ra) => ra.id)),
     ];
 
-    _.each(
-      _.countBy(ids, (a) => a),
-      (v, _k) => {
-        expect(v).toEqual(1);
-      },
-    );
+    expect(ids.length).toEqual(new Set(ids).size);
   });
 });

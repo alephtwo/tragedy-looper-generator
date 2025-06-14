@@ -1,5 +1,5 @@
 import * as React from "react";
-import * as _ from "lodash";
+import * as _ from "radash";
 import { useTranslation } from "react-i18next";
 import { Script } from "../model/Script";
 import { Plot } from "../data/types/Plot";
@@ -82,7 +82,7 @@ function WinConditions(props: WinConditionsProps): React.JSX.Element {
           </TableRow>
         </TableHead>
         <TableBody>
-          {_.uniqBy(fromPlotRules, (pr) => pr.id).map((pr) => (
+          {_.unique(fromPlotRules, (pr) => pr.id).map((pr) => (
             <TableRow key={`wc-${pr.id}`}>
               <TableCell>{t("terms.plotRule")}</TableCell>
               <TableCell></TableCell>
@@ -90,12 +90,7 @@ function WinConditions(props: WinConditionsProps): React.JSX.Element {
               <TableCell>{t(pr.effect_i18n_key)}</TableCell>
             </TableRow>
           ))}
-          {sortRoleAbilities(
-            _.uniqWith(
-              fromRoleAbilities,
-              (a, b) => a.ability.id === b.ability.id && a.castMember.id === b.castMember.id,
-            ),
-          ).map((ra) => (
+          {sortRoleAbilities(uniqueAbilityAndCastMember(fromRoleAbilities)).map((ra) => (
             <TableRow key={`wc-${ra.ability.id}-${ra.castMember.id}`}>
               <TableCell>{t("terms.roleAbility", { count: 1 })}</TableCell>
               <TableCell>
@@ -105,7 +100,7 @@ function WinConditions(props: WinConditionsProps): React.JSX.Element {
               <TableCell>{t(ra.ability.effect_i18n_key)}</TableCell>
             </TableRow>
           ))}
-          {_.uniqBy(fromIncidents, (i) => i.id).map((i) => (
+          {_.unique(fromIncidents, (i) => i.id).map((i) => (
             <TableRow key={`wc-${i.id}`}>
               <TableCell>{t("terms.incident_one")}</TableCell>
               <TableCell>{t(i.name_i18n_key)}</TableCell>
@@ -223,7 +218,7 @@ function Incidents({ incidents }: IncidentsProps): React.JSX.Element {
           </TableRow>
         </TableHead>
         <TableBody>
-          {_.sortBy(incidents, (i) => i.incidentTrigger.day).map(({ castMember, incidentTrigger }) => (
+          {_.sort(incidents, (i) => i.incidentTrigger.day).map(({ castMember, incidentTrigger }) => (
             <TableRow key={`cheatsheet-i-${incidentTrigger.id}`}>
               <TableCell>{incidentTrigger.day}</TableCell>
               <TableCell>{t(incidentTrigger.incident.name_i18n_key)}</TableCell>
@@ -240,7 +235,25 @@ function Incidents({ incidents }: IncidentsProps): React.JSX.Element {
 }
 
 function sortRoleAbilities(roleAbilities: Array<RoleAbilityTrigger>): Array<RoleAbilityTrigger> {
-  return _.sortBy(roleAbilities, (a) => a.ability.trigger.order);
+  return _.sort(roleAbilities, (a) => a.ability.trigger.order);
+}
+
+// This is a gross hack but it works.
+// We want to take a list of triggers and make sure we unique-ify it based
+// on the cast member and associated ability.
+function uniqueAbilityAndCastMember(triggers: Array<RoleAbilityTrigger>): Array<RoleAbilityTrigger> {
+  const seen = new Set<string>();
+  const uniques: Array<RoleAbilityTrigger> = [];
+
+  triggers.forEach((trigger) => {
+    const json = JSON.stringify({ ability: trigger.ability.id, castMember: trigger.castMember.id });
+    if (!seen.has(json)) {
+      uniques.push(trigger);
+      seen.add(json);
+    }
+  });
+
+  return uniques;
 }
 
 function extractMastermindAbilities(script: Script): Array<MastermindAbilityTrigger> {

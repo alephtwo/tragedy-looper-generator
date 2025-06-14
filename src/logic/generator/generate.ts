@@ -1,5 +1,5 @@
 import { produce } from "immer";
-import * as _ from "lodash";
+import * as _ from "radash";
 import { Characters } from "../../data/Characters";
 import { Incidents } from "../../data/Incidents";
 import { Roles } from "../../data/Roles";
@@ -59,14 +59,11 @@ function getRequiredRoles(plots: Array<Plot>): Array<Role> {
 }
 
 function pickMainPlot(tragedySet: TragedySet): Plot {
-  return _.sample(tragedySet.mainPlots) || tragedySet.mainPlots[0];
+  return _.draw(tragedySet.mainPlots) || tragedySet.mainPlots[0];
 }
 
 function pickSubplots(tragedySet: TragedySet): Array<Plot> {
-  return _.sampleSize(
-    tragedySet.subplots.filter((s) => s.enabled),
-    2,
-  );
+  return _.shuffle(tragedySet.subplots.filter((s) => s.enabled)).slice(0, 2);
 }
 
 // Enforce maximums.
@@ -76,7 +73,7 @@ function fillRemainingRoles(roles: Array<Role>, castSize: number): Array<Role> {
   const needed = Math.max(castSize, roles.length);
   // We want to return an array of length equal to castSize.
   // Fill the rest with "Person" roles.
-  const filler = _.times(needed - roles.length, _.constant(Roles.person));
+  const filler = new Array(needed - roles.length).fill(Roles.person);
   return roles.concat(filler);
 }
 
@@ -98,7 +95,7 @@ function initializeCast(args: GenerateArgs, requiredRoles: Array<Role>): Array<C
 
   // We're going to pick a fake cast and if we get the Mystery Boy,
   // we'll just pretend he was already picked.
-  const fakeCast = _.sampleSize(tragedySet.characters, args.castSize);
+  const fakeCast = _.shuffle(tragedySet.characters).slice(0, args.castSize);
   if (!fakeCast.some((c) => c.id === Characters.mysteryBoy.id)) {
     // No Mystery Boy, no need it initialize
     return [];
@@ -116,7 +113,7 @@ function initializeCast(args: GenerateArgs, requiredRoles: Array<Role>): Array<C
     new CastMember({
       character: Characters.mysteryBoy,
       // oh my what a hack
-      role: _.sample(candidateRoles) as Role,
+      role: _.draw(candidateRoles) as Role,
       incidentTriggers: [],
     }),
   ];
@@ -141,7 +138,10 @@ function buildCast(state: BuildCastAccumulator, role: Role): BuildCastAccumulato
       }),
     );
     // Remove the character from the pool.
-    _.remove(next.characters, (c) => c.id === character.id);
+    next.characters.splice(
+      next.characters.findIndex((c) => c.id === character.id),
+      1,
+    );
   });
 }
 
@@ -151,7 +151,7 @@ function matchCharacter(pool: Array<Character>, role: Role, cast: Array<CastMemb
 
   // Pick a random one of the matching characters.
   // This cast might cause problems but I'm really hoping it won't.
-  return _.sample(characters) as Character;
+  return _.draw(characters) as Character;
 }
 
 interface PickIncidentsArgs {
@@ -168,11 +168,11 @@ function pickIncidents(args: PickIncidentsArgs): Array<IncidentOccurrence> {
   // We also might have some that are required, in which case we don't want to double count those.
   const amount = Math.min(args.amount, args.days) - required.length;
   // Pick however many we still need at random.
-  const remainingIncidents = _.times(amount, () => _.sample(args.incidents) as Incident);
+  const remainingIncidents = Array.from({ length: amount }, () => _.draw(args.incidents) as Incident);
 
   const incidents = required.concat(remainingIncidents);
   const assignedIncidents = incidents.reduce(assignDayToIncident, {
-    days: _.range(1, args.days + 1),
+    days: _.list(1, args.days),
     occurrences: [],
   }).occurrences;
 
@@ -182,7 +182,7 @@ function pickIncidents(args: PickIncidentsArgs): Array<IncidentOccurrence> {
       .filter((i) => i.incident.id === Incidents.fakeIncident.id)
       .forEach((incident) => {
         const candidates = incidents.filter((i) => i.id !== Incidents.fakeIncident.id);
-        incident.setFake(_.sample(candidates) as Incident);
+        incident.setFake(_.draw(candidates) as Incident);
       });
   });
 }
@@ -193,9 +193,12 @@ interface AssignDayToIncidentState {
 }
 function assignDayToIncident(state: AssignDayToIncidentState, incident: Incident): AssignDayToIncidentState {
   // cool cast bro
-  const day = _.sample(state.days) as number;
+  const day = _.draw(state.days) as number;
   return produce(state, (next) => {
-    _.pull(next.days, day);
+    next.days.splice(
+      next.days.findIndex((d) => d === day),
+      1,
+    );
     next.occurrences.push(new IncidentOccurrence({ incident: incident, day: day }));
   });
 }
@@ -224,14 +227,17 @@ function assignIncidentsToCast(cast: Array<CastMember>, incidents: Array<Inciden
       const required = culpritPool.filter((c) => c.role.culprit === "Mandatory" && c.incidentTriggers.length === 0);
 
       // Pick a culprit.
-      const culprit = (required.length > 0 ? _.first(required) : _.sample(culpritPool)) as CastMember;
+      const culprit = (required.length > 0 ? _.first(required) : _.draw(culpritPool)) as CastMember;
 
       // Take that culprit and assign it the incident.
       culprit.incidentTriggers.push(incident);
 
       // Remove the culprit from the pool of possibilities.
       culpritPool = produce(culpritPool, (next) => {
-        _.remove(next, (c) => c.character.id === culprit.character.id);
+        next.splice(
+          next.findIndex((c) => c.character.id === culprit.character.id),
+          1,
+        );
       });
     });
   });

@@ -23,7 +23,7 @@ export const Locations: LocationsDatabase = {
   },
 };
 
-interface LocationsDatabase {
+interface LocationsDatabase extends Record<string, Location> {
   city: Location;
   hospital: Location;
   school: Location;

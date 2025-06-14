@@ -1,5 +1,5 @@
 import * as React from "react";
-import * as _ from "lodash";
+import * as _ from "radash";
 import { TragedySets } from "../data/TragedySets";
 import { useTranslation } from "react-i18next";
 import { TragedySet } from "../data/types/TragedySet";
@@ -30,7 +30,7 @@ export function TragedySetPicker(props: TragedySetPickerProps): React.JSX.Elemen
         value={props.selected.id}
         onChange={(e) => props.onChange(findTragedySet(e.target.value))}
       >
-        {_.sortBy(Object.values(TragedySets), (a) => a.order).map((ts) => (
+        {_.sort(Object.values(TragedySets), (a) => a.order).map((ts) => (
           <MenuItem key={`ts-${ts.id}`} value={ts.id}>
             {t(ts.name_i18n_key)}
           </MenuItem>

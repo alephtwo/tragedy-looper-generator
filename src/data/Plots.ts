@@ -1,4 +1,4 @@
-import * as _ from "lodash";
+import * as _ from "radash";
 import { Plot } from "./types/Plot";
 import { ConditionalRole, Role } from "./types/Role";
 import { Script } from "../model/Script";
@@ -601,7 +601,7 @@ export const Subplots: SubplotsDatabase = {
     roles: (): Array<Role> => {
       // Script writer may choose 0, 1, or 2 Curmudgeons.
       const amount = _.random(0, 2);
-      const curmudgeons = _.times(amount, _.constant(Roles.curmudgeon));
+      const curmudgeons = new Array(amount).fill(Roles.curmudgeon);
       return [Roles.conspiracyTheorist, Roles.friend].concat(curmudgeons);
     },
     requiredIncidents: [],
@@ -983,7 +983,7 @@ export const Subplots: SubplotsDatabase = {
   },
 };
 
-interface MainPlotsDatabase {
+interface MainPlotsDatabase extends Record<string, Plot> {
   murderPlan: Plot;
   theSealedItem: Plot;
   signWithMe: Plot;
@@ -1013,7 +1013,7 @@ interface MainPlotsDatabase {
   bloodyRites: Plot;
 }
 
-interface SubplotsDatabase {
+interface SubplotsDatabase extends Record<string, Plot> {
   circleOfFriends: Plot;
   aLoveAffair: Plot;
   theHiddenFreak: Plot;

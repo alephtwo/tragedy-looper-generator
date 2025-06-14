@@ -3,7 +3,7 @@ import { Incident } from "../../data/types/Incident";
 import { Plot } from "../../data/types/Plot";
 import { Role } from "../../data/types/Role";
 import { Script } from "../../model/Script";
-import * as _ from "lodash";
+import * as _ from "radash";
 
 export type DifficultyFactor = -1 | 0 | 1;
 
@@ -110,7 +110,7 @@ export const increaseIfCharacterHasRoleThatIsOnlyInOnePlot =
     // Turn roles into ids, essentially.
     const roleIdSets = plots.map((p) => new Set(p.roles().map((r) => r.id)));
     // Get a unique set of all the role ids we have in this tragedy set.
-    const allRoleIds = _.uniq(roleIdSets.flatMap((s) => Array.from(s.values())));
+    const allRoleIds = _.unique(roleIdSets.flatMap((s) => Array.from(s.values())));
     // Filter this list to just ones that are in a single plot
     const rolesOnlyInOnePlot = new Set(
       allRoleIds.filter((i) => _.sum(roleIdSets.map((s) => (s.has(i) ? 1 : 0))) === 1),

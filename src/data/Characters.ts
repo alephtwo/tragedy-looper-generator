@@ -1,4 +1,4 @@
-import * as _ from "lodash";
+import * as _ from "radash";
 import { Character } from "./types/Character";
 import { Locations } from "../data/Locations";
 
@@ -191,7 +191,7 @@ export const Characters: CharactersDatabase = {
   }),
 };
 
-interface CharactersDatabase {
+interface CharactersDatabase extends Record<string, Character> {
   boyStudent: Character;
   girlStudent: Character;
   richMansDaughter: Character;
