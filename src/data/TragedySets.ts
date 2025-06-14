@@ -324,6 +324,42 @@ export const TragedySets: TragedySetsDatabase = {
       Incidents.theExecutioner,
     ],
   },
+  lastLiar: {
+    id: "48f805ce-d633-4c65-8b30-0386a773cee0",
+    name_i18n_key: "tragedySets.lastLiar",
+    order: 7,
+    // Last Liar can use any character.
+    characters: [...Object.values(Characters)],
+    mainPlots: [
+      MainPlots.theFinalPlan,
+      MainPlots.theSealedConclusion,
+      MainPlots.worldOfRebellion,
+      MainPlots.theDemonsScript,
+      MainPlots.giantTimeBombYetAgain,
+    ],
+    subplots: [
+      Subplots.theRealMonster,
+      Subplots.keeperOfMythology,
+      Subplots.iAmTheTrueDetective,
+      Subplots.crossingWorldLines,
+      Subplots.unsafeTrigger,
+      Subplots.socialMediaParanoia,
+      Subplots.theMythomaniacsSecret,
+    ],
+    incidents: [
+      Incidents.murder,
+      Incidents.increasingUnease,
+      Incidents.missingPerson,
+      Incidents.hospitalIncident,
+      Incidents.theExecutor,
+      Incidents.distortion,
+      Incidents.lastWill,
+      Incidents.confession,
+      Incidents.spreading,
+      Incidents.theLightOfHope,
+      Incidents.theMurkOfDespair,
+    ],
+  },
 };
 
 interface TragedySetsDatabase extends Record<string, TragedySet> {
@@ -333,4 +369,5 @@ interface TragedySetsDatabase extends Record<string, TragedySet> {
   mysteryCircle: TragedySet;
   primeEvil: TragedySet;
   cosmicMythology: TragedySet;
+  lastLiar: TragedySet;
 }

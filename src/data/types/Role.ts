@@ -5,6 +5,7 @@ import { MastermindAbility } from "./MastermindAbility";
 import { RoleAbility } from "./RoleAbility";
 import { Identifiable } from "../../@types/Identifiable";
 import { UUID } from "crypto";
+import { TragedySet } from "./TragedySet";
 
 // no loc required, these types are just informational for generation - no ui
 type Culprit = "Never" | "Optional" | "Mandatory";
@@ -17,7 +18,7 @@ export class Role implements Identifiable {
   readonly culprit: Culprit;
   readonly connectedToBoard: boolean;
   readonly connectedToLossCondition: boolean;
-  readonly max?: number;
+  readonly max: (tragedySet: TragedySet) => number;
   readonly goodwillRefusal?: GoodwillRefusal;
   readonly abilities: Array<RoleAbility>;
   readonly mastermindAbilities: Array<MastermindAbility>;
@@ -30,7 +31,7 @@ export class Role implements Identifiable {
     this.culprit = role.culprit;
     this.connectedToBoard = role.connectedToBoard;
     this.connectedToLossCondition = role.connectedToLossCondition;
-    this.max = role.max;
+    this.max = role.max === undefined ? () => Infinity : role.max;
     this.goodwillRefusal = role.goodwillRefusal;
     this.abilities = role.abilities;
     this.mastermindAbilities = role.mastermindAbilities;
@@ -52,7 +53,7 @@ interface RoleArgs {
   readonly culprit: Culprit;
   readonly connectedToBoard: boolean;
   readonly connectedToLossCondition: boolean;
-  readonly max?: number;
+  readonly max?: (tragedySet: TragedySet) => number;
   readonly goodwillRefusal?: GoodwillRefusal;
   readonly abilities: Array<RoleAbility>;
   readonly mastermindAbilities: Array<MastermindAbility>;

@@ -4,7 +4,7 @@ import { Identifiable } from "../../@types/Identifiable";
 
 export interface RoleAbility extends Identifiable {
   id: string;
-  trigger: Trigger;
+  triggers: Array<Trigger>;
   effect_i18n_key: ParseKeys;
   optional: boolean;
   winCondition: boolean;

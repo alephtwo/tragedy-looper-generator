@@ -26,7 +26,7 @@ export function generate(args: GenerateArgs): Script {
   // Find the required roles.
   // Notably, the Mystery Boy might appear in the initial cast. If he does,
   // then we have to account for his role slot already being filled.
-  const requiredRoles = getRequiredRoles(plots);
+  const requiredRoles = getRequiredRoles(plots, args.tragedySet);
   const initialCast = initializeCast(args, requiredRoles);
 
   // If there is any initial cast, we should account for their roles
@@ -54,12 +54,14 @@ export function generate(args: GenerateArgs): Script {
   });
 }
 
-function getRequiredRoles(plots: Array<Plot>): Array<Role> {
-  return plots.flatMap((p) => p.roles()).reduce(enforceMaximumRoles, []);
+function getRequiredRoles(plots: Array<Plot>, tragedySet: TragedySet): Array<Role> {
+  return plots
+    .flatMap((p) => p.roles())
+    .reduce((roles: Array<Role>, role: Role) => enforceMaximumRoles(tragedySet, roles, role), []);
 }
 
 function pickMainPlot(tragedySet: TragedySet): Plot {
-  return _.draw(tragedySet.mainPlots) || tragedySet.mainPlots[0];
+  return _.draw(tragedySet.mainPlots) ?? tragedySet.mainPlots[0];
 }
 
 function pickSubplots(tragedySet: TragedySet): Array<Plot> {
@@ -77,11 +79,11 @@ function fillRemainingRoles(roles: Array<Role>, castSize: number): Array<Role> {
   return roles.concat(filler);
 }
 
-function enforceMaximumRoles(roles: Array<Role>, role: Role): Array<Role> {
+function enforceMaximumRoles(tragedySet: TragedySet, roles: Array<Role>, role: Role): Array<Role> {
   const sameRoles = roles.filter((r) => r.id === role.id);
 
   // If we have too many of the same role, we can't add it.
-  if (sameRoles.length >= (role.max || Infinity)) {
+  if (sameRoles.length >= (role.max(tragedySet) ?? Infinity)) {
     return roles;
   }
 

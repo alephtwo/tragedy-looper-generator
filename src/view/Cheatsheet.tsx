@@ -96,7 +96,7 @@ function WinConditions(props: WinConditionsProps): React.JSX.Element {
               <TableCell>
                 <CastMemberDescription castMember={ra.castMember} />
               </TableCell>
-              <TableCell>{t(ra.ability.trigger.description_i18n_key)}</TableCell>
+              <TableCell>{ra.ability.triggers.map((trigger) => t(trigger.description_i18n_key)).join(", ")}</TableCell>
               <TableCell>{t(ra.ability.effect_i18n_key)}</TableCell>
             </TableRow>
           ))}
@@ -178,7 +178,7 @@ function RoleAbilities({ roleAbilities }: RoleAbilitiesProps): React.JSX.Element
         <TableBody>
           {sortRoleAbilities(roleAbilities).map((a, i) => (
             <TableRow key={`cheatsheet-ra-${i}`}>
-              <TableCell>{t(a.ability.trigger.description_i18n_key)}</TableCell>
+              <TableCell>{a.ability.triggers.map((trigger) => t(trigger.description_i18n_key)).join(", ")}</TableCell>
               <TableCell>{t(a.ability.optional ? "terms.optional" : "terms.mandatory")}</TableCell>
               <TableCell>
                 <CastMemberDescription castMember={a.castMember} />
@@ -235,7 +235,7 @@ function Incidents({ incidents }: IncidentsProps): React.JSX.Element {
 }
 
 function sortRoleAbilities(roleAbilities: Array<RoleAbilityTrigger>): Array<RoleAbilityTrigger> {
-  return _.sort(roleAbilities, (a) => a.ability.trigger.order);
+  return _.sort(roleAbilities, (a) => _.max(a.ability.triggers.map((trigger) => trigger.order)) ?? 0);
 }
 
 // This is a gross hack but it works.

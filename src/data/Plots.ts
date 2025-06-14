@@ -490,6 +490,69 @@ export const MainPlots: MainPlotsDatabase = {
     mastermindAbilities: [],
     enabled: true,
   },
+  // Last Liar
+  theFinalPlan: {
+    id: "f8625285-7ac6-4a0b-9b8e-bc7ecadad906",
+    name_i18n_key: "plots.theFinalPlan.name",
+    roles: () => [Roles.keyPerson, Roles.brain, Roles.killer],
+    requiredIncidents: [],
+    estimateLoops: () => 1.8,
+    // plotRules: [], // TODO
+    // mastermindAbilities: [], // TODO
+    enabled: true,
+  },
+  theSealedConclusion: {
+    id: "892a2b3e-8fb3-49a3-b0bc-7647adfca265",
+    name_i18n_key: "plots.theSealedConclusion.name",
+    roles: () => [Roles.factor, Roles.fragment],
+    requiredIncidents: [],
+    estimateLoops: () => 1.5,
+    // plotRules: [], // TODO
+    // mastermindAbilities: [], // TODO
+    enabled: true,
+  },
+  worldOfRebellion: {
+    id: "c07e70ac-0cb8-411b-bd1a-107563a6633b",
+    name_i18n_key: "plots.worldOfRebellion.name",
+    roles: () => [
+      new ConditionalRole({
+        role: Roles.keyPerson,
+        condition: requireDescriptor("Girl"),
+      }),
+      new ConditionalRole({
+        role: Roles.fragment,
+        condition: requireDescriptor("Girl"),
+      }),
+    ],
+    requiredIncidents: [],
+    estimateLoops: () => 1.6,
+    // plotRules: [], // TODO
+    // mastermindAbilities: [], // TODO
+    enabled: true,
+  },
+  theDemonsScript: {
+    id: "a59914b7-0d73-400f-8796-b557225afe78",
+    name_i18n_key: "plots.theDemonsScript.name",
+    roles: () => [Roles.watcher, Roles.serialKiller],
+    requiredIncidents: [],
+    estimateLoops: (script) => {
+      // const relatedIncidents = []; // TODO
+      return 1.2 + 0.5 * relatedIncidents.length;
+    },
+    // plotRules: [], // TODO
+    // mastermindAbilities: [], // TODO
+    enabled: true,
+  },
+  giantTimeBombYetAgain: {
+    id: "081a1364-0c02-4cee-9cfd-5c47c7460dcb",
+    name_i18n_key: "plots.giantTimeBombYetAgain.name",
+    roles: () => [Roles.brain, Roles.witch],
+    requiredIncidents: [],
+    estimateLoops: () => 1.5,
+    // plotRules: [], // TODO
+    // mastermindAbilities: [], // TODO
+    enabled: true,
+  },
 };
 
 export const Subplots: SubplotsDatabase = {
@@ -981,6 +1044,70 @@ export const Subplots: SubplotsDatabase = {
     // implemented. It should not be selectable by the randomizer.
     enabled: false,
   },
+  // Last Liar
+  theRealMonster: {
+    id: "be0dc636-3d0f-40e1-b26f-dd706c71a92c",
+    name_i18n_key: "plots.theRealMonster.name",
+    roles: () => [Roles.serialKiller, Roles.secretkeeper, Roles.wildcard],
+    // requiredIncidents: [], // TODO,
+    estimateLoops: () => 1,
+    // plotRules: [], // TODO,
+    // mastermindAbilities: [], // TODO,
+    enabled: true,
+  },
+  keeperOfMythology: {
+    id: "992bff34-a151-4476-a58f-08b94c1486e4",
+    name_i18n_key: "plots.keeperOfMythology.name",
+    roles: () => [Roles.influencer, Roles.secretkeeper, Roles.wildcard],
+    // requiredIncidents: [], // TODO,
+    estimateLoops: () => 1,
+    // plotRules: [], // TODO,
+    // mastermindAbilities: [], // TODO,
+    enabled: true,
+  },
+  iAmTheTrueDetective: {
+    id: "809f5572-425c-4e74-b632-0ed81149fe02",
+    name_i18n_key: "plots.iAmTheTrueDetective.name",
+    roles: () => [Roles.watcher, Roles.secretkeeper, Roles.wildcard],
+    // requiredIncidents: [], // TODO,
+    estimateLoops: () => 1,
+    // plotRules: [], // TODO,
+    // mastermindAbilities: [], // TODO,
+    enabled: true,
+  },
+  crossingWorldLines: {
+    id: "83416ae6-75eb-4404-899f-55c2c16f97e8",
+    name_i18n_key: "plots.crossingWorldLines.name",
+    roles: () => [Roles.conspiracyTheorist],
+    // requiredIncidents: [], // TODO,
+    estimateLoops: () => 0.5,
+    // plotRules: [], // TODO,
+    // mastermindAbilities: [], // TODO,
+    enabled: true,
+  },
+  socialMediaParanoia: {
+    id: "ca529826-2cf9-4ba0-be5d-382fb5faf15b",
+    name_i18n_key: "plots.socialMediaParanoia.name",
+    roles: () => [Roles.serialKiller, Roles.influencer, Roles.conspiracyTheorist],
+    // requiredIncidents: [], // TODO,
+    estimateLoops: () => 0.6,
+    // plotRules: [], // TODO,
+    // mastermindAbilities: [], // TODO,
+    enabled: true,
+  },
+  theMythomaniacsSecret: {
+    id: "3ddd6d7f-1823-4c83-928f-c05051f56fa6",
+    name_i18n_key: "plots.theMythomaniacsSecret.name",
+    roles: () => [Roles.conspiracyTheorist],
+    // requiredIncidents: [], // TODO,
+    estimateLoops: (script) => {
+      const secretkeepers = script.cast.map((c) => c.role).filter((r) => r.id === Roles.secretkeeper.id).length;
+      return secretkeepers === 0 ? 0.8 : 0;
+    },
+    // plotRules: [], // TODO,
+    // mastermindAbilities: [], // TODO,
+    enabled: true,
+  },
 };
 
 interface MainPlotsDatabase extends Record<string, Plot> {
@@ -1011,6 +1138,11 @@ interface MainPlotsDatabase extends Record<string, Plot> {
   theKingInYellow: Plot;
   giantTimeBombAgain: Plot;
   bloodyRites: Plot;
+  theFinalPlan: Plot;
+  theSealedConclusion: Plot;
+  worldOfRebellion: Plot;
+  theDemonsScript: Plot;
+  giantTimeBombYetAgain: Plot;
 }
 
 interface SubplotsDatabase extends Record<string, Plot> {
@@ -1051,6 +1183,12 @@ interface SubplotsDatabase extends Record<string, Plot> {
   whispersFromTheDeep: Plot;
   theFacelessGod: Plot;
   aTwistedTruth: Plot;
+  theRealMonster: Plot;
+  keeperOfMythology: Plot;
+  iAmTheTrueDetective: Plot;
+  crossingWorldLines: Plot;
+  socialMediaParanoia: Plot;
+  theMythomaniacsSecret: Plot;
 }
 
 const requireDescriptor =
