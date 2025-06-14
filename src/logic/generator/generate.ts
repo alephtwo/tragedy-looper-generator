@@ -172,6 +172,7 @@ function pickIncidents(args: PickIncidentsArgs): Array<IncidentOccurrence> {
 
   const incidents = required.concat(remainingIncidents);
   const assignedIncidents = incidents.reduce(assignDayToIncident, {
+    lastDay: args.days,
     days: _.list(1, args.days),
     occurrences: [],
   }).occurrences;
@@ -188,12 +189,15 @@ function pickIncidents(args: PickIncidentsArgs): Array<IncidentOccurrence> {
 }
 
 interface AssignDayToIncidentState {
+  lastDay: number; // need to know the last available day so it can be assigned first
   days: Array<number>;
   occurrences: Array<IncidentOccurrence>;
 }
 function assignDayToIncident(state: AssignDayToIncidentState, incident: Incident): AssignDayToIncidentState {
   // cool cast bro
-  const day = _.draw(state.days) as number;
+  // if this is the first day we're assigning, it needs to pick the last day
+  // an incident must always occur on the last day
+  const day = state.occurrences.length === 0 ? state.lastDay : (_.draw(state.days) as number);
   return produce(state, (next) => {
     next.days.splice(
       next.days.findIndex((d) => d === day),
