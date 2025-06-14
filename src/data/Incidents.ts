@@ -253,6 +253,41 @@ export const Incidents: IncidentsDatabase = {
     loopEstimate: 0,
     winCondition: false,
   },
+  theExecutor: {
+    id: "91701400-d442-4a15-ae19-c026192ea025",
+    name_i18n_key: "incidents.theExecutor.name",
+    effect_i18n_key: "incidents.theExecutor.effect",
+    loopEstimate: 0,
+    winCondition: true,
+  },
+  distortion: {
+    id: "4d07f37b-ed43-4e45-a4c8-3b268c02346e",
+    name_i18n_key: "incidents.distortion.name",
+    effect_i18n_key: "incidents.distortion.effect",
+    loopEstimate: 0.4,
+    winCondition: true,
+  },
+  lastWill: {
+    id: "0327cd68-d6d6-4008-88c8-1a24b36ee3b4",
+    name_i18n_key: "incidents.lastWill.name",
+    effect_i18n_key: "incidents.lastWill.effect",
+    loopEstimate: 0,
+    winCondition: true,
+  },
+  theLightOfHope: {
+    id: "4ac2c34e-8860-4761-a072-16d917389494",
+    name_i18n_key: "incidents.theLightOfHope.name",
+    effect_i18n_key: "incidents.theLightOfHope.effect",
+    loopEstimate: 0,
+    winCondition: false,
+  },
+  theMurkOfDespair: {
+    id: "f2568561-d18c-451b-bb4c-907429d24a82",
+    name_i18n_key: "incidents.theMurkOfDespair.name",
+    effect_i18n_key: "incidents.theMurkOfDespair.effect",
+    loopEstimate: 0,
+    winCondition: false,
+  },
 };
 
 interface IncidentsDatabase extends Record<string, Incident> {
@@ -292,4 +327,9 @@ interface IncidentsDatabase extends Record<string, Incident> {
   houndDogScent: Incident;
   discovery: Incident;
   serialMurder: Incident;
+  theExecutor: Incident;
+  distortion: Incident;
+  lastWill: Incident;
+  theLightOfHope: Incident;
+  theMurkOfDespair: Incident;
 }
