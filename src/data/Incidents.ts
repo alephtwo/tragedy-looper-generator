@@ -1,6 +1,6 @@
 import { Incident } from "./types/Incident";
 
-export const Incidents: IncidentsDatabase = {
+export const Incidents: Record<IncidentKey, Incident> = {
   murder: {
     id: "4b50bb64-da08-448b-81ad-ad7765cf0e7d",
     name_i18n_key: "incidents.murder.name",
@@ -290,46 +290,45 @@ export const Incidents: IncidentsDatabase = {
   },
 };
 
-interface IncidentsDatabase extends Record<string, Incident> {
-  murder: Incident;
-  increasingUnease: Incident;
-  suicide: Incident;
-  hospitalIncident: Incident;
-  farawayMurder: Incident;
-  missingPerson: Incident;
-  spreading: Incident;
-  foulEvil: Incident;
-  butterflyEffect: Incident;
-  conspiracies: Incident;
-  uproar: Incident;
-  fakeIncident: Incident;
-  breakthrough: Incident;
-  fakedSuicide: Incident;
-  confession: Incident;
-  portent: Incident;
-  terrorism: Incident;
-  bestialMurder: Incident;
-  aSuspiciousLetter: Incident;
-  closedCircle: Incident;
-  theSilverBullet: Incident;
-  sacrilegiousMurder: Incident;
-  theExecutioner: Incident;
-  darkRumor: Incident;
-  barricade: Incident;
-  evilContamination: Incident;
-  nightOfMadness: Incident;
-  awakenedCurse: Incident;
-  evangeliumOfTheDead: Incident;
-  fountainOfFilth: Incident;
-  insaneMurder: Incident;
-  massSuicide: Incident;
-  fireOfDemise: Incident;
-  houndDogScent: Incident;
-  discovery: Incident;
-  serialMurder: Incident;
-  theExecutor: Incident;
-  distortion: Incident;
-  lastWill: Incident;
-  theLightOfHope: Incident;
-  theMurkOfDespair: Incident;
-}
+type IncidentKey =
+  | "murder"
+  | "increasingUnease"
+  | "suicide"
+  | "hospitalIncident"
+  | "farawayMurder"
+  | "missingPerson"
+  | "spreading"
+  | "foulEvil"
+  | "butterflyEffect"
+  | "conspiracies"
+  | "uproar"
+  | "fakeIncident"
+  | "breakthrough"
+  | "fakedSuicide"
+  | "confession"
+  | "portent"
+  | "terrorism"
+  | "bestialMurder"
+  | "aSuspiciousLetter"
+  | "closedCircle"
+  | "theSilverBullet"
+  | "sacrilegiousMurder"
+  | "theExecutioner"
+  | "darkRumor"
+  | "barricade"
+  | "evilContamination"
+  | "nightOfMadness"
+  | "awakenedCurse"
+  | "evangeliumOfTheDead"
+  | "fountainOfFilth"
+  | "insaneMurder"
+  | "massSuicide"
+  | "fireOfDemise"
+  | "houndDogScent"
+  | "discovery"
+  | "serialMurder"
+  | "theExecutor"
+  | "distortion"
+  | "lastWill"
+  | "theLightOfHope"
+  | "theMurkOfDespair";

@@ -1,7 +1,7 @@
 import { Expansion } from "./types/Expansion";
 import { TragedySets } from "./TragedySets";
 
-export const Expansions: ExpansionsDatabase = {
+export const Expansions: Record<ExpansionKey, Expansion> = {
   base: {
     id: "cae500f1-1a81-425a-a7f9-fb6ecf8d0cf0",
     name_i18n_key: "expansions.base",
@@ -19,8 +19,4 @@ export const Expansions: ExpansionsDatabase = {
   },
 };
 
-interface ExpansionsDatabase extends Record<string, Expansion> {
-  base: Expansion;
-  midnightCircle: Expansion;
-  cosmicEvil: Expansion;
-}
+type ExpansionKey = "base" | "midnightCircle" | "cosmicEvil";

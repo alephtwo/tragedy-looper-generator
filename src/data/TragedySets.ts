@@ -3,7 +3,7 @@ import { TragedySet } from "./types/TragedySet";
 import { MainPlots, Subplots } from "./Plots";
 import { Characters } from "./Characters";
 
-export const TragedySets: TragedySetsDatabase = {
+export const TragedySets: Record<TragedySetKey, TragedySet> = {
   firstSteps: {
     id: "a9c05e8e-b55c-4d98-8b40-714db57ca38f",
     name_i18n_key: "tragedySets.firstSteps",
@@ -381,12 +381,11 @@ export const TragedySets: TragedySetsDatabase = {
   },
 };
 
-interface TragedySetsDatabase extends Record<string, TragedySet> {
-  firstSteps: TragedySet;
-  basicTragedy: TragedySet;
-  midnightZone: TragedySet;
-  mysteryCircle: TragedySet;
-  primeEvil: TragedySet;
-  cosmicMythology: TragedySet;
-  lastLiar: TragedySet;
-}
+type TragedySetKey =
+  | "firstSteps"
+  | "basicTragedy"
+  | "midnightZone"
+  | "mysteryCircle"
+  | "primeEvil"
+  | "cosmicMythology"
+  | "lastLiar";

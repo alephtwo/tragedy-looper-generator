@@ -1,6 +1,6 @@
 import { Location } from "./types/Location";
 
-export const Locations: LocationsDatabase = {
+export const Locations: Record<LocationKey, Location> = {
   city: {
     id: "6699634d-728b-4efe-8279-ffaea3456dcd",
     name_i18n_key: "locations.city",
@@ -23,10 +23,4 @@ export const Locations: LocationsDatabase = {
   },
 };
 
-interface LocationsDatabase extends Record<string, Location> {
-  city: Location;
-  hospital: Location;
-  school: Location;
-  shrine: Location;
-  chooseEveryLoop: Location;
-}
+type LocationKey = "city" | "hospital" | "school" | "shrine" | "chooseEveryLoop";

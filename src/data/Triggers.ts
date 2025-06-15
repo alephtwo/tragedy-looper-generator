@@ -1,6 +1,6 @@
 import { Trigger } from "./types/Trigger";
 
-export const Triggers: TriggersDatabase = {
+export const Triggers: Record<TriggerKey, Trigger> = {
   always: {
     id: "b888d71a-f98a-4b15-861e-330201a95b2a",
     description_i18n_key: "triggers.always",
@@ -63,17 +63,16 @@ export const Triggers: TriggersDatabase = {
   },
 };
 
-interface TriggersDatabase extends Record<string, Trigger> {
-  always: Trigger;
-  loopStart: Trigger;
-  cardResolve: Trigger;
-  goodwillAbilityStep: Trigger;
-  incidentStep: Trigger;
-  dayEnd: Trigger;
-  dayEndLastDay: Trigger;
-  loopEnd: Trigger;
-  whenRoleIsRevealed: Trigger;
-  whenCharacterDies: Trigger;
-  whenLoverDies: Trigger;
-  whenLovedOneDies: Trigger;
-}
+type TriggerKey =
+  | "always"
+  | "loopStart"
+  | "cardResolve"
+  | "goodwillAbilityStep"
+  | "incidentStep"
+  | "dayEnd"
+  | "dayEndLastDay"
+  | "loopEnd"
+  | "whenRoleIsRevealed"
+  | "whenCharacterDies"
+  | "whenLoverDies"
+  | "whenLovedOneDies";

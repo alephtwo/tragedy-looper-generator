@@ -2,7 +2,7 @@ import * as _ from "radash";
 import { Character } from "./types/Character";
 import { Locations } from "../data/Locations";
 
-export const Characters: CharactersDatabase = {
+export const Characters: Record<CharacterKey, Character> = {
   // Base
   boyStudent: new Character({
     id: "03bdc526-2b8c-48f4-8d10-2d0bec80cfe7",
@@ -191,31 +191,30 @@ export const Characters: CharactersDatabase = {
   }),
 };
 
-interface CharactersDatabase extends Record<string, Character> {
-  boyStudent: Character;
-  girlStudent: Character;
-  richMansDaughter: Character;
-  shrineMaiden: Character;
-  policeOfficer: Character;
-  officeWorker: Character;
-  informer: Character;
-  doctor: Character;
-  patient: Character;
-  classRep: Character;
-  mysteryBoy: Character;
-  alien: Character;
-  godlyBeing: Character;
-  popIdol: Character;
-  journalist: Character;
-  boss: Character;
-  nurse: Character;
-  henchman: Character;
-  scientist: Character;
-  forensicSpecialist: Character;
-  ai: Character;
-  illusion: Character;
-  teacher: Character;
-  transferStudent: Character;
-  blackCat: Character;
-  soldier: Character;
-}
+type CharacterKey =
+  | "boyStudent"
+  | "girlStudent"
+  | "richMansDaughter"
+  | "shrineMaiden"
+  | "policeOfficer"
+  | "officeWorker"
+  | "informer"
+  | "doctor"
+  | "patient"
+  | "classRep"
+  | "mysteryBoy"
+  | "alien"
+  | "godlyBeing"
+  | "popIdol"
+  | "journalist"
+  | "boss"
+  | "nurse"
+  | "henchman"
+  | "scientist"
+  | "forensicSpecialist"
+  | "ai"
+  | "illusion"
+  | "teacher"
+  | "transferStudent"
+  | "blackCat"
+  | "soldier";

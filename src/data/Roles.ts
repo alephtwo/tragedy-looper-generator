@@ -2,7 +2,7 @@ import { Role } from "./types/Role";
 import { Triggers } from "./Triggers";
 import { TragedySets } from "./TragedySets";
 
-export const Roles: RolesDatabase = {
+export const Roles: Record<RoleKey, Role> = {
   person: new Role({
     id: "45041819-44ec-4fbd-aa6e-2cf816097cdc",
     name_i18n_key: "roles.person.name",
@@ -846,46 +846,45 @@ export const Roles: RolesDatabase = {
   }),
 };
 
-interface RolesDatabase extends Record<string, Role> {
-  person: Role;
-  keyPerson: Role;
-  killer: Role;
-  brain: Role;
-  cultist: Role;
-  conspiracyTheorist: Role;
-  serialKiller: Role;
-  curmudgeon: Role;
-  friend: Role;
-  timeTraveller: Role;
-  lover: Role;
-  lovedOne: Role;
-  factor: Role;
-  witch: Role;
-  magician: Role;
-  ninja: Role;
-  obstinate: Role;
-  prophet: Role;
-  immortal: Role;
-  poisoner: Role;
-  fool: Role;
-  privateInvestigator: Role;
-  paranoiac: Role;
-  twin: Role;
-  therapist: Role;
-  vampire: Role;
-  werewolf: Role;
-  nightmare: Role;
-  ghost: Role;
-  showOff: Role;
-  coward: Role;
-  sacrifice: Role;
-  deepOne: Role;
-  witness: Role;
-  faceless: Role;
-  wizard: Role;
-  fragment: Role;
-  watcher: Role;
-  influencer: Role;
-  secretkeeper: Role;
-  wildcard: Role;
-}
+type RoleKey =
+  | "person"
+  | "keyPerson"
+  | "killer"
+  | "brain"
+  | "cultist"
+  | "conspiracyTheorist"
+  | "serialKiller"
+  | "curmudgeon"
+  | "friend"
+  | "timeTraveller"
+  | "lover"
+  | "lovedOne"
+  | "factor"
+  | "witch"
+  | "magician"
+  | "ninja"
+  | "obstinate"
+  | "prophet"
+  | "immortal"
+  | "poisoner"
+  | "fool"
+  | "privateInvestigator"
+  | "paranoiac"
+  | "twin"
+  | "therapist"
+  | "vampire"
+  | "werewolf"
+  | "nightmare"
+  | "ghost"
+  | "showOff"
+  | "coward"
+  | "sacrifice"
+  | "deepOne"
+  | "witness"
+  | "faceless"
+  | "wizard"
+  | "fragment"
+  | "watcher"
+  | "influencer"
+  | "secretkeeper"
+  | "wildcard";

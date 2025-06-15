@@ -8,7 +8,7 @@ import { Triggers } from "./Triggers";
 import { Character, Descriptor } from "./types/Character";
 import { CastMember } from "../model/CastMember";
 
-export const MainPlots: MainPlotsDatabase = {
+export const MainPlots: Record<MainPlotKey, Plot> = {
   // Base Game
   murderPlan: {
     id: "4de8232d-3704-4976-9785-e4d826da0cde",
@@ -604,7 +604,7 @@ export const MainPlots: MainPlotsDatabase = {
   },
 };
 
-export const Subplots: SubplotsDatabase = {
+export const Subplots: Record<SubplotKey, Plot> = {
   // Base Game
   circleOfFriends: {
     id: "ddfabe2e-4717-43d8-87e5-6542682e7387",
@@ -1206,86 +1206,84 @@ export const Subplots: SubplotsDatabase = {
   },
 };
 
-interface MainPlotsDatabase extends Record<string, Plot> {
-  murderPlan: Plot;
-  theSealedItem: Plot;
-  signWithMe: Plot;
-  changeOfFuture: Plot;
-  giantTimeBomb: Plot;
-  lightOfTheAvenger: Plot;
-  aPlaceToProtect: Plot;
-  theSealedItem2: Plot;
-  secretRecord: Plot;
-  maleConfrontation: Plot;
-  theDevilsHand: Plot;
-  fatedConnections: Plot;
-  murderPlan2: Plot;
-  aQuiltOfIncidents: Plot;
-  tightropePlan: Plot;
-  theBlackSchool: Plot;
-  aDropOfStrychnine: Plot;
-  aNobleBloodline: Plot;
-  moonlightBeast: Plot;
-  nightMistNightmare: Plot;
-  theOnesFromTheGrave: Plot;
-  theCursedLand: Plot;
-  choirToTheOutsideGod: Plot;
-  theSacredWordsOfDagon: Plot;
-  theKingInYellow: Plot;
-  giantTimeBombAgain: Plot;
-  bloodyRites: Plot;
-  theFinalPlan: Plot;
-  theSealedConclusion: Plot;
-  worldOfRebellion: Plot;
-  theDemonsScript: Plot;
-  giantTimeBombYetAgain: Plot;
-}
+type MainPlotKey =
+  | "murderPlan"
+  | "theSealedItem"
+  | "signWithMe"
+  | "changeOfFuture"
+  | "giantTimeBomb"
+  | "lightOfTheAvenger"
+  | "aPlaceToProtect"
+  | "theSealedItem2"
+  | "secretRecord"
+  | "maleConfrontation"
+  | "theDevilsHand"
+  | "fatedConnections"
+  | "murderPlan2"
+  | "aQuiltOfIncidents"
+  | "tightropePlan"
+  | "theBlackSchool"
+  | "aDropOfStrychnine"
+  | "aNobleBloodline"
+  | "moonlightBeast"
+  | "nightMistNightmare"
+  | "theOnesFromTheGrave"
+  | "theCursedLand"
+  | "choirToTheOutsideGod"
+  | "theSacredWordsOfDagon"
+  | "theKingInYellow"
+  | "giantTimeBombAgain"
+  | "bloodyRites"
+  | "theFinalPlan"
+  | "theSealedConclusion"
+  | "worldOfRebellion"
+  | "theDemonsScript"
+  | "giantTimeBombYetAgain";
 
-interface SubplotsDatabase extends Record<string, Plot> {
-  circleOfFriends: Plot;
-  aLoveAffair: Plot;
-  theHiddenFreak: Plot;
-  anUnsettlingRumor: Plot;
-  paranoiaVirus: Plot;
-  threadsOfFate: Plot;
-  unknownFactorX: Plot;
-  shadowOfTheRipper: Plot;
-  aHideousScript: Plot;
-  loveHateSpiral: Plot;
-  witchesTeaTime: Plot;
-  diceOfTheGods: Plot;
-  unsafeTrigger: Plot;
-  showtimeOfDeath: Plot;
-  unansweredHeart: Plot;
-  worshippersOfTheApocalypse: Plot;
-  theHiddenFreak2: Plot;
-  isolatedInstitutionPsycho: Plot;
-  smellOfGunpowder: Plot;
-  iAmAMasterDetective: Plot;
-  danceOfFools: Plot;
-  anAbsoluteWill: Plot;
-  trickyTwins: Plot;
-  thoseWithHabits: Plot;
-  aLoveAffair2: Plot;
-  witchsCurse: Plot;
-  theKeyGirl: Plot;
-  monsterIntrigue: Plot;
-  panicAndObsession: Plot;
-  peopleWhoDontListen: Plot;
-  anUnsettlingRumor2: Plot;
-  theResistance: Plot;
-  peopleWhoSaw: Plot;
-  theProfoundRace: Plot;
-  whispersFromTheDeep: Plot;
-  theFacelessGod: Plot;
-  aTwistedTruth: Plot;
-  theRealMonster: Plot;
-  keeperOfMythology: Plot;
-  iAmTheTrueDetective: Plot;
-  crossingWorldLines: Plot;
-  socialMediaParanoia: Plot;
-  theMythomaniacsSecret: Plot;
-}
+type SubplotKey =
+  | "circleOfFriends"
+  | "aLoveAffair"
+  | "theHiddenFreak"
+  | "anUnsettlingRumor"
+  | "paranoiaVirus"
+  | "threadsOfFate"
+  | "unknownFactorX"
+  | "shadowOfTheRipper"
+  | "aHideousScript"
+  | "loveHateSpiral"
+  | "witchesTeaTime"
+  | "diceOfTheGods"
+  | "unsafeTrigger"
+  | "showtimeOfDeath"
+  | "unansweredHeart"
+  | "worshippersOfTheApocalypse"
+  | "theHiddenFreak2"
+  | "isolatedInstitutionPsycho"
+  | "smellOfGunpowder"
+  | "iAmAMasterDetective"
+  | "danceOfFools"
+  | "anAbsoluteWill"
+  | "trickyTwins"
+  | "thoseWithHabits"
+  | "aLoveAffair2"
+  | "witchsCurse"
+  | "theKeyGirl"
+  | "monsterIntrigue"
+  | "panicAndObsession"
+  | "peopleWhoDontListen"
+  | "anUnsettlingRumor2"
+  | "theResistance"
+  | "peopleWhoSaw"
+  | "theProfoundRace"
+  | "whispersFromTheDeep"
+  | "theFacelessGod"
+  | "aTwistedTruth"
+  | "theRealMonster"
+  | "keeperOfMythology"
+  | "iAmTheTrueDetective"
+  | "crossingWorldLines"
+  | "socialMediaParanoia"
+  | "theMythomaniacsSecret";
 
 const requireDescriptor =
   (descriptor: Descriptor) =>
