@@ -288,6 +288,62 @@ export const Incidents: Record<IncidentKey, Incident> = {
     loopEstimate: 0,
     winCondition: false,
   },
+  crimeOfPassion: {
+    id: "833f2504-84c2-410b-98f5-db58b158ef27",
+    name_i18n_key: "incidents.crimeOfPassion.name",
+    effect_i18n_key: "incidents.crimeOfPassion.effect",
+    loopEstimate: 0,
+    winCondition: true,
+  },
+  dimensionalDistortion: {
+    id: "2a8baeeb-fe8c-4921-add2-878f354c9706",
+    name_i18n_key: "incidents.dimensionalDistortion.name",
+    effect_i18n_key: "incidents.dimensionalDistortion.effect",
+    loopEstimate: 0,
+    winCondition: false,
+  },
+  dimensionalPerversion: {
+    id: "d0cfd442-c28a-491c-8b4b-6f60fd414276",
+    name_i18n_key: "incidents.dimensionalPerversion.name",
+    effect_i18n_key: "incidents.dimensionalPerversion.effect",
+    loopEstimate: 0,
+    winCondition: false,
+  },
+  dimensionalFracture: {
+    id: "c1077d41-d8df-4c2a-8294-c6afad9500ff",
+    name_i18n_key: "incidents.dimensionalFracture.name",
+    effect_i18n_key: "incidents.dimensionalFracture.effect",
+    loopEstimate: 0.2,
+    winCondition: true,
+  },
+  leftBehind: {
+    id: "7113a8d8-68e9-4507-9af2-2e536fa9dc83",
+    name_i18n_key: "incidents.leftBehind.name",
+    effect_i18n_key: "incidents.leftBehind.effect",
+    loopEstimate: 0,
+    winCondition: false,
+  },
+  phantasmalIncident: {
+    id: "55686271-afc7-413e-91d9-e1795cb68400",
+    name_i18n_key: "incidents.phantasmalIncident.name",
+    effect_i18n_key: "incidents.phantasmalIncident.effect",
+    loopEstimate: 0,
+    winCondition: false,
+  },
+  theSingularity: {
+    id: "5f9e965f-8563-463b-ba1b-b8d8937d9445",
+    name_i18n_key: "incidents.theSingularity.name",
+    effect_i18n_key: "incidents.theSingularity.effect",
+    loopEstimate: 0.6,
+    winCondition: true,
+  },
+  seepingDaylight: {
+    id: "babe7aca-a3b7-46c3-9c56-02df2204e733",
+    name_i18n_key: "incidents.seepingDaylight.name",
+    effect_i18n_key: "incidents.seepingDaylight.effect",
+    loopEstimate: 0,
+    winCondition: false,
+  },
 };
 
 type IncidentKey =
@@ -331,4 +387,12 @@ type IncidentKey =
   | "distortion"
   | "lastWill"
   | "theLightOfHope"
-  | "theMurkOfDespair";
+  | "theMurkOfDespair"
+  | "crimeOfPassion"
+  | "dimensionalDistortion"
+  | "dimensionalPerversion"
+  | "dimensionalFracture"
+  | "leftBehind"
+  | "phantasmalIncident"
+  | "theSingularity"
+  | "seepingDaylight";

@@ -379,6 +379,61 @@ export const TragedySets: Record<TragedySetKey, TragedySet> = {
       Incidents.theMurkOfDespair,
     ],
   },
+  anotherHorizon: {
+    id: "b3f5493a-c495-4010-b13c-594329a50b5f",
+    name_i18n_key: "tragedySets.anotherHorizon",
+    order: 8,
+    characters: [
+      // Another Horizon is based on Basic Tragedy, which uses the basic characters.
+      Characters.boyStudent,
+      Characters.girlStudent,
+      Characters.richMansDaughter,
+      Characters.classRep,
+      Characters.mysteryBoy,
+      Characters.shrineMaiden,
+      Characters.alien,
+      Characters.godlyBeing,
+      Characters.policeOfficer,
+      Characters.officeWorker,
+      Characters.informer,
+      Characters.popIdol,
+      Characters.journalist,
+      Characters.boss,
+      Characters.doctor,
+      Characters.patient,
+      Characters.nurse,
+      Characters.henchman,
+    ],
+    mainPlots: [
+      MainPlots.theForbiddenFuture,
+      MainPlots.fairyTaleMurderer,
+      MainPlots.motherGooseMystery,
+      MainPlots.dimensionalMerger,
+      MainPlots.intoNothingness,
+    ],
+    subplots: [
+      Subplots.jekyllAndHyde,
+      Subplots.thePlaguebringer,
+      Subplots.puppeteersStrings,
+      Subplots.throughTheLookingGlass,
+      Subplots.crossingWorldLines,
+      Subplots.unspeakableHorrors,
+      Subplots.hysteriaVirus,
+    ],
+    incidents: [
+      Incidents.crimeOfPassion,
+      Incidents.dimensionalDistortion,
+      Incidents.dimensionalPerversion,
+      Incidents.dimensionalFracture,
+      Incidents.leftBehind,
+      Incidents.phantasmalIncident,
+      Incidents.hospitalIncident,
+      Incidents.lastWill,
+      Incidents.theSingularity,
+      Incidents.seepingDaylight,
+      Incidents.theMurkOfDespair,
+    ],
+  },
 };
 
 type TragedySetKey =
@@ -388,4 +443,5 @@ type TragedySetKey =
   | "mysteryCircle"
   | "primeEvil"
   | "cosmicMythology"
-  | "lastLiar";
+  | "lastLiar"
+  | "anotherHorizon";

@@ -1,6 +1,6 @@
 import * as _ from "radash";
 import { Plot } from "./types/Plot";
-import { ConditionalRole, Role } from "./types/Role";
+import { ConditionalRole, DualRole, Role } from "./types/Role";
 import { Script } from "../model/Script";
 import { Incidents } from "./Incidents";
 import { Roles } from "./Roles";
@@ -563,9 +563,8 @@ export const MainPlots: Record<MainPlotKey, Plot> = {
     roles: () => [Roles.watcher, Roles.serialKiller],
     requiredIncidents: [],
     estimateLoops: (script) => {
-      const relatedIncidents = script
-        .getIncidents()
-        .filter((incident) => incident.id === Incidents.theExecutor.id || incident.id === Incidents.lastWill.id);
+      const relatedIncidentIds = new Set([Incidents.theExecutioner.id, Incidents.lastWill.id]);
+      const relatedIncidents = script.getIncidents().filter((incident) => relatedIncidentIds.has(incident.id));
       return 1.2 + 0.5 * relatedIncidents.length;
     },
     plotRules: [
@@ -595,6 +594,97 @@ export const MainPlots: Record<MainPlotKey, Plot> = {
       {
         id: "b3d65875-ac17-4b4c-a90a-e85b36126964",
         effect_i18n_key: "plots.giantTimeBomb.plotRule",
+        trigger: Triggers.loopEnd,
+        winCondition: true,
+      },
+    ],
+    mastermindAbilities: [],
+    enabled: true,
+  },
+  // Another Horizon
+  theForbiddenFuture: {
+    id: "54a8c013-9638-40d2-9f40-a4b49b468225",
+    name_i18n_key: "plots.theForbiddenFuture.name",
+    roles: () => [
+      new DualRole({
+        id: "df65dabd-9a88-425e-95b0-ff6d09c9623f",
+        lightWorld: Roles.obstinate,
+        darkWorld: Roles.keyPerson,
+      }),
+      Roles.marionette,
+      Roles.storyteller,
+    ],
+    requiredIncidents: [],
+    estimateLoops: () => 1.5,
+    plotRules: [
+      {
+        id: "cfbb8bf5-82cb-4641-bf87-bc7a979d25a6",
+        effect_i18n_key: "plots.theForbiddenFuture.plotRule",
+        trigger: Triggers.loopEnd,
+        winCondition: true,
+      },
+    ],
+    mastermindAbilities: [],
+    enabled: true,
+  },
+  fairyTaleMurderer: {
+    id: "da4207d4-2e87-4722-8490-37d805609b99",
+    name_i18n_key: "plots.fairyTaleMurderer.name",
+    roles: () => [Roles.keyPerson, Roles.lullaby, Roles.brain],
+    requiredIncidents: [],
+    estimateLoops: () => 1.4,
+    plotRules: [],
+    mastermindAbilities: [],
+    enabled: true,
+  },
+  motherGooseMystery: {
+    id: "1ae7fd30-7a7a-45ac-9da3-cf4bac2c7cba",
+    name_i18n_key: "plots.motherGooseMystery.name",
+    roles: () => [Roles.marionette, Roles.storyteller],
+    requiredIncidents: [],
+    estimateLoops: () => 1.8,
+    plotRules: [
+      {
+        id: "5f8bf710-3c1f-4356-a667-371b53a98f7b",
+        effect_i18n_key: "plots.motherGooseMystery.plotRule",
+        trigger: Triggers.loopEnd,
+        winCondition: true,
+      },
+    ],
+    mastermindAbilities: [],
+    enabled: true,
+  },
+  dimensionalMerger: {
+    id: "3cbf24bf-813d-4e9a-8d3e-5f4da67ac3b2",
+    name_i18n_key: "plots.dimensionalMerger.name",
+    roles: () => [Roles.storyteller, Roles.shifter, Roles.fragment],
+    requiredIncidents: [],
+    estimateLoops: (script) => {
+      const relatedIncidentIds = new Set([Incidents.lastWill.id, Incidents.leftBehind.id]);
+      const relatedIncidents = script.getIncidents().filter((incident) => relatedIncidentIds.has(incident.id));
+      return 1.4 + 0.5 * relatedIncidents.length;
+    },
+    plotRules: [
+      {
+        id: "08fd94e3-b16b-439e-ad72-b383cfe50dcbd",
+        effect_i18n_key: "plots.dimensionalMerger.plotRule",
+        trigger: Triggers.loopEnd,
+        winCondition: true,
+      },
+    ],
+    mastermindAbilities: [],
+    enabled: true,
+  },
+  intoNothingness: {
+    id: "749dc121-f5b6-40d6-8d0d-0df534d125c6",
+    name_i18n_key: "plots.intoNothingness.name",
+    roles: () => [Roles.obstinate, Roles.marionette, Roles.brain],
+    requiredIncidents: [],
+    estimateLoops: () => 1.8,
+    plotRules: [
+      {
+        id: "0106a3c1-3b33-4708-ae4c-054f6972cb49",
+        effect_i18n_key: "plots.intoNothingness.plotRule",
         trigger: Triggers.loopEnd,
         winCondition: true,
       },
@@ -1204,6 +1294,125 @@ export const Subplots: Record<SubplotKey, Plot> = {
     mastermindAbilities: [],
     enabled: true,
   },
+  // Another Horizon
+  jekyllAndHyde: {
+    id: "6a639405-12c9-430e-93cf-11d83309ae93",
+    name_i18n_key: "plots.jekyllAndHyde.name",
+    roles: () => [
+      new DualRole({
+        id: "2abed603-0d23-40ae-a9a7-0360c7f0e3eb",
+        lightWorld: Roles.keyPerson,
+        darkWorld: Roles.brain,
+      }),
+      Roles.marionette,
+    ],
+    requiredIncidents: [],
+    estimateLoops: () => 0.7,
+    plotRules: [],
+    mastermindAbilities: [],
+    enabled: true,
+  },
+  thePlaguebringer: {
+    id: "f2c176c0-1961-4435-a5e4-b81134aa603d",
+    name_i18n_key: "plots.thePlaguebringer.name",
+    roles: () => [
+      new DualRole({
+        id: "15ed05cf-8b29-4dc5-8b4c-2f0d395f7368",
+        lightWorld: Roles.piedPiper,
+        darkWorld: Roles.gossip,
+      }),
+    ],
+    requiredIncidents: [],
+    estimateLoops: () => 0.8,
+    plotRules: [],
+    mastermindAbilities: [],
+    enabled: true,
+  },
+  puppeteersStrings: {
+    id: "1b74bb3d-426b-46ba-b603-5dc42c67da0b",
+    name_i18n_key: "plots.puppeteersStrings.name",
+    roles: () => [
+      Roles.fragment,
+      Roles.gossip,
+      new DualRole({
+        id: "7855563d-1191-4291-b2f6-5a81c156f15b",
+        lightWorld: Roles.person,
+        darkWorld: Roles.serialKiller,
+      }),
+    ],
+    requiredIncidents: [],
+    estimateLoops: () => 0.5,
+    plotRules: [
+      {
+        id: "dac42441-c158-4956-b394-d9dfc64309f5",
+        effect_i18n_key: "plots.puppeteersStrings.plotRule",
+        trigger: Triggers.always,
+        winCondition: false,
+      },
+    ],
+    mastermindAbilities: [],
+    enabled: true,
+  },
+  throughTheLookingGlass: {
+    id: "704d781a-e004-4fed-8461-3c9fc9107c71",
+    name_i18n_key: "plots.throughTheLookingGlass.name",
+    roles: () => [
+      new DualRole({
+        id: "626783cf-eb78-4fe0-8f1b-fa04679b9552",
+        lightWorld: Roles.conspiracyTheorist,
+        darkWorld: Roles.serialKiller,
+      }),
+      new ConditionalRole({
+        role: Roles.alice,
+        condition: requireDescriptor("Girl"),
+      }),
+    ],
+    requiredIncidents: [],
+    estimateLoops: () => 0.8,
+    plotRules: [],
+    mastermindAbilities: [],
+    enabled: true,
+  },
+  unspeakableHorrors: {
+    id: "e184f89f-6dae-4283-8a29-0047e7fbb27e",
+    name_i18n_key: "plots.unspeakableHorrors.name",
+    roles: () => [
+      new DualRole({
+        id: "b9d2835f-6990-4d56-abff-36e8c803e289",
+        lightWorld: Roles.conspiracyTheorist,
+        darkWorld: Roles.obstinate,
+      }),
+    ],
+    requiredIncidents: [],
+    estimateLoops: () => 0.8,
+    plotRules: [
+      {
+        id: "16bf9f56-5ad4-4f3a-94a7-557ba3f041fc",
+        effect_i18n_key: "plots.unspeakableHorrors.plotRule",
+        trigger: Triggers.dayEnd,
+        winCondition: true,
+      },
+    ],
+    mastermindAbilities: [],
+    enabled: true,
+  },
+  hysteriaVirus: {
+    id: "e2fedac5-38f3-48ed-b504-34cb757ca716",
+    name_i18n_key: "plots.hysteriaVirus.name",
+    roles: () => [Roles.fragment, Roles.conspiracyTheorist, Roles.gossip],
+    requiredIncidents: [],
+    estimateLoops: () => 0.6,
+    plotRules: [
+      {
+        id: "7d47c1e2-e2fa-40b2-b407-e61345f6b4e2",
+        effect_i18n_key: "plots.hysteriaVirus.plotRule",
+        trigger: Triggers.always,
+        winCondition: false,
+      },
+    ],
+    mastermindAbilities: [],
+    enabled: true,
+  },
 };
 
 type MainPlotKey =
@@ -1238,7 +1447,12 @@ type MainPlotKey =
   | "theSealedConclusion"
   | "worldOfRebellion"
   | "theDemonsScript"
-  | "giantTimeBombYetAgain";
+  | "giantTimeBombYetAgain"
+  | "theForbiddenFuture"
+  | "fairyTaleMurderer"
+  | "motherGooseMystery"
+  | "dimensionalMerger"
+  | "intoNothingness";
 
 type SubplotKey =
   | "circleOfFriends"
@@ -1283,7 +1497,13 @@ type SubplotKey =
   | "iAmTheTrueDetective"
   | "crossingWorldLines"
   | "socialMediaParanoia"
-  | "theMythomaniacsSecret";
+  | "theMythomaniacsSecret"
+  | "jekyllAndHyde"
+  | "thePlaguebringer"
+  | "puppeteersStrings"
+  | "throughTheLookingGlass"
+  | "unspeakableHorrors"
+  | "hysteriaVirus";
 
 const requireDescriptor =
   (descriptor: Descriptor) =>

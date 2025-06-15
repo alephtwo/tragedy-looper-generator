@@ -1,12 +1,12 @@
 import { UUID } from "crypto";
 import { Character } from "../data/types/Character";
-import { Role } from "../data/types/Role";
+import { DualRole, Role } from "../data/types/Role";
 import { IncidentOccurrence } from "./IncidentOccurrence";
 
 export class CastMember {
   readonly id: UUID;
   readonly character: Character;
-  readonly role: Role;
+  readonly role: Role | DualRole;
   readonly incidentTriggers: Array<IncidentOccurrence>;
 
   constructor(args: CastMemberArgs) {
@@ -19,6 +19,6 @@ export class CastMember {
 
 interface CastMemberArgs {
   readonly character: Character;
-  readonly role: Role;
+  readonly role: Role | DualRole;
   readonly incidentTriggers: Array<IncidentOccurrence>;
 }

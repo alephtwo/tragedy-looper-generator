@@ -73,14 +73,16 @@ export const decreaseUnlessCharacterHasRole =
 export const increaseIfCharacterHasAnyGoodwillRefusal =
   (character: Character) =>
   (script: Script): DifficultyFactor => {
-    const matches = script.cast.some((c) => c.character.id === character.id && c.role.goodwillRefusal !== undefined);
+    const matches = script.cast.some((c) => c.character.id === character.id && c.role.goodwillRefusals.size > 0);
     return matches ? 1 : 0;
   };
 
 export const increaseIfCharacterHasMandatoryGoodwillRefusal =
   (character: Character) =>
   (script: Script): DifficultyFactor => {
-    const matches = script.cast.some((c) => c.character.id === character.id && c.role.goodwillRefusal === "Mandatory");
+    const matches = script.cast.some(
+      (c) => c.character.id === character.id && c.role.goodwillRefusals.has("Mandatory"),
+    );
     return matches ? 1 : 0;
   };
 
@@ -88,7 +90,7 @@ export const increaseIfCharacterHasAnyGoodwillRefusalWithIncient =
   (character: Character, incident: Incident) =>
   (script: Script): DifficultyFactor => {
     const characterHasGoodwillRefusal = script.cast.some(
-      (c) => c.character.id === character.id && c.role.goodwillRefusal !== undefined,
+      (c) => c.character.id === character.id && c.role.goodwillRefusals.size !== 0,
     );
     const incidentPresent = determineIfIncidentIsPresent(script, incident);
 

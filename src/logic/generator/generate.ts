@@ -7,7 +7,7 @@ import { CastMember } from "../../model/CastMember";
 import { Character } from "../../data/types/Character";
 import { Incident } from "../../data/types/Incident";
 import { Plot } from "../../data/types/Plot";
-import { Role } from "../../data/types/Role";
+import { DualRole, Role } from "../../data/types/Role";
 import { TragedySet } from "../../data/types/TragedySet";
 import { IncidentOccurrence } from "../../model/IncidentOccurrence";
 import { Script } from "../../model/Script";
@@ -54,10 +54,10 @@ export function generate(args: GenerateArgs): Script {
   });
 }
 
-function getRequiredRoles(plots: Array<Plot>, tragedySet: TragedySet): Array<Role> {
+function getRequiredRoles(plots: Array<Plot>, tragedySet: TragedySet): Array<Role | DualRole> {
   return plots
     .flatMap((p) => p.roles())
-    .reduce((roles: Array<Role>, role: Role) => enforceMaximumRoles(tragedySet, roles, role), []);
+    .reduce((roles: Array<Role | DualRole>, role: Role | DualRole) => enforceMaximumRoles(tragedySet, roles, role), []);
 }
 
 function pickMainPlot(tragedySet: TragedySet): Plot {
@@ -69,7 +69,7 @@ function pickSubplots(tragedySet: TragedySet): Array<Plot> {
 }
 
 // Enforce maximums.
-function fillRemainingRoles(roles: Array<Role>, castSize: number): Array<Role> {
+function fillRemainingRoles(roles: Array<Role | DualRole>, castSize: number): Array<Role | DualRole> {
   // If the castSize is less than the number of required plots... sorry, users.
   // We'll need to add more cast.
   const needed = Math.max(castSize, roles.length);
@@ -79,11 +79,16 @@ function fillRemainingRoles(roles: Array<Role>, castSize: number): Array<Role> {
   return roles.concat(filler);
 }
 
-function enforceMaximumRoles(tragedySet: TragedySet, roles: Array<Role>, role: Role): Array<Role> {
+function enforceMaximumRoles(
+  tragedySet: TragedySet,
+  roles: Array<Role | DualRole>,
+  role: Role | DualRole,
+): Array<Role | DualRole> {
   const sameRoles = roles.filter((r) => r.id === role.id);
 
   // If we have too many of the same role, we can't add it.
-  if (sameRoles.length >= (role.max(tragedySet) ?? Infinity)) {
+  // Dual Roles ignore limits.
+  if (!(role instanceof DualRole) && sameRoles.length >= (role.max(tragedySet) ?? Infinity)) {
     return roles;
   }
 
@@ -92,7 +97,7 @@ function enforceMaximumRoles(tragedySet: TragedySet, roles: Array<Role>, role: R
   });
 }
 
-function initializeCast(args: GenerateArgs, requiredRoles: Array<Role>): Array<CastMember> {
+function initializeCast(args: GenerateArgs, requiredRoles: Array<Role | DualRole>): Array<CastMember> {
   const tragedySet = args.tragedySet;
 
   // We're going to pick a fake cast and if we get the Mystery Boy,
@@ -125,7 +130,7 @@ interface BuildCastAccumulator {
   cast: Array<CastMember>;
   characters: Array<Character>;
 }
-function buildCast(state: BuildCastAccumulator, role: Role): BuildCastAccumulator {
+function buildCast(state: BuildCastAccumulator, role: Role | DualRole): BuildCastAccumulator {
   // Grab the real role.
   const character = matchCharacter(state.characters, role, state.cast);
 
@@ -147,7 +152,7 @@ function buildCast(state: BuildCastAccumulator, role: Role): BuildCastAccumulato
   });
 }
 
-function matchCharacter(pool: Array<Character>, role: Role, cast: Array<CastMember>): Character {
+function matchCharacter(pool: Array<Character>, role: Role | DualRole, cast: Array<CastMember>): Character {
   // Find characters that can meet that role.
   const characters = pool.filter((c) => role.condition === undefined || role.condition(c, cast));
 
@@ -212,7 +217,7 @@ function assignDayToIncident(state: AssignDayToIncidentState, incident: Incident
 function assignIncidentsToCast(cast: Array<CastMember>, incidents: Array<IncidentOccurrence>): Array<CastMember> {
   return produce(cast, (next) => {
     // Who _could_ be a culprit here?
-    let culpritPool = [...next.filter((c) => c.role.culprit !== "Never")];
+    let culpritPool = [...next.filter((c) => !c.role.culprits.has("Never"))];
     incidents.forEach((incident) => {
       // If we are attempting to assign a serial murder and one has already been assigned, we will assign it to the same culprit.
       // TODO: Support that it _might_ be the same culprit, but doesn't have to be. Coin flip?
@@ -230,7 +235,7 @@ function assignIncidentsToCast(cast: Array<CastMember>, incidents: Array<Inciden
 
       // We know we're not dealing with a serial murderer here.
       // If there is a culprit candidate who is mandatory but hasn't yet been assigned, let's do that.
-      const required = culpritPool.filter((c) => c.role.culprit === "Mandatory" && c.incidentTriggers.length === 0);
+      const required = culpritPool.filter((c) => c.role.culprits.has("Mandatory") && c.incidentTriggers.length === 0);
 
       // Pick a culprit.
       const culprit = (required.length > 0 ? _.first(required) : _.draw(culpritPool)) as CastMember;

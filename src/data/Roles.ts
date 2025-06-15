@@ -844,6 +844,179 @@ export const Roles: Record<RoleKey, Role> = {
     ],
     mastermindAbilities: [],
   }),
+  marionette: new Role({
+    id: "31f10e09-8a63-49df-95d6-4718bf08ed7c",
+    name_i18n_key: "roles.marionette.name",
+    goodwillRefusal: "Puppeted",
+    unkillable: false,
+    culprit: "Optional",
+    connectedToBoard: false,
+    connectedToLossCondition: false,
+    abilities: [
+      {
+        id: "a51b0578-b2ad-4e48-bf6f-b53e9a13f31e",
+        effect_i18n_key: "roles.marionette.roleAbility",
+        optional: false,
+        triggers: [Triggers.goodwillAbilityStep],
+        winCondition: false,
+      },
+    ],
+    mastermindAbilities: [],
+  }),
+  lullaby: new Role({
+    id: "eec493fa-a9f7-4edc-a380-a95a439e0379",
+    name_i18n_key: "roles.lullaby.name",
+    goodwillRefusal: "Puppeted",
+    unkillable: false,
+    culprit: "Optional",
+    connectedToBoard: true,
+    connectedToLossCondition: true,
+    abilities: [
+      {
+        id: "48c805b1-fc15-47cb-809a-be0eb03de937",
+        effect_i18n_key: "roles.lullaby.roleAbility1",
+        optional: false,
+        triggers: [Triggers.goodwillAbilityStep],
+        winCondition: true,
+      },
+      {
+        id: "e3d1dde6-b5cc-4dc8-bc75-34f8f2c51906",
+        effect_i18n_key: "roles.lullaby.roleAbility2",
+        optional: true,
+        triggers: [Triggers.dayEnd],
+        winCondition: true,
+      },
+    ],
+    mastermindAbilities: [
+      {
+        effect_i18n_key: "roles.lullaby.mastermindAbility",
+        optional: true,
+        timesPerLoop: 1,
+      },
+    ],
+  }),
+  storyteller: new Role({
+    id: "85759df9-d635-4f39-a3b7-7d035d8d06c6",
+    name_i18n_key: "roles.storyteller.name",
+    unkillable: true,
+    culprit: "Optional",
+    connectedToBoard: true,
+    connectedToLossCondition: false,
+    abilities: [
+      {
+        id: "e2221e00-a0a3-40db-8cf1-7bba346200cf",
+        effect_i18n_key: "roles.storyteller.roleAbility",
+        optional: false,
+        triggers: [Triggers.loopStart],
+        winCondition: false,
+      },
+    ],
+    mastermindAbilities: [
+      {
+        effect_i18n_key: "roles.storyteller.mastermindAbility",
+        optional: true,
+      },
+    ],
+  }),
+  shifter: new Role({
+    id: "22cb8046-a815-4f72-a4c3-e25a0ed152e4",
+    name_i18n_key: "roles.shifter.name",
+    unkillable: false,
+    culprit: "Optional",
+    connectedToBoard: false,
+    connectedToLossCondition: false,
+    abilities: [
+      {
+        id: "99b0803a-3798-4fc8-bff8-e587fa4a73e3",
+        effect_i18n_key: "roles.shifter.roleAbility1",
+        optional: false,
+        triggers: [Triggers.always],
+        winCondition: false,
+      },
+      {
+        id: "bd72e5c0-6634-4081-83f7-82628f001c18",
+        effect_i18n_key: "roles.shifter.roleAbility2",
+        optional: true,
+        triggers: [Triggers.dayEndLastDay],
+        winCondition: true,
+      },
+    ],
+    mastermindAbilities: [],
+  }),
+  alice: new Role({
+    id: "7a58d2b8-a631-4136-9b28-23ccb200e0a4",
+    name_i18n_key: "roles.alice.name",
+    unkillable: false,
+    culprit: "Optional",
+    connectedToBoard: true,
+    connectedToLossCondition: true,
+    abilities: [
+      {
+        id: "6bc46029-f968-4f4e-bad8-eb4fb6237f89",
+        effect_i18n_key: "roles.alice.roleAbility1",
+        optional: false,
+        triggers: [Triggers.loopEnd],
+        winCondition: true,
+      },
+      {
+        id: "03226d5e-845e-41b5-b0b0-d9ff81ce45ef",
+        effect_i18n_key: "roles.alice.roleAbility2",
+        optional: false,
+        triggers: [Triggers.goodwillAbilityStep],
+        winCondition: false,
+        timesPerLoop: 1,
+      },
+    ],
+    mastermindAbilities: [],
+  }),
+  piedPiper: new Role({
+    id: "44b106f3-c828-4d5d-92a1-b878a66e0c89",
+    name_i18n_key: "roles.piedPiper.name",
+    unkillable: false,
+    culprit: "Optional",
+    goodwillRefusal: "Optional",
+    connectedToBoard: true,
+    connectedToLossCondition: true,
+    abilities: [
+      {
+        id: "1f1ccd95-bbfd-466c-817c-fbba5a920a36",
+        effect_i18n_key: "roles.piedPiper.roleAbility",
+        optional: false,
+        triggers: [Triggers.dayEnd],
+        winCondition: true,
+        timesPerLoop: 1,
+      },
+    ],
+    mastermindAbilities: [
+      {
+        effect_i18n_key: "roles.piedPiper.mastermindAbility",
+        optional: true,
+      },
+    ],
+  }),
+  gossip: new Role({
+    id: "15932faa-4d73-46f0-b81e-bd3d5f032a7d",
+    name_i18n_key: "roles.gossip.name",
+    unkillable: false,
+    culprit: "Optional",
+    connectedToBoard: true,
+    connectedToLossCondition: false,
+    abilities: [
+      {
+        id: "76be18b3-e598-4c72-9559-7eade752f333",
+        effect_i18n_key: "roles.gossip.roleAbility",
+        optional: false,
+        triggers: [Triggers.whenCharacterDies],
+        winCondition: false,
+      },
+    ],
+    mastermindAbilities: [
+      {
+        effect_i18n_key: "roles.gossip.mastermindAbility",
+        optional: true,
+      },
+    ],
+  }),
 };
 
 type RoleKey =
@@ -887,4 +1060,11 @@ type RoleKey =
   | "watcher"
   | "influencer"
   | "secretkeeper"
-  | "wildcard";
+  | "wildcard"
+  | "marionette"
+  | "lullaby"
+  | "storyteller"
+  | "shifter"
+  | "alice"
+  | "piedPiper"
+  | "gossip";
