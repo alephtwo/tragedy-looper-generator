@@ -1,5 +1,6 @@
 import { Role } from "./types/Role";
 import { Triggers } from "./Triggers";
+import { TragedySets } from "./TragedySets";
 
 export const Roles: RolesDatabase = {
   person: new Role({
@@ -22,7 +23,7 @@ export const Roles: RolesDatabase = {
     abilities: [
       {
         id: "6617251d-d944-4e54-bb79-30038b7f2624",
-        trigger: Triggers.whenCharacterDies,
+        triggers: [Triggers.whenCharacterDies],
         effect_i18n_key: "roles.keyPerson.roleAbility",
         optional: false,
         winCondition: true,
@@ -41,14 +42,14 @@ export const Roles: RolesDatabase = {
     abilities: [
       {
         id: "c884ee1a-1266-4b56-a5d1-0f73b133d052",
-        trigger: Triggers.dayEnd,
+        triggers: [Triggers.dayEnd],
         effect_i18n_key: "roles.killer.roleAbility1",
         optional: true,
         winCondition: true,
       },
       {
         id: "8cb53b2f-5b4d-4e9a-96cd-df5c9d570905",
-        trigger: Triggers.dayEnd,
+        triggers: [Triggers.dayEnd],
         effect_i18n_key: "roles.killer.roleAbility2",
         optional: true,
         winCondition: true,
@@ -83,7 +84,7 @@ export const Roles: RolesDatabase = {
     abilities: [
       {
         id: "f5f6dc6e-c0c2-4b49-afbd-74c72e48d1ab",
-        trigger: Triggers.cardResolve,
+        triggers: [Triggers.cardResolve],
         effect_i18n_key: "roles.cultist.roleAbility",
         optional: true,
         winCondition: false,
@@ -97,7 +98,7 @@ export const Roles: RolesDatabase = {
     culprit: "Optional",
     connectedToBoard: true,
     connectedToLossCondition: false,
-    max: 1,
+    max: () => 1,
     unkillable: false,
     abilities: [],
     mastermindAbilities: [
@@ -113,11 +114,12 @@ export const Roles: RolesDatabase = {
     culprit: "Optional",
     connectedToBoard: true,
     connectedToLossCondition: false,
+    max: (tragedySet) => (tragedySet.id === TragedySets.lastLiar.id ? 1 : Infinity),
     unkillable: false,
     abilities: [
       {
         id: "3ef9a3d5-bfc8-41b4-a4ba-31627ec7d6c4",
-        trigger: Triggers.dayEnd,
+        triggers: [Triggers.dayEnd],
         effect_i18n_key: "roles.serialKiller.roleAbility",
         optional: false,
         winCondition: false,
@@ -142,19 +144,19 @@ export const Roles: RolesDatabase = {
     culprit: "Optional",
     connectedToBoard: false,
     connectedToLossCondition: false,
-    max: 2,
+    max: () => 2,
     unkillable: false,
     abilities: [
       {
         id: "393d9873-15f2-4219-8b68-121144ccbb84",
-        trigger: Triggers.loopEnd,
+        triggers: [Triggers.loopEnd],
         effect_i18n_key: "roles.friend.roleAbility1",
         optional: true,
         winCondition: false,
       },
       {
         id: "13cc8724-220d-4e2e-ab3e-a8afd1c86a47",
-        trigger: Triggers.loopStart,
+        triggers: [Triggers.loopStart],
         effect_i18n_key: "roles.friend.roleAbility2",
         optional: false,
         winCondition: false,
@@ -172,14 +174,14 @@ export const Roles: RolesDatabase = {
     abilities: [
       {
         id: "20933daa-2da5-42ee-92c9-c03907caa890",
-        trigger: Triggers.cardResolve,
+        triggers: [Triggers.cardResolve],
         effect_i18n_key: "roles.timeTraveller.roleAbility1",
         optional: false,
         winCondition: false,
       },
       {
         id: "65341f38-e6a3-4d16-9d89-ed7acd1ca532",
-        trigger: Triggers.dayEndLastDay,
+        triggers: [Triggers.dayEndLastDay],
         effect_i18n_key: "roles.timeTraveller.roleAbility2",
         optional: true,
         winCondition: true,
@@ -197,7 +199,7 @@ export const Roles: RolesDatabase = {
     abilities: [
       {
         id: "7579c482-2be6-434b-8eba-95a2140c8bfe",
-        trigger: Triggers.whenLovedOneDies,
+        triggers: [Triggers.whenLovedOneDies],
         effect_i18n_key: "roles.lover.roleAbility",
         optional: false,
         winCondition: false,
@@ -215,14 +217,14 @@ export const Roles: RolesDatabase = {
     abilities: [
       {
         id: "c45c4b81-494d-4d9f-b423-e44815f7b42e",
-        trigger: Triggers.whenLoverDies,
+        triggers: [Triggers.whenLoverDies],
         effect_i18n_key: "roles.lovedOne.roleAbility1",
         optional: false,
         winCondition: false,
       },
       {
         id: "655bb6b2-2c15-410b-b651-b55b49ad16ee",
-        trigger: Triggers.dayEnd,
+        triggers: [Triggers.dayEnd],
         effect_i18n_key: "roles.lovedOne.roleAbility2",
         optional: true,
         winCondition: true,
@@ -241,14 +243,14 @@ export const Roles: RolesDatabase = {
     abilities: [
       {
         id: "19735dca-4017-4d86-84cd-42a0b765359a",
-        trigger: Triggers.always,
+        triggers: [Triggers.always],
         effect_i18n_key: "roles.factor.roleAbility1",
         optional: false,
         winCondition: false,
       },
       {
         id: "7a1016c4-0c2e-48cc-9716-64685b9405e5",
-        trigger: Triggers.always,
+        triggers: [Triggers.always],
         effect_i18n_key: "roles.factor.roleAbility2",
         optional: false,
         winCondition: false,
@@ -277,7 +279,7 @@ export const Roles: RolesDatabase = {
     abilities: [
       {
         id: "5534c012-6674-4a54-8a50-855c2a648ffb",
-        trigger: Triggers.whenCharacterDies,
+        triggers: [Triggers.whenCharacterDies],
         effect_i18n_key: "roles.magician.roleAbility",
         optional: false,
         winCondition: false,
@@ -302,14 +304,14 @@ export const Roles: RolesDatabase = {
     abilities: [
       {
         id: "a03dac67-8b73-4011-853d-750ddb106c1c",
-        trigger: Triggers.whenRoleIsRevealed,
+        triggers: [Triggers.whenRoleIsRevealed],
         effect_i18n_key: "roles.ninja.roleAbility1",
         optional: false,
         winCondition: false,
       },
       {
         id: "4371a360-ca49-4c5e-afa4-7ff6238b0f38",
-        trigger: Triggers.dayEnd,
+        triggers: [Triggers.dayEnd],
         effect_i18n_key: "roles.ninja.roleAbility2",
         optional: false,
         winCondition: false,
@@ -328,7 +330,7 @@ export const Roles: RolesDatabase = {
     abilities: [
       {
         id: "2731e7ca-fb2d-49fd-8caa-d42e535bc6f4",
-        trigger: Triggers.incidentStep,
+        triggers: [Triggers.incidentStep],
         effect_i18n_key: "roles.obstinate.roleAbility",
         optional: false,
         winCondition: false,
@@ -346,14 +348,14 @@ export const Roles: RolesDatabase = {
     abilities: [
       {
         id: "385b903a-6623-46b1-b379-0ea929ac6675",
-        trigger: Triggers.always,
+        triggers: [Triggers.always],
         effect_i18n_key: "roles.prophet.roleAbility1",
         optional: false,
         winCondition: false,
       },
       {
         id: "d38c6f44-722f-45f3-8188-80290d76c34c",
-        trigger: Triggers.incidentStep,
+        triggers: [Triggers.incidentStep],
         effect_i18n_key: "roles.prophet.roleAbility2",
         optional: false,
         winCondition: false,
@@ -382,7 +384,7 @@ export const Roles: RolesDatabase = {
     abilities: [
       {
         id: "87b10333-4e23-48ec-95e8-0464f392dacc",
-        trigger: Triggers.dayEnd,
+        triggers: [Triggers.dayEnd],
         effect_i18n_key: "roles.poisoner.roleAbility1",
         optional: false,
         timesPerLoop: 1,
@@ -390,7 +392,7 @@ export const Roles: RolesDatabase = {
       },
       {
         id: "8635d58d-9a4b-4c19-aa89-ae557e2d8f32",
-        trigger: Triggers.dayEnd,
+        triggers: [Triggers.dayEnd],
         effect_i18n_key: "roles.poisoner.roleAbility2",
         optional: false,
         winCondition: true,
@@ -404,12 +406,12 @@ export const Roles: RolesDatabase = {
     culprit: "Mandatory",
     connectedToBoard: true,
     connectedToLossCondition: false,
-    max: 1,
+    max: () => 1,
     unkillable: false,
     abilities: [
       {
         id: "b12d8dd8-73ed-4eab-8468-2ac7f994285d",
-        trigger: Triggers.incidentStep,
+        triggers: [Triggers.incidentStep],
         effect_i18n_key: "roles.fool.roleAbility",
         optional: false,
         winCondition: false,
@@ -427,7 +429,7 @@ export const Roles: RolesDatabase = {
     abilities: [
       {
         id: "1317ca86-2d4f-4a8b-b6d0-5aff07fa9f45",
-        trigger: Triggers.incidentStep,
+        triggers: [Triggers.incidentStep],
         effect_i18n_key: "roles.privateInvestigator.roleAbility",
         optional: false,
         winCondition: false,
@@ -461,7 +463,7 @@ export const Roles: RolesDatabase = {
     abilities: [
       {
         id: "d48359b5-8fd1-4abb-bf70-b9cfd83d0d7d",
-        trigger: Triggers.incidentStep,
+        triggers: [Triggers.incidentStep],
         effect_i18n_key: "roles.twin.roleAbility",
         optional: false,
         winCondition: false,
@@ -495,14 +497,14 @@ export const Roles: RolesDatabase = {
     abilities: [
       {
         id: "5d61679b-a5b0-4aef-9c4f-59bb8df3bfb7",
-        trigger: Triggers.dayEnd,
+        triggers: [Triggers.dayEnd],
         effect_i18n_key: "roles.vampire.roleAbility1",
         optional: true,
         winCondition: true,
       },
       {
         id: "9cbbb2b9-f26b-436f-ae17-ef466b1c9c6d",
-        trigger: Triggers.dayEnd,
+        triggers: [Triggers.dayEnd],
         effect_i18n_key: "roles.vampire.roleAbility2",
         optional: true,
         winCondition: true,
@@ -521,14 +523,14 @@ export const Roles: RolesDatabase = {
     abilities: [
       {
         id: "d59177e9-2160-4874-93ab-0dc19b7271df",
-        trigger: Triggers.dayEnd,
+        triggers: [Triggers.dayEnd],
         effect_i18n_key: "roles.werewolf.roleAbility1",
         optional: true,
         winCondition: true,
       },
       {
         id: "b18302c8-ba24-4329-8b71-e3c33544ab1b",
-        trigger: Triggers.always,
+        triggers: [Triggers.always],
         effect_i18n_key: "roles.werewolf.roleAbility2",
         optional: false,
         winCondition: false,
@@ -547,14 +549,14 @@ export const Roles: RolesDatabase = {
     abilities: [
       {
         id: "06610871-f004-495e-bcd9-299fa7f58503",
-        trigger: Triggers.dayEnd,
+        triggers: [Triggers.dayEnd],
         effect_i18n_key: "roles.nightmare.roleAbility1",
         optional: true,
         winCondition: false,
       },
       {
         id: "6d54ddb7-bb2b-4c30-89df-b1e32834fae0",
-        trigger: Triggers.dayEnd,
+        triggers: [Triggers.dayEnd],
         effect_i18n_key: "roles.nightmare.roleAbility2",
         optional: true,
         winCondition: true,
@@ -568,7 +570,7 @@ export const Roles: RolesDatabase = {
     culprit: "Optional",
     connectedToBoard: true,
     connectedToLossCondition: false,
-    max: 1,
+    max: () => 1,
     unkillable: false,
     abilities: [],
     mastermindAbilities: [
@@ -588,7 +590,7 @@ export const Roles: RolesDatabase = {
     abilities: [
       {
         id: "7ad4fe78-d2fc-445d-9e3f-580c17832590",
-        trigger: Triggers.always,
+        triggers: [Triggers.always],
         effect_i18n_key: "roles.showOff.roleAbility",
         optional: false,
         winCondition: false,
@@ -621,14 +623,14 @@ export const Roles: RolesDatabase = {
     abilities: [
       {
         id: "fc913ff0-68ea-4b0d-9e75-8e9e8baccebf",
-        trigger: Triggers.dayEnd,
+        triggers: [Triggers.dayEnd],
         effect_i18n_key: "roles.sacrifice.roleAbility1",
         optional: true,
         winCondition: true,
       },
       {
         id: "d6ef72d9-c803-4604-95f1-2e0d8adeb53a",
-        trigger: Triggers.incidentStep,
+        triggers: [Triggers.incidentStep],
         effect_i18n_key: "roles.sacrifice.roleAbility2",
         optional: false,
         winCondition: false,
@@ -647,7 +649,7 @@ export const Roles: RolesDatabase = {
     abilities: [
       {
         id: "f5dbd13a-ba2c-4dd0-b510-3da683a88665",
-        trigger: Triggers.whenCharacterDies,
+        triggers: [Triggers.whenCharacterDies],
         effect_i18n_key: "roles.deepOne.roleAbility",
         optional: false,
         winCondition: false,
@@ -670,7 +672,7 @@ export const Roles: RolesDatabase = {
     abilities: [
       {
         id: "b7526fe6-caca-4f8b-b070-35882189e986",
-        trigger: Triggers.dayEnd,
+        triggers: [Triggers.dayEnd],
         effect_i18n_key: "roles.witness.roleAbility",
         optional: false,
         winCondition: false,
@@ -689,14 +691,14 @@ export const Roles: RolesDatabase = {
     abilities: [
       {
         id: "4d27482e-0e7f-48ee-9af5-24c70b1de7e8",
-        trigger: Triggers.always,
+        triggers: [Triggers.always],
         effect_i18n_key: "roles.faceless.roleAbility1",
         optional: false,
         winCondition: false,
       },
       {
         id: "de282aca-0406-4736-84d1-417675c47bad",
-        trigger: Triggers.always,
+        triggers: [Triggers.always],
         effect_i18n_key: "roles.faceless.roleAbility2",
         optional: false,
         winCondition: false,
@@ -710,22 +712,134 @@ export const Roles: RolesDatabase = {
     culprit: "Optional",
     connectedToBoard: false,
     connectedToLossCondition: true,
-    max: 1,
+    max: () => 1,
     unkillable: false,
     abilities: [
       {
         id: "271ee1dd-1157-437d-81ad-60cbd83847dc",
-        trigger: Triggers.loopEnd,
+        triggers: [Triggers.loopEnd],
         effect_i18n_key: "roles.wizard.roleAbility1",
         optional: false,
         winCondition: true,
       },
       {
         id: "d6977ca2-8c73-430d-93a2-5b4678962364",
-        trigger: Triggers.goodwillAbilityStep,
+        triggers: [Triggers.goodwillAbilityStep],
         effect_i18n_key: "roles.wizard.roleAbility2",
         optional: false,
         winCondition: true,
+      },
+    ],
+    mastermindAbilities: [],
+  }),
+  fragment: new Role({
+    id: "1243a58a-1e49-417d-9314-476f371923a4",
+    name_i18n_key: "roles.fragment.name",
+    culprit: "Optional",
+    connectedToBoard: false,
+    connectedToLossCondition: false,
+    unkillable: false,
+    abilities: [
+      {
+        id: "d8492325-19c8-4dcb-837a-94ede8e863a9",
+        triggers: [Triggers.loopStart],
+        effect_i18n_key: "roles.fragment.roleAbility",
+        optional: false,
+        winCondition: false,
+      },
+    ],
+    mastermindAbilities: [
+      {
+        effect_i18n_key: "roles.fragment.mastermindAbility",
+        optional: false,
+      },
+    ],
+  }),
+  watcher: new Role({
+    id: "5e23141a-dd3f-4aba-b6cd-be7f2f4f165c",
+    name_i18n_key: "roles.watcher.name",
+    culprit: "Optional",
+    connectedToBoard: true,
+    connectedToLossCondition: false,
+    max: () => 1,
+    unkillable: true,
+    abilities: [
+      {
+        id: "7c704432-0125-4ffa-8d67-517aa3300e65",
+        triggers: [Triggers.always],
+        effect_i18n_key: "roles.watcher.roleAbility",
+        optional: false,
+        winCondition: false,
+      },
+    ],
+    mastermindAbilities: [],
+  }),
+  influencer: new Role({
+    id: "c8597fed-d1dc-44cf-aca0-bcad42257765",
+    name_i18n_key: "roles.influencer.name",
+    culprit: "Optional",
+    connectedToBoard: true,
+    connectedToLossCondition: false,
+    unkillable: false,
+    abilities: [
+      {
+        id: "adb71eb8-522d-4f19-b425-243270f3357a",
+        effect_i18n_key: "roles.influencer.roleAbility",
+        triggers: [Triggers.whenCharacterDies],
+        optional: false,
+        winCondition: false,
+      },
+      {
+        id: "42626b5c-77bf-4daa-96f2-754d6743cd85",
+        effect_i18n_key: "roles.influencer.roleAbility2",
+        triggers: [Triggers.goodwillAbilityStep],
+        optional: false,
+        winCondition: false,
+        timesPerLoop: 1,
+      },
+    ],
+    mastermindAbilities: [],
+  }),
+  secretkeeper: new Role({
+    id: "15d2cc82-da18-43cb-adc8-8fbd772fa5ea",
+    name_i18n_key: "roles.secretkeeper.name",
+    culprit: "Optional",
+    connectedToBoard: false,
+    connectedToLossCondition: true,
+    unkillable: false,
+    abilities: [
+      {
+        id: "32dfc7da-3cb4-473b-9fae-d62efd59d574",
+        effect_i18n_key: "roles.secretkeeper.roleAbility",
+        triggers: [Triggers.whenCharacterDies],
+        optional: false,
+        winCondition: false,
+      },
+      {
+        id: "690ee8d9-85e9-4974-a552-56f0f1272d8b",
+        effect_i18n_key: "roles.secretkeeper.roleAbility2",
+        triggers: [Triggers.whenRoleIsRevealed],
+        optional: false,
+        winCondition: true,
+      },
+    ],
+    mastermindAbilities: [],
+  }),
+  wildcard: new Role({
+    id: "563ed0e1-8c20-481d-92fe-145c3b7742eb",
+    name_i18n_key: "roles.wildcard.name",
+    culprit: "Mandatory",
+    connectedToBoard: false,
+    connectedToLossCondition: false,
+    goodwillRefusal: "Mandatory",
+    unkillable: true,
+    abilities: [
+      {
+        id: "05f12724-1dfb-4404-80c6-95b750743cd8",
+        effect_i18n_key: "roles.wildcard.roleAbility",
+        triggers: [Triggers.always],
+        optional: false,
+        winCondition: false,
       },
     ],
     mastermindAbilities: [],
@@ -769,4 +883,9 @@ interface RolesDatabase extends Record<string, Role> {
   witness: Role;
   faceless: Role;
   wizard: Role;
+  fragment: Role;
+  watcher: Role;
+  influencer: Role;
+  secretkeeper: Role;
+  wildcard: Role;
 }

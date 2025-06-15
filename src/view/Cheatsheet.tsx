@@ -21,6 +21,7 @@ export function Cheatsheet({ script }: CheatsheetProps): React.JSX.Element {
     return <></>;
   }
 
+  const plots = script.plots();
   const mastermindAbilities = extractMastermindAbilities(script);
   const roleAbilities = extractRoleAbilities(script);
   const allIncidents = script.cast.flatMap((c) => {
@@ -38,7 +39,8 @@ export function Cheatsheet({ script }: CheatsheetProps): React.JSX.Element {
           {t("scaffolding.cheatsheet")}
         </Typography>
         <Divider variant="fullWidth" />
-        <WinConditions plots={script.plots()} roleAbilities={roleAbilities} incidents={allIncidents} />
+        <WinConditions plots={plots} roleAbilities={roleAbilities} incidents={allIncidents} />
+        <PlotRules plots={plots} />
         <MastermindAbilities mastermindAbilities={mastermindAbilities} />
         <RoleAbilities roleAbilities={roleAbilities} />
         <Incidents incidents={allIncidents} />
@@ -84,7 +86,7 @@ function WinConditions(props: WinConditionsProps): React.JSX.Element {
         <TableBody>
           {_.unique(fromPlotRules, (pr) => pr.id).map((pr) => (
             <TableRow key={`wc-${pr.id}`}>
-              <TableCell>{t("terms.plotRule")}</TableCell>
+              <TableCell>{t("terms.plotRule", { count: 1 })}</TableCell>
               <TableCell></TableCell>
               <TableCell>{t(pr.trigger.description_i18n_key)}</TableCell>
               <TableCell>{t(pr.effect_i18n_key)}</TableCell>
@@ -96,7 +98,7 @@ function WinConditions(props: WinConditionsProps): React.JSX.Element {
               <TableCell>
                 <CastMemberDescription castMember={ra.castMember} />
               </TableCell>
-              <TableCell>{t(ra.ability.trigger.description_i18n_key)}</TableCell>
+              <TableCell>{ra.ability.triggers.map((trigger) => t(trigger.description_i18n_key)).join(", ")}</TableCell>
               <TableCell>{t(ra.ability.effect_i18n_key)}</TableCell>
             </TableRow>
           ))}
@@ -109,6 +111,40 @@ function WinConditions(props: WinConditionsProps): React.JSX.Element {
             </TableRow>
           ))}
         </TableBody>
+      </Table>
+    </>
+  );
+}
+
+interface PlotRulesProps {
+  plots: Array<Plot>;
+}
+function PlotRules(props: PlotRulesProps): React.JSX.Element {
+  const { t } = useTranslation();
+
+  const plotRules = props.plots.flatMap((plot) =>
+    plot.plotRules.map((pr) => ({
+      plot: plot.name_i18n_key,
+      rule: pr.effect_i18n_key,
+    })),
+  );
+  return (
+    <>
+      <Typography variant="h3" sx={styles.headerWithIcon}>
+        <Icons.PlotRules />
+        {t("terms.plotRule", { count: 2 })}
+      </Typography>
+      <Table size="small" sx={styles.extraBottomMargin}>
+        <TableHead>
+          <TableCell variant="head">{t("terms.plot")}</TableCell>
+          <TableCell variant="head">{t("terms.effect")}</TableCell>
+        </TableHead>
+        {plotRules.map((pr) => (
+          <TableRow>
+            <TableCell>{t(pr.plot)}</TableCell>
+            <TableCell>{t(pr.rule)}</TableCell>
+          </TableRow>
+        ))}
       </Table>
     </>
   );
@@ -178,7 +214,7 @@ function RoleAbilities({ roleAbilities }: RoleAbilitiesProps): React.JSX.Element
         <TableBody>
           {sortRoleAbilities(roleAbilities).map((a, i) => (
             <TableRow key={`cheatsheet-ra-${i}`}>
-              <TableCell>{t(a.ability.trigger.description_i18n_key)}</TableCell>
+              <TableCell>{a.ability.triggers.map((trigger) => t(trigger.description_i18n_key)).join(", ")}</TableCell>
               <TableCell>{t(a.ability.optional ? "terms.optional" : "terms.mandatory")}</TableCell>
               <TableCell>
                 <CastMemberDescription castMember={a.castMember} />
@@ -235,7 +271,7 @@ function Incidents({ incidents }: IncidentsProps): React.JSX.Element {
 }
 
 function sortRoleAbilities(roleAbilities: Array<RoleAbilityTrigger>): Array<RoleAbilityTrigger> {
-  return _.sort(roleAbilities, (a) => a.ability.trigger.order);
+  return _.sort(roleAbilities, (a) => _.max(a.ability.triggers.map((trigger) => trigger.order)) ?? 0);
 }
 
 // This is a gross hack but it works.
