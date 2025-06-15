@@ -83,3 +83,11 @@ To build the production bundle, run:
 ```shell
 npm run build
 ```
+
+## Acknowledgements
+
+Last Liar is a Tragedy Set that does not have an official English translation.
+As a result, this implementation relies on a fan translation provided by
+[@andrewshen123](https://boardgamegeek.com/user/andrewshen123)
+[over on BoardGameGeek](https://boardgamegeek.com/thread/2770511/article/38982680#38982680).
+Be sure to give them your thanks if you get use out of it!
