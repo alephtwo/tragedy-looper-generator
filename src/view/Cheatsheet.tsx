@@ -140,7 +140,7 @@ function PlotRules(props: PlotRulesProps): React.JSX.Element {
           <TableCell variant="head">{t("terms.plot")}</TableCell>
           <TableCell variant="head">{t("terms.effect")}</TableCell>
         </TableHead>
-        {plotRules.map((pr) => (
+        {_.alphabetical(plotRules, (pr) => t(pr.plot)).map((pr) => (
           <TableRow>
             <TableCell>{t(pr.plot)}</TableCell>
             <TableCell>{t(pr.rule)}</TableCell>
