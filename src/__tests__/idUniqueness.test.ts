@@ -9,9 +9,11 @@ import { MainPlots, Subplots } from "../data/Plots";
 import { Roles } from "../data/Roles";
 import { TragedySets } from "../data/TragedySets";
 import { Triggers } from "../data/Triggers";
+import { DualRole } from "../data/types/Role";
 
 describe("ID Uniqueness Check", () => {
   it("Ensure uniqueness of all ids", () => {
+    const plots = Object.values(MainPlots).concat(Object.values(Subplots));
     const ids = [
       ...Object.values(Characters).map((c) => c.id),
       ...Object.values(Expansions).map((e) => e.id),
@@ -23,9 +25,14 @@ describe("ID Uniqueness Check", () => {
       ...Object.values(TragedySets).map((ts) => ts.id),
       ...Object.values(Triggers).map((t) => t.id),
       // Plot Rules
-      ...Object.values(MainPlots)
-        .concat(...Object.values(Subplots))
-        .flatMap((mp) => mp.plotRules.map((pr) => pr.id)),
+      ...plots.map((mp) => mp.plotRules.map((pr) => pr.id)),
+      // Dual Roles
+      ...plots.map((p) =>
+        p
+          .roles()
+          .filter((r) => r instanceof DualRole)
+          .map((r) => r.id),
+      ),
       // Role Abilities
       ...Object.values(Roles).flatMap((r) => r.abilities.map((ra) => ra.id)),
     ];

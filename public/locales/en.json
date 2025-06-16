@@ -196,6 +196,38 @@
     "theMurkOfDespair": {
       "name": "The Murk of Despair",
       "effect": "Place 1 Despair counter on any character."
+    },
+    "crimeOfPassion": {
+      "name": "Crime of Passion",
+      "effect": "One other character at the culprit's location dies, if possible. When determining if this Incident triggers, treat the culprit's Paranoia Limit as 1 lower."
+    },
+    "dimensionalDistortion": {
+      "name": "Dimensional Distortion",
+      "effect": "Trigger a Warp. When determining if this Incident triggers, it always triggers regardless of the number of counters on the culprit."
+    },
+    "dimensionalPerversion": {
+      "name": "Dimensional Perversion",
+      "effect": "You may trigger a Warp. Place 2 Paranoia counters on any character, and 2 Goodwill counters on any other character."
+    },
+    "dimensionalFracture": {
+      "name": "Dimensional Fracture",
+      "effect": "You may trigger a Warp. If there are 3 or more kinds of counters on the culprit, kill the Protagonists."
+    },
+    "leftBehind": {
+      "name": "Left Behind",
+      "effect": "Place 1 Intrigue counter on a character at the culprit's location, then move the culprit to any location."
+    },
+    "phantasmalIncident": {
+      "name": "Phantasmal Incident",
+      "effect": "Resolve the effect of Crime of Passion, Dimensional Perversion, or Left Behind. When determining if this Incident triggers, refer to the number of Intrigue counters on the culprit instead of the original type of counter."
+    },
+    "theSingularity": {
+      "name": "The Singularity",
+      "effect": "If the players are in the Light World, trigger a Warp. Furthermore, if this is the first time this game that this Incident triggered, kill the Protagonists.\nIf the players are in the Dark World and there is 1 or more Intrigue counter on the culprit's starting location, kill the Protagonists."
+    },
+    "seepingDaylight": {
+      "name": "Seeping Daylight",
+      "effect": "The Leader chooses a character. Place 1 Hope counter on that character."
     }
   },
   "locations": {
@@ -416,6 +448,38 @@
     "theMythomaniacsSecret": {
       "name": "The Mythomaniac's Secret",
       "plotRule": "The Secretkeeper gains Goodwill Refusal. If there is no Secretkeeper during script creation, instead add an additional Killer, Brain, or Fragment to the script. (It does not count as a Role specified by this Plot.)"
+    },
+    "theForbiddenFuture": {
+      "name": "The Forbidden Future",
+      "plotRule": "If the players are in the Light World at the end of the loop, the Protagonists lose."
+    },
+    "fairyTaleMurderer": { "name": "Fairy-Tale Murderer" },
+    "motherGooseMystery": {
+      "name": "Mother Goose Mystery",
+      "plotRule": "If there are X or more corpses at the end of the loop, the Protagonists lose. X is the current loop number, to a maximum of 3."
+    },
+    "dimensionalMerger": {
+      "name": "Dimensional Merger",
+      "plotRule": "If Last Will or Left Behind has triggered this loop, at the end of the loop, the Protagonists lose."
+    },
+    "intoNothingness": {
+      "name": "Into Nothingness",
+      "plotRule": "If the sum of the Extra Gauge and the number of Intrigue counters on the Obstinate added by this Plot is 3 or more at the end of the loop, the Protagonists lose."
+    },
+    "jekyllAndHyde": { "name": "Jekyll and Hyde" },
+    "thePlaguebringer": { "name": "The Plaguebringer" },
+    "puppeteersStrings": {
+      "name": "Puppeteer's Strings",
+      "plotRule": "All types of Goodwill Refusal become Puppeted Goodwill Refusal (including Mandatory Goodwill Refusal and that granted by Despair counters)."
+    },
+    "throughTheLookingGlass": { "name": "Through the Looking-Glass" },
+    "unspeakableHorrors": {
+      "name": "Unspeakable Horrors",
+      "plotRule": "If the Extra Gauge is 3 or higher, at the end of the day, you may kill the Protagonists."
+    },
+    "hysteriaVirus": {
+      "name": "Hysteria Virus",
+      "plotRule": "While in the Dark World, characters whose original Roles were either Person or Fragment and have 2 or more kinds of counters on them instead become Serial Killers."
     }
   },
   "roles": {
@@ -580,6 +644,41 @@
     "wildcard": {
       "name": "Wildcard",
       "roleAbility": "If the current day is a multiple of 3, this character gains the Conspiracy Theorist's, the Brain's, and the Serial Killer's abilities."
+    },
+    "marionette": {
+      "name": "Marionette",
+      "roleAbility": "After resolving this character's Goodwill ability, if there are 2 or more kinds of counters on this character, they die, and you trigger a Warp."
+    },
+    "lullaby": {
+      "name": "Lullaby",
+      "roleAbility1": "After resolving this character's Goodwill ability, the target of that ability dies.",
+      "roleAbility2": "At the end of the day, if there are 4 or more kinds of counters on this character, you may kill the Protagonists.",
+      "mastermindAbility": "During the Mastermind abilities phase, you may place 1 Paranoia or Goodwill counter on a character at this character's location."
+    },
+    "storyteller": {
+      "name": "Storyteller",
+      "mastermindAbility": "If the Extra Gauge is 1 or higher, during each Mastermind abilities phase, you may move 1 counter between two other characters at this character's location.",
+      "roleAbility": "At the start of the loop, if the Extra Gauge was 3 or more at the end of the previous loop, the Protagonists add \"Hope +1\" to hand."
+    },
+    "shifter": {
+      "name": "Shifter",
+      "roleAbility1": "Ignore Forbid Goodwill cards played on this character.",
+      "roleAbility2": "At the end of the last day, if there are 2 or fewer kinds of counters on this character, you may kill the Protagonists."
+    },
+    "alice": {
+      "name": "Alice",
+      "roleAbility1": "At the end of the loop, if this character is dead, the Protagonists lose.",
+      "roleAbility2": "After this character's Goodwill ability resolves, if the Extra Gauge is 1 or higher, place 1 Hope counter on each other character at this character's location."
+    },
+    "piedPiper": {
+      "name": "Pied Piper",
+      "roleAbility": "At the end of the day, if the Extra Gauge is 2 or higher, one character at this character's location dies.",
+      "mastermindAbility": "At the end of the day, you may place 1 Intrigue counter on a corpse at this character's location. Then, if there is a total of 3 or more Intrigue counters on all corpses combined, kill the Protagonists."
+    },
+    "gossip": {
+      "name": "Gossip",
+      "roleAbility": "When this character dies, place 1 Despair counter on a character at this character's location, and you may trigger a Warp.",
+      "mastermindAbility": "During each Mastermind abilities phase, you may place 1 Goodwill counter on a character at this character's location."
     }
   },
   "scaffolding": {
@@ -636,7 +735,8 @@
     "mysteryCircle": "Mystery Circle",
     "primeEvil": "Prime Evil",
     "cosmicMythology": "Cosmic Mythology",
-    "lastLiar": "Last Liar"
+    "lastLiar": "Last Liar",
+    "anotherHorizon": "Another Horizon"
   },
   "triggers": {
     "always": "Always",

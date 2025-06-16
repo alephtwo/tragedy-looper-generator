@@ -11,6 +11,7 @@ import { PlotRule } from "../data/types/PlotRule";
 import { Incident } from "../data/types/Incident";
 import { Box, Divider, Paper, Table, TableBody, TableCell, TableHead, TableRow, Typography } from "@mui/material";
 import * as Icons from "./Icons";
+import { RoleName } from "./RoleName";
 
 interface CheatsheetProps {
   script: Script;
@@ -324,7 +325,7 @@ function CastMemberDescription({ castMember }: CastMemberDescriptionProps): Reac
   const { t } = useTranslation();
   return (
     <>
-      {t(castMember.character.name_i18n_key)} ({t(castMember.role.name_i18n_key)})
+      {t(castMember.character.name_i18n_key)} (<RoleName role={castMember.role} />)
     </>
   );
 }

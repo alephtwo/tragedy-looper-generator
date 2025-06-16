@@ -4,10 +4,11 @@ import { useTranslation } from "react-i18next";
 import { Script } from "../model/Script";
 import { Incident } from "../data/types/Incident";
 import { Character } from "../data/types/Character";
-import { Role } from "../data/types/Role";
+import { DualRole, Role } from "../data/types/Role";
 import { CastMember } from "../model/CastMember";
 import { Box, Divider, Paper, Table, TableBody, TableCell, TableHead, TableRow, Typography } from "@mui/material";
 import * as Icons from "./Icons";
+import { RoleName } from "./RoleName";
 
 interface ScriptCardProps {
   script: Script;
@@ -45,7 +46,9 @@ export function Mastermind({ script }: ScriptCardProps): React.JSX.Element {
                   <TableCell>
                     <CastMemberName castMember={c} />
                   </TableCell>
-                  <TableCell>{t(c.role.name_i18n_key)}</TableCell>
+                  <TableCell>
+                    <RoleName role={c.role} />
+                  </TableCell>
                 </TableRow>
               ))}
             </TableBody>
@@ -197,7 +200,7 @@ interface IncidentMetadata {
   incident: Incident;
   fakeIncident?: Incident;
   character: Character;
-  role: Role;
+  role: Role | DualRole;
 }
 // This exists to make some sense of the incidents and make them easily
 // displayable. My apologies. It is not the prettiest thing ever.
