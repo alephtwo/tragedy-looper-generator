@@ -16,7 +16,7 @@ export function Loading(): React.JSX.Element {
       <Typography color={colors.grey[100]} variant="h1">
         Loading...
       </Typography>
-      <LinearProgress sx={{ width: "50%" }} variant="indeterminate" />
+      <LinearProgress sx={{ width: "50%" }} variant="indeterminate" aria-label="Loading Progress" />
     </Box>
   );
 }

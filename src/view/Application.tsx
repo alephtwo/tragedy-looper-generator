@@ -44,7 +44,7 @@ export function Application(): React.JSX.Element {
   }
 
   return (
-    <Container sx={{ marginY: 1 }} component="main">
+    <Container sx={{ marginY: 1 }}>
       <Stack gap={1}>
         <Stack direction="row" justifyContent="space-between">
           <PageTitle />
