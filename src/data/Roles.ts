@@ -870,6 +870,7 @@ export const wildcard = new Role({
   culprit: "Mandatory",
   connectedToBoard: false,
   connectedToLossCondition: false,
+  max: () => 1,
   goodwillRefusal: "Mandatory",
   unkillable: true,
   abilities: [
@@ -1047,6 +1048,7 @@ export const gossip = new Role({
   culprit: "Optional",
   connectedToBoard: true,
   connectedToLossCondition: false,
+  max: () => 1,
   abilities: [
     {
       id: "76be18b3-e598-4c72-9559-7eade752f333",
