@@ -125,6 +125,8 @@ function PlotRules(props: PlotRulesProps): React.JSX.Element {
 
   const plotRules = props.plots.flatMap((plot) =>
     plot.plotRules.map((pr) => ({
+      plotId: plot.id,
+      ruleId: pr.id,
       plot: plot.name_i18n_key,
       rule: pr.effect_i18n_key,
     })),
@@ -137,15 +139,19 @@ function PlotRules(props: PlotRulesProps): React.JSX.Element {
       </Typography>
       <Table size="small" sx={styles.extraBottomMargin}>
         <TableHead>
-          <TableCell variant="head">{t("terms.plot")}</TableCell>
-          <TableCell variant="head">{t("terms.effect")}</TableCell>
-        </TableHead>
-        {_.alphabetical(plotRules, (pr) => t(pr.plot)).map((pr) => (
           <TableRow>
-            <TableCell>{t(pr.plot)}</TableCell>
-            <TableCell>{t(pr.rule)}</TableCell>
+            <TableCell variant="head">{t("terms.plot")}</TableCell>
+            <TableCell variant="head">{t("terms.effect")}</TableCell>
           </TableRow>
-        ))}
+        </TableHead>
+        <TableBody>
+          {_.alphabetical(plotRules, (pr) => t(pr.plot)).map((pr) => (
+            <TableRow key={`plotrule-${pr.plotId}-${pr.ruleId}`}>
+              <TableCell>{t(pr.plot)}</TableCell>
+              <TableCell>{t(pr.rule)}</TableCell>
+            </TableRow>
+          ))}
+        </TableBody>
       </Table>
     </>
   );

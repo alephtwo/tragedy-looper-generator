@@ -271,17 +271,21 @@ function TraitorWinConditions(props: TraitorWinConditionProps): React.JSX.Elemen
       </Typography>
       <Table size="small" sx={styles.extraBottomMargin}>
         <TableHead>
-          <TableCell variant="head">Traitor</TableCell>
-          <TableCell variant="head">Trigger</TableCell>
-          <TableCell variant="head">Rule</TableCell>
-        </TableHead>
-        {_.alphabetical(traitorWinConditions, (wc) => wc.winConditionForTraitor ?? "").map((wc) => (
           <TableRow>
-            <TableCell>{wc.winConditionForTraitor}</TableCell>
-            <TableCell>{t(wc.trigger.description_i18n_key)}</TableCell>
-            <TableCell>{t(wc.effect_i18n_key)}</TableCell>
+            <TableCell variant="head">Traitor</TableCell>
+            <TableCell variant="head">Trigger</TableCell>
+            <TableCell variant="head">Rule</TableCell>
           </TableRow>
-        ))}
+        </TableHead>
+        <TableBody>
+          {_.alphabetical(traitorWinConditions, (wc) => wc.winConditionForTraitor ?? "").map((wc) => (
+            <TableRow key={`wc-${wc.id}`}>
+              <TableCell>{wc.winConditionForTraitor}</TableCell>
+              <TableCell>{t(wc.trigger.description_i18n_key)}</TableCell>
+              <TableCell>{t(wc.effect_i18n_key)}</TableCell>
+            </TableRow>
+          ))}
+        </TableBody>
       </Table>
     </Box>
   );
