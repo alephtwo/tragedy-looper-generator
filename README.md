@@ -25,7 +25,7 @@ Use the generator to randomly create a script.
 
 Whenever possible, the published rules of the game are respected. For example,
 if the "Sign with me!" plot is chosen, the Key Person is guaranteed to be a
-Girl. Things that known to deviate from this are documented on the
+Girl. Things that are known to deviate from this are documented on the
 [issue tracker](https://github.com/alephtwo/tragedy-looper-generator/issues).
 
 The number of loops is calculated from the published rules of the game, with
@@ -37,13 +37,11 @@ modify this as they see fit to alter the difficulty of their game.
 The user has a few handles by which to determine the "feel" of the game:
 
 - Tragedy Set
-- Character Pools
-- Number of Subplots (1 or 2)
 - Cast Size (6-11)
 - Number of Incidents (Between 0 and the minimum of days or cast size)
 - Number of Days per Loop
 
-A couple of things to note things to note:
+A couple of things to note:
 
 - If the plot/roles require more incidents than have been requested, more
   incidents will be added.
