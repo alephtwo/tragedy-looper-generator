@@ -1,6 +1,6 @@
 import * as React from "react";
 import * as _ from "radash";
-import { TragedySets } from "../data/TragedySets";
+import * as TragedySets from "../data/TragedySets";
 import { useTranslation } from "react-i18next";
 import { TragedySet } from "../data/types/TragedySet";
 import { findById } from "../util/findById";

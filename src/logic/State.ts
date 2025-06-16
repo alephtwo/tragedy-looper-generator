@@ -1,4 +1,4 @@
-import { TragedySets } from "../data/TragedySets";
+import * as TragedySets from "../data/TragedySets";
 import { TragedySet } from "../data/types/TragedySet";
 import { Script } from "../model/Script";
 import { produce } from "immer";

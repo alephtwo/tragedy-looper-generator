@@ -1,14 +1,15 @@
 import { describe, it, expect } from "vitest";
 
 import * as _ from "radash";
-import { Characters } from "../data/Characters";
-import { Expansions } from "../data/Expansions";
-import { Incidents } from "../data/Incidents";
-import { Locations } from "../data/Locations";
-import { MainPlots, Subplots } from "../data/Plots";
-import { Roles } from "../data/Roles";
-import { TragedySets } from "../data/TragedySets";
-import { Triggers } from "../data/Triggers";
+import * as Characters from "../data/Characters";
+import * as Expansions from "../data/Expansions";
+import * as Incidents from "../data/Incidents";
+import * as Locations from "../data/Locations";
+import * as MainPlots from "../data/MainPlots";
+import * as Subplots from "../data/Subplots";
+import * as Roles from "../data/Roles";
+import * as TragedySets from "../data/TragedySets";
+import * as Triggers from "../data/Triggers";
 import { DualRole } from "../data/types/Role";
 
 describe("ID Uniqueness Check", () => {

@@ -1,9 +1,9 @@
 import { Script } from "../../model/Script";
 import * as _ from "radash";
-import { Characters } from "../../data/Characters";
-import { Roles } from "../../data/Roles";
-import { Incidents } from "../../data/Incidents";
-import { MainPlots } from "../../data/Plots";
+import * as Characters from "../../data/Characters";
+import * as Roles from "../../data/Roles";
+import * as Incidents from "../../data/Incidents";
+import * as MainPlots from "../../data/MainPlots";
 import {
   decreaseForEveryCharacterThatHasForbiddenAreasAndConnectsToBoard,
   decreaseIfCharacterHasRole,

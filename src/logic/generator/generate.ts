@@ -1,8 +1,8 @@
 import { produce } from "immer";
 import * as _ from "radash";
-import { Characters } from "../../data/Characters";
-import { Incidents } from "../../data/Incidents";
-import { Roles } from "../../data/Roles";
+import * as Characters from "../../data/Characters";
+import * as Incidents from "../../data/Incidents";
+import * as Roles from "../../data/Roles";
 import { CastMember } from "../../model/CastMember";
 import { Character } from "../../data/types/Character";
 import { Incident } from "../../data/types/Incident";
