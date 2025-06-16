@@ -73,6 +73,7 @@ export function Players({ script }: ScriptCardProps): React.JSX.Element {
         <Divider variant="fullWidth" />
         <GeneralInfo script={script} mastermind={false} />
         <Incidents occurrences={occurrences} mastermind={false} />
+        <TraitorWinConditions script={script} />
       </Box>
     </Paper>
   );
@@ -136,7 +137,7 @@ function Incidents({ mastermind, occurrences }: IncidentsProps): React.JSX.Eleme
         <Icons.Incidents />
         {t("terms.incident", { count: occurrences.length })}
       </Typography>
-      <Table size="small" sx={mastermind ? styles.extraBottomMargin : {}}>
+      <Table size="small" sx={styles.extraBottomMargin}>
         <TableHead>
           <TableRow>
             <TableCell variant="head">{t("terms.day", { count: 1 })}</TableCell>
@@ -244,6 +245,46 @@ function IncidentName({ occurrence, mastermind }: IncidentNameProps): React.JSX.
   }
   // Players only see the fake incident.
   return <>{t(occurrence.fakeIncident.name_i18n_key)}</>;
+}
+
+interface TraitorWinConditionProps {
+  script: Script;
+}
+function TraitorWinConditions(props: TraitorWinConditionProps): React.JSX.Element {
+  const { t } = useTranslation();
+
+  const traitorWinConditions = props.script
+    .plots()
+    .flatMap((plot) => plot.plotRules)
+    .filter((pr) => pr.winConditionForTraitor !== undefined);
+
+  // Only show this if there's a traitor win condition!
+  if (traitorWinConditions.length === 0) {
+    return <></>;
+  }
+
+  return (
+    <Box sx={styles.section}>
+      <Typography variant="h3" sx={styles.headerWithIcon}>
+        <Icons.TraitorWinConditions />
+        {t("terms.traitorWinCondition", { count: traitorWinConditions.length })}
+      </Typography>
+      <Table size="small" sx={styles.extraBottomMargin}>
+        <TableHead>
+          <TableCell variant="head">Traitor</TableCell>
+          <TableCell variant="head">Trigger</TableCell>
+          <TableCell variant="head">Rule</TableCell>
+        </TableHead>
+        {_.alphabetical(traitorWinConditions, (wc) => wc.winConditionForTraitor ?? "").map((wc) => (
+          <TableRow>
+            <TableCell>{wc.winConditionForTraitor}</TableCell>
+            <TableCell>{t(wc.trigger.description_i18n_key)}</TableCell>
+            <TableCell>{t(wc.effect_i18n_key)}</TableCell>
+          </TableRow>
+        ))}
+      </Table>
+    </Box>
+  );
 }
 
 const styles = {

@@ -13,6 +13,7 @@ import {
   SportsKabaddi,
   AssignmentLate,
   Newspaper,
+  Fingerprint,
 } from "@mui/icons-material";
 import { SvgIconProps } from "@mui/material";
 
@@ -28,3 +29,4 @@ export const WinConditions = (props: SvgIconProps) => <Celebration {...props} />
 export const MastermindAbilities = (props: SvgIconProps) => <AssignmentLate {...props} />;
 export const RoleAbilities = (props: SvgIconProps) => <SportsKabaddi {...props} />;
 export const PlotRules = (props: SvgIconProps) => <Newspaper {...props} />;
+export const TraitorWinConditions = (props: SvgIconProps) => <Fingerprint {...props} />;

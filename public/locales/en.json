@@ -429,15 +429,15 @@
     },
     "theRealMonster": {
       "name": "The Real Monster",
-      "plotRule": "Victory Condition A: During the Day end phase, there are 5 or more Perished tokens."
+      "victoryConditionA": "During the Day end phase, there are 5 or more Perished tokens."
     },
     "keeperOfMythology": {
       "name": "Keeper of Mythology",
-      "plotRule": "Victory Condition B: During the Protagonists' abilities phase, there are 6 or more Acquainted tokens."
+      "victoryConditionB": "During the Protagonists' abilities phase, there are 6 or more Acquainted tokens."
     },
     "iAmTheTrueDetective": {
       "name": "I Am The True Detective",
-      "plotRule": "Victory Condition C: Immediately before the Final Guess, Protagonist C correctly identifies the culprit of each incident."
+      "victoryConditionC": "Immediately before the Final Guess, Protagonist C correctly identifies the culprit of each incident."
     },
     "crossingWorldLines": {
       "name": "Crossing World Lines",
@@ -726,7 +726,9 @@
     "plotRule_other": "Plot Rules",
     "roleAbility_one": "Role Ability",
     "roleAbility_other": "Role Abilities",
-    "winConditions": "Win Conditions"
+    "winConditions": "Win Conditions",
+    "traitorWinCondition_one": "Traitor Win Condition",
+    "traitorWinCondition_other": "Traitor Win Conditions"
   },
   "tragedySets": {
     "firstSteps": "First Steps",
@@ -750,7 +752,8 @@
     "whenThisRoleIsToBeRevealed": "When this Role is to be Revealed",
     "whenCharacterDies": "When Character Dies",
     "whenTheLoverDies": "When the Lover Dies",
-    "whenTheLovedOneDies": "When the Loved One Dies"
+    "whenTheLovedOneDies": "When the Loved One Dies",
+    "beforeFinalGuess": "Before Final Guess"
   },
   "warnings": {
     "castSizeOverridden": "Cast size has been overridden to {{needed}} in order to have enough for each required role."

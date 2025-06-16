@@ -544,10 +544,10 @@ export const theRealMonster: Plot = {
   plotRules: [
     {
       id: "fe2e4266-6524-4765-a67b-a98cecffccd6",
-      effect_i18n_key: "plots.theRealMonster.plotRule",
-      trigger: Triggers.always,
-      // TODO: It's a win condition, but for Traitor A.
+      effect_i18n_key: "plots.theRealMonster.victoryConditionA",
+      trigger: Triggers.dayEnd,
       winCondition: false,
+      winConditionForTraitor: "A",
     },
   ],
   mastermindAbilities: [],
@@ -563,10 +563,10 @@ export const keeperOfMythology: Plot = {
   plotRules: [
     {
       id: "f4da1fb2-7ba1-40e9-81f2-e691b01c7abc",
-      effect_i18n_key: "plots.keeperOfMythology.plotRule",
-      trigger: Triggers.always,
-      // TODO: It's a win condition, but for Traitor B.
+      effect_i18n_key: "plots.keeperOfMythology.victoryConditionB",
+      trigger: Triggers.goodwillAbilityStep,
       winCondition: false,
+      winConditionForTraitor: "B",
     },
   ],
   mastermindAbilities: [],
@@ -582,10 +582,10 @@ export const iAmTheTrueDetective: Plot = {
   plotRules: [
     {
       id: "9000549c-ef5f-44ea-bafd-23472ccfadaf",
-      effect_i18n_key: "plots.iAmTheTrueDetective.plotRule",
-      trigger: Triggers.always,
-      // TODO: It's a win condition, but for Traitor C.
+      effect_i18n_key: "plots.iAmTheTrueDetective.victoryConditionC",
+      trigger: Triggers.beforeFinalGuess,
       winCondition: false,
+      winConditionForTraitor: "C",
     },
   ],
   mastermindAbilities: [],

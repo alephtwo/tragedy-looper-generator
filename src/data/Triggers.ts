@@ -71,3 +71,9 @@ export const whenLovedOneDies: Trigger = {
   description_i18n_key: "triggers.whenTheLovedOneDies",
   order: 12,
 };
+
+export const beforeFinalGuess: Trigger = {
+  id: "260de34a-d1ba-4be4-a60b-ff557f4eb720",
+  description_i18n_key: "triggers.beforeFinalGuess",
+  order: 13,
+};

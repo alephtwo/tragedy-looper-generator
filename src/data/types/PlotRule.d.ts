@@ -7,4 +7,5 @@ export interface PlotRule extends Identifiable {
   effect_i18n_key: ParseKeys;
   trigger: Trigger;
   winCondition: boolean;
+  winConditionForTraitor?: "A" | "B" | "C";
 }
