@@ -2,7 +2,7 @@
   "name": "tragedy-looper-generator",
   "version": "1.0.0",
   "description": "",
-  "main": "index.js",
+  "main": "dist/index.js",
   "scripts": {
     "start": "vite",
     "test": "vitest run",
@@ -16,8 +16,8 @@
     "lint:ts": "eslint .",
     "lint:md": "markdownlint ."
   },
-  "author": "",
-  "license": "ISC",
+  "author": "Ben Christianson <thhuntertgm@gmail.com>",
+  "license": "MIT",
   "devDependencies": {
     "@axe-core/react": "4.10.2",
     "@stryker-mutator/core": "9.0.1",
