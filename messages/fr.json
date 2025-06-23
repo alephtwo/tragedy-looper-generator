@@ -1,0 +1,929 @@
+{
+  "$schema": "https://inlang.com/schema/inlang-message-format",
+  "characters": {
+    "boyStudent": "Étudiant garçon",
+    "girlStudent": "Étudiante",
+    "richMansDaughter": "La fille de l'homme riche",
+    "shrineMaiden": "Jeune fille du sanctuaire",
+    "policeOfficer": "Policier",
+    "officeWorker": "Employé de bureau",
+    "informer": "Informateur",
+    "doctor": "Médecin",
+    "patient": "Patient",
+    "classRep": "délégué de classe",
+    "mysteryBoy": "Garçon mystérieux",
+    "alien": "Étranger",
+    "godlyBeing": "Être divin",
+    "popIdol": "Pop Idol",
+    "journalist": "Journaliste",
+    "boss": "Chef",
+    "nurse": "Infirmière",
+    "henchman": "Acolyte",
+    "scientist": "Scientifique",
+    "forensicSpecialist": "spécialiste en médecine légale",
+    "ai": "IA",
+    "illusion": "Illusion",
+    "teacher": "Professeur",
+    "transferStudent": "Étudiant transféré",
+    "blackCat": "Chat noir",
+    "soldier": "Soldat"
+  },
+  "expansions": {
+    "base": "Base",
+    "midnightCircle": "Cercle de minuit",
+    "cosmicEvil": "Le mal cosmique"
+  },
+  "incidents": {
+    "murder": {
+      "name": "Meurtre",
+      "effect": "Un (1) autre personnage à l'emplacement du coupable meurt."
+    },
+    "increasingUnease": {
+      "name": "Malaise croissant",
+      "effect": "Placez 2 Paranoïa sur n'importe quel personnage et 1 Intrigue sur un autre.\nPlacez 2 intrigues sur le sanctuaire."
+    },
+    "suicide": {
+      "name": "Suicide",
+      "effect": "Le coupable meurt."
+    },
+    "hospitalIncident": {
+      "name": "Incident à l'hôpital",
+      "effect": "Si au moins 1 intrigue se produit à l'hôpital : tout le monde à l'hôpital meurt.\nSi au moins 2 Intrigues se produisent à l'hôpital, les protagonistes meurent."
+    },
+    "farawayMurder": {
+      "name": "Meurtre lointain",
+      "effect": "Un personnage avec au moins 2 Intrigues meurt."
+    },
+    "missingPerson": {
+      "name": "Personne disparue",
+      "effect": "Déplacez le coupable à n'importe quel endroit. Placez 1 Intrigue à cet endroit."
+    },
+    "spreading": {
+      "name": "Diffusion",
+      "effect": "Déplacez 2 points de bonne volonté de n'importe quel personnage vers n'importe quel autre personnage."
+    },
+    "foulEvil": {
+      "name": "Mal immonde",
+      "effect": "Placez 2 intrigues sur le sanctuaire."
+    },
+    "butterflyEffect": {
+      "name": "Effet papillon",
+      "effect": "Placez n'importe quel marqueur sur n'importe quel personnage à l'emplacement du coupable."
+    },
+    "conspiracies": {
+      "name": "Conspirations",
+      "effect": "[Cochez Intrigue au lieu de Paranoïa pour déclencher l'incident.] Résolvez un incident de « Meurtre en série » ou de « Personne disparue »."
+    },
+    "uproar": {
+      "name": "Tumulte",
+      "effect": "S'il y a au moins 1 intrigue sur l'école : tout le monde dans l'école meurt.\nS'il y a au moins 1 intrigue dans la ville, tout le monde dans la ville meurt."
+    },
+    "fakeIncident": {
+      "name": "Faux incident",
+      "effect": "S'il y a au moins 2 Intrigues sur le lieu de départ du coupable, les Protagonistes meurent."
+    },
+    "breakthrough": {
+      "name": "Percée",
+      "effect": "Le chef protagoniste choisit un lieu ou un personnage et en retire 2 intrigues."
+    },
+    "fakedSuicide": {
+      "name": "Suicide simulé",
+      "effect": "Placez une carte Extra sur le coupable. Pendant le reste de la boucle, les protagonistes ne peuvent plus jouer de carte sur les personnages possédant une carte Extra."
+    },
+    "confession": {
+      "name": "Confession",
+      "effect": "Révéler le coupable et le rôle du coupable."
+    },
+    "portent": {
+      "name": "Présage",
+      "effect": "[Pour déterminer si cet incident se déclenche ou non, considérez la limite de paranoïa du coupable comme étant inférieure de 1 à sa limite imprimée.] Placez 1 paranoïa sur n'importe quel personnage à l'emplacement du coupable."
+    },
+    "terrorism": {
+      "name": "Terrorisme",
+      "effect": "Si au moins 1 Intrigue se produit dans la Ville : Tout le monde dans la Ville meurt.\nSi au moins 2 Intrigues sur la Ville : Les Protagonistes meurent."
+    },
+    "bestialMurder": {
+      "name": "Meurtre bestial",
+      "effect": "[Pour déterminer si cet incident se déclenche ou non, considérez la limite de Paranoïa du coupable comme supérieure de 1 à sa limite imprimée.] Résolvez « Meurtre en série » et « Malaise croissant » dans cet ordre. Augmentez ensuite la jauge supplémentaire d'un cran."
+    },
+    "aSuspiciousLetter": {
+      "name": "Une lettre suspecte",
+      "effect": "Déplacez n'importe quel personnage se trouvant à l'emplacement du coupable vers n'importe quel endroit. Si le personnage a effectivement changé d'emplacement, il ne peut pas être déplacé le lendemain."
+    },
+    "closedCircle": {
+      "name": "Cercle fermé",
+      "effect": "Révélez l'emplacement du coupable. Pendant 3 jours, y compris le jour de l'incident, tout mouvement vers ou depuis cet emplacement est annulé."
+    },
+    "theSilverBullet": {
+      "name": "La balle d'argent",
+      "effect": "La boucle se termine après cette étape d'incident (entraînant une victoire du protagoniste, sauf si une condition de perte est remplie). Cet incident n'augmente pas la jauge supplémentaire."
+    },
+    "sacrilegiousMurder": {
+      "name": "Meurtre sacrilège",
+      "effect": "Soit tuez un autre personnage au même endroit que le coupable, soit placez une intrigue à l'emplacement du coupable."
+    },
+    "theExecutioner": {
+      "name": "Le bourreau",
+      "effect": "Le chef choisit un personnage. Ce personnage est tué."
+    },
+    "darkRumor": {
+      "name": "Rumeur sombre",
+      "effect": "Attachez une malédiction sur le coupable."
+    },
+    "barricade": {
+      "name": "Barricade",
+      "effect": "Pour chaque autre personnage dans l'emplacement du coupable, choisissez n'importe quel autre emplacement et déplacez le personnage là-bas."
+    },
+    "evilContamination": {
+      "name": "Contamination maléfique",
+      "effect": "Placez 2 intrigues sur le sanctuaire."
+    },
+    "nightOfMadness": {
+      "name": "Nuit de folie",
+      "effect": "[Incident de foule : 0 (se produira toujours)] S'il y a 6 zombies ou plus lorsque cet incident se produit, les protagonistes mourront après la fin de la journée."
+    },
+    "awakenedCurse": {
+      "name": "Malédiction de l'éveil",
+      "effect": "[Incident de foule : 1] Placez une malédiction sur l'emplacement du coupable."
+    },
+    "evangeliumOfTheDead": {
+      "name": "Évangile des morts",
+      "effect": "[Incident de foule : 2] Tuez tous les personnages présents dans la zone du coupable. Si cette zone contient 5 cadavres ou plus, les protagonistes sont tués."
+    },
+    "fountainOfFilth": {
+      "name": "Fontaine de saleté",
+      "effect": "[Incident de foule : 2] Placez 2 Paranoïa sur n'importe quel personnage et une Intrigue sur n'importe quel lieu."
+    },
+    "insaneMurder": {
+      "name": "Meurtre insensé",
+      "effect": "Tuez n'importe quel personnage se trouvant au même endroit que le coupable."
+    },
+    "massSuicide": {
+      "name": "Suicide de masse",
+      "effect": "Si le coupable a au moins 1 Intrigue, tous les personnages à l'emplacement du coupable sont tués."
+    },
+    "fireOfDemise": {
+      "name": "Le feu de la mort",
+      "effect": "La première fois que cet incident se produit dans cette session de jeu, tous les personnages et les protagonistes sont tués."
+    },
+    "houndDogScent": {
+      "name": "Odeur de chien de chasse",
+      "effect": "Pour déterminer si cet incident se produit ou non, comptez l'intrigue plutôt que la paranoïa.\nPour le reste de la boucle, si un autre incident se produit, les protagonistes sont tués après l'étape de l'incident."
+    },
+    "discovery": {
+      "name": "Découverte",
+      "effect": "Augmentez la jauge supplémentaire d'un cran."
+    },
+    "serialMurder": {
+      "name": "Meurtre en série",
+      "effect": "Un autre personnage dans la localité du coupable meurt."
+    },
+    "theExecutor": {
+      "name": "L'exécuteur testamentaire",
+      "effect": "Choisissez un protagoniste. Ce protagoniste choisit un personnage. Ce personnage meurt."
+    },
+    "distortion": {
+      "name": "Distorsion",
+      "effect": "S'il y a 2 marqueurs Intrigue ou plus sur l'emplacement de départ du coupable, tuez les protagonistes.\nSinon, placez 2 marqueurs Intrigue sur cet emplacement."
+    },
+    "lastWill": {
+      "name": "Dernières volontés",
+      "effect": "Le coupable meurt. Au début de la boucle suivante, les protagonistes ajoutent « Espoir +1 » à leur main."
+    },
+    "theLightOfHope": {
+      "name": "La lumière de l'espoir",
+      "effect": "Le chef choisit un personnage. Placez un marqueur « Espoir » sur ce personnage. Pour déterminer si cet incident se déclenche, référez-vous au nombre de marqueurs « Bonne Volonté » du coupable plutôt qu'au type de marqueur initial."
+    },
+    "theMurkOfDespair": {
+      "name": "L'obscurité du désespoir",
+      "effect": "Placez 1 marqueur Désespoir sur n'importe quel personnage."
+    },
+    "crimeOfPassion": {
+      "name": "Crime passionnel",
+      "effect": "Si possible, un autre personnage présent à l'emplacement du coupable meurt. Pour déterminer si cet incident se déclenche, considérez la limite de paranoïa du coupable comme inférieure de 1."
+    },
+    "dimensionalDistortion": {
+      "name": "Distorsion dimensionnelle",
+      "effect": "Déclencher une distorsion. Pour déterminer si cet incident se déclenche, il se déclenche systématiquement, quel que soit le nombre de marqueurs sur le coupable."
+    },
+    "dimensionalPerversion": {
+      "name": "Perversion dimensionnelle",
+      "effect": "Vous pouvez déclencher une distorsion. Placez 2 marqueurs « Paranoïa » sur n'importe quel personnage et 2 marqueurs « Bonne volonté » sur n'importe quel autre personnage."
+    },
+    "dimensionalFracture": {
+      "name": "Fracture dimensionnelle",
+      "effect": "Vous pouvez déclencher une distorsion. Si le coupable possède 3 types de marqueurs ou plus, tuez les protagonistes."
+    },
+    "leftBehind": {
+      "name": "Laissé derrière",
+      "effect": "Placez 1 marqueur Intrigue sur un personnage à l'emplacement du coupable, puis déplacez le coupable vers n'importe quel emplacement."
+    },
+    "phantasmalIncident": {
+      "name": "Incident fantasmatique",
+      "effect": "Résolvez l'effet de Crime passionnel, Perversion dimensionnelle ou Abandon. Pour déterminer si cet incident se déclenche, référez-vous au nombre de marqueurs Intrigue du coupable plutôt qu'à son type initial."
+    },
+    "theSingularity": {
+      "name": "La Singularité",
+      "effect": "Si les joueurs se trouvent dans le Monde de la Lumière, déclenchez une Transmutation. De plus, si c'est la première fois que cet incident se produit dans la partie, tuez les protagonistes.\nSi les joueurs sont dans le Monde des Ténèbres et qu'il y a 1 ou plusieurs marqueurs Intrigue sur l'emplacement de départ du coupable, tuez les protagonistes."
+    },
+    "seepingDaylight": {
+      "name": "Lumière du jour qui s'infiltre",
+      "effect": "Le chef choisit un personnage. Placez 1 marqueur Espoir sur ce personnage."
+    }
+  },
+  "locations": {
+    "city": "Ville",
+    "hospital": "Hôpital",
+    "school": "École",
+    "shrine": "Tombeau",
+    "chooseEveryLoop": "Choisissez chaque boucle"
+  },
+  "plots": {
+    "murderPlanBasic": {
+      "name": "Plan de meurtre (de base)"
+    },
+    "theSealedItemBasic": {
+      "name": "L'objet scellé (de base)",
+      "plotRule": "S'il y a au moins 2 marqueurs Intrigue sur le Sanctuaire, les Protagonistes perdent."
+    },
+    "signWithMe": {
+      "name": "Signez avec moi !",
+      "plotRule": "S'il y a au moins 2 marqueurs Intrigue sur la Personne Clé, les Protagonistes perdent."
+    },
+    "changeOfFuture": {
+      "name": "Changement d'avenir",
+      "plotRule": "Si l'incident « Effet Papillon » s'est produit dans cette boucle, les protagonistes perdent."
+    },
+    "giantTimeBomb": {
+      "name": "Bombe à retardement géante",
+      "plotRule": "S'il y a au moins 2 marqueurs Intrigue sur l'emplacement de départ de la Sorcière, les Protagonistes perdent."
+    },
+    "lightOfTheAvenger": {
+      "name": "Lumière du vengeur",
+      "plotRule": "S'il y a au moins 2 marqueurs Intrigue sur l'emplacement de départ du Cerveau, les Protagonistes perdent."
+    },
+    "aPlaceToProtect": {
+      "name": "Un endroit à protéger",
+      "plotRule": "S'il y a au moins 2 marqueurs Intrigue sur l'École, les Protagonistes perdent."
+    },
+    "theSealedItemMidnightZone": {
+      "name": "L'objet scellé (Midnight Zone)",
+      "plotRule": "S'il y a au moins 2 marqueurs Intrigue sur le Sanctuaire, les Protagonistes perdent."
+    },
+    "secretRecord": {
+      "name": "Dossier secret",
+      "plotRule": "Si le Cerveau, le Facteur ou le Magicien ont été révélés pendant cette boucle, les Protagonistes perdent."
+    },
+    "maleConfrontation": {
+      "name": "Confrontation masculine",
+      "plotRule": "Si le Ninja (ou son cadavre) a au moins 2 Intrigues, les Protagonistes perdent."
+    },
+    "theDevilsHand": {
+      "name": "La main du diable"
+    },
+    "fatedConnections": {
+      "name": "Connexions fatales",
+      "plotRule": "Choisissez un personnage mort lors de la boucle précédente. Placez une carte supplémentaire sur ce personnage. Le ou les personnages possédant une carte supplémentaire voient leur rôle transformé en Personnage Clé."
+    },
+    "murderPlanMysteryCircle": {
+      "name": "Plan de meurtre (Mystery Circle)"
+    },
+    "aQuiltOfIncidents": {
+      "name": "Une courtepointe d'incidents",
+      "plotRule": "Si la jauge supplémentaire est de 3 ou plus, les protagonistes perdent."
+    },
+    "tightropePlan": {
+      "name": "Plan de la corde raide",
+      "plotRule": "Si la jauge supplémentaire est de 1 ou moins, les protagonistes perdent."
+    },
+    "theBlackSchool": {
+      "name": "L'école noire",
+      "plotRule": "S'il y a au moins X Intrigues sur l'École, les Protagonistes perdent. X est inférieur de 1 au numéro de boucle actuel."
+    },
+    "aDropOfStrychnine": {
+      "name": "Une goutte de strychnine",
+      "plotRule": "Pour déterminer si le déclencheur est « Meurtre en série » ou « Suicide », comptez également l'Intrigue comme Paranoïa."
+    },
+    "aNobleBloodline": {
+      "name": "Une noble lignée"
+    },
+    "moonlightBeast": {
+      "name": "Bête au clair de lune"
+    },
+    "nightMistNightmare": {
+      "name": "Cauchemar de brume nocturne"
+    },
+    "theOnesFromTheGrave": {
+      "name": "Ceux de la tombe",
+      "plotRule": "Tous les cadavres qui avaient le rôle de Personne, Lâche ou Frimeur se transforment en Zombie."
+    },
+    "theCursedLand": {
+      "name": "La terre maudite",
+      "plotRule1": "Vous pouvez placer une malédiction sur l'emplacement de départ du fantôme.",
+      "plotRule2": "À moins que toutes les malédictions de localisation puissent être attachées aux personnages, vous pouvez tuer les protagonistes."
+    },
+    "choirToTheOutsideGod": {
+      "name": "Chœur du Dieu extérieur",
+      "plotRule": "S'il y a au moins 5 personnages avec Intrigue sur eux, les protagonistes perdent."
+    },
+    "theSacredWordsOfDagon": {
+      "name": "Les paroles sacrées de Dagon",
+      "plotRule": "S'il y a autant ou plus d'intrigues sur le sanctuaire que ce que la jauge supplémentaire indique, les protagonistes perdent (si la jauge supplémentaire est à zéro, les protagonistes perdent toujours)."
+    },
+    "theKingInYellow": {
+      "name": "Le Roi en Jaune",
+      "plotRule": "Si la jauge supplémentaire a augmenté au cours de cette boucle, les protagonistes perdent."
+    },
+    "giantTimeBombAgain": {
+      "name": "Encore une bombe à retardement géante",
+      "plotRule": "S'il y a 2 Intrigues ou plus sur le lieu de départ de la Sorcière, les Protagonistes perdent."
+    },
+    "bloodyRites": {
+      "name": "Rites sanglants",
+      "plotRule": "S'il y a autant de cadavres, voire plus, que la jauge supplémentaire l'indique, les protagonistes perdent. Si la jauge supplémentaire est à zéro, les protagonistes perdent automatiquement."
+    },
+    "circleOfFriends": {
+      "name": "Cercle d'amis"
+    },
+    "aLoveAffairBasic": {
+      "name": "Une histoire d'amour (Basic)"
+    },
+    "theHiddenFreakBasic": {
+      "name": "Le monstre caché (Basic)"
+    },
+    "anUnsettlingRumorBasic": {
+      "name": "Une rumeur inquiétante (Basic)",
+      "mastermindAbility": "Vous pouvez placer 1 Intrigue dans n'importe quel endroit."
+    },
+    "paranoiaVirus": {
+      "name": "Virus de la paranoïa",
+      "plotRule": "Toutes les personnes ayant au moins 3 paranoïas se transforment en tueurs en série."
+    },
+    "threadsOfFate": {
+      "name": "Les fils du destin",
+      "plotRule": "Placez 2 Paranoïa sur tous les personnages qui ou dont le cadavre avait Bonne Volonté lors de la dernière boucle."
+    },
+    "unknownFactorX": {
+      "name": "Facteur X inconnu"
+    },
+    "shadowOfTheRipper": {
+      "name": "L'Ombre de l'Éventreur"
+    },
+    "aHideousScript": {
+      "name": "Un scénario hideux"
+    },
+    "loveHateSpiral": {
+      "name": "Spirale amour-haine"
+    },
+    "witchesTeaTime": {
+      "name": "L'heure du thé des sorcières"
+    },
+    "diceOfTheGods": {
+      "name": "Les dés des dieux",
+      "plotRule": "Choisissez un personnage mort lors de la boucle précédente et placez n'importe quelle carte Extra sur ce personnage."
+    },
+    "unsafeTrigger": {
+      "name": "Déclencheur non sécurisé",
+      "mastermindAbility": "Placez 1 Intrigue sur l'emplacement du Facteur (vivant)."
+    },
+    "showtimeOfDeath": {
+      "name": "L'heure du spectacle de la mort",
+      "plotRule": "S'il y a 6 personnages ou moins en vie, les protagonistes perdent."
+    },
+    "unansweredHeart": {
+      "name": "Cœur sans réponse",
+      "plotRule": "« Interdire la bonne volonté » a également pour effet « Interdire le mouvement »."
+    },
+    "worshippersOfTheApocalypse": {
+      "name": "Les adorateurs de l'Apocalypse",
+      "plotRule": "Lorsqu'il s'agit de déterminer si un incident se déclenche et que le coupable est une personne, si le prophète est vivant, le coupable est considéré comme ayant un 1 de moins que sa limite de paranoïa imprimée."
+    },
+    "theHiddenFreakMysteryCircle": {
+      "name": "Le monstre caché (Mystery Circle)"
+    },
+    "isolatedInstitutionPsycho": {
+      "name": "Institution psychiatrique isolée",
+      "plotRule": "Si la jauge supplémentaire était de 2 ou moins à la fin de la boucle précédente, augmentez-la de 1."
+    },
+    "smellOfGunpowder": {
+      "name": "Odeur de poudre à canon",
+      "plotRule": "S'il y a un total de 12 paranoïas ou plus sur les personnages restants, les protagonistes perdent."
+    },
+    "iAmAMasterDetective": {
+      "name": "Je suis un maître détective"
+    },
+    "danceOfFools": {
+      "name": "Danse des fous"
+    },
+    "anAbsoluteWill": {
+      "name": "Une volonté absolue"
+    },
+    "trickyTwins": {
+      "name": "Jumeaux délicats"
+    },
+    "thoseWithHabits": {
+      "name": "Ceux qui ont des habitudes"
+    },
+    "aLoveAffairPrimeEvil": {
+      "name": "Une histoire d'amour (Prime Evil)"
+    },
+    "witchsCurse": {
+      "name": "La malédiction de la sorcière",
+      "plotRule": "Vous pouvez placer une malédiction sur l'emplacement de départ de la sorcière."
+    },
+    "theKeyGirl": {
+      "name": "La fille clé"
+    },
+    "monsterIntrigue": {
+      "name": "Intrigue des monstres",
+      "mastermindAbility": "Vous pouvez placer une intrigue sur un emplacement où se trouve un personnage avec un refus de Goowill."
+    },
+    "panicAndObsession": {
+      "name": "Panique et obsession"
+    },
+    "peopleWhoDon'tListen": {
+      "name": "Les gens qui n'écoutent pas"
+    },
+    "anUnsettlingRumorCosmicEvil": {
+      "name": "Une rumeur inquiétante (Cosmic Evil)",
+      "mastermindAbility": "Le Mastermind peut ajouter une intrigue à un endroit de son choix."
+    },
+    "theResistance": {
+      "name": "La Résistance"
+    },
+    "peopleWhoSaw": {
+      "name": "Les gens qui ont vu"
+    },
+    "theProfoundRace": {
+      "name": "La course profonde"
+    },
+    "whispersFromTheDeep": {
+      "name": "Murmures des profondeurs",
+      "plotRule": "Le paranoïaque acquiert toutes les capacités de la personne clé."
+    },
+    "theFacelessGod": {
+      "name": "Le Dieu sans visage"
+    },
+    "aTwistedTruth": {
+      "name": "Une vérité déformée"
+    },
+    "theFinalPlan": {
+      "name": "Le plan final",
+      "plotRule": "Si un ou plusieurs marqueurs Espoir sont présents sur le Personnage Clé, les Traîtres deviennent des Protagonistes normaux. Si c'est le cas à la fin de la boucle finale, cela se répercute sur l'Évaluation Finale."
+    },
+    "theSealedConclusion": {
+      "name": "La conclusion scellée",
+      "plotRule1": "À la fin de la journée, s'il y a 2 marqueurs Intrigue ou plus sur le Sanctuaire, vous pouvez tuer les Protagonistes.",
+      "plotRule2": "Lorsque vous comptez les marqueurs Intrigue sur un lieu, incluez les marqueurs Espoir et Désespoir sur les personnages à cet endroit dans le total."
+    },
+    "worldOfRebellion": {
+      "name": "Monde de la rébellion",
+      "plotRule": "À la fin de la boucle, s'il y a 2 marqueurs Intrigue ou plus sur la Personne Clé, les Protagonistes perdent."
+    },
+    "theDemonsScript": {
+      "name": "Le scénario du démon",
+      "plotRule1": "À la fin de la boucle, si Last Will ou The Executor a déclenché cette boucle, les protagonistes perdent.",
+      "plotRule2": "À la fin du dernier jour, s'il reste 1 ou plusieurs compteurs de moins sur le Watcher, vous pouvez tuer les protagonistes."
+    },
+    "giantTimeBombYetAgain": {
+      "name": "Encore une bombe à retardement géante",
+      "plotRule": "À la fin de la boucle, s'il y a 2 marqueurs Intrigue ou plus sur l'emplacement de départ de la Sorcière, les Protagonistes perdent."
+    },
+    "theRealMonster": {
+      "name": "Le vrai monstre",
+      "victoryConditionA": "Pendant la phase de fin de journée, il y a 5 jetons Péris ou plus."
+    },
+    "keeperOfMythology": {
+      "name": "Gardien de la mythologie",
+      "victoryConditionB": "Pendant la phase des capacités des protagonistes, il y a 6 jetons Connaissance ou plus."
+    },
+    "iAmTheTrueDetective": {
+      "name": "Je suis le vrai détective",
+      "victoryConditionC": "Juste avant la supposition finale, le protagoniste C identifie correctement le coupable de chaque incident."
+    },
+    "crossingWorldLines": {
+      "name": "Traverser les frontières du monde",
+      "plotRule1": "Au début des boucles paires, le Mastermind ajoute « Désespoir +1 » à sa main.",
+      "plotRule2": "Au début de la boucle finale, les protagonistes ajoutent « Espoir +1 » à leur main."
+    },
+    "socialMediaParanoia": {
+      "name": "Paranoïa des médias sociaux"
+    },
+    "theMythomaniacsSecret": {
+      "name": "Le secret du mythomane",
+      "plotRule": "Le Gardien du Secret obtient le Refus de Bonne Volonté. S'il n'y a pas de Gardien du Secret lors de la création du script, ajoutez-y un Tueur, un Cerveau ou un Fragment supplémentaire. (Ceci ne compte pas comme un Rôle spécifié par cette Intrigue.)"
+    },
+    "theForbiddenFuture": {
+      "name": "Le futur interdit",
+      "plotRule": "Si les joueurs sont dans le Monde de la Lumière à la fin de la boucle, les Protagonistes perdent."
+    },
+    "fairyTaleMurderer": {
+      "name": "Meurtrier de conte de fées"
+    },
+    "motherGooseMystery": {
+      "name": "Le mystère de la mère l'oie",
+      "plotRule": "S'il y a X cadavres ou plus à la fin de la boucle, les protagonistes perdent. X est le numéro de la boucle en cours, avec un maximum de 3."
+    },
+    "dimensionalMerger": {
+      "name": "Fusion dimensionnelle",
+      "plotRule": "Si Last Will ou Left Behind a déclenché cette boucle, à la fin de la boucle, les protagonistes perdent."
+    },
+    "intoNothingness": {
+      "name": "Dans le néant",
+      "plotRule": "Si la somme de la Jauge Supplémentaire et du nombre de marqueurs Intrigue sur l'Obstiné ajoutés par ce Complot est de 3 ou plus à la fin de la boucle, les Protagonistes perdent."
+    },
+    "jekyllAndHyde": {
+      "name": "Jekyll et Hyde"
+    },
+    "thePlaguebringer": {
+      "name": "Le Porteur de Peste"
+    },
+    "puppeteersStrings": {
+      "name": "Les cordes du marionnettiste",
+      "plotRule": "Tous les types de Refus de Bonne Volonté deviennent des Refus de Bonne Volonté Marionnette (y compris les Refus de Bonne Volonté Obligatoires et ceux accordés par les compteurs Désespoir)."
+    },
+    "throughTheLookingGlass": {
+      "name": "De l'autre côté du miroir"
+    },
+    "unspeakableHorrors": {
+      "name": "Horreurs indicibles",
+      "plotRule": "Si la jauge supplémentaire est de 3 ou plus, à la fin de la journée, vous pouvez tuer les protagonistes."
+    },
+    "hysteriaVirus": {
+      "name": "Virus de l'hystérie",
+      "plotRule": "Dans le Monde des Ténèbres, les personnages dont les rôles d'origine étaient Personne ou Fragment et qui ont 2 types de marqueurs ou plus sur eux deviennent des tueurs en série."
+    }
+  },
+  "roles": {
+    "person": {
+      "name": "Personne"
+    },
+    "keyPerson": {
+      "name": "Personne clé",
+      "roleAbility": "Les protagonistes perdent et la boucle se termine immédiatement."
+    },
+    "killer": {
+      "name": "Tueur",
+      "roleAbility1": "Si la personne clé a au moins 2 intrigues et se trouve au même endroit que le tueur, la personne clé meurt.",
+      "roleAbility2": "Si ce personnage a au moins 4 Intrigues, les Protagonistes meurent."
+    },
+    "brain": {
+      "name": "Cerveau",
+      "roleAbility": "Placez 1 intrigue sur cet endroit ou personnage dans cet endroit."
+    },
+    "cultist": {
+      "name": "Cultiste",
+      "roleAbility": "Ignorer les effets d'Intrigue interdite à cet endroit ou sur les personnages à cet endroit."
+    },
+    "conspiracyTheorist": {
+      "name": "Théoricien du complot",
+      "mastermindAbility": "Placez 1 Paranoïa sur un personnage à cet endroit."
+    },
+    "serialKiller": {
+      "name": "Tueur en série",
+      "roleAbility": "S'il y a exactement 1 autre personnage à cet endroit, ce personnage meurt."
+    },
+    "curmudgeon": {
+      "name": "Avare"
+    },
+    "friend": {
+      "name": "Ami",
+      "roleAbility1": "Si ce personnage est mort, révélez son rôle.",
+      "roleAbility2": "Si ce rôle a été révélé, ce personnage obtient 1 Bonne Volonté."
+    },
+    "timeTraveller": {
+      "name": "Voyageur dans le temps",
+      "roleAbility1": "Ignorer Forbid Goodwill pour ce personnage.",
+      "roleAbility2": "S'il y a 2 points de Bonne Volonté ou moins sur ce personnage, les protagonistes perdent."
+    },
+    "lover": {
+      "name": "Amoureux",
+      "roleAbility": "Ce personnage obtient 6 Paranoïa."
+    },
+    "lovedOne": {
+      "name": "Bien-aimé",
+      "roleAbility1": "Ce personnage obtient 6 Paranoïa.",
+      "roleAbility2": "Si ce personnage a au moins 3 Paranoïa et au moins 1 Intrigue, les Protagonistes perdent."
+    },
+    "factor": {
+      "name": "Facteur",
+      "roleAbility1": "S'il y a au moins 2 Intrigues sur l'École, ce personnage gagne la capacité du Théoricien du complot (mais pas son rôle).",
+      "roleAbility2": "S'il y a au moins 2 Intrigues dans la Ville, ce personnage gagne la capacité de la Personne Clé (mais pas son rôle)."
+    },
+    "witch": {
+      "name": "Sorcière"
+    },
+    "magician": {
+      "name": "Magicien",
+      "roleAbility": "Retirez toute la paranoïa de son cadavre.",
+      "mastermindAbility": "Déplacez un personnage avec au moins une paranoïa de cet emplacement vers un emplacement adjacent (pas en diagonale)."
+    },
+    "ninja": {
+      "name": "Ninja",
+      "roleAbility1": "Au lieu de dire la vérité, indiquez tout autre rôle non-Personnel qui se trouve dans ce script.",
+      "roleAbility2": "S'il y a un personnage avec au moins 2 Intrigue à cet endroit, vous pouvez tuer ce personnage."
+    },
+    "obstinate": {
+      "name": "Obstiné",
+      "roleAbility": "Ce personnage déclenche toujours ses incidents, quel que soit son niveau de paranoïa."
+    },
+    "prophet": {
+      "name": "Prophète",
+      "roleAbility1": "Le Mastermind ne peut pas placer de cartes sur ce personnage.",
+      "roleAbility2": "Lorsqu'on détermine si un incident se déclenche et que le coupable est un autre personnage à cet endroit, cet incident ne se déclenche pas, quel que soit le nombre de paranoïa du coupable."
+    },
+    "immortal": {
+      "name": "Immortel"
+    },
+    "poisoner": {
+      "name": "Empoisonneur",
+      "roleAbility1": "Si la jauge supplémentaire est d'au moins 2 ou plus, n'importe quel personnage à cet endroit meurt.",
+      "roleAbility2": "Si la jauge supplémentaire est à 4 ou plus, les protagonistes perdent."
+    },
+    "fool": {
+      "name": "Idiot",
+      "roleAbility": "Après que ce personnage a déclenché un incident, retirez toute la Paranoïa de sa carte."
+    },
+    "privateInvestigator": {
+      "name": "détective privé",
+      "roleAbility": "Si la jauge supplémentaire est à 0 et que le coupable se trouve à cet endroit, l'incident se déclenche quel que soit le nombre de paranoïa du coupable."
+    },
+    "paranoiac": {
+      "name": "Paranoïaque",
+      "mastermindAbility": "Vous pouvez placer une Intrigue ou une Paranoïa sur ce personnage."
+    },
+    "twin": {
+      "name": "Double",
+      "roleAbility": "Lorsque ce personnage déclenche un incident, il est considéré comme étant à l'emplacement diagonalement opposé."
+    },
+    "therapist": {
+      "name": "Thérapeute",
+      "mastermindAbility": "Si la jauge supplémentaire est de 1 ou plus, retirez 1 paranoïa de tout autre personnage à cet endroit."
+    },
+    "vampire": {
+      "name": "Vampire",
+      "roleAbility1": "Si la personne clé a au moins 2 intrigues et se trouve à l'emplacement de ce personnage, vous pouvez tuer la personne clé.",
+      "roleAbility2": "S'il y a au moins 2 cadavres à l'emplacement de départ de ce personnage, vous pouvez tuer les protagonistes."
+    },
+    "werewolf": {
+      "name": "loup-garou",
+      "roleAbility1": "Si la Nuit de la Folie a eu lieu ce jour-là, vous pouvez tuer les protagonistes.",
+      "roleAbility2": "Le Mastermind ne peut pas placer de cartes sur ce personnage."
+    },
+    "nightmare": {
+      "name": "Cauchemar",
+      "roleAbility1": "Vous pouvez tuer un personnage qui se trouve à cet endroit.",
+      "roleAbility2": "S'il y a 3 Intrigues ou plus sur tous les cadavres au total, vous pouvez tuer les protagonistes."
+    },
+    "ghost": {
+      "name": "Fantôme",
+      "mastermindAbility": "Si cette carte est un cadavre, placez 1 Paranoïa sur n'importe quel personnage dans cet emplacement, ou sur n'importe quel personnage dans l'emplacement de départ du Fantôme."
+    },
+    "showOff": {
+      "name": "Frimer",
+      "roleAbility": "Si ce personnage a plus de 2 Paranoïa, il perd l'aspect Indestructible et gagne le Refus de Bonne Volonté Obligatoire."
+    },
+    "coward": {
+      "name": "Lâche",
+      "roleAbility": "Si ce personnage a 2 paranoïas ou plus, choisissez un emplacement voisin et déplacez-y ce personnage."
+    },
+    "sacrifice": {
+      "name": "Sacrifier",
+      "roleAbility1": "Si ce personnage a au moins 2 Intrigue et au moins 2 Paranoïa, vous pouvez tuer tous les personnages et les protagonistes.",
+      "roleAbility2": "Pour déterminer si un incident dont ce personnage est le coupable se produira, traitez également l'intrigue comme de la paranoïa."
+    },
+    "deepOne": {
+      "name": "Profondeur",
+      "roleAbility": "Révélez le rôle de ce personnage et augmentez la jauge supplémentaire d'un cran.",
+      "mastermindAbility": "Vous pouvez placer 1 Intrigue sur cet emplacement ou sur n'importe quel personnage à cet emplacement."
+    },
+    "witness": {
+      "name": "Témoin",
+      "roleAbility": "Si ce personnage a 4 paranoïa ou plus, ce personnage meurt et la jauge supplémentaire augmente d'un niveau."
+    },
+    "faceless": {
+      "name": "Sans visage",
+      "roleAbility1": "Si la jauge supplémentaire est de 1 ou moins, ce personnage acquiert les capacités d'un théoricien du complot.",
+      "roleAbility2": "Si la jauge supplémentaire est de 2 ou plus, ce personnage acquiert les capacités d'un Deep One."
+    },
+    "wizard": {
+      "name": "Magicien",
+      "roleAbility1": "Si ce personnage est mort, les protagonistes perdent.",
+      "roleAbility2": "Lorsque la capacité Bonne Volonté de ce personnage est utilisée, révélez ce rôle après la résolution. Le chef peut alors augmenter la Jauge Extra d'un cran."
+    },
+    "fragment": {
+      "name": "Fragment",
+      "roleAbility": "Au début de la boucle, si ce personnage était vivant et avait 2+ Bonne Volonté à la fin de la boucle précédente, les Protagonistes ajoutent « Espoir +1 » à leur main.",
+      "mastermindAbility": "Au début de la boucle, si ce personnage était mort à la fin de la boucle précédente, le Mastermind ajoute \"Désespoir +1\" à sa main."
+    },
+    "watcher": {
+      "name": "Observateur",
+      "roleAbility": "Lorsqu'on détermine si un incident dont le coupable se trouve à cet endroit se déclenche, si ce personnage (vivant) a 1 ou plusieurs marqueurs Désespoir sur lui, cet incident se déclenche toujours, quels que soient les autres marqueurs qu'il possède."
+    },
+    "influencer": {
+      "name": "Influenceur",
+      "roleAbility": "Lorsque ce personnage meurt, placez 1 marqueur Paranoïa sur chaque personnage qui partage l'emplacement de départ de cette carte.",
+      "roleAbility2": "Après avoir résolu la capacité Bonne Volonté de ce personnage, placez 1 marqueur Paranoïa et 1 marqueur Bonne Volonté sur chaque personnage qui partage l'emplacement de départ de cette carte."
+    },
+    "secretkeeper": {
+      "name": "Gardien du secret",
+      "roleAbility": "Lorsque ce personnage meurt, ou après avoir résolu la capacité Bonne Volonté de ce personnage, révélez le rôle de ce personnage.",
+      "roleAbility2": "Lorsque le rôle de ce personnage est révélé, s'il s'agit de la première ou de la deuxième boucle, le Cerveau ne peut jouer qu'une seule carte Action le jour suivant. À la fin de cette journée, ou de ce jour si c'est déjà le dernier, tuez les protagonistes."
+    },
+    "wildcard": {
+      "name": "Caractère générique",
+      "roleAbility": "Si le jour actuel est un multiple de 3, ce personnage gagne les capacités du théoricien du complot, du cerveau et du tueur en série."
+    },
+    "marionette": {
+      "name": "Marionnette",
+      "roleAbility": "Après avoir résolu la capacité Bonne Volonté de ce personnage, s'il y a 2 types de marqueurs ou plus sur ce personnage, il meurt et vous déclenchez une Déformation."
+    },
+    "lullaby": {
+      "name": "Berceuse",
+      "roleAbility1": "Après avoir résolu la capacité Bonne Volonté de ce personnage, la cible de cette capacité meurt.",
+      "roleAbility2": "À la fin de la journée, s'il y a 4 types de marqueurs ou plus sur ce personnage, vous pouvez tuer les protagonistes.",
+      "mastermindAbility": "Pendant la phase des capacités du Mastermind, vous pouvez placer 1 marqueur Paranoïa ou Bonne Volonté sur un personnage à l'emplacement de ce personnage."
+    },
+    "storyteller": {
+      "name": "Conteur",
+      "mastermindAbility": "Si la jauge supplémentaire est de 1 ou plus, pendant chaque phase de capacités du Mastermind, vous pouvez déplacer 1 marqueur entre deux autres personnages à l'emplacement de ce personnage.",
+      "roleAbility": "Au début de la boucle, si la jauge supplémentaire était de 3 ou plus à la fin de la boucle précédente, les protagonistes ajoutent « Espoir +1 » à leur main."
+    },
+    "shifter": {
+      "name": "Levier de vitesse",
+      "roleAbility1": "Ignorer les cartes Interdire la Bonne Volonté jouées sur ce personnage.",
+      "roleAbility2": "À la fin du dernier jour, s'il y a 2 types de marqueurs ou moins sur ce personnage, vous pouvez tuer les protagonistes."
+    },
+    "alice": {
+      "name": "Alice",
+      "roleAbility1": "À la fin de la boucle, si ce personnage est mort, les protagonistes perdent.",
+      "roleAbility2": "Une fois la capacité Bonne Volonté de ce personnage résolue, si la Jauge supplémentaire est de 1 ou plus, placez 1 marqueur Espoir sur chaque autre personnage à l'emplacement de ce personnage."
+    },
+    "piedPiper": {
+      "name": "Joueur de flûte",
+      "roleAbility": "À la fin de la journée, si la jauge supplémentaire est de 2 ou plus, un personnage à l'emplacement de ce personnage meurt.",
+      "mastermindAbility": "À la fin de la journée, vous pouvez placer un marqueur Intrigue sur un cadavre à l'emplacement de ce personnage. Ensuite, s'il y a au moins trois marqueurs Intrigue sur tous les cadavres, tuez les protagonistes."
+    },
+    "gossip": {
+      "name": "Potins",
+      "roleAbility": "Lorsque ce personnage meurt, placez 1 marqueur Désespoir sur un personnage à l'emplacement de ce personnage et vous pouvez déclencher une Déformation.",
+      "mastermindAbility": "Durant chaque phase de capacités du Mastermind, vous pouvez placer 1 marqueur Bonne Volonté sur un personnage à l'emplacement de ce personnage."
+    }
+  },
+  "scaffolding": {
+    "title": "Générateur de boucle tragique",
+    "generator": "Générateur",
+    "editor": "Éditeur",
+    "generateScript": "Générer un script",
+    "cheatsheet": "Aide-mémoire",
+    "comingSoon": "À venir"
+  },
+  "terms": {
+    "cast": "Casting",
+    "character": [
+      {
+        "declarations": ["input count", "local countPlural = count: plural"],
+        "selectors": ["countPlural"],
+        "match": {
+          "countPlural=one": "Personnage",
+          "countPlural=other": "Personnages"
+        }
+      }
+    ],
+    "role": [
+      {
+        "declarations": ["input count", "local countPlural = count: plural"],
+        "selectors": ["countPlural"],
+        "match": {
+          "countPlural=one": "Rôle",
+          "countPlural=other": "Rôles"
+        }
+      }
+    ],
+    "tragedySet": "Ensemble de tragédies",
+    "castSize": "Taille du plâtre",
+    "day": [
+      {
+        "declarations": ["input count", "local countPlural = count: plural"],
+        "selectors": ["countPlural"],
+        "match": {
+          "countPlural=one": "Jour",
+          "countPlural=other": "Jours"
+        }
+      }
+    ],
+    "name": "Nom",
+    "culprit": "Coupable",
+    "incident": [
+      {
+        "declarations": ["input count", "local countPlural = count: plural"],
+        "selectors": ["countPlural"],
+        "match": {
+          "countPlural=one": "Incident",
+          "countPlural=other": "Incidents"
+        }
+      }
+    ],
+    "loops": "Boucles",
+    "mechanic": "Mécanicien",
+    "mastermind": "Cerveau",
+    "player": [
+      {
+        "declarations": ["input count", "local countPlural = count: plural"],
+        "selectors": ["countPlural"],
+        "match": {
+          "countPlural=one": "Joueur",
+          "countPlural=other": "Joueurs"
+        }
+      }
+    ],
+    "mastermindAbilities": "Capacités du cerveau",
+    "mandatory": "Obligatoire",
+    "optional": "Facultatif",
+    "triggeredBy": "Déclenché par",
+    "effect": "Effet",
+    "perDay": "Par jour",
+    "perLoop": "Par boucle",
+    "mainPlot": "Intrigue principale",
+    "subplot": [
+      {
+        "declarations": ["input count", "local countPlural = count: plural"],
+        "selectors": ["countPlural"],
+        "match": {
+          "countPlural=one": "Intrigue secondaire",
+          "countPlural=other": "Sous-intrigues"
+        }
+      }
+    ],
+    "entersOnLoop": "(entre dans la boucle {loop} )",
+    "source": "Source",
+    "trigger": "Déclenchement",
+    "plot": "Parcelle",
+    "roleAbility": [
+      {
+        "declarations": ["input count", "local countPlural = count: plural"],
+        "selectors": ["countPlural"],
+        "match": {
+          "countPlural=one": "Capacité de rôle",
+          "countPlural=other": "Capacités du rôle"
+        }
+      }
+    ],
+    "winConditions": "Conditions de victoire",
+    "traitorWinCondition": [
+      {
+        "declarations": ["input count", "local countPlural = count: plural"],
+        "selectors": ["countPlural"],
+        "match": {
+          "countPlural=one": "Condition de victoire du traître",
+          "countPlural=other": "Conditions de victoire du traître"
+        }
+      }
+    ],
+    "plotRule": [
+      {
+        "declarations": ["input count", "local countPlural = count: plural"],
+        "selectors": ["countPlural"],
+        "match": {
+          "countPlural=one": "Règle de l'intrigue",
+          "countPlural=other": "Règles de l'intrigue"
+        }
+      }
+    ],
+    "lightWorldPrefix": "L",
+    "darkWorldPrefix": "D"
+  },
+  "tragedySets": {
+    "firstSteps": "Premiers pas",
+    "basicTragedy": "Tragédie de base",
+    "midnightZone": "Zone de minuit",
+    "mysteryCircle": "Cercle Mystère",
+    "primeEvil": "Le Mal primordial",
+    "cosmicMythology": "Mythologie cosmique",
+    "lastLiar": "Le dernier menteur",
+    "anotherHorizon": "Un autre horizon"
+  },
+  "triggers": {
+    "always": "Toujours",
+    "loopStart": "Démarrage en boucle",
+    "cardResolve": "Résolution de la carte",
+    "goodwillAbilityStep": "Étape de capacité de bonne volonté",
+    "incidentStep": "Étape de l'incident",
+    "dayEnd": "Fin de journée",
+    "dayEndLastDay": "Fin de journée (Dernier jour)",
+    "loopEnd": "Fin de la boucle",
+    "whenThisRoleIsToBeRevealed": "Quand ce rôle doit être révélé",
+    "whenCharacterDies": "Quand le personnage meurt",
+    "whenTheLoverDies": "Quand l'amant meurt",
+    "whenTheLovedOneDies": "Quand l'être aimé décède",
+    "beforeFinalGuess": "Avant l'estimation finale"
+  },
+  "warnings": {
+    "castSizeOverridden": "La taille du casting a été remplacée par {needed} afin d'en avoir suffisamment pour chaque rôle requis."
+  },
+  "errors": {
+    "drawingFromDeckWithNoCards": "J'ai essayé de piocher dans un jeu qui ne contenait aucune carte.",
+    "pullingFromDeckWithNoCards": "J'ai tenté de tirer {n} cartes d'un deck ne contenant aucune carte.",
+    "selectingFromADeckWithNoCards": "J'ai tenté de tirer une carte en utilisant un critère, mais aucune carte ne correspondait à ce critère."
+  }
+}
