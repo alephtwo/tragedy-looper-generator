@@ -918,5 +918,10 @@
   },
   "warnings": {
     "castSizeOverridden": "Cast size has been overridden to {needed} in order to have enough for each required role."
+  },
+  "errors": {
+    "drawingFromDeckWithNoCards": "Attempted to draw from a deck with no cards in it.",
+    "pullingFromDeckWithNoCards": "Attempted to pull {n} cards from a deck with no cards in it.",
+    "selectingFromADeckWithNoCards": "Attempted to pull a card using a criteria, but no cards matched that criteria."
   }
 }

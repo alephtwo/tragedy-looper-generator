@@ -1,4 +1,5 @@
 import { randomInt } from "../util/randomInt";
+import { m } from "../paraglide/messages";
 
 export class Deck<T> {
   readonly #cards: Array<T>;
@@ -10,7 +11,7 @@ export class Deck<T> {
 
   draw(): T {
     if (this.#cards.length === 0) {
-      throw new NoCardsRemainingError("Attempted to draw from a deck with no cards in it.");
+      throw new NoCardsRemainingError(m["errors.drawingFromDeckWithNoCards"]());
     }
 
     const index = randomInt(this.#cards.length);
@@ -19,7 +20,7 @@ export class Deck<T> {
 
   pull(n: number): Array<T> {
     if (this.#cards.length === 0) {
-      throw new NoCardsRemainingError(`Attempted to pull ${n} cards from a deck with no cards in it.`);
+      throw new NoCardsRemainingError(m["errors.pullingFromDeckWithNoCards"]({ n }));
     }
 
     const pulled: Array<T> = [];
@@ -36,7 +37,7 @@ export class Deck<T> {
 
     // If there aren't any candidates left, we're done, we have to stop.
     if (candidates.length === 0) {
-      throw new NoCardsRemainingError("Attempted to pull a card using a criteria, but no cards matched that criteria.");
+      throw new NoCardsRemainingError(m["errors.selectingFromADeckWithNoCards"]());
     }
 
     // Pick one of the candidates and draw it by its index.

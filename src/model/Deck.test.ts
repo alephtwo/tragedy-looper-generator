@@ -75,4 +75,8 @@ test("Drawing from from a deck with no cards throws an error", () => {
   expect(() => deck.pull(2)).toThrowError(
     new NoCardsRemainingError("Attempted to pull 2 cards from a deck with no cards in it."),
   );
+
+  expect(() => deck.select((c) => c === 2)).toThrowError(
+    new NoCardsRemainingError("Attempted to pull a card using a criteria, but no cards matched that criteria."),
+  );
 });
