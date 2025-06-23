@@ -35,4 +35,13 @@ const flags: Record<Locale, React.JSX.Element> = {
       <path d="M-1 11h22v-12h8v12h22v8h-22v12h-8v-12h-22z" fill="#C8102E" stroke="#FFF" stroke-width="2" />
     </svg>
   ),
+  fr: (
+    // <https://upload.wikimedia.org/wikipedia/en/c/c3/Flag_of_France.svg>
+    // hand-edited viewBox to be legible
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 900 600" width="900" height="600">
+      <rect width="900" height="600" fill="#CE1126" />
+      <rect width="600" height="600" fill="#FFFFFF" />
+      <rect width="300" height="600" fill="#002654" />
+    </svg>
+  ),
 };
