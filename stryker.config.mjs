@@ -7,4 +7,5 @@ export default {
   packageManager: "pnpm",
   incremental: true,
   plugins: ["@stryker-mutator/vitest-runner"],
+  ignorePatterns: ["src/paraglide/**"],
 };
