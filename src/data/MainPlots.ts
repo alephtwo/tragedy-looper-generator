@@ -1,6 +1,6 @@
 import * as _ from "radash";
 import { Plot } from "./types/Plot";
-import { ConditionalRole, DualRole } from "./types/Role";
+import { PlotRole } from "./types/PlotRole";
 import { Script } from "../model/Script";
 import * as Incidents from "./Incidents";
 import * as Roles from "./Roles";
@@ -12,7 +12,7 @@ import { m } from "../paraglide/messages";
 export const murderPlan: Plot = {
   id: "4de8232d-3704-4976-9785-e4d826da0cde",
   name: m["plots.murderPlanBasic.name"],
-  roles: () => [Roles.keyPerson, Roles.killer, Roles.brain],
+  roles: () => [new PlotRole(Roles.keyPerson), new PlotRole(Roles.killer), new PlotRole(Roles.brain)],
   requiredIncidents: [],
   estimateLoops: () => 1.8,
   plotRules: [],
@@ -23,7 +23,7 @@ export const murderPlan: Plot = {
 export const theSealedItem: Plot = {
   id: "ec4950ad-ff5f-4709-b9e5-bcc2a75f7bd7",
   name: m["plots.theSealedItemBasic.name"],
-  roles: () => [Roles.brain, Roles.cultist],
+  roles: () => [new PlotRole(Roles.brain), new PlotRole(Roles.cultist)],
   requiredIncidents: [],
   estimateLoops: () => 1.5,
   plotRules: [
@@ -42,8 +42,7 @@ export const signWithMe: Plot = {
   id: "60d51048-dd95-49c1-9063-12bad472d9b5",
   name: m["plots.signWithMe.name"],
   roles: () => [
-    new ConditionalRole({
-      role: Roles.keyPerson,
+    new PlotRole(Roles.keyPerson, {
       condition: requireDescriptor("Girl"),
     }),
   ],
@@ -68,7 +67,7 @@ export const signWithMe: Plot = {
 export const changeOfFuture: Plot = {
   id: "4abf382c-4dae-4692-9825-b6918b28f69d",
   name: m["plots.changeOfFuture.name"],
-  roles: () => [Roles.cultist, Roles.timeTraveller],
+  roles: () => [new PlotRole(Roles.cultist), new PlotRole(Roles.timeTraveller)],
   requiredIncidents: [],
   estimateLoops: (script: Script): number => {
     const butterflyIncidents = script
@@ -93,7 +92,7 @@ export const changeOfFuture: Plot = {
 export const giantTimeBomb: Plot = {
   id: "b2c799fa-bf11-4ad5-b03d-7a0218544dd0",
   name: m["plots.giantTimeBomb.name"],
-  roles: () => [Roles.witch],
+  roles: () => [new PlotRole(Roles.witch)],
   requiredIncidents: [],
   estimateLoops: () => 1.0,
   plotRules: [
@@ -111,7 +110,7 @@ export const giantTimeBomb: Plot = {
 export const lightOfTheAvenger: Plot = {
   id: "33d87741-b161-47ce-8392-68dd6bd21fa0",
   name: m["plots.lightOfTheAvenger.name"],
-  roles: () => [Roles.brain],
+  roles: () => [new PlotRole(Roles.brain)],
   requiredIncidents: [],
   // The game does not specify a loop estimate for this plot
   estimateLoops: () => 0,
@@ -130,7 +129,7 @@ export const lightOfTheAvenger: Plot = {
 export const aPlaceToProtect: Plot = {
   id: "107953b0-402b-45bc-b5b4-777bdfef9490",
   name: m["plots.aPlaceToProtect.name"],
-  roles: () => [Roles.keyPerson, Roles.cultist],
+  roles: () => [new PlotRole(Roles.keyPerson), new PlotRole(Roles.cultist)],
   requiredIncidents: [],
   // The game does not specify a loop estimate for this plot
   estimateLoops: () => 0,
@@ -150,7 +149,7 @@ export const aPlaceToProtect: Plot = {
 export const theSealedItem2: Plot = {
   id: "2624db3b-eab3-4d65-84e4-0a42c6862122",
   name: m["plots.theSealedItemMidnightZone.name"],
-  roles: () => [Roles.brain, Roles.cultist],
+  roles: () => [new PlotRole(Roles.brain), new PlotRole(Roles.cultist)],
   requiredIncidents: [],
   // The game does not specify a loop estimate for this plot
   estimateLoops: () => 0,
@@ -169,10 +168,10 @@ export const theSealedItem2: Plot = {
 export const secretRecord: Plot = {
   id: "61494789-8d76-4b60-8850-1370bf4e323c",
   name: m["plots.secretRecord.name"],
-  roles: () => [Roles.keyPerson, Roles.brain, Roles.conspiracyTheorist],
+  roles: () => [new PlotRole(Roles.keyPerson), new PlotRole(Roles.brain), new PlotRole(Roles.conspiracyTheorist)],
   requiredIncidents: [],
   estimateLoops: (script: Script): number => {
-    const winningRoles = script.cast.filter((c) => Roles.friend.id === c.role.id).length;
+    const winningRoles = script.cast.filter((c) => c.role.is(Roles.friend)).length;
 
     // +0.5 for each role that, when revealed, kills the protagonists.
     return 1.0 + winningRoles * 0.5;
@@ -193,8 +192,7 @@ export const maleConfrontation: Plot = {
   id: "b65ad9f2-7756-40a3-b0e1-3d91928ae99b",
   name: m["plots.maleConfrontation.name"],
   roles: () => [
-    new ConditionalRole({
-      role: Roles.ninja,
+    new PlotRole(Roles.ninja, {
       condition: requireDescriptor("Man"),
     }),
   ],
@@ -220,7 +218,7 @@ export const maleConfrontation: Plot = {
 export const theDevilsHand: Plot = {
   id: "03207e39-1c4f-43a9-91fe-9a33a9137d4d",
   name: m["plots.theDevilsHand.name"],
-  roles: () => [Roles.keyPerson, Roles.cultist, Roles.ninja],
+  roles: () => [new PlotRole(Roles.keyPerson), new PlotRole(Roles.cultist), new PlotRole(Roles.ninja)],
   requiredIncidents: [],
   estimateLoops: () => 1.4,
   plotRules: [],
@@ -231,7 +229,7 @@ export const theDevilsHand: Plot = {
 export const fatedConnections: Plot = {
   id: "cb193092-3d9a-4f7b-8b00-9e855585dfb6",
   name: m["plots.fatedConnections.name"],
-  roles: () => [Roles.conspiracyTheorist, Roles.friend, Roles.serialKiller],
+  roles: () => [new PlotRole(Roles.conspiracyTheorist), new PlotRole(Roles.friend), new PlotRole(Roles.serialKiller)],
   requiredIncidents: [],
   estimateLoops: () => 1.6,
   plotRules: [
@@ -250,7 +248,7 @@ export const fatedConnections: Plot = {
 export const murderPlan2: Plot = {
   id: "d3e4073a-421f-45ba-bcae-d10a3bdc5cbf",
   name: m["plots.murderPlanMysteryCircle.name"],
-  roles: () => [Roles.keyPerson, Roles.brain, Roles.killer],
+  roles: () => [new PlotRole(Roles.keyPerson), new PlotRole(Roles.brain), new PlotRole(Roles.killer)],
   requiredIncidents: [],
   estimateLoops: () => 1.8,
   plotRules: [],
@@ -261,7 +259,7 @@ export const murderPlan2: Plot = {
 export const aQuiltOfIncidents: Plot = {
   id: "d53e2adc-ec83-4cfd-bd28-71d7e33b87c9",
   name: m["plots.aQuiltOfIncidents.name"],
-  roles: () => [Roles.fool, Roles.conspiracyTheorist],
+  roles: () => [new PlotRole(Roles.fool), new PlotRole(Roles.conspiracyTheorist)],
   requiredIncidents: [],
   estimateLoops: (script: Script): number => {
     const incidents = script.getIncidents().length;
@@ -284,7 +282,7 @@ export const aQuiltOfIncidents: Plot = {
 export const tightropePlan: Plot = {
   id: "1bba4a6c-59bb-4680-8786-92da9c9821f5",
   name: m["plots.tightropePlan.name"],
-  roles: () => [Roles.brain, Roles.killer],
+  roles: () => [new PlotRole(Roles.brain), new PlotRole(Roles.killer)],
   requiredIncidents: [],
   estimateLoops: (script: Script): number => {
     const incidents = script.getIncidents().length;
@@ -307,7 +305,7 @@ export const tightropePlan: Plot = {
 export const theBlackSchool: Plot = {
   id: "12aeb24d-2238-4439-a414-37d25f499b1d",
   name: m["plots.theBlackSchool.name"],
-  roles: () => [Roles.brain],
+  roles: () => [new PlotRole(Roles.brain)],
   requiredIncidents: [],
   estimateLoops: () => 1.6,
   plotRules: [
@@ -325,7 +323,7 @@ export const theBlackSchool: Plot = {
 export const aDropOfStrychnine: Plot = {
   id: "b9877c5a-5406-4934-b437-c01a37ff007e",
   name: m["plots.aDropOfStrychnine.name"],
-  roles: () => [Roles.keyPerson, Roles.poisoner, Roles.fool],
+  roles: () => [new PlotRole(Roles.keyPerson), new PlotRole(Roles.poisoner), new PlotRole(Roles.fool)],
   requiredIncidents: [],
   estimateLoops: () => 1.6,
   plotRules: [
@@ -345,12 +343,10 @@ export const aNobleBloodline: Plot = {
   id: "16732658-6f01-4c88-af4b-d404ffdd7682",
   name: m["plots.aNobleBloodline.name"],
   roles: () => [
-    new ConditionalRole({
-      role: Roles.keyPerson,
+    new PlotRole(Roles.keyPerson, {
       condition: requireOppositeSex(Roles.vampire),
     }),
-    new ConditionalRole({
-      role: Roles.vampire,
+    new PlotRole(Roles.vampire, {
       condition: requireOppositeSex(Roles.keyPerson),
     }),
   ],
@@ -364,7 +360,7 @@ export const aNobleBloodline: Plot = {
 export const moonlightBeast: Plot = {
   id: "9f989bc8-fd71-495c-bb88-94938c1be142",
   name: m["plots.moonlightBeast.name"],
-  roles: () => [Roles.werewolf],
+  roles: () => [new PlotRole(Roles.werewolf)],
   requiredIncidents: [],
   estimateLoops: () => 1.8,
   plotRules: [],
@@ -375,7 +371,7 @@ export const moonlightBeast: Plot = {
 export const nightMistNightmare: Plot = {
   id: "e82a5e06-4b04-488e-9eb8-9f046f7235a0",
   name: m["plots.nightMistNightmare.name"],
-  roles: () => [Roles.nightmare],
+  roles: () => [new PlotRole(Roles.nightmare)],
   requiredIncidents: [],
   estimateLoops: () => 1.6,
   plotRules: [],
@@ -404,7 +400,7 @@ export const theOnesFromTheGrave: Plot = {
 export const theCursedLand: Plot = {
   id: "e2878437-6e36-4099-ab94-4b7f97ca2fc6",
   name: m["plots.theCursedLand.name"],
-  roles: () => [Roles.ghost, Roles.showOff],
+  roles: () => [new PlotRole(Roles.ghost), new PlotRole(Roles.showOff)],
   requiredIncidents: [],
   estimateLoops: () => 1.4,
   plotRules: [
@@ -429,7 +425,7 @@ export const theCursedLand: Plot = {
 export const choirToTheOutsideGod: Plot = {
   id: "620f0793-22c5-4fa9-a096-f6aee8cd7de9",
   name: m["plots.choirToTheOutsideGod.name"],
-  roles: () => [Roles.keyPerson, Roles.sacrifice, Roles.immortal],
+  roles: () => [new PlotRole(Roles.keyPerson), new PlotRole(Roles.sacrifice), new PlotRole(Roles.immortal)],
   requiredIncidents: [],
   estimateLoops: () => 1.8,
   plotRules: [
@@ -447,7 +443,7 @@ export const choirToTheOutsideGod: Plot = {
 export const theSacredWordsOfDagon: Plot = {
   id: "e6333431-f648-4cdd-bd53-638070e06cb0",
   name: m["plots.theSacredWordsOfDagon.name"],
-  roles: () => [Roles.keyPerson, Roles.cultist, Roles.deepOne],
+  roles: () => [new PlotRole(Roles.keyPerson), new PlotRole(Roles.cultist), new PlotRole(Roles.deepOne)],
   requiredIncidents: [],
   estimateLoops: () => 2.0,
   plotRules: [
@@ -465,7 +461,7 @@ export const theSacredWordsOfDagon: Plot = {
 export const theKingInYellow: Plot = {
   id: "6f3ebebd-5d82-4bf0-8a80-2ee7dfac0643",
   name: m["plots.theKingInYellow.name"],
-  roles: () => [Roles.sacrifice, Roles.cultist],
+  roles: () => [new PlotRole(Roles.sacrifice), new PlotRole(Roles.cultist)],
   requiredIncidents: [],
   estimateLoops: () => 1.0,
   plotRules: [
@@ -483,7 +479,7 @@ export const theKingInYellow: Plot = {
 export const giantTimeBombAgain: Plot = {
   id: "ab783db0-205d-432d-8411-e7ad0e2030b8",
   name: m["plots.giantTimeBombAgain.name"],
-  roles: () => [Roles.witch, Roles.deepOne],
+  roles: () => [new PlotRole(Roles.witch), new PlotRole(Roles.deepOne)],
   requiredIncidents: [],
   estimateLoops: () => 1.6,
   plotRules: [
@@ -501,7 +497,7 @@ export const giantTimeBombAgain: Plot = {
 export const bloodyRites: Plot = {
   id: "50cb0340-6f44-4e75-b129-23553cdbb4c0",
   name: m["plots.bloodyRites.name"],
-  roles: () => [Roles.witch, Roles.immortal],
+  roles: () => [new PlotRole(Roles.witch), new PlotRole(Roles.immortal)],
   requiredIncidents: [],
   estimateLoops: () => 1.8,
   plotRules: [
@@ -520,7 +516,7 @@ export const bloodyRites: Plot = {
 export const theFinalPlan: Plot = {
   id: "f8625285-7ac6-4a0b-9b8e-bc7ecadad906",
   name: m["plots.theFinalPlan.name"],
-  roles: () => [Roles.keyPerson, Roles.brain, Roles.killer],
+  roles: () => [new PlotRole(Roles.keyPerson), new PlotRole(Roles.brain), new PlotRole(Roles.killer)],
   requiredIncidents: [],
   estimateLoops: () => 1.8,
   plotRules: [
@@ -538,7 +534,7 @@ export const theFinalPlan: Plot = {
 export const theSealedConclusion: Plot = {
   id: "892a2b3e-8fb3-49a3-b0bc-7647adfca265",
   name: m["plots.theSealedConclusion.name"],
-  roles: () => [Roles.factor, Roles.fragment],
+  roles: () => [new PlotRole(Roles.factor), new PlotRole(Roles.fragment)],
   requiredIncidents: [],
   estimateLoops: () => 1.5,
   plotRules: [
@@ -563,12 +559,10 @@ export const worldOfRebellion: Plot = {
   id: "c07e70ac-0cb8-411b-bd1a-107563a6633b",
   name: m["plots.worldOfRebellion.name"],
   roles: () => [
-    new ConditionalRole({
-      role: Roles.keyPerson,
+    new PlotRole(Roles.keyPerson, {
       condition: requireDescriptor("Girl"),
     }),
-    new ConditionalRole({
-      role: Roles.fragment,
+    new PlotRole(Roles.fragment, {
       condition: requireDescriptor("Girl"),
     }),
   ],
@@ -589,7 +583,7 @@ export const worldOfRebellion: Plot = {
 export const theDemonsScript: Plot = {
   id: "a59914b7-0d73-400f-8796-b557225afe78",
   name: m["plots.theDemonsScript.name"],
-  roles: () => [Roles.watcher, Roles.serialKiller],
+  roles: () => [new PlotRole(Roles.watcher), new PlotRole(Roles.serialKiller)],
   requiredIncidents: [],
   estimateLoops: (script) => {
     const relatedIncidentIds = new Set([Incidents.theExecutioner.id, Incidents.lastWill.id]);
@@ -617,7 +611,7 @@ export const theDemonsScript: Plot = {
 export const giantTimeBombYetAgain: Plot = {
   id: "081a1364-0c02-4cee-9cfd-5c47c7460dcb",
   name: m["plots.giantTimeBombYetAgain.name"],
-  roles: () => [Roles.brain, Roles.witch],
+  roles: () => [new PlotRole(Roles.brain), new PlotRole(Roles.witch)],
   requiredIncidents: [],
   estimateLoops: () => 1.5,
   plotRules: [
@@ -637,13 +631,11 @@ export const theForbiddenFuture: Plot = {
   id: "54a8c013-9638-40d2-9f40-a4b49b468225",
   name: m["plots.theForbiddenFuture.name"],
   roles: () => [
-    new DualRole({
-      id: "df65dabd-9a88-425e-95b0-ff6d09c9623f",
-      lightWorld: Roles.obstinate,
+    new PlotRole(Roles.obstinate, {
       darkWorld: Roles.keyPerson,
     }),
-    Roles.marionette,
-    Roles.storyteller,
+    new PlotRole(Roles.marionette),
+    new PlotRole(Roles.storyteller),
   ],
   requiredIncidents: [],
   estimateLoops: () => 1.5,
@@ -662,7 +654,7 @@ export const theForbiddenFuture: Plot = {
 export const fairyTaleMurderer: Plot = {
   id: "da4207d4-2e87-4722-8490-37d805609b99",
   name: m["plots.fairyTaleMurderer.name"],
-  roles: () => [Roles.keyPerson, Roles.lullaby, Roles.brain],
+  roles: () => [new PlotRole(Roles.keyPerson), new PlotRole(Roles.lullaby), new PlotRole(Roles.brain)],
   requiredIncidents: [],
   estimateLoops: () => 1.4,
   plotRules: [],
@@ -673,7 +665,7 @@ export const fairyTaleMurderer: Plot = {
 export const motherGooseMystery: Plot = {
   id: "1ae7fd30-7a7a-45ac-9da3-cf4bac2c7cba",
   name: m["plots.motherGooseMystery.name"],
-  roles: () => [Roles.marionette, Roles.storyteller],
+  roles: () => [new PlotRole(Roles.marionette), new PlotRole(Roles.storyteller)],
   requiredIncidents: [],
   estimateLoops: () => 1.8,
   plotRules: [
@@ -691,7 +683,7 @@ export const motherGooseMystery: Plot = {
 export const dimensionalMerger: Plot = {
   id: "3cbf24bf-813d-4e9a-8d3e-5f4da67ac3b2",
   name: m["plots.dimensionalMerger.name"],
-  roles: () => [Roles.storyteller, Roles.shifter, Roles.fragment],
+  roles: () => [new PlotRole(Roles.storyteller), new PlotRole(Roles.shifter), new PlotRole(Roles.fragment)],
   requiredIncidents: [],
   estimateLoops: (script) => {
     const relatedIncidentIds = new Set([Incidents.lastWill.id, Incidents.leftBehind.id]);
@@ -713,7 +705,7 @@ export const dimensionalMerger: Plot = {
 export const intoNothingness: Plot = {
   id: "749dc121-f5b6-40d6-8d0d-0df534d125c6",
   name: m["plots.intoNothingness.name"],
-  roles: () => [Roles.obstinate, Roles.marionette, Roles.brain],
+  roles: () => [new PlotRole(Roles.obstinate), new PlotRole(Roles.marionette), new PlotRole(Roles.brain)],
   requiredIncidents: [],
   estimateLoops: () => 1.8,
   plotRules: [

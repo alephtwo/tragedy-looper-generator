@@ -2,13 +2,13 @@ import { Script } from "../../model/Script";
 import { Incident } from "./Incident";
 import { MastermindAbility } from "./MastermindAbility";
 import { PlotRule } from "./PlotRule";
-import { DualRole, Role } from "./Role";
+import { PlotRole } from "./PlotRole";
 import { MessageFunction } from "@inlang/paraglide-js";
 
 export interface Plot {
   readonly id: string;
   readonly name: MessageFunction;
-  readonly roles: () => Array<Role | DualRole>;
+  readonly roles: () => Array<PlotRole>;
   readonly requiredIncidents: Array<Incident>;
   readonly estimateLoops: (script: Script) => number;
   readonly plotRules: Array<PlotRule>;

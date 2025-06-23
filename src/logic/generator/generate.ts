@@ -7,11 +7,11 @@ import { CastMember } from "../../model/CastMember";
 import { Character } from "../../data/types/Character";
 import { Incident } from "../../data/types/Incident";
 import { Plot } from "../../data/types/Plot";
-import { DualRole, Role } from "../../data/types/Role";
 import { TragedySet } from "../../data/types/TragedySet";
 import { IncidentOccurrence } from "../../model/IncidentOccurrence";
 import { Script } from "../../model/Script";
 import { Deck } from "../../model/Deck";
+import { PlotRole } from "../../data/types/PlotRole";
 
 export interface GenerateArgs {
   tragedySet: TragedySet;
@@ -60,42 +60,34 @@ export function generate(args: GenerateArgs): Script {
   });
 }
 
-function getRequiredRoles(plots: Array<Plot>, tragedySet: TragedySet): Array<Role | DualRole> {
-  return plots
-    .flatMap((p) => p.roles())
-    .reduce((roles: Array<Role | DualRole>, role: Role | DualRole) => enforceMaximumRoles(tragedySet, roles, role), []);
+function getRequiredRoles(plots: Array<Plot>, tragedySet: TragedySet): Array<PlotRole> {
+  const roles = plots.flatMap((p) => p.roles());
+
+  return roles.reduce((roles: Array<PlotRole>, role: PlotRole) => {
+    // Enforce maximum limits.
+    // Check if the role is at capacity in the list we've already got.
+    // If it is, we can't add it.
+    if (!role.canBeAddedTo(roles, tragedySet)) {
+      return roles;
+    }
+
+    // Otherwise, add the role to the list.
+    return [...roles, role];
+  }, []);
 }
 
 // Enforce maximums.
-function fillRemainingRoles(roles: Array<Role | DualRole>, castSize: number): Array<Role | DualRole> {
+function fillRemainingRoles(roles: Array<PlotRole>, castSize: number): Array<PlotRole> {
   // If the castSize is less than the number of required plots... sorry, users.
   // We'll need to add more cast.
   const needed = Math.max(castSize, roles.length);
   // We want to return an array of length equal to castSize.
   // Fill the rest with "Person" roles.
-  const filler = new Array(needed - roles.length).fill(Roles.person);
+  const filler = new Array(needed - roles.length).fill(new PlotRole(Roles.person));
   return roles.concat(filler);
 }
 
-function enforceMaximumRoles(
-  tragedySet: TragedySet,
-  roles: Array<Role | DualRole>,
-  role: Role | DualRole,
-): Array<Role | DualRole> {
-  const sameRoles = roles.filter((r) => r.id === role.id);
-
-  // If we have too many of the same role, we can't add it.
-  // Dual Roles ignore limits.
-  if (!(role instanceof DualRole) && sameRoles.length >= (role.max(tragedySet) ?? Infinity)) {
-    return roles;
-  }
-
-  return produce(roles, (next) => {
-    next.push(role);
-  });
-}
-
-function initializeCast(args: GenerateArgs, requiredRoles: Array<Role | DualRole>): Array<CastMember> {
+function initializeCast(args: GenerateArgs, requiredRoles: Array<PlotRole>): Array<CastMember> {
   const tragedySet = args.tragedySet;
 
   // We're going to pick a fake cast and if we get the Mystery Boy,
@@ -118,7 +110,7 @@ function initializeCast(args: GenerateArgs, requiredRoles: Array<Role | DualRole
     new CastMember({
       character: Characters.mysteryBoy,
       // oh my what a hack
-      role: _.draw(candidateRoles) as Role,
+      role: _.draw(candidateRoles) as PlotRole,
       incidentTriggers: [],
     }),
   ];
@@ -128,7 +120,7 @@ interface BuildCastAccumulator {
   cast: Array<CastMember>;
   characters: Array<Character>;
 }
-function buildCast(state: BuildCastAccumulator, role: Role | DualRole): BuildCastAccumulator {
+function buildCast(state: BuildCastAccumulator, role: PlotRole): BuildCastAccumulator {
   // Grab the real role.
   const character = matchCharacter(state.characters, role, state.cast);
 
@@ -150,9 +142,9 @@ function buildCast(state: BuildCastAccumulator, role: Role | DualRole): BuildCas
   });
 }
 
-function matchCharacter(pool: Array<Character>, role: Role | DualRole, cast: Array<CastMember>): Character {
+function matchCharacter(pool: Array<Character>, role: PlotRole, cast: Array<CastMember>): Character {
   // Find characters that can meet that role.
-  const characters = pool.filter((c) => role.condition === undefined || role.condition(c, cast));
+  const characters = pool.filter((c) => role.canBePlayedBy(c, cast));
 
   // Pick a random one of the matching characters.
   // This cast might cause problems but I'm really hoping it won't.
@@ -215,7 +207,7 @@ function assignDayToIncident(state: AssignDayToIncidentState, incident: Incident
 function assignIncidentsToCast(cast: Array<CastMember>, incidents: Array<IncidentOccurrence>): Array<CastMember> {
   return produce(cast, (next) => {
     // Who _could_ be a culprit here?
-    let culpritPool = [...next.filter((c) => !c.role.culprits.has("Never"))];
+    let culpritPool = [...next.filter((c) => !c.role.canNeverBeCulprit())];
     incidents.forEach((incident) => {
       // If we are attempting to assign a serial murder and one has already been assigned, we will assign it to the same culprit.
       // TODO: Support that it _might_ be the same culprit, but doesn't have to be. Coin flip?
@@ -233,7 +225,7 @@ function assignIncidentsToCast(cast: Array<CastMember>, incidents: Array<Inciden
 
       // We know we're not dealing with a serial murderer here.
       // If there is a culprit candidate who is mandatory but hasn't yet been assigned, let's do that.
-      const required = culpritPool.filter((c) => c.role.culprits.has("Mandatory") && c.incidentTriggers.length === 0);
+      const required = culpritPool.filter((c) => c.role.mustBeCulprit() && c.incidentTriggers.length === 0);
 
       // Pick a culprit.
       const culprit = (required.length > 0 ? _.first(required) : _.draw(culpritPool)) as CastMember;

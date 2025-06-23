@@ -19,6 +19,10 @@ export class IncidentOccurrence {
   getFake(): Incident | undefined {
     return this.#fakedIncident;
   }
+
+  is(incident: Incident) {
+    return this.incident.id === incident.id;
+  }
 }
 
 interface IncidentOccurrenceArgs {

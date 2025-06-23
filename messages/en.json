@@ -889,7 +889,9 @@
           "countPlural=other": "Plot Rules"
         }
       }
-    ]
+    ],
+    "lightWorldPrefix": "L",
+    "darkWorldPrefix": "D"
   },
   "tragedySets": {
     "firstSteps": "First Steps",
