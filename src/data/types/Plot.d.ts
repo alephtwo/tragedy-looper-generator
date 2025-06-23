@@ -3,11 +3,10 @@ import { Incident } from "./Incident";
 import { MastermindAbility } from "./MastermindAbility";
 import { PlotRule } from "./PlotRule";
 import { DualRole, Role } from "./Role";
-import { Identifiable } from "../../@types/Identifiable";
 import { UUID } from "crypto";
 import { MessageFunction } from "@inlang/paraglide-js";
 
-export interface Plot extends Identifiable {
+export interface Plot {
   readonly id: UUID;
   readonly name: MessageFunction;
   readonly roles: () => Array<Role | DualRole>;

@@ -1,8 +1,7 @@
 import { Trigger } from "./Trigger";
-import { Identifiable } from "../../@types/Identifiable";
 import { MessageFunction } from "@inlang/paraglide-js";
 
-export interface PlotRule extends Identifiable {
+export interface PlotRule {
   id: string;
   effect: MessageFunction;
   trigger: Trigger;

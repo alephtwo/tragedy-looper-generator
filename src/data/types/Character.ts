@@ -1,9 +1,8 @@
 import { UUID } from "crypto";
-import { Identifiable } from "../../@types/Identifiable";
 import { Location } from "./Location";
 import type { MessageFunction } from "@inlang/paraglide-js";
 
-export class Character implements Identifiable {
+export class Character {
   readonly id: UUID;
   readonly name: MessageFunction;
   readonly descriptors: Set<Descriptor>;

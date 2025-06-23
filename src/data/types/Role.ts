@@ -2,7 +2,6 @@ import { CastMember } from "../../model/CastMember";
 import { Character } from "./Character";
 import { MastermindAbility } from "./MastermindAbility";
 import { RoleAbility } from "./RoleAbility";
-import { Identifiable } from "../../@types/Identifiable";
 import { UUID } from "crypto";
 import { TragedySet } from "./TragedySet";
 import { MessageFunction } from "@inlang/paraglide-js";
@@ -11,7 +10,7 @@ import { MessageFunction } from "@inlang/paraglide-js";
 type Culprit = "Never" | "Optional" | "Mandatory";
 type GoodwillRefusal = "Optional" | "Mandatory" | "Puppeted";
 
-interface CommonRole extends Identifiable {
+interface CommonRole {
   readonly id: UUID;
   readonly culprits: Set<Culprit>;
   readonly abilities: Array<RoleAbility>;

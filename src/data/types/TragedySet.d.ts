@@ -1,11 +1,10 @@
 import { Character } from "../../data/types/Character";
 import { Incident } from "./Incident";
 import { Plot } from "./Plot";
-import { Identifiable } from "../../@types/Identifiable";
 import { UUID } from "crypto";
 import { MessageFunction } from "@inlang/paraglide-js";
 
-export interface TragedySet extends Identifiable {
+export interface TragedySet {
   readonly id: UUID;
   readonly name: MessageFunction;
   readonly order: number;

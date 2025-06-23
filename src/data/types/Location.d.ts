@@ -1,7 +1,6 @@
-import { Identifiable } from "../../@types/Identifiable";
 import { MessageFunction } from "@inlang/paraglide-js";
 
-export interface Location extends Identifiable {
+export interface Location {
   id: string;
   name: MessageFunction;
 }

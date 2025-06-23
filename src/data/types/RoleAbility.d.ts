@@ -1,8 +1,7 @@
 import { Trigger } from "./Trigger";
-import { Identifiable } from "../../@types/Identifiable";
 import { MessageFunction } from "@inlang/paraglide-js";
 
-export interface RoleAbility extends Identifiable {
+export interface RoleAbility {
   id: string;
   triggers: Array<Trigger>;
   effect: MessageFunction;
