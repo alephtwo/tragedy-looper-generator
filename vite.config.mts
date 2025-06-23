@@ -1,4 +1,4 @@
-import { defineConfig } from "vitest/config";
+import { defineConfig, defaultExclude } from "vitest/config";
 import react from "@vitejs/plugin-react-swc";
 import { paraglideVitePlugin } from "@inlang/paraglide-js";
 
@@ -11,5 +11,7 @@ export default defineConfig({
     }),
   ],
   base: "/tragedy-looper-generator",
-  test: {},
+  test: {
+    exclude: defaultExclude.concat(["./.stryker-tmp"]),
+  },
 });

@@ -11,6 +11,7 @@ import { DualRole, Role } from "../../data/types/Role";
 import { TragedySet } from "../../data/types/TragedySet";
 import { IncidentOccurrence } from "../../model/IncidentOccurrence";
 import { Script } from "../../model/Script";
+import { Deck } from "../../model/Deck";
 
 export interface GenerateArgs {
   tragedySet: TragedySet;
@@ -19,8 +20,13 @@ export interface GenerateArgs {
   incidents: number;
 }
 export function generate(args: GenerateArgs): Script {
-  const mainPlot = pickMainPlot(args.tragedySet);
-  const subplots = pickSubplots(args.tragedySet);
+  const decks = {
+    mainPlots: new Deck(args.tragedySet.mainPlots),
+    subplots: new Deck(args.tragedySet.subplots),
+  };
+
+  const mainPlot = decks.mainPlots.draw();
+  const subplots = decks.subplots.pull(2);
   const plots = [mainPlot].concat(subplots);
 
   // Find the required roles.
@@ -58,14 +64,6 @@ function getRequiredRoles(plots: Array<Plot>, tragedySet: TragedySet): Array<Rol
   return plots
     .flatMap((p) => p.roles())
     .reduce((roles: Array<Role | DualRole>, role: Role | DualRole) => enforceMaximumRoles(tragedySet, roles, role), []);
-}
-
-function pickMainPlot(tragedySet: TragedySet): Plot {
-  return _.draw(tragedySet.mainPlots) ?? tragedySet.mainPlots[0];
-}
-
-function pickSubplots(tragedySet: TragedySet): Array<Plot> {
-  return _.shuffle(tragedySet.subplots.filter((s) => s.enabled)).slice(0, 2);
 }
 
 // Enforce maximums.
