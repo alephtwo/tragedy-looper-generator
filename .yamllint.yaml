@@ -6,6 +6,7 @@ ignore:
   - "/pnpm-lock.yaml"
   - "/coverage"
   - "/reports"
+  - "/src/paraglide"
 rules:
   truthy:
     check-keys: false

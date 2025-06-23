@@ -9,12 +9,14 @@
     "coverage": "pnpm test -- --coverage",
     "mutate": "stryker run",
     "preview": "vite preview",
-    "build": "tsc && vite build",
+    "build": "pnpm build:i18n && tsc && vite build",
     "prettier": "prettier --check .",
     "format": "prettier --write .",
     "lint": "pnpm lint:ts && pnpm prettier && pnpm lint:md",
     "lint:ts": "eslint .",
-    "lint:md": "markdownlint ."
+    "lint:md": "markdownlint .",
+    "build:i18n": "paraglide-js compile --project ./project.inlang --outdir ./src/paraglide",
+    "machine-translate": "inlang machine translate --project project.inlang"
   },
   "author": "Ben Christianson <thhuntertgm@gmail.com>",
   "license": "MIT",
@@ -34,18 +36,17 @@
     "typescript": "5.8.3",
     "typescript-eslint": "8.34.1",
     "vite": "6.3.5",
-    "vitest": "3.2.4"
+    "vitest": "3.2.4",
+    "@inlang/paraglide-js": "2.1.0",
+    "@inlang/cli": "^3.0.0"
   },
   "dependencies": {
     "@emotion/react": "11.14.0",
     "@emotion/styled": "11.14.0",
     "@mui/icons-material": "7.1.2",
     "@mui/material": "7.1.2",
-    "i18next": "25.2.1",
-    "i18next-http-backend": "3.0.2",
     "immer": "10.1.1",
     "react": "19.1.0",
-    "react-dom": "19.1.0",
-    "react-i18next": "15.5.3"
+    "react-dom": "19.1.0"
   }
 }

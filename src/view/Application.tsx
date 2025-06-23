@@ -1,6 +1,5 @@
 import * as React from "react";
 import { useEffect, useState, useReducer } from "react";
-import { useTranslation } from "react-i18next";
 import { ScriptGenerator } from "./ScriptGenerator";
 import { reducer, initialState } from "../logic/State";
 import * as ScriptCard from "./ScriptCard";
@@ -8,19 +7,20 @@ import { Cheatsheet } from "./Cheatsheet";
 import { LanguagePicker } from "./LanguagePicker";
 import { SupportedLanguage } from "../@types/SupportedLanguages";
 import { Container, Grid, Stack, Typography, colors } from "@mui/material";
+import { m } from "../paraglide/messages";
+import { setLocale } from "../paraglide/runtime";
 
 export function Application(): React.JSX.Element {
-  const { t, i18n } = useTranslation();
   const [state, dispatch] = useReducer(reducer, initialState);
   const [lang, setLang] = useState<SupportedLanguage>("en");
   const { script } = state;
 
   useEffect(() => {
-    document.title = t("scaffolding.title");
+    document.title = m["scaffolding.title"]();
   }, []);
 
   useEffect(() => {
-    i18n.changeLanguage(lang).catch(console.error);
+    setLocale(lang, { reload: false });
     document.documentElement.setAttribute("lang", lang);
   }, [lang]);
 
@@ -58,8 +58,7 @@ export function Application(): React.JSX.Element {
 }
 
 function PageTitle(): React.JSX.Element {
-  const { t } = useTranslation();
-  const title = t("scaffolding.title");
+  const title = m["scaffolding.title"]();
 
   // Get fancy...
   const tokens = title.split(" ");

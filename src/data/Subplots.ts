@@ -7,11 +7,12 @@ import * as Incidents from "./Incidents";
 import { Script } from "../model/Script";
 import * as MainPlots from "./MainPlots";
 import { requireDescriptor } from "../util/requirements";
+import { m } from "../paraglide/messages";
 
 // Base Game /////////////////////////////////////////////////////////////////
 export const circleOfFriends: Plot = {
   id: "ddfabe2e-4717-43d8-87e5-6542682e7387",
-  name_i18n_key: "plots.circleOfFriends.name",
+  name: m["plots.circleOfFriends.name"],
   roles: () => [Roles.friend, Roles.friend, Roles.conspiracyTheorist],
   requiredIncidents: [],
   estimateLoops: () => 1.0,
@@ -22,7 +23,7 @@ export const circleOfFriends: Plot = {
 
 export const aLoveAffair: Plot = {
   id: "02d443d7-d43a-45ad-91cc-1ec93646767b",
-  name_i18n_key: "plots.aLoveAffairBasic.name",
+  name: m["plots.aLoveAffairBasic.name"],
   roles: () => [Roles.lover, Roles.lovedOne],
   requiredIncidents: [],
   estimateLoops: () => 1.0,
@@ -33,7 +34,7 @@ export const aLoveAffair: Plot = {
 
 export const theHiddenFreak: Plot = {
   id: "78038f0a-b3be-4899-ae76-01ccd7a706f7",
-  name_i18n_key: "plots.theHiddenFreakBasic.name",
+  name: m["plots.theHiddenFreakBasic.name"],
   roles: () => [Roles.friend, Roles.serialKiller],
   requiredIncidents: [],
   estimateLoops: () => 0.8,
@@ -44,14 +45,14 @@ export const theHiddenFreak: Plot = {
 
 export const anUnsettlingRumor: Plot = {
   id: "cc6ab933-71a4-42ff-a92a-7c05c1f86ea4",
-  name_i18n_key: "plots.anUnsettlingRumorBasic.name",
+  name: m["plots.anUnsettlingRumorBasic.name"],
   roles: () => [Roles.conspiracyTheorist],
   requiredIncidents: [],
   estimateLoops: () => 0.5,
   plotRules: [],
   mastermindAbilities: [
     {
-      effect_i18n_key: "plots.anUnsettlingRumorBasic.mastermindAbility",
+      effect: m["plots.anUnsettlingRumorBasic.mastermindAbility"],
       timesPerLoop: 1,
       optional: true,
     },
@@ -61,7 +62,7 @@ export const anUnsettlingRumor: Plot = {
 
 export const paranoiaVirus: Plot = {
   id: "33317eb1-c0de-4460-b64e-f5ee6a650899",
-  name_i18n_key: "plots.paranoiaVirus.name",
+  name: m["plots.paranoiaVirus.name"],
   roles: () => [Roles.conspiracyTheorist],
   requiredIncidents: [],
   estimateLoops: () => 0,
@@ -69,7 +70,7 @@ export const paranoiaVirus: Plot = {
     {
       id: "4006e514-0d29-4444-b709-9ca76dbf88e9",
       trigger: Triggers.always,
-      effect_i18n_key: "plots.paranoiaVirus.plotRule",
+      effect: m["plots.paranoiaVirus.plotRule"],
       winCondition: false,
     },
   ],
@@ -79,7 +80,7 @@ export const paranoiaVirus: Plot = {
 
 export const threadsOfFate: Plot = {
   id: "20079bae-734d-4195-a4af-be56e8c6c8ac",
-  name_i18n_key: "plots.threadsOfFate.name",
+  name: m["plots.threadsOfFate.name"],
   roles: () => [],
   requiredIncidents: [],
   estimateLoops: () => 0.5,
@@ -87,7 +88,7 @@ export const threadsOfFate: Plot = {
     {
       id: "00351e24-af09-40e0-8c43-9a6a83f7d41f",
       trigger: Triggers.loopStart,
-      effect_i18n_key: "plots.threadsOfFate.plotRule",
+      effect: m["plots.threadsOfFate.plotRule"],
       winCondition: false,
     },
   ],
@@ -97,7 +98,7 @@ export const threadsOfFate: Plot = {
 
 export const unknownFactorX: Plot = {
   id: "b96a9ba3-6858-440c-b74d-552fb7ef82d3",
-  name_i18n_key: "plots.unknownFactorX.name",
+  name: m["plots.unknownFactorX.name"],
   roles: () => [Roles.factor],
   requiredIncidents: [],
   estimateLoops: () => 0.8,
@@ -108,7 +109,7 @@ export const unknownFactorX: Plot = {
 
 export const shadowOfTheRipper: Plot = {
   id: "fa8b66bf-ba7d-41c9-84de-9e7641bfbdfa",
-  name_i18n_key: "plots.shadowOfTheRipper.name",
+  name: m["plots.shadowOfTheRipper.name"],
   roles: () => [Roles.conspiracyTheorist, Roles.serialKiller],
   requiredIncidents: [],
   // The game does not provide a value for this
@@ -120,7 +121,7 @@ export const shadowOfTheRipper: Plot = {
 
 export const aHideousScript: Plot = {
   id: "69755afc-80b4-4b55-a17f-3fcb2cb39e25",
-  name_i18n_key: "plots.aHideousScript.name",
+  name: m["plots.aHideousScript.name"],
   roles: (): Array<Role> => {
     // Script writer may choose 0, 1, or 2 Curmudgeons.
     const amount = _.random(0, 2);
@@ -138,7 +139,7 @@ export const aHideousScript: Plot = {
 // Midnight Zone /////////////////////////////////////////////////////////////
 export const loveHateSpiral: Plot = {
   id: "f35974c7-5c63-4af3-9189-ece67511b16a",
-  name_i18n_key: "plots.loveHateSpiral.name",
+  name: m["plots.loveHateSpiral.name"],
   roles: () => [Roles.friend, Roles.obstinate],
   requiredIncidents: [],
   estimateLoops: () => 0.5,
@@ -149,7 +150,7 @@ export const loveHateSpiral: Plot = {
 
 export const witchesTeaTime: Plot = {
   id: "3afb64de-e67a-472f-af69-e232aad90d23",
-  name_i18n_key: "plots.witchesTeaTime.name",
+  name: m["plots.witchesTeaTime.name"],
   roles: () => [Roles.conspiracyTheorist, Roles.friend, Roles.witch, Roles.witch],
   requiredIncidents: [],
   estimateLoops: () => 0.8,
@@ -160,7 +161,7 @@ export const witchesTeaTime: Plot = {
 
 export const diceOfTheGods: Plot = {
   id: "066d20aa-2830-4c9d-8354-0413a0e1b2e3",
-  name_i18n_key: "plots.diceOfTheGods.name",
+  name: m["plots.diceOfTheGods.name"],
   roles: () => [Roles.serialKiller, Roles.obstinate],
   requiredIncidents: [],
   estimateLoops: () => 0.7,
@@ -168,7 +169,7 @@ export const diceOfTheGods: Plot = {
     {
       id: "856fe994-7511-4f36-9b3d-b4f252232e95",
       trigger: Triggers.loopStart,
-      effect_i18n_key: "plots.diceOfTheGods.plotRule",
+      effect: m["plots.diceOfTheGods.plotRule"],
       winCondition: false,
     },
   ],
@@ -178,14 +179,14 @@ export const diceOfTheGods: Plot = {
 
 export const unsafeTrigger: Plot = {
   id: "133e4874-1815-4880-a880-400f190a039e",
-  name_i18n_key: "plots.unsafeTrigger.name",
+  name: m["plots.unsafeTrigger.name"],
   roles: () => [Roles.factor],
   requiredIncidents: [],
   estimateLoops: () => 1.0,
   plotRules: [],
   mastermindAbilities: [
     {
-      effect_i18n_key: "plots.unsafeTrigger.mastermindAbility",
+      effect: m["plots.unsafeTrigger.mastermindAbility"],
       timesPerLoop: 1,
       optional: true,
     },
@@ -195,7 +196,7 @@ export const unsafeTrigger: Plot = {
 
 export const showtimeOfDeath: Plot = {
   id: "813e7a16-0417-416a-a144-45a63c5d5441",
-  name_i18n_key: "plots.showtimeOfDeath.name",
+  name: m["plots.showtimeOfDeath.name"],
   roles: () => [Roles.magician, Roles.immortal],
   requiredIncidents: [],
   estimateLoops: (script: Script): number => {
@@ -207,7 +208,7 @@ export const showtimeOfDeath: Plot = {
     {
       id: "75862e1e-f4a8-41e4-acc9-a3d3f3833d6d",
       trigger: Triggers.loopEnd,
-      effect_i18n_key: "plots.showtimeOfDeath.plotRule",
+      effect: m["plots.showtimeOfDeath.plotRule"],
       winCondition: true,
     },
   ],
@@ -217,7 +218,7 @@ export const showtimeOfDeath: Plot = {
 
 export const unansweredHeart: Plot = {
   id: "2d65bd0c-4469-44bd-8a0d-1c8d650cabb9",
-  name_i18n_key: "plots.unansweredHeart.name",
+  name: m["plots.unansweredHeart.name"],
   roles: () => [Roles.conspiracyTheorist, Roles.magician],
   requiredIncidents: [],
   estimateLoops: (script: Script): number => (script.mainPlot.id === MainPlots.theSealedItem2.id ? 1.7 : 0.7),
@@ -225,7 +226,7 @@ export const unansweredHeart: Plot = {
     {
       id: "681c1308-7ba5-4c2e-ba70-97dd64e7edef",
       trigger: Triggers.always,
-      effect_i18n_key: "plots.unansweredHeart.plotRule",
+      effect: m["plots.unansweredHeart.plotRule"],
       winCondition: false,
     },
   ],
@@ -235,7 +236,7 @@ export const unansweredHeart: Plot = {
 
 export const worshippersOfTheApocalypse: Plot = {
   id: "e77efda5-4b07-4ff4-8b64-096bd6562f14",
-  name_i18n_key: "plots.worshippersOfTheApocalypse.name",
+  name: m["plots.worshippersOfTheApocalypse.name"],
   roles: () => [Roles.prophet],
   requiredIncidents: [Incidents.suicide],
   estimateLoops: () => 0.8,
@@ -243,7 +244,7 @@ export const worshippersOfTheApocalypse: Plot = {
     {
       id: "be5c76dd-2ce0-43fd-9cbe-552054fb56eb",
       trigger: Triggers.incidentStep,
-      effect_i18n_key: "plots.theSacredWordsOfDagon.plotRule",
+      effect: m["plots.theSacredWordsOfDagon.plotRule"],
       winCondition: false,
     },
   ],
@@ -254,7 +255,7 @@ export const worshippersOfTheApocalypse: Plot = {
 // Mystery Circle ////////////////////////////////////////////////////////////
 export const theHiddenFreak2: Plot = {
   id: "9fe52e73-5565-48c4-846d-86fe51d8cb18",
-  name_i18n_key: "plots.theHiddenFreakMysteryCircle.name",
+  name: m["plots.theHiddenFreakMysteryCircle.name"],
   roles: () => [Roles.friend, Roles.serialKiller],
   requiredIncidents: [],
   estimateLoops: () => 0.8,
@@ -265,7 +266,7 @@ export const theHiddenFreak2: Plot = {
 
 export const isolatedInstitutionPsycho: Plot = {
   id: "ea84db6e-2d0e-4b3c-a964-90f108572c2b",
-  name_i18n_key: "plots.isolatedInstitutionPsycho.name",
+  name: m["plots.isolatedInstitutionPsycho.name"],
   roles: () => [Roles.conspiracyTheorist, Roles.therapist, Roles.paranoiac],
   requiredIncidents: [],
   estimateLoops: () => 0.5,
@@ -273,7 +274,7 @@ export const isolatedInstitutionPsycho: Plot = {
     {
       id: "ab30862d-ecf3-49a6-96c8-0ea270db90d5",
       trigger: Triggers.loopStart,
-      effect_i18n_key: "plots.isolatedInstitutionPsycho.plotRule",
+      effect: m["plots.isolatedInstitutionPsycho.plotRule"],
       winCondition: false,
     },
   ],
@@ -283,7 +284,7 @@ export const isolatedInstitutionPsycho: Plot = {
 
 export const smellOfGunpowder: Plot = {
   id: "a74b8d79-077d-40f8-bfc2-d977642fa546",
-  name_i18n_key: "plots.smellOfGunpowder.name",
+  name: m["plots.smellOfGunpowder.name"],
   roles: () => [Roles.serialKiller],
   requiredIncidents: [],
   estimateLoops: (script: Script): number => 0.2 + 0.2 * script.days,
@@ -291,7 +292,7 @@ export const smellOfGunpowder: Plot = {
     {
       id: "b7528433-56ed-42e0-8f28-d09288abc0d6",
       trigger: Triggers.loopEnd,
-      effect_i18n_key: "plots.smellOfGunpowder.plotRule",
+      effect: m["plots.smellOfGunpowder.plotRule"],
       winCondition: true,
     },
   ],
@@ -301,7 +302,7 @@ export const smellOfGunpowder: Plot = {
 
 export const iAmAMasterDetective: Plot = {
   id: "cb9e521f-113f-4599-8482-4f640a18310f",
-  name_i18n_key: "plots.iAmAMasterDetective.name",
+  name: m["plots.iAmAMasterDetective.name"],
   roles: () => [Roles.conspiracyTheorist, Roles.friend, Roles.privateInvestigator],
   requiredIncidents: [],
   estimateLoops: () => 1.2,
@@ -312,7 +313,7 @@ export const iAmAMasterDetective: Plot = {
 
 export const danceOfFools: Plot = {
   id: "51482a2a-13d6-4b0c-b2d5-379a98ed0e54",
-  name_i18n_key: "plots.danceOfFools.name",
+  name: m["plots.danceOfFools.name"],
   roles: () => [Roles.fool, Roles.friend],
   requiredIncidents: [],
   estimateLoops: () => 0.4,
@@ -323,7 +324,7 @@ export const danceOfFools: Plot = {
 
 export const anAbsoluteWill: Plot = {
   id: "de83f0f3-63fe-45bc-87ef-5ac086fd548c",
-  name_i18n_key: "plots.anAbsoluteWill.name",
+  name: m["plots.anAbsoluteWill.name"],
   roles: () => [Roles.obstinate],
   requiredIncidents: [],
   estimateLoops: () => 0.6,
@@ -334,7 +335,7 @@ export const anAbsoluteWill: Plot = {
 
 export const trickyTwins: Plot = {
   id: "aa04f330-7a55-44a7-a534-f36fd2267995",
-  name_i18n_key: "plots.trickyTwins.name",
+  name: m["plots.trickyTwins.name"],
   roles: () => [Roles.paranoiac, Roles.twin],
   requiredIncidents: [],
   estimateLoops: () => 0.5,
@@ -346,7 +347,7 @@ export const trickyTwins: Plot = {
 // Prime Evil ////////////////////////////////////////////////////////////////
 export const thoseWithHabits: Plot = {
   id: "b776e852-06b9-48fe-8ff4-8386757944a3",
-  name_i18n_key: "plots.thoseWithHabits.name",
+  name: m["plots.thoseWithHabits.name"],
   roles: () => [Roles.ghost, Roles.serialKiller, Roles.lovedOne],
   requiredIncidents: [],
   estimateLoops: () => 1.0,
@@ -357,7 +358,7 @@ export const thoseWithHabits: Plot = {
 
 export const aLoveAffair2: Plot = {
   id: "6c191eba-6505-4230-a5c9-5dd0f7e2a6ab",
-  name_i18n_key: "plots.aLoveAffairPrimeEvil.name",
+  name: m["plots.aLoveAffairPrimeEvil.name"],
   roles: () => [Roles.lover, Roles.lovedOne],
   requiredIncidents: [],
   estimateLoops: () => 1.0,
@@ -368,7 +369,7 @@ export const aLoveAffair2: Plot = {
 
 export const witchsCurse: Plot = {
   id: "9d41e7bd-c30f-4607-adad-79264884aa8e",
-  name_i18n_key: "plots.witchsCurse.name",
+  name: m["plots.witchsCurse.name"],
   roles: () => [Roles.conspiracyTheorist, Roles.witch],
   requiredIncidents: [],
   estimateLoops: () => 0.6,
@@ -376,7 +377,7 @@ export const witchsCurse: Plot = {
     {
       id: "223de339-63f0-4735-8422-c2e2157748f5",
       trigger: Triggers.loopStart,
-      effect_i18n_key: "plots.witchsCurse.plotRule",
+      effect: m["plots.witchsCurse.plotRule"],
       winCondition: false,
     },
   ],
@@ -386,7 +387,7 @@ export const witchsCurse: Plot = {
 
 export const theKeyGirl: Plot = {
   id: "8d27e3b9-0351-4039-bef2-ddf7e09acb2a",
-  name_i18n_key: "plots.theKeyGirl.name",
+  name: m["plots.theKeyGirl.name"],
   roles: () => [
     new ConditionalRole({
       role: Roles.keyPerson,
@@ -402,14 +403,14 @@ export const theKeyGirl: Plot = {
 
 export const monsterIntrigue: Plot = {
   id: "73438252-52c1-43c2-aa07-df071ca959a8",
-  name_i18n_key: "plots.monsterIntrigue.name",
+  name: m["plots.monsterIntrigue.name"],
   roles: () => [Roles.conspiracyTheorist],
   requiredIncidents: [],
   estimateLoops: () => 0.5,
   plotRules: [],
   mastermindAbilities: [
     {
-      effect_i18n_key: "plots.monsterIntrigue.mastermindAbility",
+      effect: m["plots.monsterIntrigue.mastermindAbility"],
       timesPerDay: 1,
       timesPerLoop: 2,
       optional: true,
@@ -420,7 +421,7 @@ export const monsterIntrigue: Plot = {
 
 export const panicAndObsession: Plot = {
   id: "2f294d6f-0b0f-495d-b9e4-0e383973a37d",
-  name_i18n_key: "plots.panicAndObsession.name",
+  name: m["plots.panicAndObsession.name"],
   roles: () => [Roles.serialKiller, Roles.coward, Roles.witch],
   requiredIncidents: [],
   estimateLoops: () => 0.3,
@@ -431,7 +432,7 @@ export const panicAndObsession: Plot = {
 
 export const peopleWhoDontListen: Plot = {
   id: "aa2b8699-b738-4140-bf08-5dd42dd6064e",
-  name_i18n_key: "plots.peopleWhoDon'tListen.name",
+  name: m["plots.peopleWhoDon'tListen.name"],
   roles: () => [Roles.showOff, Roles.conspiracyTheorist, Roles.coward],
   requiredIncidents: [],
   estimateLoops: () => 0.4,
@@ -443,14 +444,14 @@ export const peopleWhoDontListen: Plot = {
 // Cosmic Evil ///////////////////////////////////////////////////////////////
 export const anUnsettlingRumor2: Plot = {
   id: "69cb5ae0-9b3a-4637-9671-d13f461f7230",
-  name_i18n_key: "plots.anUnsettlingRumorCosmicEvil.name",
+  name: m["plots.anUnsettlingRumorCosmicEvil.name"],
   roles: () => [Roles.conspiracyTheorist],
   requiredIncidents: [],
   estimateLoops: () => 0.5,
   plotRules: [],
   mastermindAbilities: [
     {
-      effect_i18n_key: "plots.anUnsettlingRumorCosmicEvil.mastermindAbility",
+      effect: m["plots.anUnsettlingRumorCosmicEvil.mastermindAbility"],
       timesPerLoop: 1,
       optional: true,
     },
@@ -460,7 +461,7 @@ export const anUnsettlingRumor2: Plot = {
 
 export const theResistance: Plot = {
   id: "3758b139-f56d-4ad6-b686-711f2e03d587",
-  name_i18n_key: "plots.theResistance.name",
+  name: m["plots.theResistance.name"],
   roles: () => [Roles.conspiracyTheorist, Roles.wizard, Roles.serialKiller],
   requiredIncidents: [],
   estimateLoops: () => 0.8,
@@ -471,7 +472,7 @@ export const theResistance: Plot = {
 
 export const peopleWhoSaw: Plot = {
   id: "adc8b9f9-40f2-4efb-8803-b27f5febfc98",
-  name_i18n_key: "plots.peopleWhoSaw.name",
+  name: m["plots.peopleWhoSaw.name"],
   roles: () => [Roles.conspiracyTheorist, Roles.witness],
   requiredIncidents: [],
   estimateLoops: () => 0.5,
@@ -482,7 +483,7 @@ export const peopleWhoSaw: Plot = {
 
 export const theProfoundRace: Plot = {
   id: "b5db08e9-c946-4b53-b482-69c0137c97f9",
-  name_i18n_key: "plots.theProfoundRace.name",
+  name: m["plots.theProfoundRace.name"],
   roles: () => [Roles.serialKiller, Roles.timeTraveller],
   requiredIncidents: [],
   estimateLoops: () => 0.8,
@@ -493,7 +494,7 @@ export const theProfoundRace: Plot = {
 
 export const whispersFromTheDeep: Plot = {
   id: "cdd00e27-63e5-40a2-b9c2-b9ae20f4cd38",
-  name_i18n_key: "plots.whispersFromTheDeep.name",
+  name: m["plots.whispersFromTheDeep.name"],
   roles: () => [Roles.deepOne, Roles.paranoiac],
   requiredIncidents: [],
   estimateLoops: () => 1.2,
@@ -501,7 +502,7 @@ export const whispersFromTheDeep: Plot = {
     {
       id: "90df15bb-d68c-469c-b261-f7a7dc81acff",
       trigger: Triggers.always,
-      effect_i18n_key: "plots.whispersFromTheDeep.plotRule",
+      effect: m["plots.whispersFromTheDeep.plotRule"],
       winCondition: false,
     },
   ],
@@ -511,7 +512,7 @@ export const whispersFromTheDeep: Plot = {
 
 export const theFacelessGod: Plot = {
   id: "b5b7fb70-9f22-488f-ad9e-9fbf10bd6866",
-  name_i18n_key: "plots.theFacelessGod.name",
+  name: m["plots.theFacelessGod.name"],
   roles: () => [Roles.faceless, Roles.wizard],
   requiredIncidents: [],
   estimateLoops: () => 0.9,
@@ -522,7 +523,7 @@ export const theFacelessGod: Plot = {
 
 export const aTwistedTruth: Plot = {
   id: "54c3dd3a-b6c0-491b-a42d-49d8eff8412f",
-  name_i18n_key: "plots.aTwistedTruth.name",
+  name: m["plots.aTwistedTruth.name"],
   roles: () => [Roles.paranoiac],
   requiredIncidents: [],
   estimateLoops: () => 1.2,
@@ -537,14 +538,14 @@ export const aTwistedTruth: Plot = {
 // Last Liar /////////////////////////////////////////////////////////////////
 export const theRealMonster: Plot = {
   id: "be0dc636-3d0f-40e1-b26f-dd706c71a92c",
-  name_i18n_key: "plots.theRealMonster.name",
+  name: m["plots.theRealMonster.name"],
   roles: () => [Roles.serialKiller, Roles.secretkeeper, Roles.wildcard],
   requiredIncidents: [],
   estimateLoops: () => 1,
   plotRules: [
     {
       id: "fe2e4266-6524-4765-a67b-a98cecffccd6",
-      effect_i18n_key: "plots.theRealMonster.victoryConditionA",
+      effect: m["plots.theRealMonster.victoryConditionA"],
       trigger: Triggers.dayEnd,
       winCondition: false,
       winConditionForTraitor: "A",
@@ -556,14 +557,14 @@ export const theRealMonster: Plot = {
 
 export const keeperOfMythology: Plot = {
   id: "992bff34-a151-4476-a58f-08b94c1486e4",
-  name_i18n_key: "plots.keeperOfMythology.name",
+  name: m["plots.keeperOfMythology.name"],
   roles: () => [Roles.influencer, Roles.secretkeeper, Roles.wildcard],
   requiredIncidents: [],
   estimateLoops: () => 1,
   plotRules: [
     {
       id: "f4da1fb2-7ba1-40e9-81f2-e691b01c7abc",
-      effect_i18n_key: "plots.keeperOfMythology.victoryConditionB",
+      effect: m["plots.keeperOfMythology.victoryConditionB"],
       trigger: Triggers.goodwillAbilityStep,
       winCondition: false,
       winConditionForTraitor: "B",
@@ -575,14 +576,14 @@ export const keeperOfMythology: Plot = {
 
 export const iAmTheTrueDetective: Plot = {
   id: "809f5572-425c-4e74-b632-0ed81149fe02",
-  name_i18n_key: "plots.iAmTheTrueDetective.name",
+  name: m["plots.iAmTheTrueDetective.name"],
   roles: () => [Roles.watcher, Roles.secretkeeper, Roles.wildcard],
   requiredIncidents: [],
   estimateLoops: () => 1,
   plotRules: [
     {
       id: "9000549c-ef5f-44ea-bafd-23472ccfadaf",
-      effect_i18n_key: "plots.iAmTheTrueDetective.victoryConditionC",
+      effect: m["plots.iAmTheTrueDetective.victoryConditionC"],
       trigger: Triggers.beforeFinalGuess,
       winCondition: false,
       winConditionForTraitor: "C",
@@ -594,20 +595,20 @@ export const iAmTheTrueDetective: Plot = {
 
 export const crossingWorldLines: Plot = {
   id: "83416ae6-75eb-4404-899f-55c2c16f97e8",
-  name_i18n_key: "plots.crossingWorldLines.name",
+  name: m["plots.crossingWorldLines.name"],
   roles: () => [Roles.conspiracyTheorist],
   requiredIncidents: [],
   estimateLoops: () => 0.5,
   plotRules: [
     {
       id: "6e0dc5ac-61cc-4ce9-8a94-dafccd76a61e",
-      effect_i18n_key: "plots.crossingWorldLines.plotRule1",
+      effect: m["plots.crossingWorldLines.plotRule1"],
       trigger: Triggers.loopStart,
       winCondition: false,
     },
     {
       id: "1c76495c-243a-46dc-bb88-f1e29703fd6d",
-      effect_i18n_key: "plots.crossingWorldLines.plotRule2",
+      effect: m["plots.crossingWorldLines.plotRule2"],
       trigger: Triggers.loopStart,
       winCondition: false,
     },
@@ -618,7 +619,7 @@ export const crossingWorldLines: Plot = {
 
 export const socialMediaParanoia: Plot = {
   id: "ca529826-2cf9-4ba0-be5d-382fb5faf15b",
-  name_i18n_key: "plots.socialMediaParanoia.name",
+  name: m["plots.socialMediaParanoia.name"],
   roles: () => [Roles.serialKiller, Roles.influencer, Roles.conspiracyTheorist],
   requiredIncidents: [],
   estimateLoops: () => 0.6,
@@ -631,7 +632,7 @@ export const theMythomaniacsSecret: Plot = {
   // TODO: This plot requires a little bit more work, but it should be OK.
   // The plot rule in particular is a little difficult to automatically apply.
   id: "3ddd6d7f-1823-4c83-928f-c05051f56fa6",
-  name_i18n_key: "plots.theMythomaniacsSecret.name",
+  name: m["plots.theMythomaniacsSecret.name"],
   roles: () => [Roles.conspiracyTheorist],
   requiredIncidents: [],
   estimateLoops: (script) => {
@@ -641,7 +642,7 @@ export const theMythomaniacsSecret: Plot = {
   plotRules: [
     {
       id: "f145a23e-d336-4efe-a61e-eb899883f505",
-      effect_i18n_key: "plots.theMythomaniacsSecret.plotRule",
+      effect: m["plots.theMythomaniacsSecret.plotRule"],
       trigger: Triggers.always,
       winCondition: false,
     },
@@ -653,7 +654,7 @@ export const theMythomaniacsSecret: Plot = {
 // Another Horizon ///////////////////////////////////////////////////////////
 export const jekyllAndHyde: Plot = {
   id: "6a639405-12c9-430e-93cf-11d83309ae93",
-  name_i18n_key: "plots.jekyllAndHyde.name",
+  name: m["plots.jekyllAndHyde.name"],
   roles: () => [
     new DualRole({
       id: "2abed603-0d23-40ae-a9a7-0360c7f0e3eb",
@@ -671,7 +672,7 @@ export const jekyllAndHyde: Plot = {
 
 export const thePlaguebringer: Plot = {
   id: "f2c176c0-1961-4435-a5e4-b81134aa603d",
-  name_i18n_key: "plots.thePlaguebringer.name",
+  name: m["plots.thePlaguebringer.name"],
   roles: () => [
     new DualRole({
       id: "15ed05cf-8b29-4dc5-8b4c-2f0d395f7368",
@@ -688,7 +689,7 @@ export const thePlaguebringer: Plot = {
 
 export const puppeteersStrings: Plot = {
   id: "1b74bb3d-426b-46ba-b603-5dc42c67da0b",
-  name_i18n_key: "plots.puppeteersStrings.name",
+  name: m["plots.puppeteersStrings.name"],
   roles: () => [
     Roles.fragment,
     Roles.gossip,
@@ -703,7 +704,7 @@ export const puppeteersStrings: Plot = {
   plotRules: [
     {
       id: "dac42441-c158-4956-b394-d9dfc64309f5",
-      effect_i18n_key: "plots.puppeteersStrings.plotRule",
+      effect: m["plots.puppeteersStrings.plotRule"],
       trigger: Triggers.always,
       winCondition: false,
     },
@@ -714,7 +715,7 @@ export const puppeteersStrings: Plot = {
 
 export const throughTheLookingGlass: Plot = {
   id: "704d781a-e004-4fed-8461-3c9fc9107c71",
-  name_i18n_key: "plots.throughTheLookingGlass.name",
+  name: m["plots.throughTheLookingGlass.name"],
   roles: () => [
     new DualRole({
       id: "626783cf-eb78-4fe0-8f1b-fa04679b9552",
@@ -735,7 +736,7 @@ export const throughTheLookingGlass: Plot = {
 
 export const unspeakableHorrors: Plot = {
   id: "e184f89f-6dae-4283-8a29-0047e7fbb27e",
-  name_i18n_key: "plots.unspeakableHorrors.name",
+  name: m["plots.unspeakableHorrors.name"],
   roles: () => [
     new DualRole({
       id: "b9d2835f-6990-4d56-abff-36e8c803e289",
@@ -748,7 +749,7 @@ export const unspeakableHorrors: Plot = {
   plotRules: [
     {
       id: "16bf9f56-5ad4-4f3a-94a7-557ba3f041fc",
-      effect_i18n_key: "plots.unspeakableHorrors.plotRule",
+      effect: m["plots.unspeakableHorrors.plotRule"],
       trigger: Triggers.dayEnd,
       winCondition: true,
     },
@@ -759,14 +760,14 @@ export const unspeakableHorrors: Plot = {
 
 export const hysteriaVirus: Plot = {
   id: "e2fedac5-38f3-48ed-b504-34cb757ca716",
-  name_i18n_key: "plots.hysteriaVirus.name",
+  name: m["plots.hysteriaVirus.name"],
   roles: () => [Roles.fragment, Roles.conspiracyTheorist, Roles.gossip],
   requiredIncidents: [],
   estimateLoops: () => 0.6,
   plotRules: [
     {
       id: "7d47c1e2-e2fa-40b2-b407-e61345f6b4e2",
-      effect_i18n_key: "plots.hysteriaVirus.plotRule",
+      effect: m["plots.hysteriaVirus.plotRule"],
       trigger: Triggers.always,
       winCondition: false,
     },

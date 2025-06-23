@@ -1,6 +1,5 @@
 import * as React from "react";
 import * as _ from "radash";
-import { useTranslation } from "react-i18next";
 import { Script } from "../model/Script";
 import { Plot } from "../data/types/Plot";
 import { RoleAbility } from "../data/types/RoleAbility";
@@ -12,12 +11,12 @@ import { Incident } from "../data/types/Incident";
 import { Box, Divider, Paper, Table, TableBody, TableCell, TableHead, TableRow, Typography } from "@mui/material";
 import * as Icons from "./Icons";
 import { RoleName } from "./RoleName";
+import { m } from "../paraglide/messages";
 
 interface CheatsheetProps {
   script: Script;
 }
 export function Cheatsheet({ script }: CheatsheetProps): React.JSX.Element {
-  const { t } = useTranslation();
   if (!script.isValid()) {
     return <></>;
   }
@@ -37,7 +36,7 @@ export function Cheatsheet({ script }: CheatsheetProps): React.JSX.Element {
       <Box sx={styles.section}>
         <Typography variant="h2" sx={styles.headerWithIcon}>
           <Icons.Cheatsheet />
-          {t("scaffolding.cheatsheet")}
+          {m["scaffolding.cheatsheet"]()}
         </Typography>
         <Divider variant="fullWidth" />
         <WinConditions plots={plots} roleAbilities={roleAbilities} incidents={allIncidents} />
@@ -56,7 +55,6 @@ interface WinConditionsProps {
   incidents: Array<CastMemberIncidentTrigger>;
 }
 function WinConditions(props: WinConditionsProps): React.JSX.Element {
-  const { t } = useTranslation();
   const fromPlotRules: Array<PlotRule> = props.plots
     .flatMap((p) => p.plotRules)
     .filter((pr) => pr.winCondition === true);
@@ -73,42 +71,42 @@ function WinConditions(props: WinConditionsProps): React.JSX.Element {
     <>
       <Typography variant="h3" sx={styles.headerWithIcon}>
         <Icons.WinConditions />
-        {t("terms.winConditions")}
+        {m["terms.winConditions"]()}
       </Typography>
       <Table size="small" sx={styles.extraBottomMargin}>
         <TableHead>
           <TableRow>
-            <TableCell variant="head">{t("terms.mechanic")}</TableCell>
-            <TableCell variant="head">{t("terms.source")}</TableCell>
-            <TableCell variant="head">{t("terms.trigger")}</TableCell>
-            <TableCell variant="head">{t("terms.effect")}</TableCell>
+            <TableCell variant="head">{m["terms.mechanic"]()}</TableCell>
+            <TableCell variant="head">{m["terms.source"]()}</TableCell>
+            <TableCell variant="head">{m["terms.trigger"]()}</TableCell>
+            <TableCell variant="head">{m["terms.effect"]()}</TableCell>
           </TableRow>
         </TableHead>
         <TableBody>
           {_.unique(fromPlotRules, (pr) => pr.id).map((pr) => (
             <TableRow key={`wc-${pr.id}`}>
-              <TableCell>{t("terms.plotRule", { count: 1 })}</TableCell>
+              <TableCell>{m["terms.plotRule"]({ count: 1 })}</TableCell>
               <TableCell></TableCell>
-              <TableCell>{t(pr.trigger.description_i18n_key)}</TableCell>
-              <TableCell>{t(pr.effect_i18n_key)}</TableCell>
+              <TableCell>{pr.trigger.description()}</TableCell>
+              <TableCell>{pr.effect()}</TableCell>
             </TableRow>
           ))}
           {sortRoleAbilities(uniqueAbilityAndCastMember(fromRoleAbilities)).map((ra) => (
             <TableRow key={`wc-${ra.ability.id}-${ra.castMember.id}`}>
-              <TableCell>{t("terms.roleAbility", { count: 1 })}</TableCell>
+              <TableCell>{m["terms.roleAbility"]({ count: 1 })}</TableCell>
               <TableCell>
                 <CastMemberDescription castMember={ra.castMember} />
               </TableCell>
-              <TableCell>{ra.ability.triggers.map((trigger) => t(trigger.description_i18n_key)).join(", ")}</TableCell>
-              <TableCell>{t(ra.ability.effect_i18n_key)}</TableCell>
+              <TableCell>{ra.ability.triggers.map((trigger) => trigger.description()).join(", ")}</TableCell>
+              <TableCell>{ra.ability.effect()}</TableCell>
             </TableRow>
           ))}
           {_.unique(fromIncidents, (i) => i.id).map((i) => (
             <TableRow key={`wc-${i.id}`}>
-              <TableCell>{t("terms.incident_one")}</TableCell>
-              <TableCell>{t(i.name_i18n_key)}</TableCell>
+              <TableCell>{m["terms.incident"]({ count: 1 })}</TableCell>
+              <TableCell>{i.name()}</TableCell>
               <TableCell />
-              <TableCell>{t(i.effect_i18n_key)}</TableCell>
+              <TableCell>{i.effect()}</TableCell>
             </TableRow>
           ))}
         </TableBody>
@@ -121,34 +119,32 @@ interface PlotRulesProps {
   plots: Array<Plot>;
 }
 function PlotRules(props: PlotRulesProps): React.JSX.Element {
-  const { t } = useTranslation();
-
   const plotRules = props.plots.flatMap((plot) =>
     plot.plotRules.map((pr) => ({
       plotId: plot.id,
       ruleId: pr.id,
-      plot: plot.name_i18n_key,
-      rule: pr.effect_i18n_key,
+      plot: plot.name,
+      rule: pr.effect,
     })),
   );
   return (
     <>
       <Typography variant="h3" sx={styles.headerWithIcon}>
         <Icons.PlotRules />
-        {t("terms.plotRule", { count: 2 })}
+        {m["terms.plotRule"]({ count: 2 })}
       </Typography>
       <Table size="small" sx={styles.extraBottomMargin}>
         <TableHead>
           <TableRow>
-            <TableCell variant="head">{t("terms.plot")}</TableCell>
-            <TableCell variant="head">{t("terms.effect")}</TableCell>
+            <TableCell variant="head">{m["terms.plot"]()}</TableCell>
+            <TableCell variant="head">{m["terms.effect"]()}</TableCell>
           </TableRow>
         </TableHead>
         <TableBody>
-          {_.alphabetical(plotRules, (pr) => t(pr.plot)).map((pr) => (
+          {_.alphabetical(plotRules, (pr) => pr.plot()).map((pr) => (
             <TableRow key={`plotrule-${pr.plotId}-${pr.ruleId}`}>
-              <TableCell>{t(pr.plot)}</TableCell>
-              <TableCell>{t(pr.rule)}</TableCell>
+              <TableCell>{pr.plot()}</TableCell>
+              <TableCell>{pr.rule()}</TableCell>
             </TableRow>
           ))}
         </TableBody>
@@ -161,32 +157,30 @@ interface MastermindAbilitiesProps {
   mastermindAbilities: Array<MastermindAbilityTrigger>;
 }
 function MastermindAbilities({ mastermindAbilities }: MastermindAbilitiesProps): React.JSX.Element {
-  const { t } = useTranslation();
-
   return (
     <>
       <Typography variant="h3" sx={styles.headerWithIcon}>
         <Icons.MastermindAbilities />
-        {t("terms.mastermindAbilities")}
+        {m["terms.mastermindAbilities"]()}
       </Typography>
       <Table size="small" sx={styles.extraBottomMargin}>
         <TableHead>
           <TableRow>
-            <TableCell variant="head">{t("terms.mandatory")}</TableCell>
-            <TableCell variant="head">{t("terms.triggeredBy")}</TableCell>
-            <TableCell variant="head">{t("terms.effect")}</TableCell>
-            <TableCell variant="head">{t("terms.perDay")}</TableCell>
-            <TableCell variant="head">{t("terms.perLoop")}</TableCell>
+            <TableCell variant="head">{m["terms.mandatory"]()}</TableCell>
+            <TableCell variant="head">{m["terms.triggeredBy"]()}</TableCell>
+            <TableCell variant="head">{m["terms.effect"]()}</TableCell>
+            <TableCell variant="head">{m["terms.perDay"]()}</TableCell>
+            <TableCell variant="head">{m["terms.perLoop"]()}</TableCell>
           </TableRow>
         </TableHead>
         <TableBody>
           {mastermindAbilities.map((mat, i) => (
             <TableRow key={`cheatsheet-ma-${i}`}>
-              <TableCell>{t(mat.ability.optional ? "terms.optional" : "terms.mandatory")}</TableCell>
+              <TableCell>{m[mat.ability.optional ? "terms.optional" : "terms.mandatory"]()}</TableCell>
               <TableCell>
                 <MastermindAbilityTriggerer mastermindAbility={mat} />
               </TableCell>
-              <TableCell>{t(mat.ability.effect_i18n_key)}</TableCell>
+              <TableCell>{mat.ability.effect()}</TableCell>
               <TableCell>{mat.ability.timesPerDay}</TableCell>
               <TableCell>{mat.ability.timesPerLoop}</TableCell>
             </TableRow>
@@ -201,32 +195,31 @@ interface RoleAbilitiesProps {
   roleAbilities: Array<RoleAbilityTrigger>;
 }
 function RoleAbilities({ roleAbilities }: RoleAbilitiesProps): React.JSX.Element {
-  const { t } = useTranslation();
   return (
     <>
       <Typography variant="h3" sx={styles.headerWithIcon}>
         <Icons.RoleAbilities />
-        {t("terms.roleAbility", { count: roleAbilities.length })}
+        {m["terms.roleAbility"]({ count: roleAbilities.length })}
       </Typography>
       <Table size="small" sx={styles.extraBottomMargin}>
         <TableHead>
           <TableRow>
-            <TableCell variant="head">{t("terms.trigger")}</TableCell>
-            <TableCell variant="head">{t("terms.mandatory")}</TableCell>
-            <TableCell variant="head">{t("terms.triggeredBy")}</TableCell>
-            <TableCell variant="head">{t("terms.effect")}</TableCell>
-            <TableCell variant="head">{t("terms.perLoop")}</TableCell>
+            <TableCell variant="head">{m["terms.trigger"]()}</TableCell>
+            <TableCell variant="head">{m["terms.mandatory"]()}</TableCell>
+            <TableCell variant="head">{m["terms.triggeredBy"]()}</TableCell>
+            <TableCell variant="head">{m["terms.effect"]()}</TableCell>
+            <TableCell variant="head">{m["terms.perLoop"]()}</TableCell>
           </TableRow>
         </TableHead>
         <TableBody>
           {sortRoleAbilities(roleAbilities).map((a, i) => (
             <TableRow key={`cheatsheet-ra-${i}`}>
-              <TableCell>{a.ability.triggers.map((trigger) => t(trigger.description_i18n_key)).join(", ")}</TableCell>
-              <TableCell>{t(a.ability.optional ? "terms.optional" : "terms.mandatory")}</TableCell>
+              <TableCell>{a.ability.triggers.map((trigger) => trigger.description()).join(", ")}</TableCell>
+              <TableCell>{m[a.ability.optional ? "terms.optional" : "terms.mandatory"]()}</TableCell>
               <TableCell>
                 <CastMemberDescription castMember={a.castMember} />
               </TableCell>
-              <TableCell>{t(a.ability.effect_i18n_key)}</TableCell>
+              <TableCell>{a.ability.effect()}</TableCell>
               <TableCell>{a.ability.timesPerLoop}</TableCell>
             </TableRow>
           ))}
@@ -240,7 +233,6 @@ interface IncidentsProps {
   incidents: Array<CastMemberIncidentTrigger>;
 }
 function Incidents({ incidents }: IncidentsProps): React.JSX.Element {
-  const { t } = useTranslation();
   if (incidents.length === 0) {
     return <></>;
   }
@@ -249,26 +241,26 @@ function Incidents({ incidents }: IncidentsProps): React.JSX.Element {
     <>
       <Typography variant="h3" sx={styles.headerWithIcon}>
         <Icons.Incidents />
-        {t("terms.incident", { count: incidents.length })}
+        {m["terms.incident"]({ count: incidents.length })}
       </Typography>
       <Table size="small">
         <TableHead>
           <TableRow>
-            <TableCell variant="head">{t("terms.day", { count: 1 })}</TableCell>
-            <TableCell variant="head">{t("terms.incident", { count: 1 })}</TableCell>
-            <TableCell variant="head">{t("terms.culprit")}</TableCell>
-            <TableCell variant="head">{t("terms.effect")}</TableCell>
+            <TableCell variant="head">{m["terms.day"]({ count: 1 })}</TableCell>
+            <TableCell variant="head">{m["terms.incident"]({ count: 1 })}</TableCell>
+            <TableCell variant="head">{m["terms.culprit"]()}</TableCell>
+            <TableCell variant="head">{m["terms.effect"]()}</TableCell>
           </TableRow>
         </TableHead>
         <TableBody>
           {_.sort(incidents, (i) => i.incidentTrigger.day).map(({ castMember, incidentTrigger }) => (
             <TableRow key={`cheatsheet-i-${incidentTrigger.id}`}>
               <TableCell>{incidentTrigger.day}</TableCell>
-              <TableCell>{t(incidentTrigger.incident.name_i18n_key)}</TableCell>
+              <TableCell>{incidentTrigger.incident.name()}</TableCell>
               <TableCell>
                 <CastMemberDescription castMember={castMember} />
               </TableCell>
-              <TableCell>{t(incidentTrigger.incident.effect_i18n_key)}</TableCell>
+              <TableCell>{incidentTrigger.incident.effect()}</TableCell>
             </TableRow>
           ))}
         </TableBody>
@@ -328,10 +320,9 @@ interface CastMemberDescriptionProps {
   castMember: CastMember;
 }
 function CastMemberDescription({ castMember }: CastMemberDescriptionProps): React.JSX.Element {
-  const { t } = useTranslation();
   return (
     <>
-      {t(castMember.character.name_i18n_key)} (<RoleName role={castMember.role} />)
+      {castMember.character.name()} (<RoleName role={castMember.role} />)
     </>
   );
 }
@@ -340,14 +331,13 @@ interface MastermindAbilityTriggererProps {
   mastermindAbility: MastermindAbilityTrigger;
 }
 function MastermindAbilityTriggerer({ mastermindAbility }: MastermindAbilityTriggererProps): React.JSX.Element {
-  const { t } = useTranslation();
   // If a cast member is defined, use it
   if (mastermindAbility.castMember !== undefined) {
     return <CastMemberDescription castMember={mastermindAbility.castMember} />;
   }
   // check plot next
   if (mastermindAbility.plot !== undefined) {
-    return <>{t(mastermindAbility.plot.name_i18n_key)}</>;
+    return <>{mastermindAbility.plot.name()}</>;
   }
   return <></>;
 }

@@ -1,6 +1,5 @@
 import * as React from "react";
 import * as _ from "radash";
-import { useTranslation } from "react-i18next";
 import { Script } from "../model/Script";
 import { Incident } from "../data/types/Incident";
 import { Character } from "../data/types/Character";
@@ -9,13 +8,13 @@ import { CastMember } from "../model/CastMember";
 import { Box, Divider, Paper, Table, TableBody, TableCell, TableHead, TableRow, Typography } from "@mui/material";
 import * as Icons from "./Icons";
 import { RoleName } from "./RoleName";
+import { m } from "../paraglide/messages";
 
 interface ScriptCardProps {
   script: Script;
 }
 
 export function Mastermind({ script }: ScriptCardProps): React.JSX.Element {
-  const { t } = useTranslation();
   const occurrences = describeIncidents(script.cast);
 
   return (
@@ -23,7 +22,7 @@ export function Mastermind({ script }: ScriptCardProps): React.JSX.Element {
       <Box sx={styles.section}>
         <Typography variant="h2" sx={styles.headerWithIcon}>
           <Icons.Mastermind />
-          {t("terms.mastermind")}
+          {m["terms.mastermind"]()}
         </Typography>
         <Divider variant="fullWidth" />
         <GeneralInfo script={script} mastermind={true} />
@@ -31,17 +30,17 @@ export function Mastermind({ script }: ScriptCardProps): React.JSX.Element {
         <Box sx={styles.section}>
           <Typography variant="h3" sx={styles.headerWithIcon}>
             <Icons.Cast />
-            {t("terms.cast")}
+            {m["terms.cast"]()}
           </Typography>
           <Table size="small">
             <TableHead>
               <TableRow>
-                <TableCell variant="head">{t("terms.character", { count: 1 })}</TableCell>
-                <TableCell variant="head">{t("terms.role", { count: 1 })}</TableCell>
+                <TableCell variant="head">{m["terms.character"]({ count: 1 })}</TableCell>
+                <TableCell variant="head">{m["terms.role"]({ count: 1 })}</TableCell>
               </TableRow>
             </TableHead>
             <TableBody>
-              {_.alphabetical(script.cast, (c) => t(c.character.name_i18n_key)).map((c) => (
+              {_.alphabetical(script.cast, (c) => c.character.name()).map((c) => (
                 <TableRow key={`cast-${c.id}`}>
                   <TableCell>
                     <CastMemberName castMember={c} />
@@ -60,7 +59,6 @@ export function Mastermind({ script }: ScriptCardProps): React.JSX.Element {
 }
 
 export function Players({ script }: ScriptCardProps): React.JSX.Element {
-  const { t } = useTranslation();
   const occurrences = describeIncidents(script.cast);
 
   return (
@@ -68,7 +66,7 @@ export function Players({ script }: ScriptCardProps): React.JSX.Element {
       <Box sx={styles.section}>
         <Typography variant="h2" sx={styles.headerWithIcon}>
           <Icons.Players />
-          {t("terms.player", { count: 2 })}
+          {m["terms.player"]({ count: 2 })}
         </Typography>
         <Divider variant="fullWidth" />
         <GeneralInfo script={script} mastermind={false} />
@@ -84,20 +82,19 @@ interface GeneralInfoProps {
   script: Script;
 }
 function GeneralInfo({ mastermind, script }: GeneralInfoProps): React.JSX.Element {
-  const { t } = useTranslation();
   return (
     <Table size="small" sx={styles.extraBottomMargin}>
       <TableBody>
         <TableRow>
-          <TableCell variant="head">{t("terms.tragedySet")}</TableCell>
-          <TableCell>{t(script.tragedySet.name_i18n_key)}</TableCell>
+          <TableCell variant="head">{m["terms.tragedySet"]()}</TableCell>
+          <TableCell>{script.tragedySet.name()}</TableCell>
         </TableRow>
         <TableRow>
-          <TableCell variant="head">{t("terms.castSize")}</TableCell>
+          <TableCell variant="head">{m["terms.castSize"]()}</TableCell>
           <TableCell>{script.cast.length}</TableCell>
         </TableRow>
         <TableRow>
-          <TableCell variant="head">{t("terms.loops")}</TableCell>
+          <TableCell variant="head">{m["terms.loops"]()}</TableCell>
           <TableCell>{script.loops}</TableCell>
         </TableRow>
         <MastermindOnly
@@ -105,15 +102,15 @@ function GeneralInfo({ mastermind, script }: GeneralInfoProps): React.JSX.Elemen
           render={() => (
             <>
               <TableRow>
-                <TableCell variant="head">{t("terms.mainPlot")}</TableCell>
-                <TableCell>{t(script.mainPlot.name_i18n_key)}</TableCell>
+                <TableCell variant="head">{m["terms.mainPlot"]()}</TableCell>
+                <TableCell>{script.mainPlot.name()}</TableCell>
               </TableRow>
               {script.subplots.map((subplot, i) => (
                 <TableRow key={`subplot-${i}-${subplot.id}`}>
                   <TableCell variant="head">
-                    {i === 0 ? t("terms.subplot", { count: script.subplots.length }) : ""}
+                    {i === 0 ? m["terms.subplot"]({ count: script.subplots.length }) : ""}
                   </TableCell>
-                  <TableCell>{t(subplot.name_i18n_key)}</TableCell>
+                  <TableCell>{subplot.name()}</TableCell>
                 </TableRow>
               ))}
             </>
@@ -129,22 +126,20 @@ interface IncidentsProps {
   occurrences: Array<IncidentMetadata>;
 }
 function Incidents({ mastermind, occurrences }: IncidentsProps): React.JSX.Element {
-  const { t } = useTranslation();
-
   return (
     <Box sx={styles.section}>
       <Typography variant="h3" sx={styles.headerWithIcon}>
         <Icons.Incidents />
-        {t("terms.incident", { count: occurrences.length })}
+        {m["terms.incident"]({ count: occurrences.length })}
       </Typography>
       <Table size="small" sx={styles.extraBottomMargin}>
         <TableHead>
           <TableRow>
-            <TableCell variant="head">{t("terms.day", { count: 1 })}</TableCell>
-            <TableCell variant="head">{t("terms.name")}</TableCell>
+            <TableCell variant="head">{m["terms.day"]({ count: 1 })}</TableCell>
+            <TableCell variant="head">{m["terms.name"]()}</TableCell>
             <MastermindOnly
               mastermind={mastermind}
-              render={() => <TableCell variant="head">{t("terms.culprit")}</TableCell>}
+              render={() => <TableCell variant="head">{m["terms.culprit"]()}</TableCell>}
             />
           </TableRow>
         </TableHead>
@@ -157,7 +152,7 @@ function Incidents({ mastermind, occurrences }: IncidentsProps): React.JSX.Eleme
               </TableCell>
               <MastermindOnly
                 mastermind={mastermind}
-                render={() => <TableCell>{t(occurrence.character.name_i18n_key)}</TableCell>}
+                render={() => <TableCell>{occurrence.character.name()}</TableCell>}
               />
             </TableRow>
           ))}
@@ -183,14 +178,13 @@ interface CastMemberNameProps {
   castMember: CastMember;
 }
 function CastMemberName({ castMember }: CastMemberNameProps): React.JSX.Element {
-  const { t } = useTranslation();
   const { character } = castMember;
   if (castMember.character.loopToEnter <= 1) {
-    return <>{t(character.name_i18n_key)}</>;
+    return <>{character.name()}</>;
   }
   return (
     <>
-      {t(character.name_i18n_key)} {t("terms.entersOnLoop", { loop: character.loopToEnter })}
+      {character.name()} {m["terms.entersOnLoop"]({ loop: character.loopToEnter })}
     </>
   );
 }
@@ -228,31 +222,27 @@ interface IncidentNameProps {
   mastermind: boolean;
 }
 function IncidentName({ occurrence, mastermind }: IncidentNameProps): React.JSX.Element {
-  const { t } = useTranslation();
-
   // If there's no fake incident, we're done. Just say what it's called.
   if (occurrence.fakeIncident === undefined) {
-    return <>{t(occurrence.incident.name_i18n_key)}</>;
+    return <>{occurrence.incident.name()}</>;
   }
   // By now, we know this incident has been faked.
   if (mastermind) {
     // Masterminds know what the fake incident actually is.
     return (
       <>
-        {t(occurrence.incident.name_i18n_key)} ({t(occurrence.fakeIncident.name_i18n_key)})
+        {occurrence.incident.name()} ({occurrence.fakeIncident.name()})
       </>
     );
   }
   // Players only see the fake incident.
-  return <>{t(occurrence.fakeIncident.name_i18n_key)}</>;
+  return <>{occurrence.fakeIncident.name()}</>;
 }
 
 interface TraitorWinConditionProps {
   script: Script;
 }
 function TraitorWinConditions(props: TraitorWinConditionProps): React.JSX.Element {
-  const { t } = useTranslation();
-
   const traitorWinConditions = props.script
     .plots()
     .flatMap((plot) => plot.plotRules)
@@ -267,7 +257,7 @@ function TraitorWinConditions(props: TraitorWinConditionProps): React.JSX.Elemen
     <Box sx={styles.section}>
       <Typography variant="h3" sx={styles.headerWithIcon}>
         <Icons.TraitorWinConditions />
-        {t("terms.traitorWinCondition", { count: traitorWinConditions.length })}
+        {m["terms.traitorWinCondition"]({ count: traitorWinConditions.length })}
       </Typography>
       <Table size="small" sx={styles.extraBottomMargin}>
         <TableHead>
@@ -281,8 +271,8 @@ function TraitorWinConditions(props: TraitorWinConditionProps): React.JSX.Elemen
           {_.alphabetical(traitorWinConditions, (wc) => wc.winConditionForTraitor ?? "").map((wc) => (
             <TableRow key={`wc-${wc.id}`}>
               <TableCell>{wc.winConditionForTraitor}</TableCell>
-              <TableCell>{t(wc.trigger.description_i18n_key)}</TableCell>
-              <TableCell>{t(wc.effect_i18n_key)}</TableCell>
+              <TableCell>{wc.trigger.description()}</TableCell>
+              <TableCell>{wc.effect()}</TableCell>
             </TableRow>
           ))}
         </TableBody>

@@ -1,22 +1,21 @@
 import * as React from "react";
-import { useTranslation } from "react-i18next";
 import { TragedySetPicker } from "./TragedySetPicker";
 import { NumberPicker } from "./NumberPicker";
 import { Message, State } from "../logic/State";
 import { Button, Grid, Paper } from "@mui/material";
 import * as Icons from "./Icons";
+import { m } from "../paraglide/messages";
 
 interface ScriptGeneratorProps {
   state: State;
   dispatch: React.Dispatch<Message>;
 }
 export function ScriptGenerator(props: ScriptGeneratorProps): React.JSX.Element {
-  const { t } = useTranslation();
   const { dispatch } = props;
   const { tragedySet, castSize, days, incidents, script } = props.state;
 
   if (script !== null && script.cast.length > castSize) {
-    console.warn(t("warnings.castSizeOverridden", { needed: script.cast.length }));
+    console.warn(m["warnings.castSizeOverridden"]({ needed: script.cast.length }));
   }
 
   return (
@@ -32,7 +31,7 @@ export function ScriptGenerator(props: ScriptGeneratorProps): React.JSX.Element 
         <Grid size={{ xs: 12, sm: 6, md: 3 }}>
           <NumberPicker
             id="cast-size"
-            label={t("terms.castSize")}
+            label={m["terms.castSize"]()}
             startIcon={<Icons.Cast fontSize="small" />}
             min={6}
             max={11}
@@ -43,7 +42,7 @@ export function ScriptGenerator(props: ScriptGeneratorProps): React.JSX.Element 
         <Grid size={{ xs: 12, sm: 6, md: 3 }}>
           <NumberPicker
             id="days"
-            label={t("terms.day", { count: 2 })}
+            label={m["terms.day"]({ count: 2 })}
             startIcon={<Icons.Days fontSize="small" />}
             min={4}
             max={8}
@@ -54,7 +53,7 @@ export function ScriptGenerator(props: ScriptGeneratorProps): React.JSX.Element 
         <Grid size={{ xs: 12, sm: 6, md: 3 }}>
           <NumberPicker
             id="incidents"
-            label={t("terms.incident", { count: 2 })}
+            label={m["terms.incident"]({ count: 2 })}
             startIcon={<Icons.Incidents fontSize="small" />}
             min={0}
             // NB: The inclusion of cast size here isn't strictly accurate.
@@ -75,7 +74,7 @@ export function ScriptGenerator(props: ScriptGeneratorProps): React.JSX.Element 
             variant="contained"
             onClick={() => dispatch({ action: "generate" })}
           >
-            {t("scaffolding.generateScript")}
+            {m["scaffolding.generateScript"]()}
           </Button>
         </Grid>
       </Grid>

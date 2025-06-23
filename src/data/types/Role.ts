@@ -1,4 +1,3 @@
-import { ParseKeys } from "i18next";
 import { CastMember } from "../../model/CastMember";
 import { Character } from "./Character";
 import { MastermindAbility } from "./MastermindAbility";
@@ -6,6 +5,7 @@ import { RoleAbility } from "./RoleAbility";
 import { Identifiable } from "../../@types/Identifiable";
 import { UUID } from "crypto";
 import { TragedySet } from "./TragedySet";
+import { MessageFunction } from "@inlang/paraglide-js";
 
 // no loc required, these types are just informational for generation - no ui
 type Culprit = "Never" | "Optional" | "Mandatory";
@@ -23,7 +23,7 @@ interface CommonRole extends Identifiable {
 
 export class Role implements CommonRole {
   readonly id: UUID;
-  readonly name_i18n_key: ParseKeys;
+  readonly name: MessageFunction;
   readonly unkillable: boolean;
   readonly culprits: Set<Culprit>;
   readonly connectedToBoard: boolean;
@@ -37,7 +37,7 @@ export class Role implements CommonRole {
 
   constructor(role: RoleArgs, condition?: RoleCondition) {
     this.id = role.id;
-    this.name_i18n_key = role.name_i18n_key;
+    this.name = role.name;
     this.unkillable = role.unkillable;
     this.culprits = new Set([role.culprit]);
     this.connectedToBoard = role.connectedToBoard;
@@ -87,7 +87,7 @@ export class DualRole implements CommonRole {
 // Create it with just a base role.
 interface RoleArgs {
   readonly id: UUID;
-  readonly name_i18n_key: ParseKeys;
+  readonly name: MessageFunction;
   readonly unkillable: boolean;
   readonly culprit: Culprit;
   readonly connectedToBoard: boolean;
