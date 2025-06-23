@@ -9,7 +9,7 @@
     "coverage": "pnpm test -- --coverage",
     "mutate": "stryker run",
     "preview": "vite preview",
-    "build": "pnpm build:i18n && tsc && vite build",
+    "build": "vite build && tsc",
     "prettier": "prettier --check .",
     "format": "prettier --write .",
     "lint": "pnpm lint:ts && pnpm prettier && pnpm lint:md",
