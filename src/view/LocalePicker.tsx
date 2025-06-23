@@ -1,16 +1,16 @@
 import * as React from "react";
 import { Box, MenuItem, Select, SvgIcon } from "@mui/material";
-import SupportedLanguages, { SupportedLanguage } from "../@types/SupportedLanguages";
+import { Locale, locales } from "../paraglide/runtime";
 
-interface LanguagePickerProps {
-  value: SupportedLanguage;
-  onChange: (s: SupportedLanguage) => void;
+interface LocalePickerProps {
+  value: Locale;
+  onChange: (s: Locale) => void;
 }
 
-export function LanguagePicker(props: LanguagePickerProps) {
+export function LocalePicker(props: LocalePickerProps) {
   return (
-    <Select value={props.value} onChange={(e) => props.onChange(e.target.value as SupportedLanguage)} size="small">
-      {SupportedLanguages.map((lang) => (
+    <Select value={props.value} onChange={(e) => props.onChange(e.target.value)} size="small">
+      {locales.map((lang) => (
         <MenuItem key={`lng-${lang}`} value={lang}>
           <Box sx={{ display: "flex", flexDirection: "row", gap: 1 }}>
             <SvgIcon>{flags[lang]}</SvgIcon>
@@ -22,7 +22,7 @@ export function LanguagePicker(props: LanguagePickerProps) {
   );
 }
 
-const flags: Record<SupportedLanguage, React.JSX.Element> = {
+const flags: Record<Locale, React.JSX.Element> = {
   en: (
     // <https://en.wikipedia.org/wiki/File:Flag_of_the_United_Kingdom.svg>
     <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 50 30" width="1000" height="600">

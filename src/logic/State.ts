@@ -1,8 +1,8 @@
-import * as TragedySets from "../data/TragedySets";
 import { TragedySet } from "../data/types/TragedySet";
 import { Script } from "../model/Script";
 import { produce } from "immer";
 import { generate } from "./generator/generate";
+import { Locale } from "../paraglide/runtime";
 
 export interface State {
   tragedySet: TragedySet;
@@ -10,6 +10,7 @@ export interface State {
   days: number;
   incidents: number;
   script: MaybeScript;
+  locale: Locale;
 }
 
 export type Message =
@@ -17,7 +18,8 @@ export type Message =
   | { action: "set-cast-size"; value: number }
   | { action: "set-days"; value: number }
   | { action: "set-incidents"; value: number }
-  | { action: "generate" };
+  | { action: "generate" }
+  | { action: "set-locale"; value: Locale };
 
 export function reducer(state: State, message: Message): State {
   switch (message.action) {
@@ -50,17 +52,13 @@ export function reducer(state: State, message: Message): State {
           castSize: state.castSize,
         });
       });
+    case "set-locale":
+      return produce(state, (next) => {
+        next.locale = message.value;
+      });
     default:
       return state;
   }
 }
-
-export const initialState: State = {
-  tragedySet: TragedySets.firstSteps,
-  castSize: 9,
-  days: 7,
-  incidents: 4,
-  script: null,
-};
 
 export type MaybeScript = Script | null;

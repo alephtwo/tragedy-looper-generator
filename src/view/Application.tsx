@@ -1,28 +1,29 @@
 import * as React from "react";
-import { useEffect, useState, useReducer } from "react";
+import { useReducer, useEffect } from "react";
 import { ScriptGenerator } from "./ScriptGenerator";
-import { reducer, initialState } from "../logic/State";
+import { reducer } from "../logic/State";
 import * as ScriptCard from "./ScriptCard";
 import { Cheatsheet } from "./Cheatsheet";
-import { LanguagePicker } from "./LanguagePicker";
-import { SupportedLanguage } from "../@types/SupportedLanguages";
+import { LocalePicker } from "./LocalePicker";
 import { Container, Grid, Stack, Typography, colors } from "@mui/material";
 import { m } from "../paraglide/messages";
-import { setLocale } from "../paraglide/runtime";
+import * as TragedySets from "../data/TragedySets";
+import { getLocale, setLocale } from "../paraglide/runtime";
 
 export function Application(): React.JSX.Element {
-  const [state, dispatch] = useReducer(reducer, initialState);
-  const [lang, setLang] = useState<SupportedLanguage>("en");
+  const [state, dispatch] = useReducer(reducer, {
+    tragedySet: TragedySets.firstSteps,
+    castSize: 9,
+    days: 7,
+    incidents: 4,
+    script: null,
+    locale: getLocale(),
+  });
   const { script } = state;
 
   useEffect(() => {
     document.title = m["scaffolding.title"]();
-  }, []);
-
-  useEffect(() => {
-    setLocale(lang, { reload: false });
-    document.documentElement.setAttribute("lang", lang);
-  }, [lang]);
+  });
 
   function ScriptInfo(): React.JSX.Element {
     if (script === null) {
@@ -48,7 +49,15 @@ export function Application(): React.JSX.Element {
       <Stack gap={1}>
         <Stack direction="row" justifyContent="space-between">
           <PageTitle />
-          <LanguagePicker value={lang} onChange={setLang} />
+          <LocalePicker
+            value={state.locale}
+            onChange={(locale) => {
+              setLocale(locale, { reload: false });
+              document.documentElement.setAttribute("lang", locale);
+              document.title = m["scaffolding.title"]();
+              dispatch({ action: "set-locale", value: locale });
+            }}
+          />
         </Stack>
         <ScriptGenerator state={state} dispatch={dispatch} />
         <ScriptInfo />
