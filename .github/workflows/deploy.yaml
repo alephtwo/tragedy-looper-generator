@@ -34,7 +34,7 @@ jobs:
       - name: "Set up Node"
         uses: "actions/setup-node@v4"
         with:
-          node-version: "lts/iron"
+          node-version: "lts/jod"
           cache: "pnpm"
       - name: "Install dependencies"
         run: "pnpm install --frozen-lockfile"
