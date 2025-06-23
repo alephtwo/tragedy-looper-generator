@@ -1,30 +1,30 @@
 {
   "$schema": "https://inlang.com/schema/inlang-message-format",
   "characters": {
-    "boyStudent": "Étudiant garçon",
-    "girlStudent": "Étudiante",
-    "richMansDaughter": "La fille de l'homme riche",
-    "shrineMaiden": "Jeune fille du sanctuaire",
+    "boyStudent": "Lycéen",
+    "girlStudent": "Lycéenne",
+    "richMansDaughter": "Riche héritière",
+    "shrineMaiden": "Gardienne du sanctuaire",
     "policeOfficer": "Policier",
     "officeWorker": "Employé de bureau",
-    "informer": "Informateur",
+    "informer": "Informatrice",
     "doctor": "Médecin",
     "patient": "Patient",
-    "classRep": "délégué de classe",
+    "classRep": "Déléguée de classe",
     "mysteryBoy": "Garçon mystérieux",
-    "alien": "Étranger",
-    "godlyBeing": "Être divin",
-    "popIdol": "Pop Idol",
+    "alien": "Extraterrestre",
+    "godlyBeing": "Etre divin",
+    "popIdol": "Pop star",
     "journalist": "Journaliste",
-    "boss": "Chef",
+    "boss": "Boss",
     "nurse": "Infirmière",
-    "henchman": "Acolyte",
+    "henchman": "Sbire",
     "scientist": "Scientifique",
-    "forensicSpecialist": "spécialiste en médecine légale",
-    "ai": "IA",
+    "forensicSpecialist": "Spécialiste médico-légal",
+    "ai": "I.A.",
     "illusion": "Illusion",
-    "teacher": "Professeur",
-    "transferStudent": "Étudiant transféré",
+    "teacher": "Enseignante",
+    "transferStudent": "Etudiante exclue",
     "blackCat": "Chat noir",
     "soldier": "Soldat"
   },
@@ -39,16 +39,16 @@
       "effect": "Un (1) autre personnage à l'emplacement du coupable meurt."
     },
     "increasingUnease": {
-      "name": "Malaise croissant",
-      "effect": "Placez 2 Paranoïa sur n'importe quel personnage et 1 Intrigue sur un autre.\nPlacez 2 intrigues sur le sanctuaire."
+      "name": "Malaise grandissant",
+      "effect": "+2 Paranoïa sur un personnage, puis +1 Intrigue sur un autre personnage."
     },
     "suicide": {
       "name": "Suicide",
-      "effect": "Le coupable meurt."
+      "effect": "Le coupable décède."
     },
     "hospitalIncident": {
-      "name": "Incident à l'hôpital",
-      "effect": "Si au moins 1 intrigue se produit à l'hôpital : tout le monde à l'hôpital meurt.\nSi au moins 2 Intrigues se produisent à l'hôpital, les protagonistes meurent."
+      "name": "Incident à l’Hôpital",
+      "effect": "Si au moins 1 Intrigue sur l’Hôpital: tous les personnages sur l’Hôpital décèdent.\nSi au moins 2 Intrigue sur l’Hôpital: les Protagonistes décèdent."
     },
     "farawayMurder": {
       "name": "Meurtre lointain",
@@ -56,7 +56,7 @@
     },
     "missingPerson": {
       "name": "Personne disparue",
-      "effect": "Déplacez le coupable à n'importe quel endroit. Placez 1 Intrigue à cet endroit."
+      "effect": "Déplacez le coupable vers un lieu (peut être le même). Puis +1 Intrigue sur ce lieu."
     },
     "spreading": {
       "name": "Diffusion",
@@ -72,111 +72,111 @@
     },
     "conspiracies": {
       "name": "Conspirations",
-      "effect": "[Cochez Intrigue au lieu de Paranoïa pour déclencher l'incident.] Résolvez un incident de « Meurtre en série » ou de « Personne disparue »."
+      "effect": "[Utiliser l’Intrigue à la place de la Paranoïa pour déclencher l’Incident] Résolvez l’Incident Meurtre ou Personne disparue."
     },
     "uproar": {
       "name": "Tumulte",
-      "effect": "S'il y a au moins 1 intrigue sur l'école : tout le monde dans l'école meurt.\nS'il y a au moins 1 intrigue dans la ville, tout le monde dans la ville meurt."
+      "effect": "Si au moins 1 Intrigue au Lycée: tous les personnages au Lycée décèdent.\nSi au moins 1 Intrigue en Centre Ville: tous les personnages en Centre Ville décède."
     },
     "fakeIncident": {
-      "name": "Faux incident",
-      "effect": "S'il y a au moins 2 Intrigues sur le lieu de départ du coupable, les Protagonistes meurent."
+      "name": "Incident truqué",
+      "effect": "S’il y a 2 Intrigue ou plus sur le lieu de départ du coupable, les Protagonistes décèdent."
     },
     "breakthrough": {
-      "name": "Percée",
-      "effect": "Le chef protagoniste choisit un lieu ou un personnage et en retire 2 intrigues."
+      "name": "Découverte capitale",
+      "effect": "Le Leader choisit un lieu ou un personnage, et y retire 2 Intrigue."
     },
     "fakedSuicide": {
-      "name": "Suicide simulé",
-      "effect": "Placez une carte Extra sur le coupable. Pendant le reste de la boucle, les protagonistes ne peuvent plus jouer de carte sur les personnages possédant une carte Extra."
+      "name": "Faux suicide",
+      "effect": "Ajoutez une carte Extra sur le coupable. Pour le reste de la boucle, les Protagonistes ne peuvent jouer aucune carte sur un personnage possédant une (ou plusieurs) carte Extra."
     },
     "confession": {
       "name": "Confession",
-      "effect": "Révéler le coupable et le rôle du coupable."
+      "effect": "Révélez le coupable et son rôle."
     },
     "portent": {
       "name": "Présage",
-      "effect": "[Pour déterminer si cet incident se déclenche ou non, considérez la limite de paranoïa du coupable comme étant inférieure de 1 à sa limite imprimée.] Placez 1 paranoïa sur n'importe quel personnage à l'emplacement du coupable."
+      "effect": "[La limite de Paranoïa du coupable est diminuée de 1 pour cet Incident] +1 Paranoïa sur un personnage du lieu du coupable."
     },
     "terrorism": {
       "name": "Terrorisme",
-      "effect": "Si au moins 1 Intrigue se produit dans la Ville : Tout le monde dans la Ville meurt.\nSi au moins 2 Intrigues sur la Ville : Les Protagonistes meurent."
+      "effect": "Si au moins 1 Intrigue en Centre Ville: tous les personnages en Centre Ville décèdent.\nSi au moins 2 Intrigue en Centre Ville: les Protagonistes décèdent."
     },
     "bestialMurder": {
       "name": "Meurtre bestial",
-      "effect": "[Pour déterminer si cet incident se déclenche ou non, considérez la limite de Paranoïa du coupable comme supérieure de 1 à sa limite imprimée.] Résolvez « Meurtre en série » et « Malaise croissant » dans cet ordre. Augmentez ensuite la jauge supplémentaire d'un cran."
+      "effect": "[La limite de Paranoïa du coupable est augmentée de 1 pour cet Incident] Résolvez Meurtre et Malaise grandissant, dans cet ordre. Puis augmentez la jauge Extra de 1."
     },
     "aSuspiciousLetter": {
-      "name": "Une lettre suspecte",
-      "effect": "Déplacez n'importe quel personnage se trouvant à l'emplacement du coupable vers n'importe quel endroit. Si le personnage a effectivement changé d'emplacement, il ne peut pas être déplacé le lendemain."
+      "name": "Un courrier suspect",
+      "effect": "Déplacez un personnage du lieu du coupable vers un lieu. Si ce personnage change de lieu, il ne peut pas se déplacer le jour suivant."
     },
     "closedCircle": {
-      "name": "Cercle fermé",
-      "effect": "Révélez l'emplacement du coupable. Pendant 3 jours, y compris le jour de l'incident, tout mouvement vers ou depuis cet emplacement est annulé."
+      "name": "Cercle privé",
+      "effect": "Révélez le lieu du coupable. Pendant 3 jours (en incluant celui de l’Incident), les déplacements depuis ou vers ce lieu sont annulés."
     },
     "theSilverBullet": {
-      "name": "La balle d'argent",
-      "effect": "La boucle se termine après cette étape d'incident (entraînant une victoire du protagoniste, sauf si une condition de perte est remplie). Cet incident n'augmente pas la jauge supplémentaire."
+      "name": "La balle en argent",
+      "effect": "La boucle se termine après la phase Incident. Cet Incident n’augmente pas la jauge Extra. Vérifiez la victoire/défaite."
     },
     "sacrilegiousMurder": {
       "name": "Meurtre sacrilège",
-      "effect": "Soit tuez un autre personnage au même endroit que le coupable, soit placez une intrigue à l'emplacement du coupable."
+      "effect": "Un autre personnage dans le lieu du coupable décède ou +1 Intrigue sur le lieu du coupable."
     },
     "theExecutioner": {
       "name": "Le bourreau",
-      "effect": "Le chef choisit un personnage. Ce personnage est tué."
+      "effect": "Quand on détermine si cet Incident se déclenche, le coupable est considéré comme ayant sa limite de Paranoïa diminuée de 1. Le Leader choisit un personnage, ce personnage décède."
     },
     "darkRumor": {
-      "name": "Rumeur sombre",
-      "effect": "Attachez une malédiction sur le coupable."
+      "name": "Sombre rumeur",
+      "effect": "Attachez une Malédiction sur le coupable."
     },
     "barricade": {
       "name": "Barricade",
-      "effect": "Pour chaque autre personnage dans l'emplacement du coupable, choisissez n'importe quel autre emplacement et déplacez le personnage là-bas."
+      "effect": "Pour chaque autre personnage dans le lieu du coupable, sélectionnez un autre lieu et déplacez-y cet autre personnage."
     },
     "evilContamination": {
-      "name": "Contamination maléfique",
-      "effect": "Placez 2 intrigues sur le sanctuaire."
+      "name": "Mal odieux",
+      "effect": "+2 Intrigue sur le Sanctuaire."
     },
     "nightOfMadness": {
-      "name": "Nuit de folie",
-      "effect": "[Incident de foule : 0 (se produira toujours)] S'il y a 6 zombies ou plus lorsque cet incident se produit, les protagonistes mourront après la fin de la journée."
+      "name": "Folie nocturne",
+      "effect": "[Incident de foule: 0 (se déclenche toujours)+ S’il y a au moins 6 Zombies lorsque cet Incident se déclenche, les Protagonistes décèdent après la fin de la journée."
     },
     "awakenedCurse": {
-      "name": "Malédiction de l'éveil",
-      "effect": "[Incident de foule : 1] Placez une malédiction sur l'emplacement du coupable."
+      "name": "Malédiction en éveil",
+      "effect": "[Incident de foule: 1] Placez une Malédiction sur le lieu du coupable."
     },
     "evangeliumOfTheDead": {
-      "name": "Évangile des morts",
-      "effect": "[Incident de foule : 2] Tuez tous les personnages présents dans la zone du coupable. Si cette zone contient 5 cadavres ou plus, les protagonistes sont tués."
+      "name": "Evangile de la mort",
+      "effect": "[Incident de foule: 2] Tous les personnages dans le lieu du coupable décèdent. Puis, s’il y a 5 cadavres ou plus sur ce lieu, les Protagonistes décèdent."
     },
     "fountainOfFilth": {
-      "name": "Fontaine de saleté",
-      "effect": "[Incident de foule : 2] Placez 2 Paranoïa sur n'importe quel personnage et une Intrigue sur n'importe quel lieu."
+      "name": "Fontaine de la saleté",
+      "effect": "[Incident de foule: 2] +2 Paranoïa sur un personnage, et +1 Intrigue sur un lieu."
     },
     "insaneMurder": {
-      "name": "Meurtre insensé",
-      "effect": "Tuez n'importe quel personnage se trouvant au même endroit que le coupable."
+      "name": "Folie meurtrière",
+      "effect": "Un personnage dans le même lieu que le coupable décède."
     },
     "massSuicide": {
       "name": "Suicide de masse",
-      "effect": "Si le coupable a au moins 1 Intrigue, tous les personnages à l'emplacement du coupable sont tués."
+      "effect": "Si le coupable a 1 Intrigue ou plus, tous les personnages dans le lieu du coupable décèdent."
     },
     "fireOfDemise": {
-      "name": "Le feu de la mort",
-      "effect": "La première fois que cet incident se produit dans cette session de jeu, tous les personnages et les protagonistes sont tués."
+      "name": "Feu du trépas",
+      "effect": "La première fois que cet Incident se déclenche lors de la partie, tous les personnages et les Protagonistes décèdent."
     },
     "houndDogScent": {
-      "name": "Odeur de chien de chasse",
-      "effect": "Pour déterminer si cet incident se produit ou non, comptez l'intrigue plutôt que la paranoïa.\nPour le reste de la boucle, si un autre incident se produit, les protagonistes sont tués après l'étape de l'incident."
+      "name": "Flair du chien de chasse",
+      "effect": "[Utiliser l’Intrigue à la place de la Paranoïa pour déclencher l’Incident] Pour le reste de la boucle, si un autre Incident se déclenche, les Protagonistes décèdent."
     },
     "discovery": {
       "name": "Découverte",
-      "effect": "Augmentez la jauge supplémentaire d'un cran."
+      "effect": "Augmentez la jauge Extra de 1."
     },
     "serialMurder": {
-      "name": "Meurtre en série",
-      "effect": "Un autre personnage dans la localité du coupable meurt."
+      "name": "Meurtre",
+      "effect": "Un autre personnage dans le lieu du coupable décède."
     },
     "theExecutor": {
       "name": "L'exécuteur testamentaire",
@@ -232,10 +232,10 @@
     }
   },
   "locations": {
-    "city": "Ville",
+    "city": "Centre ville",
     "hospital": "Hôpital",
-    "school": "École",
-    "shrine": "Tombeau",
+    "school": "Lycée",
+    "shrine": "Sanctuaire",
     "chooseEveryLoop": "Choisissez chaque boucle"
   },
   "plots": {
@@ -559,7 +559,7 @@
       "name": "Personne"
     },
     "keyPerson": {
-      "name": "Personne clé",
+      "name": "Personnage clé",
       "roleAbility": "Les protagonistes perdent et la boucle se termine immédiatement."
     },
     "killer": {
@@ -576,7 +576,7 @@
       "roleAbility": "Ignorer les effets d'Intrigue interdite à cet endroit ou sur les personnages à cet endroit."
     },
     "conspiracyTheorist": {
-      "name": "Théoricien du complot",
+      "name": "Conspirationniste",
       "mastermindAbility": "Placez 1 Paranoïa sur un personnage à cet endroit."
     },
     "serialKiller": {
@@ -592,7 +592,7 @@
       "roleAbility2": "Si ce rôle a été révélé, ce personnage obtient 1 Bonne Volonté."
     },
     "timeTraveller": {
-      "name": "Voyageur dans le temps",
+      "name": "Voyageur temporel",
       "roleAbility1": "Ignorer Forbid Goodwill pour ce personnage.",
       "roleAbility2": "S'il y a 2 points de Bonne Volonté ou moins sur ce personnage, les protagonistes perdent."
     },
@@ -601,12 +601,12 @@
       "roleAbility": "Ce personnage obtient 6 Paranoïa."
     },
     "lovedOne": {
-      "name": "Bien-aimé",
+      "name": "Bien aimé",
       "roleAbility1": "Ce personnage obtient 6 Paranoïa.",
       "roleAbility2": "Si ce personnage a au moins 3 Paranoïa et au moins 1 Intrigue, les Protagonistes perdent."
     },
     "factor": {
-      "name": "Facteur",
+      "name": "Agent dormant",
       "roleAbility1": "S'il y a au moins 2 Intrigues sur l'École, ce personnage gagne la capacité du Théoricien du complot (mais pas son rôle).",
       "roleAbility2": "S'il y a au moins 2 Intrigues dans la Ville, ce personnage gagne la capacité de la Personne Clé (mais pas son rôle)."
     },
@@ -641,11 +641,11 @@
       "roleAbility2": "Si la jauge supplémentaire est à 4 ou plus, les protagonistes perdent."
     },
     "fool": {
-      "name": "Idiot",
+      "name": "Fou",
       "roleAbility": "Après que ce personnage a déclenché un incident, retirez toute la Paranoïa de sa carte."
     },
     "privateInvestigator": {
-      "name": "détective privé",
+      "name": "Détective privé",
       "roleAbility": "Si la jauge supplémentaire est à 0 et que le coupable se trouve à cet endroit, l'incident se déclenche quel que soit le nombre de paranoïa du coupable."
     },
     "paranoiac": {
@@ -653,11 +653,11 @@
       "mastermindAbility": "Vous pouvez placer une Intrigue ou une Paranoïa sur ce personnage."
     },
     "twin": {
-      "name": "Double",
+      "name": "Jumeau",
       "roleAbility": "Lorsque ce personnage déclenche un incident, il est considéré comme étant à l'emplacement diagonalement opposé."
     },
     "therapist": {
-      "name": "Thérapeute",
+      "name": "Psychiatre",
       "mastermindAbility": "Si la jauge supplémentaire est de 1 ou plus, retirez 1 paranoïa de tout autre personnage à cet endroit."
     },
     "vampire": {
@@ -666,7 +666,7 @@
       "roleAbility2": "S'il y a au moins 2 cadavres à l'emplacement de départ de ce personnage, vous pouvez tuer les protagonistes."
     },
     "werewolf": {
-      "name": "loup-garou",
+      "name": "Loup-garou",
       "roleAbility1": "Si la Nuit de la Folie a eu lieu ce jour-là, vous pouvez tuer les protagonistes.",
       "roleAbility2": "Le Mastermind ne peut pas placer de cartes sur ce personnage."
     },
@@ -680,7 +680,7 @@
       "mastermindAbility": "Si cette carte est un cadavre, placez 1 Paranoïa sur n'importe quel personnage dans cet emplacement, ou sur n'importe quel personnage dans l'emplacement de départ du Fantôme."
     },
     "showOff": {
-      "name": "Frimer",
+      "name": "Frimeur",
       "roleAbility": "Si ce personnage a plus de 2 Paranoïa, il perd l'aspect Indestructible et gagne le Refus de Bonne Volonté Obligatoire."
     },
     "coward": {
@@ -688,12 +688,12 @@
       "roleAbility": "Si ce personnage a 2 paranoïas ou plus, choisissez un emplacement voisin et déplacez-y ce personnage."
     },
     "sacrifice": {
-      "name": "Sacrifier",
+      "name": "Sacrifié",
       "roleAbility1": "Si ce personnage a au moins 2 Intrigue et au moins 2 Paranoïa, vous pouvez tuer tous les personnages et les protagonistes.",
       "roleAbility2": "Pour déterminer si un incident dont ce personnage est le coupable se produira, traitez également l'intrigue comme de la paranoïa."
     },
     "deepOne": {
-      "name": "Profondeur",
+      "name": "Profond",
       "roleAbility": "Révélez le rôle de ce personnage et augmentez la jauge supplémentaire d'un cran.",
       "mastermindAbility": "Vous pouvez placer 1 Intrigue sur cet emplacement ou sur n'importe quel personnage à cet emplacement."
     },
@@ -707,7 +707,7 @@
       "roleAbility2": "Si la jauge supplémentaire est de 2 ou plus, ce personnage acquiert les capacités d'un Deep One."
     },
     "wizard": {
-      "name": "Magicien",
+      "name": "Sorcier",
       "roleAbility1": "Si ce personnage est mort, les protagonistes perdent.",
       "roleAbility2": "Lorsque la capacité Bonne Volonté de ce personnage est utilisée, révélez ce rôle après la résolution. Le chef peut alors augmenter la Jauge Extra d'un cran."
     },
@@ -896,10 +896,10 @@
   "tragedySets": {
     "firstSteps": "Premiers pas",
     "basicTragedy": "Tragédie de base",
-    "midnightZone": "Zone de minuit",
-    "mysteryCircle": "Cercle Mystère",
-    "primeEvil": "Le Mal primordial",
-    "cosmicMythology": "Mythologie cosmique",
+    "midnightZone": "Zone aphotique / Zone sombre",
+    "mysteryCircle": "Cercle mystérieux",
+    "primeEvil": "Le Mal original",
+    "cosmicMythology": "Mythologie Cosmique",
     "lastLiar": "Le dernier menteur",
     "anotherHorizon": "Un autre horizon"
   },
