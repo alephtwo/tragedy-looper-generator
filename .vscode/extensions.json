@@ -1,0 +1,8 @@
+{
+  "recommendations": [
+    "esbenp.prettier-vscode",
+    "vitest.explorer",
+    "inlang.vs-code-extension",
+    "netcorext.uuid-generator"
+  ]
+}

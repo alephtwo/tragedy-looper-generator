@@ -1,10 +1,10 @@
-import { ParseKeys } from "i18next";
 import { Trigger } from "./Trigger";
 import { Identifiable } from "../../@types/Identifiable";
+import { MessageFunction } from "@inlang/paraglide-js";
 
 export interface PlotRule extends Identifiable {
   id: string;
-  effect_i18n_key: ParseKeys;
+  effect: MessageFunction;
   trigger: Trigger;
   winCondition: boolean;
   winConditionForTraitor?: "A" | "B" | "C";

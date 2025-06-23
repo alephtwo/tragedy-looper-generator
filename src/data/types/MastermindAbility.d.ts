@@ -1,7 +1,7 @@
-import { ParseKeys } from "i18next";
+import type { MessageFunction } from "@inlang/paraglide-js";
 
 export interface MastermindAbility {
-  effect_i18n_key: ParseKeys;
+  effect: MessageFunction;
   timesPerDay?: number;
   timesPerLoop?: number | string;
   optional: boolean;

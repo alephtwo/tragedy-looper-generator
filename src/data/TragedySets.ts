@@ -3,10 +3,11 @@ import * as Incidents from "./Incidents";
 import * as MainPlots from "./MainPlots";
 import * as Subplots from "./Subplots";
 import * as Characters from "./Characters";
+import { m } from "../paraglide/messages";
 
 export const firstSteps: TragedySet = {
   id: "a9c05e8e-b55c-4d98-8b40-714db57ca38f",
-  name_i18n_key: "tragedySets.firstSteps",
+  name: m["tragedySets.firstSteps"],
   order: 1,
   characters: [
     Characters.boyStudent,
@@ -43,7 +44,7 @@ export const firstSteps: TragedySet = {
 
 export const basicTragedy: TragedySet = {
   id: "6fc0092a-8a5b-429f-8fb9-8e1e8e5678d0",
-  name_i18n_key: "tragedySets.basicTragedy",
+  name: m["tragedySets.basicTragedy"],
   order: 2,
   characters: [
     Characters.boyStudent,
@@ -96,7 +97,7 @@ export const basicTragedy: TragedySet = {
 
 export const midnightZone: TragedySet = {
   id: "519c5fd0-2c3c-4fcf-92f0-1b9095a9abd8",
-  name_i18n_key: "tragedySets.midnightZone",
+  name: m["tragedySets.midnightZone"],
   order: 3,
   characters: [
     Characters.boyStudent,
@@ -155,7 +156,7 @@ export const midnightZone: TragedySet = {
 
 export const mysteryCircle: TragedySet = {
   id: "91b319b1-9ecb-4dd4-8392-3bffdec3c712",
-  name_i18n_key: "tragedySets.mysteryCircle",
+  name: m["tragedySets.mysteryCircle"],
   order: 4,
   characters: [
     Characters.boyStudent,
@@ -214,7 +215,7 @@ export const mysteryCircle: TragedySet = {
 
 export const primeEvil: TragedySet = {
   id: "54b3babd-74f4-4631-a92e-fad8e4989fd5",
-  name_i18n_key: "tragedySets.primeEvil",
+  name: m["tragedySets.primeEvil"],
   order: 5,
   characters: [
     Characters.boyStudent,
@@ -273,7 +274,7 @@ export const primeEvil: TragedySet = {
 
 export const cosmicMythology: TragedySet = {
   id: "1335ccdc-8187-48ae-83e7-56cdf1aa5a05",
-  name_i18n_key: "tragedySets.cosmicMythology",
+  name: m["tragedySets.cosmicMythology"],
   order: 6,
   characters: [
     Characters.boyStudent,
@@ -332,7 +333,7 @@ export const cosmicMythology: TragedySet = {
 
 export const lastLiar: TragedySet = {
   id: "48f805ce-d633-4c65-8b30-0386a773cee0",
-  name_i18n_key: "tragedySets.lastLiar",
+  name: m["tragedySets.lastLiar"],
   order: 7,
   characters: [
     // Last Liar is based on Basic Tragedy, which uses the basic characters.
@@ -388,7 +389,7 @@ export const lastLiar: TragedySet = {
 
 export const anotherHorizon: TragedySet = {
   id: "b3f5493a-c495-4010-b13c-594329a50b5f",
-  name_i18n_key: "tragedySets.anotherHorizon",
+  name: m["tragedySets.anotherHorizon"],
   order: 8,
   characters: [
     // Another Horizon is based on Basic Tragedy, which uses the basic characters.

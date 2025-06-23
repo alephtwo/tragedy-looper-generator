@@ -1,11 +1,11 @@
 import * as React from "react";
 import * as _ from "radash";
 import * as TragedySets from "../data/TragedySets";
-import { useTranslation } from "react-i18next";
 import { TragedySet } from "../data/types/TragedySet";
 import { findById } from "../util/findById";
 import { FormControl, FormLabel, MenuItem, Select, Typography } from "@mui/material";
 import * as Icons from "./Icons";
+import { m } from "../paraglide/messages";
 
 interface TragedySetPickerProps {
   id?: string;
@@ -13,14 +13,12 @@ interface TragedySetPickerProps {
   onChange: (ts: TragedySet) => void;
 }
 export function TragedySetPicker(props: TragedySetPickerProps): React.JSX.Element {
-  const { t } = useTranslation();
-
   return (
     <FormControl fullWidth>
       <FormLabel htmlFor={props.id}>
         <Typography sx={styles.headerWithIcon}>
           <Icons.TragedySet fontSize="small" />
-          {t("terms.tragedySet")}
+          {m["terms.tragedySet"]()}
         </Typography>
       </FormLabel>
       <Select
@@ -32,7 +30,7 @@ export function TragedySetPicker(props: TragedySetPickerProps): React.JSX.Elemen
       >
         {_.sort(Object.values(TragedySets), (a) => a.order).map((ts) => (
           <MenuItem key={`ts-${ts.id}`} value={ts.id}>
-            {t(ts.name_i18n_key)}
+            {ts.name()}
           </MenuItem>
         ))}
       </Select>

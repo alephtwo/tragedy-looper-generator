@@ -1,4 +1,5 @@
 {
+  "$schema": "https://inlang.com/schema/inlang-message-format",
   "characters": {
     "boyStudent": "Boy Student",
     "girlStudent": "Girl Student",
@@ -238,7 +239,9 @@
     "chooseEveryLoop": "Choose Every Loop"
   },
   "plots": {
-    "murderPlanBasic": { "name": "Murder Plan (Basic)" },
+    "murderPlanBasic": {
+      "name": "Murder Plan (Basic)"
+    },
     "theSealedItemBasic": {
       "name": "The Sealed Item (Basic)",
       "plotRule": "If there are at least 2 Intrigue counters on the Shrine, the Protagonists lose."
@@ -275,12 +278,16 @@
       "name": "Male Confrontation",
       "plotRule": "If the Ninja (or its corpse) has at least 2 Intrigue, the Protagonists lose."
     },
-    "theDevilsHand": { "name": "The Devil's Hand" },
+    "theDevilsHand": {
+      "name": "The Devil's Hand"
+    },
     "fatedConnections": {
       "name": "Fated Connections",
       "plotRule": "Choosen one character that died during the previous loop. Place any Extra Card on that character. Character(s) with an Extra card have their role changed into a Key Person."
     },
-    "murderPlanMysteryCircle": { "name": "Murder Plan (Mystery Circle)" },
+    "murderPlanMysteryCircle": {
+      "name": "Murder Plan (Mystery Circle)"
+    },
     "aQuiltOfIncidents": {
       "name": "A Quilt of Incidents",
       "plotRule": "If the Extra Gauge is 3 or more, the Protagonists lose."
@@ -297,9 +304,15 @@
       "name": "A Drop of Strychnine",
       "plotRule": "When determining whether \"Serial Murder\" or \"Suicide\" triggers, count Intrigue also as Paranoia."
     },
-    "aNobleBloodline": { "name": "A Noble Bloodline" },
-    "moonlightBeast": { "name": "Moonlight Beast" },
-    "nightMistNightmare": { "name": "Night Mist Nightmare" },
+    "aNobleBloodline": {
+      "name": "A Noble Bloodline"
+    },
+    "moonlightBeast": {
+      "name": "Moonlight Beast"
+    },
+    "nightMistNightmare": {
+      "name": "Night Mist Nightmare"
+    },
     "theOnesFromTheGrave": {
       "name": "The Ones from the Grave",
       "plotRule": "All corpses that had the role Person, Coward, or Show-Off change into having the role of Zombie."
@@ -329,9 +342,15 @@
       "name": "Bloody Rites",
       "plotRule": "If there are as many or more corpses as the Extra Gauge shows, the Protagonists lose. If the Extra Gauge is on zero, the Protagonists automatically lose."
     },
-    "circleOfFriends": { "name": "Circle of Friends" },
-    "aLoveAffairBasic": { "name": "A Love Affair (Basic)" },
-    "theHiddenFreakBasic": { "name": "The Hidden Freak (Basic)" },
+    "circleOfFriends": {
+      "name": "Circle of Friends"
+    },
+    "aLoveAffairBasic": {
+      "name": "A Love Affair (Basic)"
+    },
+    "theHiddenFreakBasic": {
+      "name": "The Hidden Freak (Basic)"
+    },
     "anUnsettlingRumorBasic": {
       "name": "An Unsettling Rumor (Basic)",
       "mastermindAbility": "You may place 1 Intrigue in any location."
@@ -344,11 +363,21 @@
       "name": "Threads of Fate",
       "plotRule": "Place 2 Paranoia on all characters who or whose corpse had Goodwill last loop."
     },
-    "unknownFactorX": { "name": "Unknown Factor X" },
-    "shadowOfTheRipper": { "name": "Shadow of the Ripper" },
-    "aHideousScript": { "name": "A Hideous Script" },
-    "loveHateSpiral": { "name": "Love-Hate Spiral" },
-    "witchesTeaTime": { "name": "Witches Tea Time" },
+    "unknownFactorX": {
+      "name": "Unknown Factor X"
+    },
+    "shadowOfTheRipper": {
+      "name": "Shadow of the Ripper"
+    },
+    "aHideousScript": {
+      "name": "A Hideous Script"
+    },
+    "loveHateSpiral": {
+      "name": "Love-Hate Spiral"
+    },
+    "witchesTeaTime": {
+      "name": "Witches Tea Time"
+    },
     "diceOfTheGods": {
       "name": "Dice of the Gods",
       "plotRule": "Choose one character that died during the previous loop and place any Extra card on that character."
@@ -369,7 +398,9 @@
       "name": "Worshippers of the Apocalypse",
       "plotRule": "When determining whether an Incident triggers, and the culprit is a Person, if the Prophet is alive, the culprit is regarded as having one 1 less than its printed Paranoia limit."
     },
-    "theHiddenFreakMysteryCircle": { "name": "The Hidden Freak (Mystery Circle)" },
+    "theHiddenFreakMysteryCircle": {
+      "name": "The Hidden Freak (Mystery Circle)"
+    },
     "isolatedInstitutionPsycho": {
       "name": "Isolated Institution Psycho",
       "plotRule": "If the Extra Gauge was 2 or less at the end of the previous loop, increase it by 1."
@@ -378,33 +409,64 @@
       "name": "Smell of Gunpowder",
       "plotRule": "If there are a total of 12 or more Paranoia on the remaining characters, the Protagonists lose."
     },
-    "iAmAMasterDetective": { "name": "I Am a Master Detective" },
-    "danceOfFools": { "name": "Dance of Fools" },
-    "anAbsoluteWill": { "name": "An Absolute Will" },
-    "trickyTwins": { "name": "Tricky Twins" },
-    "thoseWithHabits": { "name": "Those with Habits" },
-    "aLoveAffairPrimeEvil": { "name": "A Love Affair (Prime Evil)" },
-    "witchsCurse": { "name": "Witch's Curse", "plotRule": "You may place a Curse on the Witch's starting location." },
-    "theKeyGirl": { "name": "The Key Girl" },
+    "iAmAMasterDetective": {
+      "name": "I Am a Master Detective"
+    },
+    "danceOfFools": {
+      "name": "Dance of Fools"
+    },
+    "anAbsoluteWill": {
+      "name": "An Absolute Will"
+    },
+    "trickyTwins": {
+      "name": "Tricky Twins"
+    },
+    "thoseWithHabits": {
+      "name": "Those with Habits"
+    },
+    "aLoveAffairPrimeEvil": {
+      "name": "A Love Affair (Prime Evil)"
+    },
+    "witchsCurse": {
+      "name": "Witch's Curse",
+      "plotRule": "You may place a Curse on the Witch's starting location."
+    },
+    "theKeyGirl": {
+      "name": "The Key Girl"
+    },
     "monsterIntrigue": {
       "name": "Monster Intrigue",
       "mastermindAbility": "You may place an Intrigue on one location where a character with Goowill Refusal is."
     },
-    "panicAndObsession": { "name": "Panic and Obsession" },
-    "peopleWhoDon'tListen": { "name": "People Who Don't Listen" },
+    "panicAndObsession": {
+      "name": "Panic and Obsession"
+    },
+    "peopleWhoDon'tListen": {
+      "name": "People Who Don't Listen"
+    },
     "anUnsettlingRumorCosmicEvil": {
       "name": "An Unsettling Rumor (Cosmic Evil)",
       "mastermindAbility": "The Mastermind may add an Intrigue to a location of their choice."
     },
-    "theResistance": { "name": "The Resistance" },
-    "peopleWhoSaw": { "name": "People Who Saw" },
-    "theProfoundRace": { "name": "The Profound Race" },
+    "theResistance": {
+      "name": "The Resistance"
+    },
+    "peopleWhoSaw": {
+      "name": "People Who Saw"
+    },
+    "theProfoundRace": {
+      "name": "The Profound Race"
+    },
     "whispersFromTheDeep": {
       "name": "Whispers from the Deep",
       "plotRule": "The Paranoiac gains all the abilities of the Key Person."
     },
-    "theFacelessGod": { "name": "The Faceless God" },
-    "aTwistedTruth": { "name": "A Twisted Truth" },
+    "theFacelessGod": {
+      "name": "The Faceless God"
+    },
+    "aTwistedTruth": {
+      "name": "A Twisted Truth"
+    },
     "theFinalPlan": {
       "name": "The Final Plan",
       "plotRule": "If there are 1 or more Hope counters on the Key Person, Traitors become normal Protagonists. If this is true at the end of the final loop, this carries over to the Final Guess."
@@ -444,7 +506,9 @@
       "plotRule1": "At the start of even numbered loops, the Mastermind adds \"Despair +1\" to hand.",
       "plotRule2": "At the start of the final loop, the Protagonists add \"Hope +1\" to hand."
     },
-    "socialMediaParanoia": { "name": "Social Media Paranoia" },
+    "socialMediaParanoia": {
+      "name": "Social Media Paranoia"
+    },
     "theMythomaniacsSecret": {
       "name": "The Mythomaniac's Secret",
       "plotRule": "The Secretkeeper gains Goodwill Refusal. If there is no Secretkeeper during script creation, instead add an additional Killer, Brain, or Fragment to the script. (It does not count as a Role specified by this Plot.)"
@@ -453,7 +517,9 @@
       "name": "The Forbidden Future",
       "plotRule": "If the players are in the Light World at the end of the loop, the Protagonists lose."
     },
-    "fairyTaleMurderer": { "name": "Fairy-Tale Murderer" },
+    "fairyTaleMurderer": {
+      "name": "Fairy-Tale Murderer"
+    },
     "motherGooseMystery": {
       "name": "Mother Goose Mystery",
       "plotRule": "If there are X or more corpses at the end of the loop, the Protagonists lose. X is the current loop number, to a maximum of 3."
@@ -466,13 +532,19 @@
       "name": "Into Nothingness",
       "plotRule": "If the sum of the Extra Gauge and the number of Intrigue counters on the Obstinate added by this Plot is 3 or more at the end of the loop, the Protagonists lose."
     },
-    "jekyllAndHyde": { "name": "Jekyll and Hyde" },
-    "thePlaguebringer": { "name": "The Plaguebringer" },
+    "jekyllAndHyde": {
+      "name": "Jekyll and Hyde"
+    },
+    "thePlaguebringer": {
+      "name": "The Plaguebringer"
+    },
     "puppeteersStrings": {
       "name": "Puppeteer's Strings",
       "plotRule": "All types of Goodwill Refusal become Puppeted Goodwill Refusal (including Mandatory Goodwill Refusal and that granted by Despair counters)."
     },
-    "throughTheLookingGlass": { "name": "Through the Looking-Glass" },
+    "throughTheLookingGlass": {
+      "name": "Through the Looking-Glass"
+    },
     "unspeakableHorrors": {
       "name": "Unspeakable Horrors",
       "plotRule": "If the Extra Gauge is 3 or higher, at the end of the day, you may kill the Protagonists."
@@ -483,14 +555,22 @@
     }
   },
   "roles": {
-    "person": { "name": "Person" },
-    "keyPerson": { "name": "Key Person", "roleAbility": "Protagonists lose and the loop ends immediately." },
+    "person": {
+      "name": "Person"
+    },
+    "keyPerson": {
+      "name": "Key Person",
+      "roleAbility": "Protagonists lose and the loop ends immediately."
+    },
     "killer": {
       "name": "Killer",
       "roleAbility1": "If the Key Person has at least 2 Intrigue and is in the same location as the Killer, the Key Person dies.",
       "roleAbility2": "If this character has at least 4 Intrigue, the Protagonists die."
     },
-    "brain": { "name": "Brain", "roleAbility": "Place 1 Intrigue on this location or character in this location." },
+    "brain": {
+      "name": "Brain",
+      "roleAbility": "Place 1 Intrigue on this location or character in this location."
+    },
     "cultist": {
       "name": "Cultist",
       "roleAbility": "Ignore Forbid Intrigue effects in this location or on characters in this location."
@@ -503,7 +583,9 @@
       "name": "Serial Killer",
       "roleAbility": "If there is exactly 1 other character in this location, that character dies."
     },
-    "curmudgeon": { "name": "Curmudgeon" },
+    "curmudgeon": {
+      "name": "Curmudgeon"
+    },
     "friend": {
       "name": "Friend",
       "roleAbility1": "If this character is dead, reveal its role.",
@@ -514,7 +596,10 @@
       "roleAbility1": "Ignore Forbid Goodwill for this character.",
       "roleAbility2": "If there are 2 Goodwill or fewer on this character, the Protagonists lose."
     },
-    "lover": { "name": "Lover", "roleAbility": "This character gets 6 Paranoia." },
+    "lover": {
+      "name": "Lover",
+      "roleAbility": "This character gets 6 Paranoia."
+    },
     "lovedOne": {
       "name": "Loved One",
       "roleAbility1": "This character gets 6 Paranoia.",
@@ -525,7 +610,9 @@
       "roleAbility1": "If there are at least 2 Intrigue on the School, this character gains the Conspiracy Theorist's ability (but not its role).",
       "roleAbility2": "If there are at least 2 Intrigue in the City, this character gains the Key Person's ability (but not its role)."
     },
-    "witch": { "name": "Witch" },
+    "witch": {
+      "name": "Witch"
+    },
     "magician": {
       "name": "Magician",
       "roleAbility": "Remove all Paranoia from its corpse.",
@@ -545,7 +632,9 @@
       "roleAbility1": "The Mastermind cannot place cards on this character.",
       "roleAbility2": "When determining whether an Incident triggers, and the culprit is another character in this location, that Incident does not trigger, regardless of the number of Paranoia on the culprit."
     },
-    "immortal": { "name": "Immortal" },
+    "immortal": {
+      "name": "Immortal"
+    },
     "poisoner": {
       "name": "Poisoner",
       "roleAbility1": "If the Extra Gauge is at least 2 or more, any one character in this location dies.",
@@ -691,23 +780,63 @@
   },
   "terms": {
     "cast": "Cast",
-    "character_one": "Character",
-    "character_other": "Characters",
-    "role_one": "Role",
-    "role_other": "Roles",
+    "character": [
+      {
+        "declarations": ["input count", "local countPlural = count: plural"],
+        "selectors": ["countPlural"],
+        "match": {
+          "countPlural=one": "Character",
+          "countPlural=other": "Characters"
+        }
+      }
+    ],
+    "role": [
+      {
+        "declarations": ["input count", "local countPlural = count: plural"],
+        "selectors": ["countPlural"],
+        "match": {
+          "countPlural=one": "Role",
+          "countPlural=other": "Roles"
+        }
+      }
+    ],
     "tragedySet": "Tragedy Set",
     "castSize": "Cast Size",
-    "day_one": "Day",
-    "day_other": "Days",
+    "day": [
+      {
+        "declarations": ["input count", "local countPlural = count: plural"],
+        "selectors": ["countPlural"],
+        "match": {
+          "countPlural=one": "Day",
+          "countPlural=other": "Days"
+        }
+      }
+    ],
     "name": "Name",
     "culprit": "Culprit",
-    "incident_one": "Incident",
-    "incident_other": "Incidents",
+    "incident": [
+      {
+        "declarations": ["input count", "local countPlural = count: plural"],
+        "selectors": ["countPlural"],
+        "match": {
+          "countPlural=one": "Incident",
+          "countPlural=other": "Incidents"
+        }
+      }
+    ],
     "loops": "Loops",
     "mechanic": "Mechanic",
     "mastermind": "Mastermind",
-    "player_one": "Player",
-    "player_other": "Players",
+    "player": [
+      {
+        "declarations": ["input count", "local countPlural = count: plural"],
+        "selectors": ["countPlural"],
+        "match": {
+          "countPlural=one": "Player",
+          "countPlural=other": "Players"
+        }
+      }
+    ],
     "mastermindAbilities": "Mastermind Abilities",
     "mandatory": "Mandatory",
     "optional": "Optional",
@@ -716,19 +845,51 @@
     "perDay": "Per Day",
     "perLoop": "Per Loop",
     "mainPlot": "Main Plot",
-    "subplot_one": "Subplot",
-    "subplot_other": "Subplots",
-    "entersOnLoop": "(enters on Loop {{loop}})",
+    "subplot": [
+      {
+        "declarations": ["input count", "local countPlural = count: plural"],
+        "selectors": ["countPlural"],
+        "match": {
+          "countPlural=one": "Subplot",
+          "countPlural=other": "Subplots"
+        }
+      }
+    ],
+    "entersOnLoop": "(enters on Loop {loop})",
     "source": "Source",
     "trigger": "Trigger",
     "plot": "Plot",
-    "plotRule_one": "Plot Rule",
-    "plotRule_other": "Plot Rules",
-    "roleAbility_one": "Role Ability",
-    "roleAbility_other": "Role Abilities",
+    "roleAbility": [
+      {
+        "declarations": ["input count", "local countPlural = count: plural"],
+        "selectors": ["countPlural"],
+        "match": {
+          "countPlural=one": "Role Ability",
+          "countPlural=other": "Role Abilities"
+        }
+      }
+    ],
     "winConditions": "Win Conditions",
-    "traitorWinCondition_one": "Traitor Win Condition",
-    "traitorWinCondition_other": "Traitor Win Conditions"
+    "traitorWinCondition": [
+      {
+        "declarations": ["input count", "local countPlural = count: plural"],
+        "selectors": ["countPlural"],
+        "match": {
+          "countPlural=one": "Traitor Win Condition",
+          "countPlural=other": "Traitor Win Conditions"
+        }
+      }
+    ],
+    "plotRule": [
+      {
+        "declarations": ["input count", "local countPlural = count: plural"],
+        "selectors": ["countPlural"],
+        "match": {
+          "countPlural=one": "Plot Rule",
+          "countPlural=other": "Plot Rules"
+        }
+      }
+    ]
   },
   "tragedySets": {
     "firstSteps": "First Steps",
@@ -756,6 +917,6 @@
     "beforeFinalGuess": "Before Final Guess"
   },
   "warnings": {
-    "castSizeOverridden": "Cast size has been overridden to {{needed}} in order to have enough for each required role."
+    "castSizeOverridden": "Cast size has been overridden to {needed} in order to have enough for each required role."
   }
 }

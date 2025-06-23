@@ -3,3 +3,4 @@
 /coverage
 /reports
 /.stryker-tmp
+/src/paraglide

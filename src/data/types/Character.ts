@@ -1,11 +1,11 @@
 import { UUID } from "crypto";
 import { Identifiable } from "../../@types/Identifiable";
 import { Location } from "./Location";
-import { ParseKeys } from "i18next";
+import type { MessageFunction } from "@inlang/paraglide-js";
 
 export class Character implements Identifiable {
   readonly id: UUID;
-  readonly name_i18n_key: ParseKeys;
+  readonly name: MessageFunction;
   readonly descriptors: Set<Descriptor>;
   readonly locations: Set<Location>;
   readonly startingLocation: Location;
@@ -14,7 +14,7 @@ export class Character implements Identifiable {
 
   constructor(fields: Fields) {
     this.id = fields.id;
-    this.name_i18n_key = fields.name_i18n_key;
+    this.name = fields.name;
     this.descriptors = new Set(fields.descriptors);
     this.locations = new Set(fields.locations);
     this.startingLocation = fields.startingLocation;
@@ -39,7 +39,7 @@ export class Character implements Identifiable {
 
 interface Fields {
   readonly id: UUID;
-  readonly name_i18n_key: ParseKeys;
+  readonly name: MessageFunction;
   readonly descriptors: Array<Descriptor>;
   readonly locations: Array<Location>;
   readonly startingLocation: Location;
