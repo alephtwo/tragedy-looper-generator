@@ -2,7 +2,6 @@ import { CastMember } from "../../model/CastMember";
 import { Character } from "./Character";
 import { MastermindAbility } from "./MastermindAbility";
 import { RoleAbility } from "./RoleAbility";
-import { UUID } from "crypto";
 import { TragedySet } from "./TragedySet";
 import { MessageFunction } from "@inlang/paraglide-js";
 
@@ -11,7 +10,7 @@ type Culprit = "Never" | "Optional" | "Mandatory";
 type GoodwillRefusal = "Optional" | "Mandatory" | "Puppeted";
 
 interface CommonRole {
-  readonly id: UUID;
+  readonly id: string;
   readonly culprits: Set<Culprit>;
   readonly abilities: Array<RoleAbility>;
   readonly mastermindAbilities: Array<MastermindAbility>;
@@ -21,7 +20,7 @@ interface CommonRole {
 }
 
 export class Role implements CommonRole {
-  readonly id: UUID;
+  readonly id: string;
   readonly name: MessageFunction;
   readonly unkillable: boolean;
   readonly culprits: Set<Culprit>;
@@ -57,7 +56,7 @@ export class ConditionalRole extends Role {
 }
 
 export class DualRole implements CommonRole {
-  readonly id: UUID;
+  readonly id: string;
   readonly lightWorld: Role;
   readonly darkWorld: Role;
   readonly culprits: Set<Culprit>;
@@ -68,7 +67,7 @@ export class DualRole implements CommonRole {
   readonly connectedToLossCondition: boolean;
   readonly goodwillRefusals: Set<GoodwillRefusal>;
 
-  constructor(opts: { id: UUID; lightWorld: Role; darkWorld: Role }) {
+  constructor(opts: { id: string; lightWorld: Role; darkWorld: Role }) {
     const bothRoles = [opts.lightWorld, opts.darkWorld];
 
     this.id = opts.id;
@@ -85,7 +84,7 @@ export class DualRole implements CommonRole {
 
 // Create it with just a base role.
 interface RoleArgs {
-  readonly id: UUID;
+  readonly id: string;
   readonly name: MessageFunction;
   readonly unkillable: boolean;
   readonly culprit: Culprit;

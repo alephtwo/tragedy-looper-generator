@@ -1,9 +1,8 @@
-import { UUID } from "crypto";
 import { Location } from "./Location";
 import type { MessageFunction } from "@inlang/paraglide-js";
 
 export class Character {
-  readonly id: UUID;
+  readonly id: string;
   readonly name: MessageFunction;
   readonly descriptors: Set<Descriptor>;
   readonly locations: Set<Location>;
@@ -37,7 +36,7 @@ export class Character {
 }
 
 interface Fields {
-  readonly id: UUID;
+  readonly id: string;
   readonly name: MessageFunction;
   readonly descriptors: Array<Descriptor>;
   readonly locations: Array<Location>;

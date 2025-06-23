@@ -1,8 +1,7 @@
-import { UUID } from "crypto";
 import { Incident } from "../data/types/Incident";
 
 export class IncidentOccurrence {
-  readonly id: UUID;
+  readonly id: string;
   readonly incident: Incident;
   readonly day: number;
   #fakedIncident: Incident | undefined;

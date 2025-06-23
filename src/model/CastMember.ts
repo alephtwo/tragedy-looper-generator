@@ -1,10 +1,9 @@
-import { UUID } from "crypto";
 import { Character } from "../data/types/Character";
 import { DualRole, Role } from "../data/types/Role";
 import { IncidentOccurrence } from "./IncidentOccurrence";
 
 export class CastMember {
-  readonly id: UUID;
+  readonly id: string;
   readonly character: Character;
   readonly role: Role | DualRole;
   readonly incidentTriggers: Array<IncidentOccurrence>;
