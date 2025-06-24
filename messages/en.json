@@ -919,7 +919,8 @@
     "beforeFinalGuess": "Before Final Guess"
   },
   "warnings": {
-    "castSizeOverridden": "Cast size has been overridden to {needed} in order to have enough for each required role."
+    "castSizeOverridden": "Cast size has been overridden to {needed} in order to have enough for each required role.",
+    "daysOverridden": "Only one incident may occur per day. Overriding requested days to {needed} to accommodate."
   },
   "errors": {
     "drawingFromDeckWithNoCards": "Attempted to draw from a deck with no cards in it.",

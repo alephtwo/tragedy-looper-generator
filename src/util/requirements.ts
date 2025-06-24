@@ -1,6 +1,6 @@
 import { Character, Descriptor } from "../data/types/Character";
 import { Role } from "../data/types/Role";
-import { CastMember } from "../model/CastMember";
+import { CastMember } from "../data/types/CastMember";
 
 export const requireDescriptor =
   (descriptor: Descriptor) =>

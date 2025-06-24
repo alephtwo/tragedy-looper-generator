@@ -1,4 +1,4 @@
-import { CastMember } from "../../model/CastMember";
+import { CastMember } from "./CastMember";
 import { Character } from "./Character";
 import { Role } from "./Role";
 import { TragedySet } from "./TragedySet";

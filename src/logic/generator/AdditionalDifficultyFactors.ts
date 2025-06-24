@@ -18,7 +18,7 @@ const modifyIfCharacterHasRole =
   (modify: -1 | 1) =>
   (character: Character, role: Role) =>
   (script: Script): DifficultyFactor => {
-    const met = script.cast.some((c) => c.is(character) && c.role.is(role));
+    const met = script.cast.some((c) => c.isCharacter(character) && c.role.is(role));
     return met ? modify : 0;
   };
 
@@ -28,14 +28,14 @@ export const decreaseIfCharacterHasRole = modifyIfCharacterHasRole(-1);
 export const increaseIfRoleIsCulprit =
   (role: Role) =>
   (script: Script): DifficultyFactor => {
-    const met = script.cast.some((c) => c.role.is(role) && c.incidentTriggers.length > 0);
+    const met = script.cast.some((c) => c.role.is(role) && c.incidentOccurrences.length > 0);
     return met ? 1 : 0;
   };
 
 export const increaseIfCharacterIsCulprit =
   (character: Character) =>
   (script: Script): DifficultyFactor => {
-    const met = script.cast.some((c) => c.is(character) && c.incidentTriggers.length > 0);
+    const met = script.cast.some((c) => c.isCharacter(character) && c.incidentOccurrences.length > 0);
     return met ? 1 : 0;
   };
 
@@ -66,28 +66,30 @@ export const increaseIfIncidentWithMainPlot =
 export const decreaseUnlessCharacterHasRole =
   (character: Character, role: Role) =>
   (script: Script): DifficultyFactor => {
-    const characterHasRole = script.cast.some((c) => c.role.is(role) && c.is(character));
+    const characterHasRole = script.cast.some((c) => c.role.is(role) && c.isCharacter(character));
     return characterHasRole ? 0 : -1;
   };
 
 export const increaseIfCharacterHasAnyGoodwillRefusal =
   (character: Character) =>
   (script: Script): DifficultyFactor => {
-    const matches = script.cast.some((c) => c.is(character) && c.role.hasAnyGoodwillRefusal());
+    const matches = script.cast.some((c) => c.isCharacter(character) && c.role.hasAnyGoodwillRefusal());
     return matches ? 1 : 0;
   };
 
 export const increaseIfCharacterHasMandatoryGoodwillRefusal =
   (character: Character) =>
   (script: Script): DifficultyFactor => {
-    const matches = script.cast.some((c) => c.is(character) && c.role.hasMandatoryGoodwillRefusal());
+    const matches = script.cast.some((c) => c.isCharacter(character) && c.role.hasMandatoryGoodwillRefusal());
     return matches ? 1 : 0;
   };
 
 export const increaseIfCharacterHasAnyGoodwillRefusalWithIncient =
   (character: Character, incident: Incident) =>
   (script: Script): DifficultyFactor => {
-    const characterHasGoodwillRefusal = script.cast.some((c) => c.is(character) && c.role.hasAnyGoodwillRefusal());
+    const characterHasGoodwillRefusal = script.cast.some(
+      (c) => c.isCharacter(character) && c.role.hasAnyGoodwillRefusal(),
+    );
     const incidentPresent = determineIfIncidentIsPresent(script, incident);
 
     return characterHasGoodwillRefusal && incidentPresent ? 1 : 0;
@@ -96,7 +98,7 @@ export const increaseIfCharacterHasAnyGoodwillRefusalWithIncient =
 export const increaseIfCharacterIsRelatedToBoard =
   (character: Character) =>
   (script: Script): DifficultyFactor => {
-    const met = script.cast.some((c) => c.is(character) && c.role.isConnectedToBoard());
+    const met = script.cast.some((c) => c.isCharacter(character) && c.role.isConnectedToBoard());
     return met ? 1 : 0;
   };
 
@@ -114,14 +116,14 @@ export const increaseIfCharacterHasRoleThatIsOnlyInOnePlot =
       allRoleIds.filter((i) => _.sum(roleIdSets.map((s) => (s.has(i) ? 1 : 0))) === 1),
     );
 
-    const met = script.cast.some((c) => c.is(character) && rolesOnlyInOnePlot.has(c.role.id));
+    const met = script.cast.some((c) => c.isCharacter(character) && rolesOnlyInOnePlot.has(c.role.id));
     return met ? 1 : 0;
   };
 
 export const decreaseIfCharacterIsConnectedToLossConditions =
   (character: Character) =>
   (script: Script): DifficultyFactor => {
-    const met = script.cast.some((c) => c.is(character) && c.role.isConnectedToLossCondition());
+    const met = script.cast.some((c) => c.isCharacter(character) && c.role.isConnectedToLossCondition());
     return met ? -1 : 0;
   };
 
@@ -138,5 +140,5 @@ export function decreaseForEveryCharacterThatHasForbiddenAreasAndConnectsToBoard
 }
 
 function determineIfIncidentIsPresent(script: Script, incident: Incident) {
-  return script.getIncidents().some((it) => it.is(incident));
+  return script.getIncidents().some((it) => it.isIncident(incident));
 }

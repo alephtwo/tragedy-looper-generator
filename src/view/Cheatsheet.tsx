@@ -4,7 +4,7 @@ import { Script } from "../model/Script";
 import { Plot } from "../data/types/Plot";
 import { RoleAbility } from "../data/types/RoleAbility";
 import { MastermindAbility } from "../data/types/MastermindAbility";
-import { CastMember } from "../model/CastMember";
+import { CastMember } from "../data/types/CastMember";
 import { IncidentOccurrence } from "../model/IncidentOccurrence";
 import { PlotRule } from "../data/types/PlotRule";
 import { Incident } from "../data/types/Incident";
@@ -25,7 +25,7 @@ export function Cheatsheet({ script }: CheatsheetProps): React.JSX.Element {
   const mastermindAbilities = extractMastermindAbilities(script);
   const roleAbilities = extractRoleAbilities(script);
   const allIncidents = script.cast.flatMap((c) => {
-    return c.incidentTriggers.map((it) => ({
+    return c.incidentOccurrences.map((it) => ({
       castMember: c,
       incidentTrigger: it,
     }));

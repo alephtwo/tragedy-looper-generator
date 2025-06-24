@@ -1,5 +1,5 @@
 import { estimateLoops } from "../logic/generator/estimateLoops";
-import { CastMember } from "./CastMember";
+import { CastMember } from "../data/types/CastMember";
 import { Plot } from "../data/types/Plot";
 import { TragedySet } from "../data/types/TragedySet";
 import { IncidentOccurrence } from "./IncidentOccurrence";
@@ -25,7 +25,7 @@ export class Script {
   }
 
   getIncidents(): Array<IncidentOccurrence> {
-    return this.cast.flatMap((c) => c.incidentTriggers);
+    return this.cast.flatMap((c) => c.incidentOccurrences);
   }
 
   isValid(): boolean {

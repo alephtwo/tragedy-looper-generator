@@ -3,7 +3,7 @@ import * as _ from "radash";
 import { Script } from "../model/Script";
 import { Incident } from "../data/types/Incident";
 import { Character } from "../data/types/Character";
-import { CastMember } from "../model/CastMember";
+import { CastMember } from "../data/types/CastMember";
 import { Box, Divider, Paper, Table, TableBody, TableCell, TableHead, TableRow, Typography } from "@mui/material";
 import * as Icons from "./Icons";
 import { m } from "../paraglide/messages";
@@ -198,7 +198,7 @@ interface IncidentMetadata {
 // displayable. My apologies. It is not the prettiest thing ever.
 function describeIncidents(cast: Array<CastMember>): Array<IncidentMetadata> {
   return cast.flatMap((c) =>
-    c.incidentTriggers.map((t) => {
+    c.incidentOccurrences.map((t) => {
       if (t.getFake()) {
         console.debug(t);
       }

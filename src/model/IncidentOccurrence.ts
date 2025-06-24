@@ -20,7 +20,7 @@ export class IncidentOccurrence {
     return this.#fakedIncident;
   }
 
-  is(incident: Incident) {
+  isIncident(incident: Incident) {
     return this.incident.id === incident.id;
   }
 }
