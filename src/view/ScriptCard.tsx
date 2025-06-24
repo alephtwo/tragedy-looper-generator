@@ -3,12 +3,11 @@ import * as _ from "radash";
 import { Script } from "../model/Script";
 import { Incident } from "../data/types/Incident";
 import { Character } from "../data/types/Character";
-import { DualRole, Role } from "../data/types/Role";
 import { CastMember } from "../model/CastMember";
 import { Box, Divider, Paper, Table, TableBody, TableCell, TableHead, TableRow, Typography } from "@mui/material";
 import * as Icons from "./Icons";
-import { RoleName } from "./RoleName";
 import { m } from "../paraglide/messages";
+import { PlotRole } from "../data/types/PlotRole";
 
 interface ScriptCardProps {
   script: Script;
@@ -45,9 +44,7 @@ export function Mastermind({ script }: ScriptCardProps): React.JSX.Element {
                   <TableCell>
                     <CastMemberName castMember={c} />
                   </TableCell>
-                  <TableCell>
-                    <RoleName role={c.role} />
-                  </TableCell>
+                  <TableCell>{c.role.name()}</TableCell>
                 </TableRow>
               ))}
             </TableBody>
@@ -195,7 +192,7 @@ interface IncidentMetadata {
   incident: Incident;
   fakeIncident?: Incident;
   character: Character;
-  role: Role | DualRole;
+  role: PlotRole;
 }
 // This exists to make some sense of the incidents and make them easily
 // displayable. My apologies. It is not the prettiest thing ever.

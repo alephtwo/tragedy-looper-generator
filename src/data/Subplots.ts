@@ -1,5 +1,5 @@
 import { Plot } from "./types/Plot";
-import { ConditionalRole, DualRole, Role } from "./types/Role";
+import { PlotRole } from "./types/PlotRole";
 import * as _ from "radash";
 import * as Roles from "./Roles";
 import * as Triggers from "./Triggers";
@@ -13,7 +13,7 @@ import { m } from "../paraglide/messages";
 export const circleOfFriends: Plot = {
   id: "ddfabe2e-4717-43d8-87e5-6542682e7387",
   name: m["plots.circleOfFriends.name"],
-  roles: () => [Roles.friend, Roles.friend, Roles.conspiracyTheorist],
+  roles: () => [new PlotRole(Roles.friend), new PlotRole(Roles.friend), new PlotRole(Roles.conspiracyTheorist)],
   requiredIncidents: [],
   estimateLoops: () => 1.0,
   plotRules: [],
@@ -24,7 +24,7 @@ export const circleOfFriends: Plot = {
 export const aLoveAffair: Plot = {
   id: "02d443d7-d43a-45ad-91cc-1ec93646767b",
   name: m["plots.aLoveAffairBasic.name"],
-  roles: () => [Roles.lover, Roles.lovedOne],
+  roles: () => [new PlotRole(Roles.lover), new PlotRole(Roles.lovedOne)],
   requiredIncidents: [],
   estimateLoops: () => 1.0,
   plotRules: [],
@@ -35,7 +35,7 @@ export const aLoveAffair: Plot = {
 export const theHiddenFreak: Plot = {
   id: "78038f0a-b3be-4899-ae76-01ccd7a706f7",
   name: m["plots.theHiddenFreakBasic.name"],
-  roles: () => [Roles.friend, Roles.serialKiller],
+  roles: () => [new PlotRole(Roles.friend), new PlotRole(Roles.serialKiller)],
   requiredIncidents: [],
   estimateLoops: () => 0.8,
   plotRules: [],
@@ -46,7 +46,7 @@ export const theHiddenFreak: Plot = {
 export const anUnsettlingRumor: Plot = {
   id: "cc6ab933-71a4-42ff-a92a-7c05c1f86ea4",
   name: m["plots.anUnsettlingRumorBasic.name"],
-  roles: () => [Roles.conspiracyTheorist],
+  roles: () => [new PlotRole(Roles.conspiracyTheorist)],
   requiredIncidents: [],
   estimateLoops: () => 0.5,
   plotRules: [],
@@ -63,7 +63,7 @@ export const anUnsettlingRumor: Plot = {
 export const paranoiaVirus: Plot = {
   id: "33317eb1-c0de-4460-b64e-f5ee6a650899",
   name: m["plots.paranoiaVirus.name"],
-  roles: () => [Roles.conspiracyTheorist],
+  roles: () => [new PlotRole(Roles.conspiracyTheorist)],
   requiredIncidents: [],
   estimateLoops: () => 0,
   plotRules: [
@@ -99,7 +99,7 @@ export const threadsOfFate: Plot = {
 export const unknownFactorX: Plot = {
   id: "b96a9ba3-6858-440c-b74d-552fb7ef82d3",
   name: m["plots.unknownFactorX.name"],
-  roles: () => [Roles.factor],
+  roles: () => [new PlotRole(Roles.factor)],
   requiredIncidents: [],
   estimateLoops: () => 0.8,
   plotRules: [],
@@ -110,7 +110,7 @@ export const unknownFactorX: Plot = {
 export const shadowOfTheRipper: Plot = {
   id: "fa8b66bf-ba7d-41c9-84de-9e7641bfbdfa",
   name: m["plots.shadowOfTheRipper.name"],
-  roles: () => [Roles.conspiracyTheorist, Roles.serialKiller],
+  roles: () => [new PlotRole(Roles.conspiracyTheorist), new PlotRole(Roles.serialKiller)],
   requiredIncidents: [],
   // The game does not provide a value for this
   estimateLoops: () => 0,
@@ -122,11 +122,11 @@ export const shadowOfTheRipper: Plot = {
 export const aHideousScript: Plot = {
   id: "69755afc-80b4-4b55-a17f-3fcb2cb39e25",
   name: m["plots.aHideousScript.name"],
-  roles: (): Array<Role> => {
+  roles: () => {
     // Script writer may choose 0, 1, or 2 Curmudgeons.
     const amount = _.random(0, 2);
-    const curmudgeons = new Array(amount).fill(Roles.curmudgeon);
-    return [Roles.conspiracyTheorist, Roles.friend].concat(curmudgeons);
+    const curmudgeons = new Array<PlotRole>(amount).fill(new PlotRole(Roles.curmudgeon));
+    return [new PlotRole(Roles.conspiracyTheorist), new PlotRole(Roles.friend), ...curmudgeons];
   },
   requiredIncidents: [],
   // The game does not provide a value for this
@@ -140,7 +140,7 @@ export const aHideousScript: Plot = {
 export const loveHateSpiral: Plot = {
   id: "f35974c7-5c63-4af3-9189-ece67511b16a",
   name: m["plots.loveHateSpiral.name"],
-  roles: () => [Roles.friend, Roles.obstinate],
+  roles: () => [new PlotRole(Roles.friend), new PlotRole(Roles.obstinate)],
   requiredIncidents: [],
   estimateLoops: () => 0.5,
   plotRules: [],
@@ -151,7 +151,12 @@ export const loveHateSpiral: Plot = {
 export const witchesTeaTime: Plot = {
   id: "3afb64de-e67a-472f-af69-e232aad90d23",
   name: m["plots.witchesTeaTime.name"],
-  roles: () => [Roles.conspiracyTheorist, Roles.friend, Roles.witch, Roles.witch],
+  roles: () => [
+    new PlotRole(Roles.conspiracyTheorist),
+    new PlotRole(Roles.friend),
+    new PlotRole(Roles.witch),
+    new PlotRole(Roles.witch),
+  ],
   requiredIncidents: [],
   estimateLoops: () => 0.8,
   plotRules: [],
@@ -162,7 +167,7 @@ export const witchesTeaTime: Plot = {
 export const diceOfTheGods: Plot = {
   id: "066d20aa-2830-4c9d-8354-0413a0e1b2e3",
   name: m["plots.diceOfTheGods.name"],
-  roles: () => [Roles.serialKiller, Roles.obstinate],
+  roles: () => [new PlotRole(Roles.serialKiller), new PlotRole(Roles.obstinate)],
   requiredIncidents: [],
   estimateLoops: () => 0.7,
   plotRules: [
@@ -180,7 +185,7 @@ export const diceOfTheGods: Plot = {
 export const unsafeTrigger: Plot = {
   id: "133e4874-1815-4880-a880-400f190a039e",
   name: m["plots.unsafeTrigger.name"],
-  roles: () => [Roles.factor],
+  roles: () => [new PlotRole(Roles.factor)],
   requiredIncidents: [],
   estimateLoops: () => 1.0,
   plotRules: [],
@@ -197,7 +202,7 @@ export const unsafeTrigger: Plot = {
 export const showtimeOfDeath: Plot = {
   id: "813e7a16-0417-416a-a144-45a63c5d5441",
   name: m["plots.showtimeOfDeath.name"],
-  roles: () => [Roles.magician, Roles.immortal],
+  roles: () => [new PlotRole(Roles.magician), new PlotRole(Roles.immortal)],
   requiredIncidents: [],
   estimateLoops: (script: Script): number => {
     const characters = script.cast.length;
@@ -219,7 +224,7 @@ export const showtimeOfDeath: Plot = {
 export const unansweredHeart: Plot = {
   id: "2d65bd0c-4469-44bd-8a0d-1c8d650cabb9",
   name: m["plots.unansweredHeart.name"],
-  roles: () => [Roles.conspiracyTheorist, Roles.magician],
+  roles: () => [new PlotRole(Roles.conspiracyTheorist), new PlotRole(Roles.magician)],
   requiredIncidents: [],
   estimateLoops: (script: Script): number => (script.mainPlot.id === MainPlots.theSealedItem2.id ? 1.7 : 0.7),
   plotRules: [
@@ -237,7 +242,7 @@ export const unansweredHeart: Plot = {
 export const worshippersOfTheApocalypse: Plot = {
   id: "e77efda5-4b07-4ff4-8b64-096bd6562f14",
   name: m["plots.worshippersOfTheApocalypse.name"],
-  roles: () => [Roles.prophet],
+  roles: () => [new PlotRole(Roles.prophet)],
   requiredIncidents: [Incidents.suicide],
   estimateLoops: () => 0.8,
   plotRules: [
@@ -256,7 +261,7 @@ export const worshippersOfTheApocalypse: Plot = {
 export const theHiddenFreak2: Plot = {
   id: "9fe52e73-5565-48c4-846d-86fe51d8cb18",
   name: m["plots.theHiddenFreakMysteryCircle.name"],
-  roles: () => [Roles.friend, Roles.serialKiller],
+  roles: () => [new PlotRole(Roles.friend), new PlotRole(Roles.serialKiller)],
   requiredIncidents: [],
   estimateLoops: () => 0.8,
   plotRules: [],
@@ -267,7 +272,7 @@ export const theHiddenFreak2: Plot = {
 export const isolatedInstitutionPsycho: Plot = {
   id: "ea84db6e-2d0e-4b3c-a964-90f108572c2b",
   name: m["plots.isolatedInstitutionPsycho.name"],
-  roles: () => [Roles.conspiracyTheorist, Roles.therapist, Roles.paranoiac],
+  roles: () => [new PlotRole(Roles.conspiracyTheorist), new PlotRole(Roles.therapist), new PlotRole(Roles.paranoiac)],
   requiredIncidents: [],
   estimateLoops: () => 0.5,
   plotRules: [
@@ -285,7 +290,7 @@ export const isolatedInstitutionPsycho: Plot = {
 export const smellOfGunpowder: Plot = {
   id: "a74b8d79-077d-40f8-bfc2-d977642fa546",
   name: m["plots.smellOfGunpowder.name"],
-  roles: () => [Roles.serialKiller],
+  roles: () => [new PlotRole(Roles.serialKiller)],
   requiredIncidents: [],
   estimateLoops: (script: Script): number => 0.2 + 0.2 * script.days,
   plotRules: [
@@ -303,7 +308,11 @@ export const smellOfGunpowder: Plot = {
 export const iAmAMasterDetective: Plot = {
   id: "cb9e521f-113f-4599-8482-4f640a18310f",
   name: m["plots.iAmAMasterDetective.name"],
-  roles: () => [Roles.conspiracyTheorist, Roles.friend, Roles.privateInvestigator],
+  roles: () => [
+    new PlotRole(Roles.conspiracyTheorist),
+    new PlotRole(Roles.friend),
+    new PlotRole(Roles.privateInvestigator),
+  ],
   requiredIncidents: [],
   estimateLoops: () => 1.2,
   plotRules: [],
@@ -314,7 +323,7 @@ export const iAmAMasterDetective: Plot = {
 export const danceOfFools: Plot = {
   id: "51482a2a-13d6-4b0c-b2d5-379a98ed0e54",
   name: m["plots.danceOfFools.name"],
-  roles: () => [Roles.fool, Roles.friend],
+  roles: () => [new PlotRole(Roles.fool), new PlotRole(Roles.friend)],
   requiredIncidents: [],
   estimateLoops: () => 0.4,
   plotRules: [],
@@ -325,7 +334,7 @@ export const danceOfFools: Plot = {
 export const anAbsoluteWill: Plot = {
   id: "de83f0f3-63fe-45bc-87ef-5ac086fd548c",
   name: m["plots.anAbsoluteWill.name"],
-  roles: () => [Roles.obstinate],
+  roles: () => [new PlotRole(Roles.obstinate)],
   requiredIncidents: [],
   estimateLoops: () => 0.6,
   plotRules: [],
@@ -336,7 +345,7 @@ export const anAbsoluteWill: Plot = {
 export const trickyTwins: Plot = {
   id: "aa04f330-7a55-44a7-a534-f36fd2267995",
   name: m["plots.trickyTwins.name"],
-  roles: () => [Roles.paranoiac, Roles.twin],
+  roles: () => [new PlotRole(Roles.paranoiac), new PlotRole(Roles.twin)],
   requiredIncidents: [],
   estimateLoops: () => 0.5,
   plotRules: [],
@@ -348,7 +357,7 @@ export const trickyTwins: Plot = {
 export const thoseWithHabits: Plot = {
   id: "b776e852-06b9-48fe-8ff4-8386757944a3",
   name: m["plots.thoseWithHabits.name"],
-  roles: () => [Roles.ghost, Roles.serialKiller, Roles.lovedOne],
+  roles: () => [new PlotRole(Roles.ghost), new PlotRole(Roles.serialKiller), new PlotRole(Roles.lovedOne)],
   requiredIncidents: [],
   estimateLoops: () => 1.0,
   plotRules: [],
@@ -359,7 +368,7 @@ export const thoseWithHabits: Plot = {
 export const aLoveAffair2: Plot = {
   id: "6c191eba-6505-4230-a5c9-5dd0f7e2a6ab",
   name: m["plots.aLoveAffairPrimeEvil.name"],
-  roles: () => [Roles.lover, Roles.lovedOne],
+  roles: () => [new PlotRole(Roles.lover), new PlotRole(Roles.lovedOne)],
   requiredIncidents: [],
   estimateLoops: () => 1.0,
   plotRules: [],
@@ -370,7 +379,7 @@ export const aLoveAffair2: Plot = {
 export const witchsCurse: Plot = {
   id: "9d41e7bd-c30f-4607-adad-79264884aa8e",
   name: m["plots.witchsCurse.name"],
-  roles: () => [Roles.conspiracyTheorist, Roles.witch],
+  roles: () => [new PlotRole(Roles.conspiracyTheorist), new PlotRole(Roles.witch)],
   requiredIncidents: [],
   estimateLoops: () => 0.6,
   plotRules: [
@@ -388,12 +397,7 @@ export const witchsCurse: Plot = {
 export const theKeyGirl: Plot = {
   id: "8d27e3b9-0351-4039-bef2-ddf7e09acb2a",
   name: m["plots.theKeyGirl.name"],
-  roles: () => [
-    new ConditionalRole({
-      role: Roles.keyPerson,
-      condition: requireDescriptor("Girl"),
-    }),
-  ],
+  roles: () => [new PlotRole(Roles.keyPerson, { condition: requireDescriptor("Girl") })],
   requiredIncidents: [],
   estimateLoops: () => 0.8,
   plotRules: [],
@@ -404,7 +408,7 @@ export const theKeyGirl: Plot = {
 export const monsterIntrigue: Plot = {
   id: "73438252-52c1-43c2-aa07-df071ca959a8",
   name: m["plots.monsterIntrigue.name"],
-  roles: () => [Roles.conspiracyTheorist],
+  roles: () => [new PlotRole(Roles.conspiracyTheorist)],
   requiredIncidents: [],
   estimateLoops: () => 0.5,
   plotRules: [],
@@ -422,7 +426,7 @@ export const monsterIntrigue: Plot = {
 export const panicAndObsession: Plot = {
   id: "2f294d6f-0b0f-495d-b9e4-0e383973a37d",
   name: m["plots.panicAndObsession.name"],
-  roles: () => [Roles.serialKiller, Roles.coward, Roles.witch],
+  roles: () => [new PlotRole(Roles.serialKiller), new PlotRole(Roles.coward), new PlotRole(Roles.witch)],
   requiredIncidents: [],
   estimateLoops: () => 0.3,
   plotRules: [],
@@ -433,7 +437,7 @@ export const panicAndObsession: Plot = {
 export const peopleWhoDontListen: Plot = {
   id: "aa2b8699-b738-4140-bf08-5dd42dd6064e",
   name: m["plots.peopleWhoDon'tListen.name"],
-  roles: () => [Roles.showOff, Roles.conspiracyTheorist, Roles.coward],
+  roles: () => [new PlotRole(Roles.showOff), new PlotRole(Roles.conspiracyTheorist), new PlotRole(Roles.coward)],
   requiredIncidents: [],
   estimateLoops: () => 0.4,
   plotRules: [],
@@ -445,7 +449,7 @@ export const peopleWhoDontListen: Plot = {
 export const anUnsettlingRumor2: Plot = {
   id: "69cb5ae0-9b3a-4637-9671-d13f461f7230",
   name: m["plots.anUnsettlingRumorCosmicEvil.name"],
-  roles: () => [Roles.conspiracyTheorist],
+  roles: () => [new PlotRole(Roles.conspiracyTheorist)],
   requiredIncidents: [],
   estimateLoops: () => 0.5,
   plotRules: [],
@@ -462,7 +466,7 @@ export const anUnsettlingRumor2: Plot = {
 export const theResistance: Plot = {
   id: "3758b139-f56d-4ad6-b686-711f2e03d587",
   name: m["plots.theResistance.name"],
-  roles: () => [Roles.conspiracyTheorist, Roles.wizard, Roles.serialKiller],
+  roles: () => [new PlotRole(Roles.conspiracyTheorist), new PlotRole(Roles.wizard), new PlotRole(Roles.serialKiller)],
   requiredIncidents: [],
   estimateLoops: () => 0.8,
   plotRules: [],
@@ -473,7 +477,7 @@ export const theResistance: Plot = {
 export const peopleWhoSaw: Plot = {
   id: "adc8b9f9-40f2-4efb-8803-b27f5febfc98",
   name: m["plots.peopleWhoSaw.name"],
-  roles: () => [Roles.conspiracyTheorist, Roles.witness],
+  roles: () => [new PlotRole(Roles.conspiracyTheorist), new PlotRole(Roles.witness)],
   requiredIncidents: [],
   estimateLoops: () => 0.5,
   plotRules: [],
@@ -484,7 +488,7 @@ export const peopleWhoSaw: Plot = {
 export const theProfoundRace: Plot = {
   id: "b5db08e9-c946-4b53-b482-69c0137c97f9",
   name: m["plots.theProfoundRace.name"],
-  roles: () => [Roles.serialKiller, Roles.timeTraveller],
+  roles: () => [new PlotRole(Roles.serialKiller), new PlotRole(Roles.timeTraveller)],
   requiredIncidents: [],
   estimateLoops: () => 0.8,
   plotRules: [],
@@ -495,7 +499,7 @@ export const theProfoundRace: Plot = {
 export const whispersFromTheDeep: Plot = {
   id: "cdd00e27-63e5-40a2-b9c2-b9ae20f4cd38",
   name: m["plots.whispersFromTheDeep.name"],
-  roles: () => [Roles.deepOne, Roles.paranoiac],
+  roles: () => [new PlotRole(Roles.deepOne), new PlotRole(Roles.paranoiac)],
   requiredIncidents: [],
   estimateLoops: () => 1.2,
   plotRules: [
@@ -513,7 +517,7 @@ export const whispersFromTheDeep: Plot = {
 export const theFacelessGod: Plot = {
   id: "b5b7fb70-9f22-488f-ad9e-9fbf10bd6866",
   name: m["plots.theFacelessGod.name"],
-  roles: () => [Roles.faceless, Roles.wizard],
+  roles: () => [new PlotRole(Roles.faceless), new PlotRole(Roles.wizard)],
   requiredIncidents: [],
   estimateLoops: () => 0.9,
   plotRules: [],
@@ -524,7 +528,7 @@ export const theFacelessGod: Plot = {
 export const aTwistedTruth: Plot = {
   id: "54c3dd3a-b6c0-491b-a42d-49d8eff8412f",
   name: m["plots.aTwistedTruth.name"],
-  roles: () => [Roles.paranoiac],
+  roles: () => [new PlotRole(Roles.paranoiac)],
   requiredIncidents: [],
   estimateLoops: () => 1.2,
   plotRules: [],
@@ -539,7 +543,7 @@ export const aTwistedTruth: Plot = {
 export const theRealMonster: Plot = {
   id: "be0dc636-3d0f-40e1-b26f-dd706c71a92c",
   name: m["plots.theRealMonster.name"],
-  roles: () => [Roles.serialKiller, Roles.secretkeeper, Roles.wildcard],
+  roles: () => [new PlotRole(Roles.serialKiller), new PlotRole(Roles.secretkeeper), new PlotRole(Roles.wildcard)],
   requiredIncidents: [],
   estimateLoops: () => 1,
   plotRules: [
@@ -558,7 +562,7 @@ export const theRealMonster: Plot = {
 export const keeperOfMythology: Plot = {
   id: "992bff34-a151-4476-a58f-08b94c1486e4",
   name: m["plots.keeperOfMythology.name"],
-  roles: () => [Roles.influencer, Roles.secretkeeper, Roles.wildcard],
+  roles: () => [new PlotRole(Roles.influencer), new PlotRole(Roles.secretkeeper), new PlotRole(Roles.wildcard)],
   requiredIncidents: [],
   estimateLoops: () => 1,
   plotRules: [
@@ -577,7 +581,7 @@ export const keeperOfMythology: Plot = {
 export const iAmTheTrueDetective: Plot = {
   id: "809f5572-425c-4e74-b632-0ed81149fe02",
   name: m["plots.iAmTheTrueDetective.name"],
-  roles: () => [Roles.watcher, Roles.secretkeeper, Roles.wildcard],
+  roles: () => [new PlotRole(Roles.watcher), new PlotRole(Roles.secretkeeper), new PlotRole(Roles.wildcard)],
   requiredIncidents: [],
   estimateLoops: () => 1,
   plotRules: [
@@ -596,7 +600,7 @@ export const iAmTheTrueDetective: Plot = {
 export const crossingWorldLines: Plot = {
   id: "83416ae6-75eb-4404-899f-55c2c16f97e8",
   name: m["plots.crossingWorldLines.name"],
-  roles: () => [Roles.conspiracyTheorist],
+  roles: () => [new PlotRole(Roles.conspiracyTheorist)],
   requiredIncidents: [],
   estimateLoops: () => 0.5,
   plotRules: [
@@ -620,7 +624,11 @@ export const crossingWorldLines: Plot = {
 export const socialMediaParanoia: Plot = {
   id: "ca529826-2cf9-4ba0-be5d-382fb5faf15b",
   name: m["plots.socialMediaParanoia.name"],
-  roles: () => [Roles.serialKiller, Roles.influencer, Roles.conspiracyTheorist],
+  roles: () => [
+    new PlotRole(Roles.serialKiller),
+    new PlotRole(Roles.influencer),
+    new PlotRole(Roles.conspiracyTheorist),
+  ],
   requiredIncidents: [],
   estimateLoops: () => 0.6,
   plotRules: [],
@@ -633,10 +641,10 @@ export const theMythomaniacsSecret: Plot = {
   // The plot rule in particular is a little difficult to automatically apply.
   id: "3ddd6d7f-1823-4c83-928f-c05051f56fa6",
   name: m["plots.theMythomaniacsSecret.name"],
-  roles: () => [Roles.conspiracyTheorist],
+  roles: () => [new PlotRole(Roles.conspiracyTheorist)],
   requiredIncidents: [],
   estimateLoops: (script) => {
-    const secretkeepers = script.cast.map((c) => c.role).filter((r) => r.id === Roles.secretkeeper.id).length;
+    const secretkeepers = script.cast.map((c) => c.role).filter((r) => r.is(Roles.secretkeeper)).length;
     return secretkeepers === 0 ? 0.8 : 0;
   },
   plotRules: [
@@ -656,12 +664,10 @@ export const jekyllAndHyde: Plot = {
   id: "6a639405-12c9-430e-93cf-11d83309ae93",
   name: m["plots.jekyllAndHyde.name"],
   roles: () => [
-    new DualRole({
-      id: "2abed603-0d23-40ae-a9a7-0360c7f0e3eb",
-      lightWorld: Roles.keyPerson,
+    new PlotRole(Roles.keyPerson, {
       darkWorld: Roles.brain,
     }),
-    Roles.marionette,
+    new PlotRole(Roles.marionette),
   ],
   requiredIncidents: [],
   estimateLoops: () => 0.7,
@@ -674,9 +680,7 @@ export const thePlaguebringer: Plot = {
   id: "f2c176c0-1961-4435-a5e4-b81134aa603d",
   name: m["plots.thePlaguebringer.name"],
   roles: () => [
-    new DualRole({
-      id: "15ed05cf-8b29-4dc5-8b4c-2f0d395f7368",
-      lightWorld: Roles.piedPiper,
+    new PlotRole(Roles.piedPiper, {
       darkWorld: Roles.gossip,
     }),
   ],
@@ -691,11 +695,9 @@ export const puppeteersStrings: Plot = {
   id: "1b74bb3d-426b-46ba-b603-5dc42c67da0b",
   name: m["plots.puppeteersStrings.name"],
   roles: () => [
-    Roles.fragment,
-    Roles.gossip,
-    new DualRole({
-      id: "7855563d-1191-4291-b2f6-5a81c156f15b",
-      lightWorld: Roles.person,
+    new PlotRole(Roles.fragment),
+    new PlotRole(Roles.gossip),
+    new PlotRole(Roles.person, {
       darkWorld: Roles.serialKiller,
     }),
   ],
@@ -717,13 +719,10 @@ export const throughTheLookingGlass: Plot = {
   id: "704d781a-e004-4fed-8461-3c9fc9107c71",
   name: m["plots.throughTheLookingGlass.name"],
   roles: () => [
-    new DualRole({
-      id: "626783cf-eb78-4fe0-8f1b-fa04679b9552",
-      lightWorld: Roles.conspiracyTheorist,
+    new PlotRole(Roles.conspiracyTheorist, {
       darkWorld: Roles.serialKiller,
     }),
-    new ConditionalRole({
-      role: Roles.alice,
+    new PlotRole(Roles.alice, {
       condition: requireDescriptor("Girl"),
     }),
   ],
@@ -738,9 +737,7 @@ export const unspeakableHorrors: Plot = {
   id: "e184f89f-6dae-4283-8a29-0047e7fbb27e",
   name: m["plots.unspeakableHorrors.name"],
   roles: () => [
-    new DualRole({
-      id: "b9d2835f-6990-4d56-abff-36e8c803e289",
-      lightWorld: Roles.conspiracyTheorist,
+    new PlotRole(Roles.conspiracyTheorist, {
       darkWorld: Roles.obstinate,
     }),
   ],
@@ -761,7 +758,7 @@ export const unspeakableHorrors: Plot = {
 export const hysteriaVirus: Plot = {
   id: "e2fedac5-38f3-48ed-b504-34cb757ca716",
   name: m["plots.hysteriaVirus.name"],
-  roles: () => [Roles.fragment, Roles.conspiracyTheorist, Roles.gossip],
+  roles: () => [new PlotRole(Roles.fragment), new PlotRole(Roles.conspiracyTheorist), new PlotRole(Roles.gossip)],
   requiredIncidents: [],
   estimateLoops: () => 0.6,
   plotRules: [

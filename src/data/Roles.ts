@@ -3,22 +3,16 @@ import * as Triggers from "./Triggers";
 import * as TragedySets from "./TragedySets";
 import { m } from "../paraglide/messages";
 
-export const person = new Role({
+export const person: Role = {
   id: "45041819-44ec-4fbd-aa6e-2cf816097cdc",
   name: m["roles.person.name"],
-  culprit: "Optional",
   connectedToBoard: false,
   connectedToLossCondition: false,
-  unkillable: false,
-  abilities: [],
-  mastermindAbilities: [],
-});
+};
 
-export const keyPerson = new Role({
+export const keyPerson: Role = {
   id: "95d137b0-8652-4576-ae64-a7dc34a5f3f4",
   name: m["roles.keyPerson.name"],
-  culprit: "Optional",
-  unkillable: false,
   connectedToBoard: false,
   connectedToLossCondition: true,
   abilities: [
@@ -30,17 +24,14 @@ export const keyPerson = new Role({
       winCondition: true,
     },
   ],
-  mastermindAbilities: [],
-});
+};
 
-export const killer = new Role({
+export const killer: Role = {
   id: "0fa54005-f68b-4fc1-9c44-3c8db0b4b367",
   name: m["roles.killer.name"],
-  culprit: "Optional",
   connectedToBoard: true,
   connectedToLossCondition: true,
   goodwillRefusal: "Optional",
-  unkillable: false,
   abilities: [
     {
       id: "c884ee1a-1266-4b56-a5d1-0f73b133d052",
@@ -57,34 +48,29 @@ export const killer = new Role({
       winCondition: true,
     },
   ],
-  mastermindAbilities: [],
-});
+};
 
-export const brain = new Role({
+export const brain: Role = {
   id: "00e756b6-652f-4bc7-a85c-76c3d018074b",
   name: m["roles.brain.name"],
-  culprit: "Optional",
   connectedToBoard: true,
   connectedToLossCondition: false,
   goodwillRefusal: "Optional",
-  unkillable: false,
-  abilities: [],
+
   mastermindAbilities: [
     {
       effect: m["roles.brain.roleAbility"],
       optional: true,
     },
   ],
-});
+};
 
-export const cultist = new Role({
+export const cultist: Role = {
   id: "c5796a2b-012f-4e63-9421-3821ebd96faa",
   name: m["roles.cultist.name"],
-  culprit: "Optional",
   connectedToBoard: true,
   connectedToLossCondition: false,
   goodwillRefusal: "Mandatory",
-  unkillable: false,
   abilities: [
     {
       id: "f5f6dc6e-c0c2-4b49-afbd-74c72e48d1ab",
@@ -94,34 +80,29 @@ export const cultist = new Role({
       winCondition: false,
     },
   ],
-  mastermindAbilities: [],
-});
+};
 
-export const conspiracyTheorist = new Role({
+export const conspiracyTheorist: Role = {
   id: "87a2518e-9e79-4dae-ae5f-1e58bd785887",
   name: m["roles.conspiracyTheorist.name"],
-  culprit: "Optional",
   connectedToBoard: true,
   connectedToLossCondition: false,
   max: () => 1,
-  unkillable: false,
-  abilities: [],
+
   mastermindAbilities: [
     {
       effect: m["roles.conspiracyTheorist.mastermindAbility"],
       optional: true,
     },
   ],
-});
+};
 
-export const serialKiller = new Role({
+export const serialKiller: Role = {
   id: "85a0c633-fdf1-463c-9971-9b45bdc0cfcf",
   name: m["roles.serialKiller.name"],
-  culprit: "Optional",
   connectedToBoard: true,
   connectedToLossCondition: false,
   max: (tragedySet) => (tragedySet.id === TragedySets.lastLiar.id ? 1 : Infinity),
-  unkillable: false,
   abilities: [
     {
       id: "3ef9a3d5-bfc8-41b4-a4ba-31627ec7d6c4",
@@ -131,29 +112,22 @@ export const serialKiller = new Role({
       winCondition: false,
     },
   ],
-  mastermindAbilities: [],
-});
+};
 
-export const curmudgeon = new Role({
+export const curmudgeon: Role = {
   id: "9bf6604e-f0e8-4807-bebf-63b7a3b838b3",
   name: m["roles.curmudgeon.name"],
-  culprit: "Optional",
   connectedToBoard: false,
   connectedToLossCondition: false,
   goodwillRefusal: "Optional",
-  unkillable: false,
-  abilities: [],
-  mastermindAbilities: [],
-});
+};
 
-export const friend = new Role({
+export const friend: Role = {
   id: "ef68b5d1-adf6-4935-a298-2434e240f859",
   name: m["roles.friend.name"],
-  culprit: "Optional",
   connectedToBoard: false,
   connectedToLossCondition: false,
   max: () => 2,
-  unkillable: false,
   abilities: [
     {
       id: "393d9873-15f2-4219-8b68-121144ccbb84",
@@ -170,13 +144,11 @@ export const friend = new Role({
       winCondition: false,
     },
   ],
-  mastermindAbilities: [],
-});
+};
 
-export const timeTraveller = new Role({
+export const timeTraveller: Role = {
   id: "7774f887-6c8f-483f-aa1c-fab32835f867",
   name: m["roles.timeTraveller.name"],
-  culprit: "Optional",
   connectedToBoard: false,
   connectedToLossCondition: true,
   unkillable: true,
@@ -196,16 +168,13 @@ export const timeTraveller = new Role({
       winCondition: true,
     },
   ],
-  mastermindAbilities: [],
-});
+};
 
-export const lover = new Role({
+export const lover: Role = {
   id: "82094e99-b591-4470-974a-782f4e1e752e",
   name: m["roles.lover.name"],
-  culprit: "Optional",
   connectedToBoard: false,
   connectedToLossCondition: false,
-  unkillable: false,
   abilities: [
     {
       id: "7579c482-2be6-434b-8eba-95a2140c8bfe",
@@ -215,16 +184,13 @@ export const lover = new Role({
       winCondition: false,
     },
   ],
-  mastermindAbilities: [],
-});
+};
 
-export const lovedOne = new Role({
+export const lovedOne: Role = {
   id: "2910bfd8-8a87-4541-98ab-c01980efba10",
   name: m["roles.lovedOne.name"],
-  culprit: "Optional",
   connectedToBoard: false,
   connectedToLossCondition: false,
-  unkillable: false,
   abilities: [
     {
       id: "c45c4b81-494d-4d9f-b423-e44815f7b42e",
@@ -241,17 +207,14 @@ export const lovedOne = new Role({
       winCondition: true,
     },
   ],
-  mastermindAbilities: [],
-});
+};
 
-export const factor = new Role({
+export const factor: Role = {
   id: "9293559d-01db-47a5-84d1-e37430f714f5",
   name: m["roles.factor.name"],
-  culprit: "Optional",
   connectedToBoard: false,
   connectedToLossCondition: false,
   goodwillRefusal: "Optional",
-  unkillable: false,
   abilities: [
     {
       id: "19735dca-4017-4d86-84cd-42a0b765359a",
@@ -268,28 +231,21 @@ export const factor = new Role({
       winCondition: false,
     },
   ],
-  mastermindAbilities: [],
-});
+};
 
-export const witch = new Role({
+export const witch: Role = {
   id: "011c23fd-15b1-435e-a08e-b91e4d18ba51",
   name: m["roles.witch.name"],
-  culprit: "Optional",
   connectedToBoard: false,
   connectedToLossCondition: false,
   goodwillRefusal: "Mandatory",
-  unkillable: false,
-  abilities: [],
-  mastermindAbilities: [],
-});
+};
 
-export const magician = new Role({
+export const magician: Role = {
   id: "ce40a35a-ffce-4226-b519-2a66979a091d",
   name: m["roles.magician.name"],
-  culprit: "Optional",
   connectedToBoard: true,
   connectedToLossCondition: false,
-  unkillable: false,
   abilities: [
     {
       id: "5534c012-6674-4a54-8a50-855c2a648ffb",
@@ -306,16 +262,14 @@ export const magician = new Role({
       optional: true,
     },
   ],
-});
+};
 
-export const ninja = new Role({
+export const ninja: Role = {
   id: "8dc41278-0a96-4ee4-ab01-f33267e3a955",
   name: m["roles.ninja.name"],
-  culprit: "Optional",
   connectedToBoard: true,
   connectedToLossCondition: false,
   goodwillRefusal: "Optional",
-  unkillable: false,
   abilities: [
     {
       id: "a03dac67-8b73-4011-853d-750ddb106c1c",
@@ -332,17 +286,15 @@ export const ninja = new Role({
       winCondition: false,
     },
   ],
-  mastermindAbilities: [],
-});
+};
 
-export const obstinate = new Role({
+export const obstinate: Role = {
   id: "58ff6ee3-dd0f-4c59-96ad-06b840e1b169",
   name: m["roles.obstinate.name"],
   culprit: "Mandatory",
   connectedToBoard: false,
   connectedToLossCondition: false,
   goodwillRefusal: "Mandatory",
-  unkillable: false,
   abilities: [
     {
       id: "2731e7ca-fb2d-49fd-8caa-d42e535bc6f4",
@@ -352,16 +304,13 @@ export const obstinate = new Role({
       winCondition: false,
     },
   ],
-  mastermindAbilities: [],
-});
+};
 
-export const prophet = new Role({
+export const prophet: Role = {
   id: "3e425296-3ffc-499e-b4ea-b7b799587335",
   name: m["roles.prophet.name"],
-  culprit: "Optional",
   connectedToBoard: true,
   connectedToLossCondition: false,
-  unkillable: false,
   abilities: [
     {
       id: "385b903a-6623-46b1-b379-0ea929ac6675",
@@ -378,28 +327,22 @@ export const prophet = new Role({
       winCondition: false,
     },
   ],
-  mastermindAbilities: [],
-});
+};
 
-export const immortal = new Role({
+export const immortal: Role = {
   id: "0b016916-baae-430a-962a-6eb70fc927e2",
   name: m["roles.immortal.name"],
-  culprit: "Optional",
   connectedToBoard: false,
   connectedToLossCondition: false,
   unkillable: true,
-  abilities: [],
-  mastermindAbilities: [],
-});
+};
 
-export const poisoner = new Role({
+export const poisoner: Role = {
   id: "06e6e832-dfe2-4fa0-bb09-8d9ace844bef",
   name: m["roles.poisoner.name"],
-  culprit: "Optional",
   connectedToBoard: true,
   connectedToLossCondition: true,
   goodwillRefusal: "Optional",
-  unkillable: false,
   abilities: [
     {
       id: "87b10333-4e23-48ec-95e8-0464f392dacc",
@@ -417,17 +360,15 @@ export const poisoner = new Role({
       winCondition: true,
     },
   ],
-  mastermindAbilities: [],
-});
+};
 
-export const fool = new Role({
+export const fool: Role = {
   id: "42860f15-bf07-4a96-81d9-5ba184655018",
   name: m["roles.fool.name"],
   culprit: "Mandatory",
   connectedToBoard: true,
   connectedToLossCondition: false,
   max: () => 1,
-  unkillable: false,
   abilities: [
     {
       id: "b12d8dd8-73ed-4eab-8468-2ac7f994285d",
@@ -437,10 +378,9 @@ export const fool = new Role({
       winCondition: false,
     },
   ],
-  mastermindAbilities: [],
-});
+};
 
-export const privateInvestigator = new Role({
+export const privateInvestigator: Role = {
   id: "1f74472f-0029-402f-b0ba-7b9958f70af6",
   name: m["roles.privateInvestigator.name"],
   culprit: "Never",
@@ -456,33 +396,29 @@ export const privateInvestigator = new Role({
       winCondition: false,
     },
   ],
-  mastermindAbilities: [],
-});
+};
 
-export const paranoiac = new Role({
+export const paranoiac: Role = {
   id: "216548f7-2a29-4e57-b76b-567661aa2d36",
   name: m["roles.paranoiac.name"],
-  culprit: "Optional",
   connectedToBoard: false,
   connectedToLossCondition: false,
   goodwillRefusal: "Mandatory",
-  unkillable: false,
-  abilities: [],
+
   mastermindAbilities: [
     {
       effect: m["roles.paranoiac.mastermindAbility"],
       optional: true,
     },
   ],
-});
+};
 
-export const twin = new Role({
+export const twin: Role = {
   id: "2ded16d0-b220-470b-a1c1-7eb2ea3f44b2",
   name: m["roles.twin.name"],
   culprit: "Mandatory",
   connectedToBoard: true,
   connectedToLossCondition: false,
-  unkillable: false,
   abilities: [
     {
       id: "d48359b5-8fd1-4abb-bf70-b9cfd83d0d7d",
@@ -492,29 +428,25 @@ export const twin = new Role({
       winCondition: false,
     },
   ],
-  mastermindAbilities: [],
-});
+};
 
-export const therapist = new Role({
+export const therapist: Role = {
   id: "8e2bfcf8-1669-4414-84ca-e4903a6afc89",
   name: m["roles.therapist.name"],
-  culprit: "Optional",
   connectedToBoard: false,
   connectedToLossCondition: false,
-  unkillable: false,
-  abilities: [],
+
   mastermindAbilities: [
     {
       effect: m["roles.therapist.mastermindAbility"],
       optional: false,
     },
   ],
-});
+};
 
-export const vampire = new Role({
+export const vampire: Role = {
   id: "da697bd7-9170-4587-a060-92e7229f1340",
   name: m["roles.vampire.name"],
-  culprit: "Optional",
   connectedToBoard: true,
   connectedToLossCondition: true,
   goodwillRefusal: "Optional",
@@ -535,17 +467,14 @@ export const vampire = new Role({
       winCondition: true,
     },
   ],
-  mastermindAbilities: [],
-});
+};
 
-export const werewolf = new Role({
+export const werewolf: Role = {
   id: "6f7453ad-6dde-40b2-9355-00b2ff1f5626",
   name: m["roles.werewolf.name"],
-  culprit: "Optional",
   connectedToBoard: false,
   connectedToLossCondition: true,
   goodwillRefusal: "Optional",
-  unkillable: false,
   abilities: [
     {
       id: "d59177e9-2160-4874-93ab-0dc19b7271df",
@@ -562,13 +491,11 @@ export const werewolf = new Role({
       winCondition: false,
     },
   ],
-  mastermindAbilities: [],
-});
+};
 
-export const nightmare = new Role({
+export const nightmare: Role = {
   id: "cf36a815-8c0c-4511-8897-590ca0791265",
   name: m["roles.nightmare.name"],
-  culprit: "Optional",
   connectedToBoard: true,
   connectedToLossCondition: true,
   goodwillRefusal: "Optional",
@@ -589,30 +516,26 @@ export const nightmare = new Role({
       winCondition: true,
     },
   ],
-  mastermindAbilities: [],
-});
+};
 
-export const ghost = new Role({
+export const ghost: Role = {
   id: "51493ed0-0870-49a1-bd54-c63ba3406923",
   name: m["roles.ghost.name"],
-  culprit: "Optional",
   connectedToBoard: true,
   connectedToLossCondition: false,
   max: () => 1,
-  unkillable: false,
-  abilities: [],
+
   mastermindAbilities: [
     {
       effect: m["roles.ghost.mastermindAbility"],
       optional: false,
     },
   ],
-});
+};
 
-export const showOff = new Role({
+export const showOff: Role = {
   id: "6b1049dd-3690-4181-b56e-6452d565cbcc",
   name: m["roles.showOff.name"],
-  culprit: "Optional",
   connectedToBoard: false,
   connectedToLossCondition: false,
   unkillable: true,
@@ -625,26 +548,23 @@ export const showOff = new Role({
       winCondition: false,
     },
   ],
-  mastermindAbilities: [],
-});
+};
 
-export const coward = new Role({
+export const coward: Role = {
   id: "b18d3c56-a096-4897-a533-76967eddc3d7",
   name: m["roles.coward.name"],
-  culprit: "Optional",
   connectedToBoard: true,
   connectedToLossCondition: false,
-  unkillable: false,
-  abilities: [],
+
   mastermindAbilities: [
     {
       effect: m["roles.coward.roleAbility"],
       optional: false,
     },
   ],
-});
+};
 
-export const sacrifice = new Role({
+export const sacrifice: Role = {
   id: "6d11f30c-f04f-4136-8c16-368ba803f816",
   name: m["roles.sacrifice.name"],
   culprit: "Mandatory",
@@ -667,17 +587,14 @@ export const sacrifice = new Role({
       winCondition: false,
     },
   ],
-  mastermindAbilities: [],
-});
+};
 
-export const deepOne = new Role({
+export const deepOne: Role = {
   id: "94807217-c0ba-4481-949d-82877399c129",
   name: m["roles.deepOne.name"],
-  culprit: "Optional",
   connectedToBoard: false,
   connectedToLossCondition: false,
   goodwillRefusal: "Optional",
-  unkillable: false,
   abilities: [
     {
       id: "f5dbd13a-ba2c-4dd0-b510-3da683a88665",
@@ -693,15 +610,13 @@ export const deepOne = new Role({
       optional: true,
     },
   ],
-});
+};
 
-export const witness = new Role({
+export const witness: Role = {
   id: "a342d418-7eb3-470a-b1b0-cb5509c2ce38",
   name: m["roles.witness.name"],
-  culprit: "Optional",
   connectedToBoard: false,
   connectedToLossCondition: false,
-  unkillable: false,
   abilities: [
     {
       id: "b7526fe6-caca-4f8b-b070-35882189e986",
@@ -711,13 +626,11 @@ export const witness = new Role({
       winCondition: false,
     },
   ],
-  mastermindAbilities: [],
-});
+};
 
-export const faceless = new Role({
+export const faceless: Role = {
   id: "eba1ca5a-4a7d-4f1a-8177-8f5fa9059b6c",
   name: m["roles.faceless.name"],
-  culprit: "Optional",
   connectedToBoard: false,
   connectedToLossCondition: false,
   goodwillRefusal: "Optional",
@@ -738,17 +651,14 @@ export const faceless = new Role({
       winCondition: false,
     },
   ],
-  mastermindAbilities: [],
-});
+};
 
-export const wizard = new Role({
+export const wizard: Role = {
   id: "15807f5c-e3e1-4d8d-be73-9958acf2084b",
   name: m["roles.wizard.name"],
-  culprit: "Optional",
   connectedToBoard: false,
   connectedToLossCondition: true,
   max: () => 1,
-  unkillable: false,
   abilities: [
     {
       id: "271ee1dd-1157-437d-81ad-60cbd83847dc",
@@ -765,16 +675,13 @@ export const wizard = new Role({
       winCondition: true,
     },
   ],
-  mastermindAbilities: [],
-});
+};
 
-export const fragment = new Role({
+export const fragment: Role = {
   id: "1243a58a-1e49-417d-9314-476f371923a4",
   name: m["roles.fragment.name"],
-  culprit: "Optional",
   connectedToBoard: false,
   connectedToLossCondition: false,
-  unkillable: false,
   abilities: [
     {
       id: "d8492325-19c8-4dcb-837a-94ede8e863a9",
@@ -790,12 +697,11 @@ export const fragment = new Role({
       optional: false,
     },
   ],
-});
+};
 
-export const watcher = new Role({
+export const watcher: Role = {
   id: "5e23141a-dd3f-4aba-b6cd-be7f2f4f165c",
   name: m["roles.watcher.name"],
-  culprit: "Optional",
   connectedToBoard: true,
   connectedToLossCondition: false,
   max: () => 1,
@@ -809,16 +715,13 @@ export const watcher = new Role({
       winCondition: false,
     },
   ],
-  mastermindAbilities: [],
-});
+};
 
-export const influencer = new Role({
+export const influencer: Role = {
   id: "c8597fed-d1dc-44cf-aca0-bcad42257765",
   name: m["roles.influencer.name"],
-  culprit: "Optional",
   connectedToBoard: true,
   connectedToLossCondition: false,
-  unkillable: false,
   abilities: [
     {
       id: "adb71eb8-522d-4f19-b425-243270f3357a",
@@ -836,16 +739,13 @@ export const influencer = new Role({
       timesPerLoop: 1,
     },
   ],
-  mastermindAbilities: [],
-});
+};
 
-export const secretkeeper = new Role({
+export const secretkeeper: Role = {
   id: "15d2cc82-da18-43cb-adc8-8fbd772fa5ea",
   name: m["roles.secretkeeper.name"],
-  culprit: "Optional",
   connectedToBoard: false,
   connectedToLossCondition: true,
-  unkillable: false,
   abilities: [
     {
       id: "32dfc7da-3cb4-473b-9fae-d62efd59d574",
@@ -862,10 +762,9 @@ export const secretkeeper = new Role({
       winCondition: true,
     },
   ],
-  mastermindAbilities: [],
-});
+};
 
-export const wildcard = new Role({
+export const wildcard: Role = {
   id: "563ed0e1-8c20-481d-92fe-145c3b7742eb",
   name: m["roles.wildcard.name"],
   culprit: "Mandatory",
@@ -883,15 +782,12 @@ export const wildcard = new Role({
       winCondition: false,
     },
   ],
-  mastermindAbilities: [],
-});
+};
 
-export const marionette = new Role({
+export const marionette: Role = {
   id: "31f10e09-8a63-49df-95d6-4718bf08ed7c",
   name: m["roles.marionette.name"],
   goodwillRefusal: "Puppeted",
-  unkillable: false,
-  culprit: "Optional",
   connectedToBoard: false,
   connectedToLossCondition: false,
   abilities: [
@@ -903,15 +799,12 @@ export const marionette = new Role({
       winCondition: false,
     },
   ],
-  mastermindAbilities: [],
-});
+};
 
-export const lullaby = new Role({
+export const lullaby: Role = {
   id: "eec493fa-a9f7-4edc-a380-a95a439e0379",
   name: m["roles.lullaby.name"],
   goodwillRefusal: "Puppeted",
-  unkillable: false,
-  culprit: "Optional",
   connectedToBoard: true,
   connectedToLossCondition: true,
   abilities: [
@@ -937,13 +830,12 @@ export const lullaby = new Role({
       timesPerLoop: 1,
     },
   ],
-});
+};
 
-export const storyteller = new Role({
+export const storyteller: Role = {
   id: "85759df9-d635-4f39-a3b7-7d035d8d06c6",
   name: m["roles.storyteller.name"],
   unkillable: true,
-  culprit: "Optional",
   connectedToBoard: true,
   connectedToLossCondition: false,
   abilities: [
@@ -961,13 +853,11 @@ export const storyteller = new Role({
       optional: true,
     },
   ],
-});
+};
 
-export const shifter = new Role({
+export const shifter: Role = {
   id: "22cb8046-a815-4f72-a4c3-e25a0ed152e4",
   name: m["roles.shifter.name"],
-  unkillable: false,
-  culprit: "Optional",
   connectedToBoard: false,
   connectedToLossCondition: false,
   abilities: [
@@ -986,14 +876,11 @@ export const shifter = new Role({
       winCondition: true,
     },
   ],
-  mastermindAbilities: [],
-});
+};
 
-export const alice = new Role({
+export const alice: Role = {
   id: "7a58d2b8-a631-4136-9b28-23ccb200e0a4",
   name: m["roles.alice.name"],
-  unkillable: false,
-  culprit: "Optional",
   connectedToBoard: true,
   connectedToLossCondition: true,
   abilities: [
@@ -1013,14 +900,11 @@ export const alice = new Role({
       timesPerLoop: 1,
     },
   ],
-  mastermindAbilities: [],
-});
+};
 
-export const piedPiper = new Role({
+export const piedPiper: Role = {
   id: "44b106f3-c828-4d5d-92a1-b878a66e0c89",
   name: m["roles.piedPiper.name"],
-  unkillable: false,
-  culprit: "Optional",
   goodwillRefusal: "Optional",
   connectedToBoard: true,
   connectedToLossCondition: true,
@@ -1040,13 +924,11 @@ export const piedPiper = new Role({
       optional: true,
     },
   ],
-});
+};
 
-export const gossip = new Role({
+export const gossip: Role = {
   id: "15932faa-4d73-46f0-b81e-bd3d5f032a7d",
   name: m["roles.gossip.name"],
-  unkillable: false,
-  culprit: "Optional",
   connectedToBoard: true,
   connectedToLossCondition: false,
   max: () => 1,
@@ -1065,4 +947,4 @@ export const gossip = new Role({
       optional: true,
     },
   ],
-});
+};

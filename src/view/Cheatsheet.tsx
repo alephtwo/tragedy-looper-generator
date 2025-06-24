@@ -10,8 +10,8 @@ import { PlotRule } from "../data/types/PlotRule";
 import { Incident } from "../data/types/Incident";
 import { Box, Divider, Paper, Table, TableBody, TableCell, TableHead, TableRow, Typography } from "@mui/material";
 import * as Icons from "./Icons";
-import { RoleName } from "./RoleName";
 import { m } from "../paraglide/messages";
+import { Role } from "../data/types/Role";
 
 interface CheatsheetProps {
   script: Script;
@@ -127,6 +127,10 @@ function PlotRules(props: PlotRulesProps): React.JSX.Element {
       rule: pr.effect,
     })),
   );
+  if (plotRules.length === 0) {
+    return <></>;
+  }
+
   return (
     <>
       <Typography variant="h3" sx={styles.headerWithIcon}>
@@ -157,6 +161,9 @@ interface MastermindAbilitiesProps {
   mastermindAbilities: Array<MastermindAbilityTrigger>;
 }
 function MastermindAbilities({ mastermindAbilities }: MastermindAbilitiesProps): React.JSX.Element {
+  if (mastermindAbilities.length === 0) {
+    return <></>;
+  }
   return (
     <>
       <Typography variant="h3" sx={styles.headerWithIcon}>
@@ -217,7 +224,7 @@ function RoleAbilities({ roleAbilities }: RoleAbilitiesProps): React.JSX.Element
               <TableCell>{a.ability.triggers.map((trigger) => trigger.description()).join(", ")}</TableCell>
               <TableCell>{m[a.ability.optional ? "terms.optional" : "terms.mandatory"]()}</TableCell>
               <TableCell>
-                <CastMemberDescription castMember={a.castMember} />
+                <CastMemberDescription castMember={a.castMember} triggeringRole={a.grantedBy} />
               </TableCell>
               <TableCell>{a.ability.effect()}</TableCell>
               <TableCell>{a.ability.timesPerLoop}</TableCell>
@@ -299,8 +306,9 @@ function extractMastermindAbilities(script: Script): Array<MastermindAbilityTrig
     }));
   });
   const fromRoles: Array<MastermindAbilityTrigger> = script.cast.flatMap((c) => {
-    return c.role.mastermindAbilities.map((ma) => ({
-      ability: ma,
+    return c.role.mastermindAbilities().map(({ grantedBy, ability }) => ({
+      grantedBy,
+      ability,
       castMember: c,
     }));
   });
@@ -309,8 +317,9 @@ function extractMastermindAbilities(script: Script): Array<MastermindAbilityTrig
 
 function extractRoleAbilities(script: Script): Array<RoleAbilityTrigger> {
   return script.cast.flatMap((c) => {
-    return c.role.abilities.map((a) => ({
-      ability: a,
+    return c.role.abilities().map(({ grantedBy, ability }) => ({
+      grantedBy,
+      ability,
       castMember: c,
     }));
   });
@@ -318,11 +327,12 @@ function extractRoleAbilities(script: Script): Array<RoleAbilityTrigger> {
 
 interface CastMemberDescriptionProps {
   castMember: CastMember;
+  triggeringRole?: Role;
 }
-function CastMemberDescription({ castMember }: CastMemberDescriptionProps): React.JSX.Element {
+function CastMemberDescription({ castMember, triggeringRole }: CastMemberDescriptionProps): React.JSX.Element {
   return (
     <>
-      {castMember.character.name()} (<RoleName role={castMember.role} />)
+      {castMember.character.name()} ({castMember.role.name(triggeringRole)})
     </>
   );
 }
@@ -333,7 +343,9 @@ interface MastermindAbilityTriggererProps {
 function MastermindAbilityTriggerer({ mastermindAbility }: MastermindAbilityTriggererProps): React.JSX.Element {
   // If a cast member is defined, use it
   if (mastermindAbility.castMember !== undefined) {
-    return <CastMemberDescription castMember={mastermindAbility.castMember} />;
+    return (
+      <CastMemberDescription castMember={mastermindAbility.castMember} triggeringRole={mastermindAbility.grantedBy} />
+    );
   }
   // check plot next
   if (mastermindAbility.plot !== undefined) {
@@ -343,12 +355,14 @@ function MastermindAbilityTriggerer({ mastermindAbility }: MastermindAbilityTrig
 }
 
 interface MastermindAbilityTrigger {
+  grantedBy?: Role;
   ability: MastermindAbility;
   castMember?: CastMember;
   plot?: Plot;
 }
 
 interface RoleAbilityTrigger {
+  grantedBy: Role;
   ability: RoleAbility;
   castMember: CastMember;
 }

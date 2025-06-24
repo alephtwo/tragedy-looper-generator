@@ -1,11 +1,11 @@
 import { Character } from "../data/types/Character";
-import { DualRole, Role } from "../data/types/Role";
+import { PlotRole } from "../data/types/PlotRole";
 import { IncidentOccurrence } from "./IncidentOccurrence";
 
 export class CastMember {
   readonly id: string;
   readonly character: Character;
-  readonly role: Role | DualRole;
+  readonly role: PlotRole;
   readonly incidentTriggers: Array<IncidentOccurrence>;
 
   constructor(args: CastMemberArgs) {
@@ -14,10 +14,14 @@ export class CastMember {
     this.role = args.role;
     this.incidentTriggers = args.incidentTriggers;
   }
+
+  is(character: Character): boolean {
+    return this.character.id === character.id;
+  }
 }
 
 interface CastMemberArgs {
   readonly character: Character;
-  readonly role: Role | DualRole;
+  readonly role: PlotRole;
   readonly incidentTriggers: Array<IncidentOccurrence>;
 }
