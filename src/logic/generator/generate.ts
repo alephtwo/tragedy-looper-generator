@@ -23,11 +23,13 @@ export function generate(args: GenerateArgs): Script {
   const decks = {
     mainPlots: new Deck(args.tragedySet.mainPlots),
     subplots: new Deck(args.tragedySet.subplots),
+    incidents: new Deck(args.tragedySet.incidents),
+    characters: new Deck(args.tragedySet.characters),
   };
 
   const mainPlot = decks.mainPlots.draw();
   const subplots = decks.subplots.pull(2);
-  const plots = [mainPlot].concat(subplots);
+  const plots = [mainPlot, ...subplots];
 
   // Find the required roles.
   // Notably, the Mystery Boy might appear in the initial cast. If he does,
@@ -61,19 +63,19 @@ export function generate(args: GenerateArgs): Script {
 }
 
 function getRequiredRoles(plots: Array<Plot>, tragedySet: TragedySet): Array<PlotRole> {
-  const roles = plots.flatMap((p) => p.roles());
+  return plots
+    .flatMap((p) => p.roles())
+    .reduce((roles: Array<PlotRole>, role: PlotRole) => {
+      // Enforce maximum limits.
+      // Check if the role is at capacity in the list we've already got.
+      // If it is, we can't add it.
+      if (!role.canBeAddedTo(roles, tragedySet)) {
+        return roles;
+      }
 
-  return roles.reduce((roles: Array<PlotRole>, role: PlotRole) => {
-    // Enforce maximum limits.
-    // Check if the role is at capacity in the list we've already got.
-    // If it is, we can't add it.
-    if (!role.canBeAddedTo(roles, tragedySet)) {
-      return roles;
-    }
-
-    // Otherwise, add the role to the list.
-    return [...roles, role];
-  }, []);
+      // Otherwise, add the role to the list.
+      return [...roles, role];
+    }, []);
 }
 
 // Enforce maximums.
