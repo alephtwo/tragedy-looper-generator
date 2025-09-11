@@ -35,10 +35,10 @@
     "prettier": "3.6.2",
     "radash": "12.1.1",
     "typescript": "5.9.2",
-    "typescript-eslint": "8.42.0",
-    "vite": "7.1.4",
+    "typescript-eslint": "8.43.0",
+    "vite": "7.1.5",
     "vitest": "3.2.4",
-    "@inlang/paraglide-js": "2.2.0",
+    "@inlang/paraglide-js": "2.3.0",
     "@inlang/cli": "^3.0.12"
   },
   "dependencies": {
