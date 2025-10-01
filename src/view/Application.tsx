@@ -52,7 +52,7 @@ export function Application(): React.JSX.Element {
           <LocalePicker
             value={state.locale}
             onChange={(locale) => {
-              setLocale(locale, { reload: false });
+              Promise.resolve(setLocale(locale, { reload: false })).catch(console.error);
               document.documentElement.setAttribute("lang", locale);
               document.title = m["scaffolding.title"]();
               dispatch({ action: "set-locale", value: locale });
