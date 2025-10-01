@@ -27,12 +27,12 @@ jobs:
     runs-on: "ubuntu-latest"
     steps:
       - name: "Checkout"
-        uses: "actions/checkout@v4"
+        uses: "actions/checkout@v5"
       - uses: "pnpm/action-setup/@v4"
         with:
           version: "latest"
       - name: "Set up Node"
-        uses: "actions/setup-node@v4"
+        uses: "actions/setup-node@v5"
         with:
           node-version: "lts/jod"
           cache: "pnpm"
@@ -41,9 +41,9 @@ jobs:
       - name: "Build"
         run: "pnpm build"
       - name: "Setup Pages"
-        uses: "actions/configure-pages@v4"
+        uses: "actions/configure-pages@v5"
       - name: "Upload artifact"
-        uses: "actions/upload-pages-artifact@v3"
+        uses: "actions/upload-pages-artifact@v4"
         with:
           path: "./dist"
       - name: "Deploy to GitHub Pages"
