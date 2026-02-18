@@ -1,12 +1,10 @@
-import { defineConfig } from "eslint/config";
+import { defineConfig, globalIgnores } from "eslint/config";
 import eslint from "@eslint/js";
 import tseslint from "typescript-eslint";
 
 export default defineConfig(
   eslint.configs.recommended,
-  {
-    ignores: ["dist/**", "coverage/**", "reports/**", "src/paraglide/**"],
-  },
+  globalIgnores(["dist/**", "coverage/**", "reports/**", "src/paraglide/**"]),
   {
     files: ["**/*.ts", "**/*.tsx"],
     extends: [eslint.configs.recommended, ...tseslint.configs.recommendedTypeChecked],
