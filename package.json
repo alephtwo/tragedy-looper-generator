@@ -15,7 +15,7 @@
     "format": "prettier --write .",
     "lint": "pnpm lint:ts && pnpm prettier && pnpm lint:md",
     "lint:ts": "eslint .",
-    "lint:md": "markdownlint .",
+    "lint:md": "markdownlint-cli2 .",
     "build:i18n": "paraglide-js compile --project ./project.inlang --outdir ./src/paraglide",
     "machine-translate": "inlang machine translate --project project.inlang"
   },
@@ -34,7 +34,7 @@
     "@vitejs/plugin-react-swc": "4.2.3",
     "eslint": "10.0.2",
     "markdownlint": "0.40.0",
-    "markdownlint-cli": "0.47.0",
+    "markdownlint-cli2": "0.21.0",
     "prettier": "3.8.1",
     "radash": "12.1.1",
     "typescript": "5.9.3",
