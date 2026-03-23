@@ -1,22 +1,10 @@
-import { Box, LinearProgress, Typography, colors } from "@mui/material";
 import * as React from "react";
 
 export function Loading(): React.JSX.Element {
   return (
-    <Box
-      sx={(theme) => ({
-        display: "flex",
-        height: "100vh",
-        flexDirection: "column",
-        alignItems: "center",
-        justifyContent: "center",
-        gap: theme.spacing(2),
-      })}
-    >
-      <Typography color={colors.grey[100]} variant="h1">
-        Loading...
-      </Typography>
-      <LinearProgress sx={{ width: "50%" }} variant="indeterminate" aria-label="Loading Progress" />
-    </Box>
+    <div className="flex h-screen flex-col items-center justify-center gap-4">
+      <span className="text-4xl text-gray-100">Loading...</span>
+      <progress className="progress text-gray-100 w-1/2" aria-label="Loading Progress" />
+    </div>
   );
 }

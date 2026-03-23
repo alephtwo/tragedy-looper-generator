@@ -1,32 +1,28 @@
-import * as React from "react";
-
 import {
-  PersonSearch,
-  PsychologyAlt,
-  Description,
-  DateRange,
-  PeopleAlt,
-  CrisisAlert,
-  MenuBook,
-  FindInPage,
-  Celebration,
-  SportsKabaddi,
-  AssignmentLate,
-  Newspaper,
-  Fingerprint,
-} from "@mui/icons-material";
-import { SvgIconProps } from "@mui/material";
+  IconAlertCircle,
+  IconBook2,
+  IconCalendar,
+  IconClipboard,
+  IconFileDescription,
+  IconFileTextSpark,
+  IconTrophy,
+  IconUfo,
+  IconUserExclamation,
+  IconUsers,
+  IconZoom,
+  IconZoomScan,
+} from "@tabler/icons-react";
 
-export const Mastermind = (props: SvgIconProps) => <PsychologyAlt {...props} />;
-export const Players = (props: SvgIconProps) => <PersonSearch {...props} />;
-export const Generate = (props: SvgIconProps) => <Description {...props} />;
-export const Cast = (props: SvgIconProps) => <PeopleAlt {...props} />;
-export const Days = (props: SvgIconProps) => <DateRange {...props} />;
-export const Incidents = (props: SvgIconProps) => <CrisisAlert {...props} />;
-export const TragedySet = (props: SvgIconProps) => <MenuBook {...props} />;
-export const Cheatsheet = (props: SvgIconProps) => <FindInPage {...props} />;
-export const WinConditions = (props: SvgIconProps) => <Celebration {...props} />;
-export const MastermindAbilities = (props: SvgIconProps) => <AssignmentLate {...props} />;
-export const RoleAbilities = (props: SvgIconProps) => <SportsKabaddi {...props} />;
-export const PlotRules = (props: SvgIconProps) => <Newspaper {...props} />;
-export const TraitorWinConditions = (props: SvgIconProps) => <Fingerprint {...props} />;
+export const Mastermind = IconZoom;
+export const Players = IconUsers;
+export const Generate = IconFileDescription;
+export const Cast = IconUsers;
+export const Days = IconCalendar;
+export const Incidents = IconAlertCircle;
+export const TragedySet = IconBook2;
+export const Cheatsheet = IconClipboard;
+export const WinConditions = IconTrophy;
+export const MastermindAbilities = IconZoomScan;
+export const RoleAbilities = IconUserExclamation;
+export const PlotRules = IconFileTextSpark;
+export const TraitorWinConditions = IconUfo;

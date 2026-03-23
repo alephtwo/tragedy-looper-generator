@@ -1,3 +1,8 @@
 {
-  "recommendations": ["esbenp.prettier-vscode", "vitest.explorer", "netcorext.uuid-generator"]
+  "recommendations": [
+    "vitest.explorer",
+    "esbenp.prettier-vscode",
+    "bradlc.vscode-tailwindcss",
+    "netcorext.uuid-generator"
+  ]
 }
