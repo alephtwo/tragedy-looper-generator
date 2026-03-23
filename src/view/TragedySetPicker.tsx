@@ -3,7 +3,6 @@ import * as _ from "radash";
 import * as TragedySets from "../data/TragedySets";
 import { TragedySet } from "../data/types/TragedySet";
 import { findById } from "../util/findById";
-import { FormControl, FormLabel, MenuItem, Select, Typography } from "@mui/material";
 import * as Icons from "./Icons";
 import { m } from "../paraglide/messages";
 
@@ -14,27 +13,26 @@ interface TragedySetPickerProps {
 }
 export function TragedySetPicker(props: TragedySetPickerProps): React.JSX.Element {
   return (
-    <FormControl fullWidth>
-      <FormLabel htmlFor={props.id}>
-        <Typography sx={styles.headerWithIcon}>
+    <div className="w-full">
+      <label htmlFor={props.id} className="label">
+        <span className="flex items-center gap-1">
           <Icons.TragedySet fontSize="small" />
           {m["terms.tragedySet"]()}
-        </Typography>
-      </FormLabel>
-      <Select
-        sx={{ marginTop: 1 }}
-        size="small"
+        </span>
+      </label>
+      <select
         id={props.id}
+        className="select select-sm w-full"
         value={props.selected.id}
         onChange={(e) => props.onChange(findTragedySet(e.target.value))}
       >
         {_.sort(Object.values(TragedySets), (a) => a.order).map((ts) => (
-          <MenuItem key={`ts-${ts.id}`} value={ts.id}>
+          <option key={`ts-${ts.id}`} value={ts.id}>
             {ts.name()}
-          </MenuItem>
+          </option>
         ))}
-      </Select>
-    </FormControl>
+      </select>
+    </div>
   );
 }
 
@@ -45,11 +43,3 @@ function findTragedySet(id: string): TragedySet {
   }
   return next;
 }
-
-const styles = {
-  headerWithIcon: {
-    display: "flex",
-    alignItems: "center",
-    gap: 1,
-  },
-};

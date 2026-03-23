@@ -4,10 +4,10 @@ import { Script } from "../model/Script";
 import { Incident } from "../data/types/Incident";
 import { Character } from "../data/types/Character";
 import { CastMember } from "../model/CastMember";
-import { Box, Divider, Paper, Table, TableBody, TableCell, TableHead, TableRow, Typography } from "@mui/material";
 import * as Icons from "./Icons";
 import { m } from "../paraglide/messages";
 import { PlotRole } from "../data/types/PlotRole";
+import { Paper } from "./components/Paper";
 
 interface ScriptCardProps {
   script: Script;
@@ -17,40 +17,40 @@ export function Mastermind({ script }: ScriptCardProps): React.JSX.Element {
   const occurrences = describeIncidents(script.cast);
 
   return (
-    <Paper variant="transparent" sx={styles.paper} elevation={1}>
-      <Box sx={styles.section}>
-        <Typography variant="h2" sx={styles.headerWithIcon}>
+    <Paper>
+      <div className="flex flex-col gap-2">
+        <h2 className="flex items-center gap-2 text-2xl font-semibold">
           <Icons.Mastermind />
           {m["terms.mastermind"]()}
-        </Typography>
-        <Divider variant="fullWidth" />
+        </h2>
+        <div className="divider my-0" />
         <GeneralInfo script={script} mastermind={true} />
         <Incidents occurrences={occurrences} mastermind={true} />
-        <Box sx={styles.section}>
-          <Typography variant="h3" sx={styles.headerWithIcon}>
+        <div className="flex flex-col gap-2">
+          <h3 className="flex items-center gap-2 text-xl font-semibold">
             <Icons.Cast />
             {m["terms.cast"]()}
-          </Typography>
-          <Table size="small">
-            <TableHead>
-              <TableRow>
-                <TableCell variant="head">{m["terms.character"]({ count: 1 })}</TableCell>
-                <TableCell variant="head">{m["terms.role"]({ count: 1 })}</TableCell>
-              </TableRow>
-            </TableHead>
-            <TableBody>
+          </h3>
+          <table className="table table-sm">
+            <thead>
+              <tr>
+                <td>{m["terms.character"]({ count: 1 })}</td>
+                <td>{m["terms.role"]({ count: 1 })}</td>
+              </tr>
+            </thead>
+            <tbody>
               {_.alphabetical(script.cast, (c) => c.character.name()).map((c) => (
-                <TableRow key={`cast-${c.id}`}>
-                  <TableCell>
+                <tr key={`cast-${c.id}`}>
+                  <td>
                     <CastMemberName castMember={c} />
-                  </TableCell>
-                  <TableCell>{c.role.name()}</TableCell>
-                </TableRow>
+                  </td>
+                  <td>{c.role.name()}</td>
+                </tr>
               ))}
-            </TableBody>
-          </Table>
-        </Box>
-      </Box>
+            </tbody>
+          </table>
+        </div>
+      </div>
     </Paper>
   );
 }
@@ -59,17 +59,17 @@ export function Players({ script }: ScriptCardProps): React.JSX.Element {
   const occurrences = describeIncidents(script.cast);
 
   return (
-    <Paper variant="transparent" sx={styles.paper} elevation={1}>
-      <Box sx={styles.section}>
-        <Typography variant="h2" sx={styles.headerWithIcon}>
+    <Paper>
+      <div className="flex flex-col gap-2">
+        <h2 className="flex items-center gap-2 text-2xl font-semibold">
           <Icons.Players />
           {m["terms.player"]({ count: 2 })}
-        </Typography>
-        <Divider variant="fullWidth" />
+        </h2>
+        <div className="divider my-0" />
         <GeneralInfo script={script} mastermind={false} />
         <Incidents occurrences={occurrences} mastermind={false} />
         <TraitorWinConditions script={script} />
-      </Box>
+      </div>
     </Paper>
   );
 }
@@ -80,41 +80,39 @@ interface GeneralInfoProps {
 }
 function GeneralInfo({ mastermind, script }: GeneralInfoProps): React.JSX.Element {
   return (
-    <Table size="small" sx={styles.extraBottomMargin}>
-      <TableBody>
-        <TableRow>
-          <TableCell variant="head">{m["terms.tragedySet"]()}</TableCell>
-          <TableCell>{script.tragedySet.name()}</TableCell>
-        </TableRow>
-        <TableRow>
-          <TableCell variant="head">{m["terms.castSize"]()}</TableCell>
-          <TableCell>{script.cast.length}</TableCell>
-        </TableRow>
-        <TableRow>
-          <TableCell variant="head">{m["terms.loops"]()}</TableCell>
-          <TableCell>{script.loops}</TableCell>
-        </TableRow>
+    <table className="table table-sm">
+      <tbody>
+        <tr>
+          <th>{m["terms.tragedySet"]()}</th>
+          <td>{script.tragedySet.name()}</td>
+        </tr>
+        <tr>
+          <th>{m["terms.castSize"]()}</th>
+          <td>{script.cast.length}</td>
+        </tr>
+        <tr>
+          <th>{m["terms.loops"]()}</th>
+          <td>{script.loops}</td>
+        </tr>
         <MastermindOnly
           mastermind={mastermind}
           render={() => (
             <>
-              <TableRow>
-                <TableCell variant="head">{m["terms.mainPlot"]()}</TableCell>
-                <TableCell>{script.mainPlot.name()}</TableCell>
-              </TableRow>
+              <tr>
+                <th>{m["terms.mainPlot"]()}</th>
+                <td>{script.mainPlot.name()}</td>
+              </tr>
               {script.subplots.map((subplot, i) => (
-                <TableRow key={`subplot-${i}-${subplot.id}`}>
-                  <TableCell variant="head">
-                    {i === 0 ? m["terms.subplot"]({ count: script.subplots.length }) : ""}
-                  </TableCell>
-                  <TableCell>{subplot.name()}</TableCell>
-                </TableRow>
+                <tr key={`subplot-${i}-${subplot.id}`}>
+                  <th>{i === 0 ? m["terms.subplot"]({ count: script.subplots.length }) : ""}</th>
+                  <td>{subplot.name()}</td>
+                </tr>
               ))}
             </>
           )}
         />
-      </TableBody>
-    </Table>
+      </tbody>
+    </table>
   );
 }
 
@@ -124,38 +122,32 @@ interface IncidentsProps {
 }
 function Incidents({ mastermind, occurrences }: IncidentsProps): React.JSX.Element {
   return (
-    <Box sx={styles.section}>
-      <Typography variant="h3" sx={styles.headerWithIcon}>
+    <div className="flex flex-col gap-2">
+      <h3 className="flex items-center gap-2 text-xl font-semibold">
         <Icons.Incidents />
         {m["terms.incident"]({ count: occurrences.length })}
-      </Typography>
-      <Table size="small" sx={styles.extraBottomMargin}>
-        <TableHead>
-          <TableRow>
-            <TableCell variant="head">{m["terms.day"]({ count: 1 })}</TableCell>
-            <TableCell variant="head">{m["terms.name"]()}</TableCell>
-            <MastermindOnly
-              mastermind={mastermind}
-              render={() => <TableCell variant="head">{m["terms.culprit"]()}</TableCell>}
-            />
-          </TableRow>
-        </TableHead>
-        <TableBody>
+      </h3>
+      <table className="table table-sm">
+        <thead>
+          <tr>
+            <th>{m["terms.day"]({ count: 1 })}</th>
+            <th>{m["terms.name"]()}</th>
+            <MastermindOnly mastermind={mastermind} render={() => <th>{m["terms.culprit"]()}</th>} />
+          </tr>
+        </thead>
+        <tbody>
           {_.sort(occurrences, (o) => o.day).map((occurrence) => (
-            <TableRow key={`occ-${occurrence.id}`}>
-              <TableCell>{occurrence.day}</TableCell>
-              <TableCell>
+            <tr key={`occ-${occurrence.id}`}>
+              <td>{occurrence.day}</td>
+              <td>
                 <IncidentName mastermind={mastermind} occurrence={occurrence} />
-              </TableCell>
-              <MastermindOnly
-                mastermind={mastermind}
-                render={() => <TableCell>{occurrence.character.name()}</TableCell>}
-              />
-            </TableRow>
+              </td>
+              <MastermindOnly mastermind={mastermind} render={() => <td>{occurrence.character.name()}</td>} />
+            </tr>
           ))}
-        </TableBody>
-      </Table>
-    </Box>
+        </tbody>
+      </table>
+    </div>
   );
 }
 
@@ -251,49 +243,29 @@ function TraitorWinConditions(props: TraitorWinConditionProps): React.JSX.Elemen
   }
 
   return (
-    <Box sx={styles.section}>
-      <Typography variant="h3" sx={styles.headerWithIcon}>
+    <div className="flex flex-col gap-1">
+      <h3 className="flex items-center gap-2 text-xl font-semibold">
         <Icons.TraitorWinConditions />
         {m["terms.traitorWinCondition"]({ count: traitorWinConditions.length })}
-      </Typography>
-      <Table size="small" sx={styles.extraBottomMargin}>
-        <TableHead>
-          <TableRow>
-            <TableCell variant="head">Traitor</TableCell>
-            <TableCell variant="head">Trigger</TableCell>
-            <TableCell variant="head">Rule</TableCell>
-          </TableRow>
-        </TableHead>
-        <TableBody>
+      </h3>
+      <table className="table table-sm">
+        <thead>
+          <tr>
+            <th>Traitor</th>
+            <th>Trigger</th>
+            <th>Rule</th>
+          </tr>
+        </thead>
+        <tbody>
           {_.alphabetical(traitorWinConditions, (wc) => wc.winConditionForTraitor ?? "").map((wc) => (
-            <TableRow key={`wc-${wc.id}`}>
-              <TableCell>{wc.winConditionForTraitor}</TableCell>
-              <TableCell>{wc.trigger.description()}</TableCell>
-              <TableCell>{wc.effect()}</TableCell>
-            </TableRow>
+            <tr key={`wc-${wc.id}`}>
+              <td>{wc.winConditionForTraitor}</td>
+              <td>{wc.trigger.description()}</td>
+              <td>{wc.effect()}</td>
+            </tr>
           ))}
-        </TableBody>
-      </Table>
-    </Box>
+        </tbody>
+      </table>
+    </div>
   );
 }
-
-const styles = {
-  paper: {
-    padding: 2,
-    height: "100%",
-  },
-  headerWithIcon: {
-    display: "flex",
-    alignItems: "center",
-    gap: 1,
-  },
-  section: {
-    display: "flex",
-    flexDirection: "column",
-    gap: 1,
-  },
-  extraBottomMargin: {
-    marginBottom: 2,
-  },
-};

@@ -1,6 +1,5 @@
 import * as React from "react";
 import * as _ from "radash";
-import { FormControl, FormLabel, Slider, Typography } from "@mui/material";
 
 interface NumberPickerProps {
   id: string;
@@ -13,37 +12,50 @@ interface NumberPickerProps {
 }
 
 export function NumberPicker(props: NumberPickerProps): React.JSX.Element {
-  const marks = _.list(props.min, props.max).map((n) => ({
-    value: n,
-    label: n.toString(),
-  }));
+  const marks = _.list(props.min, props.max);
 
   return (
-    <FormControl fullWidth>
-      <FormLabel htmlFor={props.id}>
-        <Typography sx={styles.headerWithIcon}>
+    <div
+      className="w-full"
+      style={
+        {
+          "--range-thumb-size": "calc(var(--size-selector, .25rem) * 4)",
+        } as React.CSSProperties
+      }
+    >
+      <label htmlFor={props.id} className="label">
+        <span className="flex items-center gap-2">
           {props.startIcon}
           {props.label}
-        </Typography>
-      </FormLabel>
-      <Slider
+        </span>
+      </label>
+      <input
+        type="range"
         id={props.id}
         aria-label={props.label}
         min={props.min}
         max={props.max}
         value={props.value}
-        marks={marks}
-        size="small"
-        onChange={(_e, v) => props.onChange(v)}
+        step={1}
+        className="range range-primary range-xs w-full"
+        onChange={(e) => props.onChange(Number(e.target.value))}
       />
-    </FormControl>
+      <div className="relative w-full text-xs" style={{ height: "1em" }}>
+        {marks.map((n, i) => (
+          <span
+            key={n}
+            className="absolute -tanslate-x-1/2"
+            style={{
+              // the math here is to position the mark correctly under the
+              // slider thumb, which is a bit tricky because the thumb has a
+              // size and we want the marks to be centered under it
+              left: `calc(var(--range-thumb-size) / 2 + ${i / (marks.length - 1)} * (100% - var(--range-thumb-size)))`,
+            }}
+          >
+            {n}
+          </span>
+        ))}
+      </div>
+    </div>
   );
 }
-
-const styles = {
-  headerWithIcon: {
-    display: "flex",
-    alignItems: "center",
-    gap: 1,
-  },
-};

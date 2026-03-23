@@ -5,10 +5,10 @@ import { reducer } from "../logic/State";
 import * as ScriptCard from "./ScriptCard";
 import { Cheatsheet } from "./Cheatsheet";
 import { LocalePicker } from "./LocalePicker";
-import { Container, Grid, Stack, Typography, colors } from "@mui/material";
 import { m } from "../paraglide/messages";
 import * as TragedySets from "../data/TragedySets";
 import { getLocale, setLocale } from "../paraglide/runtime";
+import { Loading } from "./Loading";
 
 export function Application(): React.JSX.Element {
   const [state, dispatch] = useReducer(reducer, {
@@ -30,39 +30,39 @@ export function Application(): React.JSX.Element {
       return <></>;
     }
     return (
-      <Grid container spacing={1}>
-        <Grid size={{ xs: 12, md: 6 }}>
-          <ScriptCard.Mastermind script={script} />
-        </Grid>
-        <Grid size={{ xs: 12, md: 6 }}>
-          <ScriptCard.Players script={script} />
-        </Grid>
-        <Grid size={{ xs: 12 }}>
+      <div className="grid grid-cols-1 md:grid-cols-2 gap-2">
+        <ScriptCard.Mastermind script={script} />
+        <ScriptCard.Players script={script} />
+        <div className="md:col-span-2">
           <Cheatsheet script={script} />
-        </Grid>
-      </Grid>
+        </div>
+      </div>
     );
   }
 
   return (
-    <Container sx={{ marginY: 1 }}>
-      <Stack gap={1}>
-        <Stack direction="row" justifyContent="space-between">
-          <PageTitle />
-          <LocalePicker
-            value={state.locale}
-            onChange={(locale) => {
-              Promise.resolve(setLocale(locale, { reload: false })).catch(console.error);
-              document.documentElement.setAttribute("lang", locale);
-              document.title = m["scaffolding.title"]();
-              dispatch({ action: "set-locale", value: locale });
-            }}
-          />
-        </Stack>
-        <ScriptGenerator state={state} dispatch={dispatch} />
-        <ScriptInfo />
-      </Stack>
-    </Container>
+    <div className="min-h-screen bg-linear-to-tr from-[#0b1a27] to-[#1d3a5c] bg-fixed">
+      <React.Suspense fallback={<Loading />}>
+        <div className="max-w-7xl mx-auto px-4 py-4">
+          <div className="flex flex-col gap-2">
+            <div className="flex justify-between">
+              <PageTitle />
+              <LocalePicker
+                value={state.locale}
+                onChange={(locale) => {
+                  Promise.resolve(setLocale(locale, { reload: false })).catch(console.error);
+                  document.documentElement.setAttribute("lang", locale);
+                  document.title = m["scaffolding.title"]();
+                  dispatch({ action: "set-locale", value: locale });
+                }}
+              />
+            </div>
+            <ScriptGenerator state={state} dispatch={dispatch} />
+            <ScriptInfo />
+          </div>
+        </div>
+      </React.Suspense>
+    </div>
   );
 }
 
@@ -73,7 +73,7 @@ function PageTitle(): React.JSX.Element {
   const tokens = title.split(" ");
 
   return (
-    <Typography variant="h1" sx={{ ...styles.shadow, ...styles.grey }}>
+    <span className="text-white text-4xl text-shadow-2xl">
       {tokens.map((token, i) => {
         // All but the last token are default font color.
         if (i !== tokens.length - 1) {
@@ -81,7 +81,7 @@ function PageTitle(): React.JSX.Element {
         }
         return <QuarterRedText key={`title-${i}`} token={token} />;
       })}
-    </Typography>
+    </span>
   );
 }
 
@@ -96,20 +96,8 @@ function QuarterRedText(props: QuarterRedTextProps) {
   const end = token.slice(quarter);
   return (
     <>
-      <span style={styles.red}>{begin}</span>
+      <span className="text-red-900 font-bold [-webkit-text-stroke:1px_white]">{begin}</span>
       <span>{end}</span>
     </>
   );
 }
-
-const styles = {
-  shadow: {
-    textShadow: new Array(6).fill("#000 0 0 2px").join(", "),
-  },
-  grey: {
-    color: colors.grey[200],
-  },
-  red: {
-    color: colors.red[900],
-  },
-};
