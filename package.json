@@ -24,8 +24,8 @@
   "devDependencies": {
     "@axe-core/react": "4.11.1",
     "@eslint/js": "10.0.1",
-    "@inlang/cli": "3.1.7",
-    "@inlang/paraglide-js": "2.15.0",
+    "@inlang/cli": "3.1.9",
+    "@inlang/paraglide-js": "2.15.1",
     "@stryker-mutator/core": "9.6.0",
     "@stryker-mutator/vitest-runner": "9.6.0",
     "@tailwindcss/vite": "4.2.2",
@@ -34,16 +34,16 @@
     "@types/react-dom": "19.2.3",
     "@vitejs/plugin-react": "6.0.1",
     "daisyui": "5.5.19",
-    "eslint": "10.0.3",
+    "eslint": "10.1.0",
     "markdownlint": "0.40.0",
-    "markdownlint-cli2": "0.21.0",
+    "markdownlint-cli2": "0.22.0",
     "prettier": "3.8.1",
     "radash": "12.1.1",
     "tailwindcss": "4.2.2",
     "typescript": "5.9.3",
-    "typescript-eslint": "8.57.1",
-    "vite": "8.0.0",
-    "vitest": "4.1.0"
+    "typescript-eslint": "8.57.2",
+    "vite": "8.0.2",
+    "vitest": "4.1.1"
   },
   "dependencies": {
     "@tabler/icons-react": "3.40.0",
