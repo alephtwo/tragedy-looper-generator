@@ -39,13 +39,46 @@ export function Cheatsheet({ script }: CheatsheetProps): React.JSX.Element {
           {m["scaffolding.cheatsheet"]()}
         </h2>
         <div className="divider my-0" />
-        <WinConditions plots={plots} roleAbilities={roleAbilities} incidents={allIncidents} />
-        <PlotRules plots={plots} />
-        <MastermindAbilities mastermindAbilities={mastermindAbilities} />
-        <RoleAbilities roleAbilities={roleAbilities} />
-        <Incidents incidents={allIncidents} />
+        <CheatsheetSection title={m["terms.winConditions"]()} icon={<Icons.WinConditions size={20} />}>
+          <WinConditions plots={plots} roleAbilities={roleAbilities} incidents={allIncidents} />
+        </CheatsheetSection>
+        <CheatsheetSection title={m["terms.plotRule"]({ count: 2 })} icon={<Icons.PlotRules size={20} />}>
+          <PlotRules plots={plots} />
+        </CheatsheetSection>
+        <CheatsheetSection title={m["terms.mastermindAbilities"]()} icon={<Icons.MastermindAbilities size={20} />}>
+          <MastermindAbilities mastermindAbilities={mastermindAbilities} />
+        </CheatsheetSection>
+        <CheatsheetSection
+          title={m["terms.roleAbility"]({ count: roleAbilities.length })}
+          icon={<Icons.RoleAbilities size={20} />}
+        >
+          <RoleAbilities roleAbilities={roleAbilities} />
+        </CheatsheetSection>
+        <CheatsheetSection
+          title={m["terms.incident"]({ count: allIncidents.length })}
+          icon={<Icons.Incidents size={20} />}
+        >
+          <Incidents incidents={allIncidents} />
+        </CheatsheetSection>
       </div>
     </Paper>
+  );
+}
+
+interface CheatsheetSectionProps extends React.PropsWithChildren {
+  title: string;
+  icon: React.ReactNode;
+}
+function CheatsheetSection({ title, icon, children }: CheatsheetSectionProps): React.JSX.Element {
+  return (
+    <details open className="group">
+      <summary className="flex items-center gap-2 text-xl font-semibold py-2 cursor-pointer list-none select-none">
+        <span className="text-[10px] transition-transform duration-200 group-open:rotate-90">▶</span>
+        {icon}
+        {title}
+      </summary>
+      <div className="pb-2">{children}</div>
+    </details>
   );
 }
 
@@ -68,50 +101,44 @@ function WinConditions(props: WinConditionsProps): React.JSX.Element {
     .filter((i) => i.winCondition === true);
 
   return (
-    <>
-      <h3 className="flex items-center gap-2 text-xl font-semibold">
-        <Icons.WinConditions />
-        {m["terms.winConditions"]()}
-      </h3>
-      <table className="table table-sm">
-        <thead>
-          <tr>
-            <th>{m["terms.mechanic"]()}</th>
-            <th>{m["terms.source"]()}</th>
-            <th>{m["terms.trigger"]()}</th>
-            <th>{m["terms.effect"]()}</th>
+    <table className="table table-sm">
+      <thead>
+        <tr>
+          <th>{m["terms.mechanic"]()}</th>
+          <th>{m["terms.source"]()}</th>
+          <th>{m["terms.trigger"]()}</th>
+          <th>{m["terms.effect"]()}</th>
+        </tr>
+      </thead>
+      <tbody>
+        {_.unique(fromPlotRules, (pr) => pr.id).map((pr) => (
+          <tr key={`wc-${pr.id}`}>
+            <td>{m["terms.plotRule"]({ count: 1 })}</td>
+            <td></td>
+            <td>{pr.trigger.description()}</td>
+            <td>{pr.effect()}</td>
           </tr>
-        </thead>
-        <tbody>
-          {_.unique(fromPlotRules, (pr) => pr.id).map((pr) => (
-            <tr key={`wc-${pr.id}`}>
-              <td>{m["terms.plotRule"]({ count: 1 })}</td>
-              <td></td>
-              <td>{pr.trigger.description()}</td>
-              <td>{pr.effect()}</td>
-            </tr>
-          ))}
-          {sortRoleAbilities(uniqueAbilityAndCastMember(fromRoleAbilities)).map((ra) => (
-            <tr key={`wc-${ra.ability.id}-${ra.castMember.id}`}>
-              <td>{m["terms.roleAbility"]({ count: 1 })}</td>
-              <td>
-                <CastMemberDescription castMember={ra.castMember} />
-              </td>
-              <td>{ra.ability.triggers.map((trigger) => trigger.description()).join(", ")}</td>
-              <td>{ra.ability.effect()}</td>
-            </tr>
-          ))}
-          {_.unique(fromIncidents, (i) => i.id).map((i) => (
-            <tr key={`wc-${i.id}`}>
-              <td>{m["terms.incident"]({ count: 1 })}</td>
-              <td>{i.name()}</td>
-              <td />
-              <td>{i.effect()}</td>
-            </tr>
-          ))}
-        </tbody>
-      </table>
-    </>
+        ))}
+        {sortRoleAbilities(uniqueAbilityAndCastMember(fromRoleAbilities)).map((ra) => (
+          <tr key={`wc-${ra.ability.id}-${ra.castMember.id}`}>
+            <td>{m["terms.roleAbility"]({ count: 1 })}</td>
+            <td>
+              <CastMemberDescription castMember={ra.castMember} />
+            </td>
+            <td>{ra.ability.triggers.map((trigger) => trigger.description()).join(", ")}</td>
+            <td>{ra.ability.effect()}</td>
+          </tr>
+        ))}
+        {_.unique(fromIncidents, (i) => i.id).map((i) => (
+          <tr key={`wc-${i.id}`}>
+            <td>{m["terms.incident"]({ count: 1 })}</td>
+            <td>{i.name()}</td>
+            <td />
+            <td>{i.effect()}</td>
+          </tr>
+        ))}
+      </tbody>
+    </table>
   );
 }
 
@@ -132,28 +159,22 @@ function PlotRules(props: PlotRulesProps): React.JSX.Element {
   }
 
   return (
-    <>
-      <h3 className="flex items-center gap-2 text-xl font-semibold">
-        <Icons.PlotRules />
-        {m["terms.plotRule"]({ count: 2 })}
-      </h3>
-      <table className="table table-sm">
-        <thead>
-          <tr>
-            <th>{m["terms.plot"]()}</th>
-            <th>{m["terms.effect"]()}</th>
+    <table className="table table-sm">
+      <thead>
+        <tr>
+          <th>{m["terms.plot"]()}</th>
+          <th>{m["terms.effect"]()}</th>
+        </tr>
+      </thead>
+      <tbody>
+        {_.alphabetical(plotRules, (pr) => pr.plot()).map((pr) => (
+          <tr key={`plotrule-${pr.plotId}-${pr.ruleId}`}>
+            <td>{pr.plot()}</td>
+            <td>{pr.rule()}</td>
           </tr>
-        </thead>
-        <tbody>
-          {_.alphabetical(plotRules, (pr) => pr.plot()).map((pr) => (
-            <tr key={`plotrule-${pr.plotId}-${pr.ruleId}`}>
-              <td>{pr.plot()}</td>
-              <td>{pr.rule()}</td>
-            </tr>
-          ))}
-        </tbody>
-      </table>
-    </>
+        ))}
+      </tbody>
+    </table>
   );
 }
 
@@ -165,36 +186,30 @@ function MastermindAbilities({ mastermindAbilities }: MastermindAbilitiesProps):
     return <></>;
   }
   return (
-    <>
-      <h3 className="flex items-center gap-2 text-xl font-semibold">
-        <Icons.MastermindAbilities />
-        {m["terms.mastermindAbilities"]()}
-      </h3>
-      <table className="table table-sm">
-        <thead>
-          <tr>
-            <th>{m["terms.mandatory"]()}</th>
-            <th>{m["terms.triggeredBy"]()}</th>
-            <th>{m["terms.effect"]()}</th>
-            <th>{m["terms.perDay"]()}</th>
-            <th>{m["terms.perLoop"]()}</th>
+    <table className="table table-sm">
+      <thead>
+        <tr>
+          <th>{m["terms.mandatory"]()}</th>
+          <th>{m["terms.triggeredBy"]()}</th>
+          <th>{m["terms.effect"]()}</th>
+          <th>{m["terms.perDay"]()}</th>
+          <th>{m["terms.perLoop"]()}</th>
+        </tr>
+      </thead>
+      <tbody>
+        {mastermindAbilities.map((mat, i) => (
+          <tr key={`cheatsheet-ma-${i}`}>
+            <td>{m[mat.ability.optional ? "terms.optional" : "terms.mandatory"]()}</td>
+            <td>
+              <MastermindAbilityTriggerer mastermindAbility={mat} />
+            </td>
+            <td>{mat.ability.effect()}</td>
+            <td>{mat.ability.timesPerDay}</td>
+            <td>{mat.ability.timesPerLoop}</td>
           </tr>
-        </thead>
-        <tbody>
-          {mastermindAbilities.map((mat, i) => (
-            <tr key={`cheatsheet-ma-${i}`}>
-              <td>{m[mat.ability.optional ? "terms.optional" : "terms.mandatory"]()}</td>
-              <td>
-                <MastermindAbilityTriggerer mastermindAbility={mat} />
-              </td>
-              <td>{mat.ability.effect()}</td>
-              <td>{mat.ability.timesPerDay}</td>
-              <td>{mat.ability.timesPerLoop}</td>
-            </tr>
-          ))}
-        </tbody>
-      </table>
-    </>
+        ))}
+      </tbody>
+    </table>
   );
 }
 
@@ -203,36 +218,30 @@ interface RoleAbilitiesProps {
 }
 function RoleAbilities({ roleAbilities }: RoleAbilitiesProps): React.JSX.Element {
   return (
-    <>
-      <h3 className="flex items-center gap-2 text-xl font-semibold">
-        <Icons.RoleAbilities />
-        {m["terms.roleAbility"]({ count: roleAbilities.length })}
-      </h3>
-      <table className="table table-sm">
-        <thead>
-          <tr>
-            <th>{m["terms.trigger"]()}</th>
-            <th>{m["terms.mandatory"]()}</th>
-            <th>{m["terms.triggeredBy"]()}</th>
-            <th>{m["terms.effect"]()}</th>
-            <th>{m["terms.perLoop"]()}</th>
+    <table className="table table-sm">
+      <thead>
+        <tr>
+          <th>{m["terms.trigger"]()}</th>
+          <th>{m["terms.mandatory"]()}</th>
+          <th>{m["terms.triggeredBy"]()}</th>
+          <th>{m["terms.effect"]()}</th>
+          <th>{m["terms.perLoop"]()}</th>
+        </tr>
+      </thead>
+      <tbody>
+        {sortRoleAbilities(roleAbilities).map((a, i) => (
+          <tr key={`cheatsheet-ra-${i}`}>
+            <td>{a.ability.triggers.map((trigger) => trigger.description()).join(", ")}</td>
+            <td>{m[a.ability.optional ? "terms.optional" : "terms.mandatory"]()}</td>
+            <td>
+              <CastMemberDescription castMember={a.castMember} triggeringRole={a.grantedBy} />
+            </td>
+            <td>{a.ability.effect()}</td>
+            <td>{a.ability.timesPerLoop}</td>
           </tr>
-        </thead>
-        <tbody>
-          {sortRoleAbilities(roleAbilities).map((a, i) => (
-            <tr key={`cheatsheet-ra-${i}`}>
-              <td>{a.ability.triggers.map((trigger) => trigger.description()).join(", ")}</td>
-              <td>{m[a.ability.optional ? "terms.optional" : "terms.mandatory"]()}</td>
-              <td>
-                <CastMemberDescription castMember={a.castMember} triggeringRole={a.grantedBy} />
-              </td>
-              <td>{a.ability.effect()}</td>
-              <td>{a.ability.timesPerLoop}</td>
-            </tr>
-          ))}
-        </tbody>
-      </table>
-    </>
+        ))}
+      </tbody>
+    </table>
   );
 }
 
@@ -245,34 +254,28 @@ function Incidents({ incidents }: IncidentsProps): React.JSX.Element {
   }
 
   return (
-    <>
-      <h3 className="flex items-center gap-2 text-xl font-semibold">
-        <Icons.Incidents />
-        {m["terms.incident"]({ count: incidents.length })}
-      </h3>
-      <table className="table table-sm">
-        <thead>
-          <tr>
-            <th>{m["terms.day"]({ count: 1 })}</th>
-            <th>{m["terms.incident"]({ count: 1 })}</th>
-            <th>{m["terms.culprit"]()}</th>
-            <th>{m["terms.effect"]()}</th>
+    <table className="table table-sm">
+      <thead>
+        <tr>
+          <th>{m["terms.day"]({ count: 1 })}</th>
+          <th>{m["terms.incident"]({ count: 1 })}</th>
+          <th>{m["terms.culprit"]()}</th>
+          <th>{m["terms.effect"]()}</th>
+        </tr>
+      </thead>
+      <tbody>
+        {_.sort(incidents, (i) => i.incidentTrigger.day).map(({ castMember, incidentTrigger }) => (
+          <tr key={`cheatsheet-i-${incidentTrigger.id}`}>
+            <td>{incidentTrigger.day}</td>
+            <td>{incidentTrigger.incident.name()}</td>
+            <td>
+              <CastMemberDescription castMember={castMember} />
+            </td>
+            <td>{incidentTrigger.incident.effect()}</td>
           </tr>
-        </thead>
-        <tbody>
-          {_.sort(incidents, (i) => i.incidentTrigger.day).map(({ castMember, incidentTrigger }) => (
-            <tr key={`cheatsheet-i-${incidentTrigger.id}`}>
-              <td>{incidentTrigger.day}</td>
-              <td>{incidentTrigger.incident.name()}</td>
-              <td>
-                <CastMemberDescription castMember={castMember} />
-              </td>
-              <td>{incidentTrigger.incident.effect()}</td>
-            </tr>
-          ))}
-        </tbody>
-      </table>
-    </>
+        ))}
+      </tbody>
+    </table>
   );
 }
 

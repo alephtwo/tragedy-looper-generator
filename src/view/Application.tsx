@@ -1,5 +1,5 @@
 import * as React from "react";
-import { useReducer, useEffect } from "react";
+import { useReducer, useEffect, useRef, useState } from "react";
 import { ScriptGenerator } from "./ScriptGenerator";
 import { reducer } from "../logic/State";
 import * as ScriptCard from "./ScriptCard";
@@ -9,6 +9,12 @@ import { m } from "../paraglide/messages";
 import * as TragedySets from "../data/TragedySets";
 import { getLocale, setLocale } from "../paraglide/runtime";
 import { Loading } from "./Loading";
+import * as Icons from "./Icons";
+import { Script } from "../model/Script";
+import { PageTitle } from "./components/PageTitle";
+import { TabButton } from "./components/TabButton";
+
+type Tab = "mastermind" | "players" | "cheatsheet";
 
 export function Application(): React.JSX.Element {
   const [state, dispatch] = useReducer(reducer, {
@@ -19,33 +25,31 @@ export function Application(): React.JSX.Element {
     script: null,
     locale: getLocale(),
   });
+  const [activeTab, setActiveTab] = useState<Tab>("mastermind");
+  const scriptOutputRef = useRef<HTMLDivElement>(null);
+  const prevScript = useRef<Script | null>(null);
   const { script } = state;
 
   useEffect(() => {
     document.title = m["scaffolding.title"]();
   });
 
-  function ScriptInfo(): React.JSX.Element {
-    if (script === null) {
-      return <></>;
+  useEffect(() => {
+    if (script !== null && prevScript.current !== script) {
+      if (prevScript.current === null) {
+        setActiveTab("mastermind");
+      }
+      scriptOutputRef.current?.scrollIntoView({ behavior: "smooth", block: "nearest" });
     }
-    return (
-      <div className="grid grid-cols-1 md:grid-cols-2 gap-2">
-        <ScriptCard.Mastermind script={script} />
-        <ScriptCard.Players script={script} />
-        <div className="md:col-span-2">
-          <Cheatsheet script={script} />
-        </div>
-      </div>
-    );
-  }
+    prevScript.current = script;
+  }, [script]);
 
   return (
     <div className="min-h-screen bg-linear-to-tr from-[#0b1a27] to-[#1d3a5c] bg-fixed">
       <React.Suspense fallback={<Loading />}>
         <div className="max-w-7xl mx-auto px-4 py-4">
-          <div className="flex flex-col gap-2">
-            <div className="flex justify-between">
+          <div className="flex flex-col gap-4">
+            <div className="flex justify-between items-center">
               <PageTitle />
               <LocalePicker
                 value={state.locale}
@@ -58,46 +62,32 @@ export function Application(): React.JSX.Element {
               />
             </div>
             <ScriptGenerator state={state} dispatch={dispatch} />
-            <ScriptInfo />
+            {script !== null && (
+              <div ref={scriptOutputRef} className="flex flex-col gap-2">
+                <div className="flex gap-1">
+                  <TabButton active={activeTab === "mastermind"} onClick={() => setActiveTab("mastermind")}>
+                    <Icons.Mastermind size={18} />
+                    {m["terms.mastermind"]()}
+                  </TabButton>
+                  <TabButton active={activeTab === "players"} onClick={() => setActiveTab("players")}>
+                    <Icons.Players size={18} />
+                    {m["terms.player"]({ count: 2 })}
+                  </TabButton>
+                  <TabButton active={activeTab === "cheatsheet"} onClick={() => setActiveTab("cheatsheet")}>
+                    <Icons.Cheatsheet size={18} />
+                    {m["scaffolding.cheatsheet"]()}
+                  </TabButton>
+                </div>
+                <div>
+                  {activeTab === "mastermind" && <ScriptCard.Mastermind script={script} />}
+                  {activeTab === "players" && <ScriptCard.Players script={script} />}
+                  {activeTab === "cheatsheet" && <Cheatsheet script={script} />}
+                </div>
+              </div>
+            )}
           </div>
         </div>
       </React.Suspense>
     </div>
-  );
-}
-
-function PageTitle(): React.JSX.Element {
-  const title = m["scaffolding.title"]();
-
-  // Get fancy...
-  const tokens = title.split(" ");
-
-  return (
-    <span className="text-white text-4xl text-shadow-2xl">
-      {tokens.map((token, i) => {
-        // All but the last token are default font color.
-        if (i !== tokens.length - 1) {
-          return <span key={`title-${i}`}>{token} </span>;
-        }
-        return <QuarterRedText key={`title-${i}`} token={token} />;
-      })}
-    </span>
-  );
-}
-
-interface QuarterRedTextProps {
-  token: string;
-}
-function QuarterRedText(props: QuarterRedTextProps) {
-  const { token } = props;
-  // The first quarter of characters in the last token are red.
-  const quarter = Math.ceil(token.length / 4);
-  const begin = token.slice(0, quarter);
-  const end = token.slice(quarter);
-  return (
-    <>
-      <span className="text-red-900 font-bold [-webkit-text-stroke:1px_white]">{begin}</span>
-      <span>{end}</span>
-    </>
   );
 }
