@@ -9,6 +9,7 @@ export interface TragedySet {
   readonly order: number;
   readonly characters: Array<Character>;
   readonly mainPlots: Array<Plot>;
+  readonly maxSubplots: 1 | 2;
   readonly subplots: Array<Plot>;
   readonly incidents: Array<Incident>;
 }

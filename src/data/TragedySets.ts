@@ -30,6 +30,7 @@ export const firstSteps: TragedySet = {
     Characters.henchman,
   ],
   mainPlots: [MainPlots.murderPlan, MainPlots.lightOfTheAvenger, MainPlots.aPlaceToProtect],
+  maxSubplots: 1,
   subplots: [Subplots.shadowOfTheRipper, Subplots.anUnsettlingRumor, Subplots.aHideousScript],
   incidents: [
     Incidents.murder,
@@ -73,6 +74,7 @@ export const basicTragedy: TragedySet = {
     MainPlots.changeOfFuture,
     MainPlots.giantTimeBomb,
   ],
+  maxSubplots: 2,
   subplots: [
     Subplots.circleOfFriends,
     Subplots.aLoveAffair,
@@ -130,6 +132,7 @@ export const midnightZone: TragedySet = {
     MainPlots.maleConfrontation,
     MainPlots.fatedConnections,
   ],
+  maxSubplots: 2,
   subplots: [
     Subplots.loveHateSpiral,
     Subplots.showtimeOfDeath,
@@ -189,6 +192,7 @@ export const mysteryCircle: TragedySet = {
     MainPlots.aQuiltOfIncidents,
     MainPlots.theBlackSchool,
   ],
+  maxSubplots: 2,
   subplots: [
     Subplots.theHiddenFreak2,
     Subplots.danceOfFools,
@@ -248,6 +252,7 @@ export const primeEvil: TragedySet = {
     MainPlots.theOnesFromTheGrave,
     MainPlots.theCursedLand,
   ],
+  maxSubplots: 2,
   subplots: [
     Subplots.thoseWithHabits,
     Subplots.aLoveAffair2,
@@ -300,6 +305,7 @@ export const cosmicMythology: TragedySet = {
     Characters.soldier,
     Characters.blackCat,
   ],
+  maxSubplots: 2,
   mainPlots: [
     MainPlots.choirToTheOutsideGod,
     MainPlots.theSacredWordsOfDagon,
@@ -363,6 +369,7 @@ export const lastLiar: TragedySet = {
     MainPlots.theDemonsScript,
     MainPlots.giantTimeBombYetAgain,
   ],
+  maxSubplots: 2,
   subplots: [
     Subplots.theRealMonster,
     Subplots.keeperOfMythology,
@@ -419,6 +426,7 @@ export const anotherHorizon: TragedySet = {
     MainPlots.dimensionalMerger,
     MainPlots.intoNothingness,
   ],
+  maxSubplots: 2,
   subplots: [
     Subplots.jekyllAndHyde,
     Subplots.thePlaguebringer,

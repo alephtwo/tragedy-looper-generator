@@ -26,7 +26,7 @@ export function generate(args: GenerateArgs): Script {
   };
 
   const mainPlot = decks.mainPlots.draw();
-  const subplots = decks.subplots.pull(2);
+  const subplots = decks.subplots.pull(args.tragedySet.maxSubplots);
   const plots = [mainPlot].concat(subplots);
 
   // Find the required roles.
