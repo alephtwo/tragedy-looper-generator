@@ -33,7 +33,9 @@ export class Deck<T> {
   select(selector: (card: T) => boolean) {
     // Filter down to the cards that match the criteria.
     // Attach their index, we'll need it later.
-    const candidates = this.#cards.map((card, i) => ({ i, card })).filter(({ card }) => selector(card));
+    const candidates = this.#cards
+      .map((card, i) => ({ i, card }))
+      .filter(({ card }) => selector(card));
 
     // If there aren't any candidates left, we're done, we have to stop.
     if (candidates.length === 0) {

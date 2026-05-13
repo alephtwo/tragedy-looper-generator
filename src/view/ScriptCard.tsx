@@ -132,7 +132,10 @@ function Incidents({ mastermind, occurrences }: IncidentsProps): React.JSX.Eleme
           <tr>
             <th>{m["terms.day"]({ count: 1 })}</th>
             <th>{m["terms.name"]()}</th>
-            <MastermindOnly mastermind={mastermind} render={() => <th>{m["terms.culprit"]()}</th>} />
+            <MastermindOnly
+              mastermind={mastermind}
+              render={() => <th>{m["terms.culprit"]()}</th>}
+            />
           </tr>
         </thead>
         <tbody>
@@ -142,7 +145,10 @@ function Incidents({ mastermind, occurrences }: IncidentsProps): React.JSX.Eleme
               <td>
                 <IncidentName mastermind={mastermind} occurrence={occurrence} />
               </td>
-              <MastermindOnly mastermind={mastermind} render={() => <td>{occurrence.character.name()}</td>} />
+              <MastermindOnly
+                mastermind={mastermind}
+                render={() => <td>{occurrence.character.name()}</td>}
+              />
             </tr>
           ))}
         </tbody>
@@ -257,13 +263,15 @@ function TraitorWinConditions(props: TraitorWinConditionProps): React.JSX.Elemen
           </tr>
         </thead>
         <tbody>
-          {_.alphabetical(traitorWinConditions, (wc) => wc.winConditionForTraitor ?? "").map((wc) => (
-            <tr key={`wc-${wc.id}`}>
-              <td>{wc.winConditionForTraitor}</td>
-              <td>{wc.trigger.description()}</td>
-              <td>{wc.effect()}</td>
-            </tr>
-          ))}
+          {_.alphabetical(traitorWinConditions, (wc) => wc.winConditionForTraitor ?? "").map(
+            (wc) => (
+              <tr key={`wc-${wc.id}`}>
+                <td>{wc.winConditionForTraitor}</td>
+                <td>{wc.trigger.description()}</td>
+                <td>{wc.effect()}</td>
+              </tr>
+            ),
+          )}
         </tbody>
       </table>
     </div>

@@ -39,13 +39,22 @@ export function Cheatsheet({ script }: CheatsheetProps): React.JSX.Element {
           {m["scaffolding.cheatsheet"]()}
         </h2>
         <div className="divider my-0" />
-        <CheatsheetSection title={m["terms.winConditions"]()} icon={<Icons.WinConditions size={20} />}>
+        <CheatsheetSection
+          title={m["terms.winConditions"]()}
+          icon={<Icons.WinConditions size={20} />}
+        >
           <WinConditions plots={plots} roleAbilities={roleAbilities} incidents={allIncidents} />
         </CheatsheetSection>
-        <CheatsheetSection title={m["terms.plotRule"]({ count: 2 })} icon={<Icons.PlotRules size={20} />}>
+        <CheatsheetSection
+          title={m["terms.plotRule"]({ count: 2 })}
+          icon={<Icons.PlotRules size={20} />}
+        >
           <PlotRules plots={plots} />
         </CheatsheetSection>
-        <CheatsheetSection title={m["terms.mastermindAbilities"]()} icon={<Icons.MastermindAbilities size={20} />}>
+        <CheatsheetSection
+          title={m["terms.mastermindAbilities"]()}
+          icon={<Icons.MastermindAbilities size={20} />}
+        >
           <MastermindAbilities mastermindAbilities={mastermindAbilities} />
         </CheatsheetSection>
         <CheatsheetSection
@@ -73,7 +82,9 @@ function CheatsheetSection({ title, icon, children }: CheatsheetSectionProps): R
   return (
     <details open className="group">
       <summary className="flex items-center gap-2 text-xl font-semibold py-2 cursor-pointer list-none select-none">
-        <span className="text-[10px] transition-transform duration-200 group-open:rotate-90">▶</span>
+        <span className="text-[10px] transition-transform duration-200 group-open:rotate-90">
+          ▶
+        </span>
         {icon}
         {title}
       </summary>
@@ -280,13 +291,18 @@ function Incidents({ incidents }: IncidentsProps): React.JSX.Element {
 }
 
 function sortRoleAbilities(roleAbilities: Array<RoleAbilityTrigger>): Array<RoleAbilityTrigger> {
-  return _.sort(roleAbilities, (a) => _.max(a.ability.triggers.map((trigger) => trigger.order)) ?? 0);
+  return _.sort(
+    roleAbilities,
+    (a) => _.max(a.ability.triggers.map((trigger) => trigger.order)) ?? 0,
+  );
 }
 
 // This is a gross hack but it works.
 // We want to take a list of triggers and make sure we unique-ify it based
 // on the cast member and associated ability.
-function uniqueAbilityAndCastMember(triggers: Array<RoleAbilityTrigger>): Array<RoleAbilityTrigger> {
+function uniqueAbilityAndCastMember(
+  triggers: Array<RoleAbilityTrigger>,
+): Array<RoleAbilityTrigger> {
   const seen = new Set<string>();
   const uniques: Array<RoleAbilityTrigger> = [];
 
@@ -332,7 +348,10 @@ interface CastMemberDescriptionProps {
   castMember: CastMember;
   triggeringRole?: Role;
 }
-function CastMemberDescription({ castMember, triggeringRole }: CastMemberDescriptionProps): React.JSX.Element {
+function CastMemberDescription({
+  castMember,
+  triggeringRole,
+}: CastMemberDescriptionProps): React.JSX.Element {
   return (
     <>
       {castMember.character.name()} ({castMember.role.name(triggeringRole)})
@@ -343,11 +362,16 @@ function CastMemberDescription({ castMember, triggeringRole }: CastMemberDescrip
 interface MastermindAbilityTriggererProps {
   mastermindAbility: MastermindAbilityTrigger;
 }
-function MastermindAbilityTriggerer({ mastermindAbility }: MastermindAbilityTriggererProps): React.JSX.Element {
+function MastermindAbilityTriggerer({
+  mastermindAbility,
+}: MastermindAbilityTriggererProps): React.JSX.Element {
   // If a cast member is defined, use it
   if (mastermindAbility.castMember !== undefined) {
     return (
-      <CastMemberDescription castMember={mastermindAbility.castMember} triggeringRole={mastermindAbility.grantedBy} />
+      <CastMemberDescription
+        castMember={mastermindAbility.castMember}
+        triggeringRole={mastermindAbility.grantedBy}
+      />
     );
   }
   // check plot next

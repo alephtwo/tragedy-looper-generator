@@ -2,6 +2,8 @@
   "name": "tragedy-looper-generator",
   "version": "1.0.0",
   "description": "",
+  "license": "MIT",
+  "author": "Ben Christianson <thhuntertgm@gmail.com>",
   "main": "dist/index.js",
   "scripts": {
     "start": "vite",
@@ -11,19 +13,22 @@
     "preview": "vite preview",
     "build": "vite build && pnpm typecheck",
     "typecheck": "tsc",
-    "prettier": "prettier --check .",
-    "format": "prettier --write .",
-    "lint": "pnpm lint:ts && pnpm prettier && pnpm lint:md",
-    "lint:ts": "eslint .",
+    "oxfmt": "oxfmt --check .",
+    "format": "oxfmt --write .",
+    "lint": "pnpm lint:ts && pnpm oxfmt && pnpm lint:md",
+    "lint:ts": "oxlint .",
     "lint:md": "markdownlint-cli2 .",
     "build:i18n": "paraglide-js compile --project ./project.inlang --outdir ./src/paraglide",
     "machine-translate": "inlang machine translate --project project.inlang"
   },
-  "author": "Ben Christianson <thhuntertgm@gmail.com>",
-  "license": "MIT",
+  "dependencies": {
+    "@tabler/icons-react": "3.44.0",
+    "immer": "11.1.8",
+    "react": "19.2.6",
+    "react-dom": "19.2.6"
+  },
   "devDependencies": {
     "@axe-core/react": "4.11.3",
-    "@eslint/js": "10.0.1",
     "@inlang/cli": "3.1.11",
     "@inlang/paraglide-js": "2.18.0",
     "@stryker-mutator/core": "9.6.1",
@@ -34,21 +39,14 @@
     "@types/react-dom": "19.2.3",
     "@vitejs/plugin-react": "6.0.1",
     "daisyui": "5.5.19",
-    "eslint": "10.3.0",
     "markdownlint": "0.40.0",
     "markdownlint-cli2": "0.22.1",
-    "prettier": "3.8.3",
+    "oxfmt": "0.49.0",
+    "oxlint": "1.64.0",
     "radash": "12.1.1",
     "tailwindcss": "4.3.0",
     "typescript": "6.0.3",
-    "typescript-eslint": "8.59.3",
     "vite": "8.0.12",
     "vitest": "4.1.6"
-  },
-  "dependencies": {
-    "@tabler/icons-react": "3.44.0",
-    "immer": "11.1.8",
-    "react": "19.2.6",
-    "react-dom": "19.2.6"
   }
 }

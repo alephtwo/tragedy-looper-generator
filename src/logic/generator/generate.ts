@@ -83,7 +83,9 @@ function fillRemainingRoles(roles: Array<PlotRole>, castSize: number): Array<Plo
   const needed = Math.max(castSize, roles.length);
   // We want to return an array of length equal to castSize.
   // Fill the rest with "Person" roles.
-  const filler = new Array(needed - roles.length).fill(new PlotRole(Roles.person));
+  const filler = Array.from<PlotRole>({ length: needed - roles.length }).fill(
+    new PlotRole(Roles.person),
+  );
   return roles.concat(filler);
 }
 
@@ -142,7 +144,11 @@ function buildCast(state: BuildCastAccumulator, role: PlotRole): BuildCastAccumu
   });
 }
 
-function matchCharacter(pool: Array<Character>, role: PlotRole, cast: Array<CastMember>): Character {
+function matchCharacter(
+  pool: Array<Character>,
+  role: PlotRole,
+  cast: Array<CastMember>,
+): Character {
   // Find characters that can meet that role.
   const characters = pool.filter((c) => role.canBePlayedBy(c, cast));
 
@@ -165,7 +171,10 @@ function pickIncidents(args: PickIncidentsArgs): Array<IncidentOccurrence> {
   // We also might have some that are required, in which case we don't want to double count those.
   const amount = Math.min(args.amount, args.days) - required.length;
   // Pick however many we still need at random.
-  const remainingIncidents = Array.from({ length: amount }, () => _.draw(args.incidents) as Incident);
+  const remainingIncidents = Array.from(
+    { length: amount },
+    () => _.draw(args.incidents) as Incident,
+  );
 
   const incidents = required.concat(remainingIncidents);
   const assignedIncidents = incidents.reduce(assignDayToIncident, {
@@ -190,7 +199,10 @@ interface AssignDayToIncidentState {
   days: Array<number>;
   occurrences: Array<IncidentOccurrence>;
 }
-function assignDayToIncident(state: AssignDayToIncidentState, incident: Incident): AssignDayToIncidentState {
+function assignDayToIncident(
+  state: AssignDayToIncidentState,
+  incident: Incident,
+): AssignDayToIncidentState {
   // cool cast bro
   // if this is the first day we're assigning, it needs to pick the last day
   // an incident must always occur on the last day
@@ -204,10 +216,13 @@ function assignDayToIncident(state: AssignDayToIncidentState, incident: Incident
   });
 }
 
-function assignIncidentsToCast(cast: Array<CastMember>, incidents: Array<IncidentOccurrence>): Array<CastMember> {
+function assignIncidentsToCast(
+  cast: Array<CastMember>,
+  incidents: Array<IncidentOccurrence>,
+): Array<CastMember> {
   return produce(cast, (next) => {
     // Who _could_ be a culprit here?
-    let culpritPool = [...next.filter((c) => !c.role.canNeverBeCulprit())];
+    let culpritPool = next.filter((c) => !c.role.canNeverBeCulprit());
     incidents.forEach((incident) => {
       // If we are attempting to assign a serial murder and one has already been assigned, we will assign it to the same culprit.
       // TODO: Support that it _might_ be the same culprit, but doesn't have to be. Coin flip?
@@ -225,7 +240,9 @@ function assignIncidentsToCast(cast: Array<CastMember>, incidents: Array<Inciden
 
       // We know we're not dealing with a serial murderer here.
       // If there is a culprit candidate who is mandatory but hasn't yet been assigned, let's do that.
-      const required = culpritPool.filter((c) => c.role.mustBeCulprit() && c.incidentTriggers.length === 0);
+      const required = culpritPool.filter(
+        (c) => c.role.mustBeCulprit() && c.incidentTriggers.length === 0,
+      );
 
       // Pick a culprit.
       const culprit = (required.length > 0 ? _.first(required) : _.draw(culpritPool)) as CastMember;

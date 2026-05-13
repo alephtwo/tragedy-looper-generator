@@ -113,11 +113,15 @@ export class PlotRole {
   }
 
   hasAnyGoodwillRefusal(): boolean {
-    return this.#role.goodwillRefusal !== undefined || this.#darkWorld?.goodwillRefusal !== undefined;
+    return (
+      this.#role.goodwillRefusal !== undefined || this.#darkWorld?.goodwillRefusal !== undefined
+    );
   }
 
   hasMandatoryGoodwillRefusal(): boolean {
-    return this.#role.goodwillRefusal === "Mandatory" || this.#darkWorld?.goodwillRefusal === "Mandatory";
+    return (
+      this.#role.goodwillRefusal === "Mandatory" || this.#darkWorld?.goodwillRefusal === "Mandatory"
+    );
   }
 
   isConnectedToBoard(): boolean {
@@ -125,7 +129,9 @@ export class PlotRole {
   }
 
   isConnectedToLossCondition(): boolean {
-    return this.#role.connectedToLossCondition || this.#darkWorld?.connectedToLossCondition === true;
+    return (
+      this.#role.connectedToLossCondition || this.#darkWorld?.connectedToLossCondition === true
+    );
   }
 
   isDualRole(): boolean {

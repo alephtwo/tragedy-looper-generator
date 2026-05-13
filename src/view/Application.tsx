@@ -65,15 +65,24 @@ export function Application(): React.JSX.Element {
             {script !== null && (
               <div ref={scriptOutputRef} className="flex flex-col gap-2">
                 <div className="flex gap-1">
-                  <TabButton active={activeTab === "mastermind"} onClick={() => setActiveTab("mastermind")}>
+                  <TabButton
+                    active={activeTab === "mastermind"}
+                    onClick={() => setActiveTab("mastermind")}
+                  >
                     <Icons.Mastermind size={18} />
                     {m["terms.mastermind"]()}
                   </TabButton>
-                  <TabButton active={activeTab === "players"} onClick={() => setActiveTab("players")}>
+                  <TabButton
+                    active={activeTab === "players"}
+                    onClick={() => setActiveTab("players")}
+                  >
                     <Icons.Players size={18} />
                     {m["terms.player"]({ count: 2 })}
                   </TabButton>
-                  <TabButton active={activeTab === "cheatsheet"} onClick={() => setActiveTab("cheatsheet")}>
+                  <TabButton
+                    active={activeTab === "cheatsheet"}
+                    onClick={() => setActiveTab("cheatsheet")}
+                  >
                     <Icons.Cheatsheet size={18} />
                     {m["scaffolding.cheatsheet"]()}
                   </TabButton>

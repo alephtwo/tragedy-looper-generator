@@ -66,7 +66,7 @@ npm start
 Code linting can be done with:
 
 ```shell
-# Autoformat using Prettier
+# Autoformat using oxfmt
 npm run format
 
 # Ensure everything is linted
