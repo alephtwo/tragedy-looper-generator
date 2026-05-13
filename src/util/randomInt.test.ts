@@ -4,7 +4,7 @@ import { randomInt } from "./randomInt";
 const originalRandom = Math.random;
 
 beforeEach(() => {
-  Math.random = vi.fn();
+  Math.random = vi.fn<typeof Math.random>();
 });
 
 afterEach(() => {

@@ -8,7 +8,7 @@ interface LocalePickerProps {
 
 export function LocalePicker(props: LocalePickerProps) {
   return (
-    <div className="flex gap-1" role="group">
+    <fieldset className="flex gap-1">
       {locales.map((lang) => (
         <button
           key={`lng-${lang}`}
@@ -22,7 +22,7 @@ export function LocalePicker(props: LocalePickerProps) {
           {lang.toUpperCase()}
         </button>
       ))}
-    </div>
+    </fieldset>
   );
 }
 
