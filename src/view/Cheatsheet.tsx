@@ -125,7 +125,7 @@ function WinConditions(props: WinConditionsProps): React.JSX.Element {
         {_.unique(fromPlotRules, (pr) => pr.id).map((pr) => (
           <tr key={`wc-${pr.id}`}>
             <td>{m["terms.plotRule"]({ count: 1 })}</td>
-            <td></td>
+            <td aria-label="Plot rules do not have a source." />
             <td>{pr.trigger.description()}</td>
             <td>{pr.effect()}</td>
           </tr>
@@ -144,7 +144,7 @@ function WinConditions(props: WinConditionsProps): React.JSX.Element {
           <tr key={`wc-${i.id}`}>
             <td>{m["terms.incident"]({ count: 1 })}</td>
             <td>{i.name()}</td>
-            <td />
+            <td aria-label="Incidents do not have a trigger." />
             <td>{i.effect()}</td>
           </tr>
         ))}
