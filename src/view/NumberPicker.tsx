@@ -1,5 +1,5 @@
-import * as React from "react";
 import * as _ from "radash";
+import * as React from "react";
 
 interface NumberPickerProps {
   id: string;

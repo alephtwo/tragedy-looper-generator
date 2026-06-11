@@ -1,7 +1,7 @@
-import { estimateLoops } from "../logic/generator/estimateLoops";
-import { CastMember } from "./CastMember";
 import { Plot } from "../data/types/Plot";
 import { TragedySet } from "../data/types/TragedySet";
+import { estimateLoops } from "../logic/generator/estimateLoops";
+import { CastMember } from "./CastMember";
 import { IncidentOccurrence } from "./IncidentOccurrence";
 
 export class Script {

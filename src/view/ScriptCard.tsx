@@ -1,13 +1,14 @@
-import * as React from "react";
 import * as _ from "radash";
-import { Script } from "../model/Script";
-import { Incident } from "../data/types/Incident";
+import * as React from "react";
+
 import { Character } from "../data/types/Character";
-import { CastMember } from "../model/CastMember";
-import * as Icons from "./Icons";
-import { m } from "../paraglide/messages";
+import { Incident } from "../data/types/Incident";
 import { PlotRole } from "../data/types/PlotRole";
+import { CastMember } from "../model/CastMember";
+import { Script } from "../model/Script";
+import { m } from "../paraglide/messages";
 import { Paper } from "./components/Paper";
+import * as Icons from "./Icons";
 
 interface ScriptCardProps {
   script: Script;

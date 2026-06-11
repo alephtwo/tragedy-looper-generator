@@ -1,5 +1,6 @@
-import { Location } from "./Location";
 import type { MessageFunction } from "@inlang/paraglide-js";
+
+import { Location } from "./Location";
 
 export class Character {
   readonly id: string;

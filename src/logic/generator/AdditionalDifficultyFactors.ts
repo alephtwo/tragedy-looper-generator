@@ -1,9 +1,10 @@
+import * as _ from "radash";
+
 import { Character } from "../../data/types/Character";
 import { Incident } from "../../data/types/Incident";
 import { Plot } from "../../data/types/Plot";
 import { Role } from "../../data/types/Role";
 import { Script } from "../../model/Script";
-import * as _ from "radash";
 
 export type DifficultyFactor = -1 | 0 | 1;
 

@@ -1,17 +1,18 @@
-import * as React from "react";
 import * as _ from "radash";
-import { Script } from "../model/Script";
-import { Plot } from "../data/types/Plot";
-import { RoleAbility } from "../data/types/RoleAbility";
+import * as React from "react";
+
+import { Incident } from "../data/types/Incident";
 import { MastermindAbility } from "../data/types/MastermindAbility";
+import { Plot } from "../data/types/Plot";
+import { PlotRule } from "../data/types/PlotRule";
+import { Role } from "../data/types/Role";
+import { RoleAbility } from "../data/types/RoleAbility";
 import { CastMember } from "../model/CastMember";
 import { IncidentOccurrence } from "../model/IncidentOccurrence";
-import { PlotRule } from "../data/types/PlotRule";
-import { Incident } from "../data/types/Incident";
-import * as Icons from "./Icons";
+import { Script } from "../model/Script";
 import { m } from "../paraglide/messages";
-import { Role } from "../data/types/Role";
 import { Paper } from "./components/Paper";
+import * as Icons from "./Icons";
 
 interface CheatsheetProps {
   script: Script;

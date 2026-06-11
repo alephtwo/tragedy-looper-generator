@@ -1,5 +1,5 @@
-import { randomInt } from "../util/randomInt";
 import { m } from "../paraglide/messages";
+import { randomInt } from "../util/randomInt";
 
 export class Deck<T> {
   readonly #cards: Array<T>;

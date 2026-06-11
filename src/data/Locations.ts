@@ -1,5 +1,5 @@
-import { Location } from "./types/Location";
 import { m } from "../paraglide/messages";
+import { Location } from "./types/Location";
 
 export const city: Location = {
   id: "6699634d-728b-4efe-8279-ffaea3456dcd",

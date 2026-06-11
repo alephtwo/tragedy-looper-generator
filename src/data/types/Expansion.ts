@@ -1,5 +1,6 @@
-import { TragedySet } from "./TragedySet";
 import type { MessageFunction } from "@inlang/paraglide-js";
+
+import { TragedySet } from "./TragedySet";
 
 export interface Expansion {
   readonly id: string;

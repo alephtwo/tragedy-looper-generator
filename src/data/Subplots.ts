@@ -1,13 +1,14 @@
-import { Plot } from "./types/Plot";
-import { PlotRole } from "./types/PlotRole";
 import * as _ from "radash";
+
+import { Script } from "../model/Script";
+import { m } from "../paraglide/messages";
+import { requireDescriptor } from "../util/requirements";
+import * as Incidents from "./Incidents";
+import * as MainPlots from "./MainPlots";
 import * as Roles from "./Roles";
 import * as Triggers from "./Triggers";
-import * as Incidents from "./Incidents";
-import { Script } from "../model/Script";
-import * as MainPlots from "./MainPlots";
-import { requireDescriptor } from "../util/requirements";
-import { m } from "../paraglide/messages";
+import { Plot } from "./types/Plot";
+import { PlotRole } from "./types/PlotRole";
 
 // Base Game /////////////////////////////////////////////////////////////////
 export const circleOfFriends: Plot = {

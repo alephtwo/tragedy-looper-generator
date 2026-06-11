@@ -1,6 +1,7 @@
 import { vi, describe, test, expect, beforeEach } from "vitest";
-import { Deck, NoCardsRemainingError } from "./Deck";
+
 import { randomInt } from "../util/randomInt";
+import { Deck, NoCardsRemainingError } from "./Deck";
 
 vi.mock("../util/randomInt");
 

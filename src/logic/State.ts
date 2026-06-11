@@ -1,8 +1,9 @@
+import { produce } from "immer";
+
 import { TragedySet } from "../data/types/TragedySet";
 import { Script } from "../model/Script";
-import { produce } from "immer";
-import { generate } from "./generator/generate";
 import { Locale } from "../paraglide/runtime";
+import { generate } from "./generator/generate";
 
 export interface State {
   tragedySet: TragedySet;

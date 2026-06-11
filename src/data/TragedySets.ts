@@ -1,9 +1,9 @@
-import { TragedySet } from "./types/TragedySet";
+import { m } from "../paraglide/messages";
+import * as Characters from "./Characters";
 import * as Incidents from "./Incidents";
 import * as MainPlots from "./MainPlots";
 import * as Subplots from "./Subplots";
-import * as Characters from "./Characters";
-import { m } from "../paraglide/messages";
+import { TragedySet } from "./types/TragedySet";
 
 export const firstSteps: TragedySet = {
   id: "a9c05e8e-b55c-4d98-8b40-714db57ca38f",

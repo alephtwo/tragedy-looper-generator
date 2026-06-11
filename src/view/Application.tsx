@@ -1,18 +1,19 @@
 import * as React from "react";
 import { useReducer, useEffect, useRef, useState } from "react";
-import { ScriptGenerator } from "./ScriptGenerator";
-import { reducer } from "../logic/State";
-import * as ScriptCard from "./ScriptCard";
-import { Cheatsheet } from "./Cheatsheet";
-import { LocalePicker } from "./LocalePicker";
-import { m } from "../paraglide/messages";
+
 import * as TragedySets from "../data/TragedySets";
-import { getLocale, setLocale } from "../paraglide/runtime";
-import { Loading } from "./Loading";
-import * as Icons from "./Icons";
+import { reducer } from "../logic/State";
 import { Script } from "../model/Script";
+import { m } from "../paraglide/messages";
+import { getLocale, setLocale } from "../paraglide/runtime";
+import { Cheatsheet } from "./Cheatsheet";
 import { PageTitle } from "./components/PageTitle";
 import { TabButton } from "./components/TabButton";
+import * as Icons from "./Icons";
+import { Loading } from "./Loading";
+import { LocalePicker } from "./LocalePicker";
+import * as ScriptCard from "./ScriptCard";
+import { ScriptGenerator } from "./ScriptGenerator";
 
 type Tab = "mastermind" | "players" | "cheatsheet";
 

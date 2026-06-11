@@ -1,10 +1,11 @@
 import * as React from "react";
-import { TragedySetPicker } from "./TragedySetPicker";
-import { NumberPicker } from "./NumberPicker";
+
 import { Message, State } from "../logic/State";
-import * as Icons from "./Icons";
 import { m } from "../paraglide/messages";
 import { Paper } from "./components/Paper";
+import * as Icons from "./Icons";
+import { NumberPicker } from "./NumberPicker";
+import { TragedySetPicker } from "./TragedySetPicker";
 
 interface ScriptGeneratorProps {
   state: State;

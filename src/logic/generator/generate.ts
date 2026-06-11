@@ -1,17 +1,18 @@
 import { produce } from "immer";
 import * as _ from "radash";
+
 import * as Characters from "../../data/Characters";
 import * as Incidents from "../../data/Incidents";
 import * as Roles from "../../data/Roles";
-import { CastMember } from "../../model/CastMember";
 import { Character } from "../../data/types/Character";
 import { Incident } from "../../data/types/Incident";
 import { Plot } from "../../data/types/Plot";
+import { PlotRole } from "../../data/types/PlotRole";
 import { TragedySet } from "../../data/types/TragedySet";
+import { CastMember } from "../../model/CastMember";
+import { Deck } from "../../model/Deck";
 import { IncidentOccurrence } from "../../model/IncidentOccurrence";
 import { Script } from "../../model/Script";
-import { Deck } from "../../model/Deck";
-import { PlotRole } from "../../data/types/PlotRole";
 
 export interface GenerateArgs {
   tragedySet: TragedySet;

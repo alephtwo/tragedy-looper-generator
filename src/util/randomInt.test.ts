@@ -1,4 +1,5 @@
 import { vi, test, expect, beforeEach, afterEach } from "vitest";
+
 import { randomInt } from "./randomInt";
 
 const originalRandom = Math.random;

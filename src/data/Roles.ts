@@ -1,7 +1,7 @@
-import { Role } from "./types/Role";
-import * as Triggers from "./Triggers";
-import * as TragedySets from "./TragedySets";
 import { m } from "../paraglide/messages";
+import * as TragedySets from "./TragedySets";
+import * as Triggers from "./Triggers";
+import { Role } from "./types/Role";
 
 export const person: Role = {
   id: "45041819-44ec-4fbd-aa6e-2cf816097cdc",

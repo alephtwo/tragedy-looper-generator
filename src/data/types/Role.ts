@@ -1,7 +1,8 @@
+import { MessageFunction } from "@inlang/paraglide-js";
+
 import { MastermindAbility } from "./MastermindAbility";
 import { RoleAbility } from "./RoleAbility";
 import { TragedySet } from "./TragedySet";
-import { MessageFunction } from "@inlang/paraglide-js";
 
 export interface Role {
   readonly id: string;

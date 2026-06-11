@@ -1,10 +1,10 @@
 import { CastMember } from "../../model/CastMember";
-import { Character } from "./Character";
-import { Role } from "./Role";
-import { TragedySet } from "./TragedySet";
 import { m } from "../../paraglide/messages";
+import { Character } from "./Character";
 import { MastermindAbility } from "./MastermindAbility";
+import { Role } from "./Role";
 import { RoleAbility } from "./RoleAbility";
+import { TragedySet } from "./TragedySet";
 
 export class PlotRole {
   readonly #role: Role;

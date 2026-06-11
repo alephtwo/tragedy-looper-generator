@@ -1,5 +1,6 @@
-import { Trigger } from "./Trigger";
 import { MessageFunction } from "@inlang/paraglide-js";
+
+import { Trigger } from "./Trigger";
 
 export interface RoleAbility {
   id: string;

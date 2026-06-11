@@ -1,4 +1,5 @@
 import * as React from "react";
+
 import { Locale, locales } from "../paraglide/runtime";
 
 interface LocalePickerProps {

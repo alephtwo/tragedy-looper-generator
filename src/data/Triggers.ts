@@ -1,5 +1,5 @@
-import { Trigger } from "./types/Trigger";
 import { m } from "../paraglide/messages";
+import { Trigger } from "./types/Trigger";
 
 export const always: Trigger = {
   id: "b888d71a-f98a-4b15-861e-330201a95b2a",

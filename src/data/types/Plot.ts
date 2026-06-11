@@ -1,9 +1,10 @@
+import { MessageFunction } from "@inlang/paraglide-js";
+
 import { Script } from "../../model/Script";
 import { Incident } from "./Incident";
 import { MastermindAbility } from "./MastermindAbility";
-import { PlotRule } from "./PlotRule";
 import { PlotRole } from "./PlotRole";
-import { MessageFunction } from "@inlang/paraglide-js";
+import { PlotRule } from "./PlotRule";
 
 export interface Plot {
   readonly id: string;

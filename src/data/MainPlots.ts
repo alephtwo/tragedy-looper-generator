@@ -1,12 +1,13 @@
 import * as _ from "radash";
-import { Plot } from "./types/Plot";
-import { PlotRole } from "./types/PlotRole";
+
 import { Script } from "../model/Script";
+import { m } from "../paraglide/messages";
+import { requireDescriptor, requireOppositeSex } from "../util/requirements";
 import * as Incidents from "./Incidents";
 import * as Roles from "./Roles";
 import * as Triggers from "./Triggers";
-import { requireDescriptor, requireOppositeSex } from "../util/requirements";
-import { m } from "../paraglide/messages";
+import { Plot } from "./types/Plot";
+import { PlotRole } from "./types/PlotRole";
 
 // Base Game /////////////////////////////////////////////////////////////////
 export const murderPlan: Plot = {

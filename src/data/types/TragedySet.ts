@@ -1,7 +1,8 @@
+import { MessageFunction } from "@inlang/paraglide-js";
+
 import { Character } from "../../data/types/Character";
 import { Incident } from "./Incident";
 import { Plot } from "./Plot";
-import { MessageFunction } from "@inlang/paraglide-js";
 
 export interface TragedySet {
   readonly id: string;

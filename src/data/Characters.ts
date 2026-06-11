@@ -1,7 +1,8 @@
 import * as _ from "radash";
-import { Character } from "./types/Character";
+
 import * as Locations from "../data/Locations";
 import { m } from "../paraglide/messages";
+import { Character } from "./types/Character";
 
 // Base ////////////////////////////////////////////////////////////////////////
 export const boyStudent = new Character({

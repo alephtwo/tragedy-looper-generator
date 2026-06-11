@@ -1,6 +1,6 @@
-import { Expansion } from "./types/Expansion";
-import * as TragedySets from "./TragedySets";
 import { m } from "../paraglide/messages";
+import * as TragedySets from "./TragedySets";
+import { Expansion } from "./types/Expansion";
 
 export const base: Expansion = {
   id: "cae500f1-1a81-425a-a7f9-fb6ecf8d0cf0",

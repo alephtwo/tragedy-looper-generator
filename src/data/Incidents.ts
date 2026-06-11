@@ -1,5 +1,5 @@
-import { Incident } from "./types/Incident";
 import { m } from "../paraglide/messages";
+import { Incident } from "./types/Incident";
 
 export const murder: Incident = {
   id: "4b50bb64-da08-448b-81ad-ad7765cf0e7d",

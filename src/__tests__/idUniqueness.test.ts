@@ -1,13 +1,13 @@
+import * as _ from "radash";
 import { describe, it, expect } from "vitest";
 
-import * as _ from "radash";
 import * as Characters from "../data/Characters";
 import * as Expansions from "../data/Expansions";
 import * as Incidents from "../data/Incidents";
 import * as Locations from "../data/Locations";
 import * as MainPlots from "../data/MainPlots";
-import * as Subplots from "../data/Subplots";
 import * as Roles from "../data/Roles";
+import * as Subplots from "../data/Subplots";
 import * as TragedySets from "../data/TragedySets";
 import * as Triggers from "../data/Triggers";
 
