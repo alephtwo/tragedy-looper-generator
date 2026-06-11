@@ -13,7 +13,7 @@ export function LocalePicker(props: LocalePickerProps) {
       {locales.map((lang) => (
         <button
           key={`lng-${lang}`}
-          className={`btn btn-sm gap-1.5 btn-primary ${lang === props.value ? "" : "btn-soft"}`}
+          className={`btn btn-sm btn-primary gap-1.5 ${lang === props.value ? "" : "btn-soft"}`}
           onClick={() => props.onChange(lang)}
           aria-pressed={lang === props.value}
         >

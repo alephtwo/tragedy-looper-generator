@@ -12,7 +12,7 @@ export function QuarterRedText(props: QuarterRedTextProps) {
   const end = token.slice(quarter);
   return (
     <>
-      <span className="text-red-900 font-bold [-webkit-text-stroke:1px_white]">{begin}</span>
+      <span className="font-bold text-red-900 [-webkit-text-stroke:1px_white]">{begin}</span>
       <span>{end}</span>
     </>
   );

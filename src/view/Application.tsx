@@ -48,9 +48,9 @@ export function Application(): React.JSX.Element {
   return (
     <div className="min-h-screen bg-linear-to-tr from-[#0b1a27] to-[#1d3a5c] bg-fixed">
       <React.Suspense fallback={<Loading />}>
-        <div className="max-w-7xl mx-auto px-4 py-4">
+        <div className="mx-auto max-w-7xl px-4 py-4">
           <div className="flex flex-col gap-4">
-            <div className="flex justify-between items-center">
+            <div className="flex items-center justify-between">
               <PageTitle />
               <LocalePicker
                 value={state.locale}

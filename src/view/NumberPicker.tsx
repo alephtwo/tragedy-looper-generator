@@ -44,7 +44,7 @@ export function NumberPicker(props: NumberPickerProps): React.JSX.Element {
         {marks.map((n, i) => (
           <span
             key={n}
-            className="absolute -tanslate-x-1/2"
+            className="-tanslate-x-1/2 absolute"
             style={{
               // the math here is to position the mark correctly under the
               // slider thumb, which is a bit tricky because the thumb has a

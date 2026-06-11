@@ -10,7 +10,7 @@ export function PageTitle(): React.JSX.Element {
   const tokens = title.split(" ");
 
   return (
-    <span className="text-white text-4xl text-shadow-2xl">
+    <span className="text-shadow-2xl text-4xl text-white">
       {tokens.map((token, i) => {
         // All but the last token are default font color.
         if (i !== tokens.length - 1) {

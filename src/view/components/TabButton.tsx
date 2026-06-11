@@ -9,10 +9,10 @@ export function TabButton({ active, onClick, children }: TabButtonProps): React.
   return (
     <button
       onClick={onClick}
-      className={`flex items-center gap-2 px-4 py-2 text-sm font-semibold rounded-t-md border-t border-x transition-colors cursor-pointer ${
+      className={`flex cursor-pointer items-center gap-2 rounded-t-md border-x border-t px-4 py-2 text-sm font-semibold transition-colors ${
         active
-          ? "bg-slate-100/75 border-slate-500 text-slate-800"
-          : "bg-slate-100/20 border-transparent text-white/70 hover:text-white hover:bg-slate-100/30"
+          ? "border-slate-500 bg-slate-100/75 text-slate-800"
+          : "border-transparent bg-slate-100/20 text-white/70 hover:bg-slate-100/30 hover:text-white"
       }`}
     >
       {children}

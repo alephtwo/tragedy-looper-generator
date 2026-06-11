@@ -82,7 +82,7 @@ interface CheatsheetSectionProps extends React.PropsWithChildren {
 function CheatsheetSection({ title, icon, children }: CheatsheetSectionProps): React.JSX.Element {
   return (
     <details open className="group">
-      <summary className="flex items-center gap-2 text-xl font-semibold py-2 cursor-pointer list-none select-none">
+      <summary className="flex cursor-pointer list-none items-center gap-2 py-2 text-xl font-semibold select-none">
         <span className="text-[10px] transition-transform duration-200 group-open:rotate-90">
           ▶
         </span>
@@ -113,7 +113,7 @@ function WinConditions(props: WinConditionsProps): React.JSX.Element {
     .filter((i) => i.winCondition === true);
 
   return (
-    <table className="table table-sm">
+    <table className="table-sm table">
       <thead>
         <tr>
           <th>{m["terms.mechanic"]()}</th>
@@ -171,7 +171,7 @@ function PlotRules(props: PlotRulesProps): React.JSX.Element {
   }
 
   return (
-    <table className="table table-sm">
+    <table className="table-sm table">
       <thead>
         <tr>
           <th>{m["terms.plot"]()}</th>
@@ -198,7 +198,7 @@ function MastermindAbilities({ mastermindAbilities }: MastermindAbilitiesProps):
     return <></>;
   }
   return (
-    <table className="table table-sm">
+    <table className="table-sm table">
       <thead>
         <tr>
           <th>{m["terms.mandatory"]()}</th>
@@ -230,7 +230,7 @@ interface RoleAbilitiesProps {
 }
 function RoleAbilities({ roleAbilities }: RoleAbilitiesProps): React.JSX.Element {
   return (
-    <table className="table table-sm">
+    <table className="table-sm table">
       <thead>
         <tr>
           <th>{m["terms.trigger"]()}</th>
@@ -266,7 +266,7 @@ function Incidents({ incidents }: IncidentsProps): React.JSX.Element {
   }
 
   return (
-    <table className="table table-sm">
+    <table className="table-sm table">
       <thead>
         <tr>
           <th>{m["terms.day"]({ count: 1 })}</th>

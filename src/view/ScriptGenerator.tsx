@@ -21,7 +21,7 @@ export function ScriptGenerator(props: ScriptGeneratorProps): React.JSX.Element 
 
   return (
     <Paper>
-      <div className="grid grid-cols-12 gap-y-4 gap-x-8">
+      <div className="grid grid-cols-12 gap-x-8 gap-y-4">
         <div className="col-span-12 sm:col-span-6 md:col-span-3">
           <TragedySetPicker
             id="tragedy-set"

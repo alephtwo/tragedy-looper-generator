@@ -32,7 +32,7 @@ export function Mastermind({ script }: ScriptCardProps): React.JSX.Element {
             <Icons.Cast />
             {m["terms.cast"]()}
           </h3>
-          <table className="table table-sm">
+          <table className="table-sm table">
             <thead>
               <tr>
                 <td>{m["terms.character"]({ count: 1 })}</td>
@@ -81,7 +81,7 @@ interface GeneralInfoProps {
 }
 function GeneralInfo({ mastermind, script }: GeneralInfoProps): React.JSX.Element {
   return (
-    <table className="table table-sm">
+    <table className="table-sm table">
       <tbody>
         <tr>
           <th>{m["terms.tragedySet"]()}</th>
@@ -128,7 +128,7 @@ function Incidents({ mastermind, occurrences }: IncidentsProps): React.JSX.Eleme
         <Icons.Incidents />
         {m["terms.incident"]({ count: occurrences.length })}
       </h3>
-      <table className="table table-sm">
+      <table className="table-sm table">
         <thead>
           <tr>
             <th>{m["terms.day"]({ count: 1 })}</th>
@@ -255,7 +255,7 @@ function TraitorWinConditions(props: TraitorWinConditionProps): React.JSX.Elemen
         <Icons.TraitorWinConditions />
         {m["terms.traitorWinCondition"]({ count: traitorWinConditions.length })}
       </h3>
-      <table className="table table-sm">
+      <table className="table-sm table">
         <thead>
           <tr>
             <th>Traitor</th>
