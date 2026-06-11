@@ -24,27 +24,31 @@ export type Message =
 
 export function reducer(state: State, message: Message): State {
   switch (message.action) {
-    case "set-tragedy-set":
+    case "set-tragedy-set": {
       return produce(state, (next) => {
         next.tragedySet = message.value;
       });
-    case "set-cast-size":
+    }
+    case "set-cast-size": {
       return produce(state, (next) => {
         next.castSize = message.value;
         // Need to drop incidents if we don't have enough cast.
         next.incidents = Math.min(message.value, state.incidents);
       });
-    case "set-days":
+    }
+    case "set-days": {
       return produce(state, (next) => {
         next.days = message.value;
         // Need to drop incidents if we don't have enough days.
         next.incidents = Math.min(message.value, state.incidents);
       });
-    case "set-incidents":
+    }
+    case "set-incidents": {
       return produce(state, (next) => {
         next.incidents = message.value;
       });
-    case "generate":
+    }
+    case "generate": {
       return produce(state, (next) => {
         next.script = generate({
           tragedySet: state.tragedySet,
@@ -53,12 +57,15 @@ export function reducer(state: State, message: Message): State {
           castSize: state.castSize,
         });
       });
-    case "set-locale":
+    }
+    case "set-locale": {
       return produce(state, (next) => {
         next.locale = message.value;
       });
-    default:
+    }
+    default: {
       return state;
+    }
   }
 }
 

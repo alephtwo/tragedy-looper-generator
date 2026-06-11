@@ -109,11 +109,11 @@ export const increaseIfCharacterHasRoleThatIsOnlyInOnePlot =
   (character: Character) =>
   (script: Script): DifficultyFactor => {
     // Get all the plots.
-    const plots = script.tragedySet.mainPlots.concat(script.tragedySet.subplots);
+    const plots = [...script.tragedySet.mainPlots, ...script.tragedySet.subplots];
     // Turn roles into ids, essentially.
     const roleIdSets = plots.map((p) => new Set(p.roles().map((r) => r.id)));
     // Get a unique set of all the role ids we have in this tragedy set.
-    const allRoleIds = _.unique(roleIdSets.flatMap((s) => Array.from(s.values())));
+    const allRoleIds = _.unique(roleIdSets.flatMap((s) => [...s.values()]));
     // Filter this list to just ones that are in a single plot
     const rolesOnlyInOnePlot = new Set(
       allRoleIds.filter((i) => _.sum(roleIdSets.map((s) => (s.has(i) ? 1 : 0))) === 1),

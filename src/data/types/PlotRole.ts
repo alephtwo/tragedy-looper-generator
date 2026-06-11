@@ -35,14 +35,17 @@ export class PlotRole {
     // If we've been asked for a specific role, then we have to be clear which one it is.
     if (triggeringRole !== undefined) {
       switch (triggeringRole.id) {
-        case this.#role.id:
+        case this.#role.id: {
           return `${m["terms.lightWorldPrefix"]()}: ${this.#role.name()}`;
-        case this.#darkWorld?.id:
+        }
+        case this.#darkWorld?.id: {
           return `${m["terms.darkWorldPrefix"]()}: ${darkWorld.name()}`;
-        default:
+        }
+        default: {
           throw new Error(
             `Asked for a triggering role (${triggeringRole.name()}) to generate name but role doesn't exist on PlotRole`,
           );
+        }
       }
     }
 

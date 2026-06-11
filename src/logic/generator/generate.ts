@@ -28,7 +28,7 @@ export function generate(args: GenerateArgs): Script {
 
   const mainPlot = decks.mainPlots.draw();
   const subplots = decks.subplots.pull(args.tragedySet.maxSubplots);
-  const plots = [mainPlot].concat(subplots);
+  const plots = [mainPlot, ...subplots];
 
   // Find the required roles.
   // Notably, the Mystery Boy might appear in the initial cast. If he does,
@@ -87,7 +87,7 @@ function fillRemainingRoles(roles: Array<PlotRole>, castSize: number): Array<Plo
   const filler = Array.from<PlotRole>({ length: needed - roles.length }).fill(
     new PlotRole(Roles.person),
   );
-  return roles.concat(filler);
+  return [...roles, ...filler];
 }
 
 function initializeCast(args: GenerateArgs, requiredRoles: Array<PlotRole>): Array<CastMember> {
@@ -104,8 +104,7 @@ function initializeCast(args: GenerateArgs, requiredRoles: Array<PlotRole>): Arr
   // Alright, we've got a mystery boy. Now we need to find a role for him.
   // Per the rules, he can't have a role dictated by the plot.
   const requiredRoleIds = new Set(requiredRoles.map((r) => r.id));
-  const candidateRoles = tragedySet.mainPlots
-    .concat(tragedySet.subplots)
+  const candidateRoles = [...tragedySet.mainPlots, ...tragedySet.subplots]
     .flatMap((p) => p.roles())
     .filter((r) => !requiredRoleIds.has(r.id));
 
@@ -177,7 +176,7 @@ function pickIncidents(args: PickIncidentsArgs): Array<IncidentOccurrence> {
     () => _.draw(args.incidents) as Incident,
   );
 
-  const incidents = required.concat(remainingIncidents);
+  const incidents = [...required, ...remainingIncidents];
   const assignedIncidents = incidents.reduce(assignDayToIncident, {
     lastDay: args.days,
     days: _.list(1, args.days),
@@ -186,12 +185,11 @@ function pickIncidents(args: PickIncidentsArgs): Array<IncidentOccurrence> {
 
   // For each of our assigned incidents, we want to actually go through and assign it.
   return produce(assignedIncidents, (next) => {
-    next
-      .filter((i) => i.incident.id === Incidents.fakeIncident.id)
-      .forEach((incident) => {
-        const candidates = incidents.filter((i) => i.id !== Incidents.fakeIncident.id);
-        incident.setFake(_.draw(candidates) as Incident);
-      });
+    const fakes = next.filter((i) => i.incident.id === Incidents.fakeIncident.id);
+    for (const fake of fakes) {
+      const candidates = incidents.filter((i) => i.id !== Incidents.fakeIncident.id);
+      fake.setFake(_.draw(candidates) as Incident);
+    }
   });
 }
 
@@ -209,10 +207,7 @@ function assignDayToIncident(
   // an incident must always occur on the last day
   const day = state.occurrences.length === 0 ? state.lastDay : (_.draw(state.days) as number);
   return produce(state, (next) => {
-    next.days.splice(
-      next.days.findIndex((d) => d === day),
-      1,
-    );
+    next.days.splice(next.days.indexOf(day), 1);
     next.occurrences.push(new IncidentOccurrence({ incident: incident, day: day }));
   });
 }
@@ -224,7 +219,7 @@ function assignIncidentsToCast(
   return produce(cast, (next) => {
     // Who _could_ be a culprit here?
     let culpritPool = next.filter((c) => !c.role.canNeverBeCulprit());
-    incidents.forEach((incident) => {
+    for (const incident of incidents) {
       // If we are attempting to assign a serial murder and one has already been assigned, we will assign it to the same culprit.
       // TODO: Support that it _might_ be the same culprit, but doesn't have to be. Coin flip?
       // If you're working on a script that doesn't want the same role to be responsible for all of the serial murders,
@@ -258,6 +253,6 @@ function assignIncidentsToCast(
           1,
         );
       });
-    });
+    }
   });
 }

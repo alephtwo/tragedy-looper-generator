@@ -307,13 +307,13 @@ function uniqueAbilityAndCastMember(
   const seen = new Set<string>();
   const uniques: Array<RoleAbilityTrigger> = [];
 
-  triggers.forEach((trigger) => {
+  for (const trigger of triggers) {
     const json = JSON.stringify({ ability: trigger.ability.id, castMember: trigger.castMember.id });
     if (!seen.has(json)) {
       uniques.push(trigger);
       seen.add(json);
     }
-  });
+  }
 
   return uniques;
 }
@@ -332,7 +332,7 @@ function extractMastermindAbilities(script: Script): Array<MastermindAbilityTrig
       castMember: c,
     }));
   });
-  return fromPlots.concat(fromRoles);
+  return [...fromPlots, ...fromRoles];
 }
 
 function extractRoleAbilities(script: Script): Array<RoleAbilityTrigger> {

@@ -14,6 +14,6 @@ export default defineConfig({
   ],
   base: "/tragedy-looper-generator",
   test: {
-    exclude: defaultExclude.concat(["./.stryker-tmp"]),
+    exclude: [...defaultExclude, "./.stryker-tmp"],
   },
 });

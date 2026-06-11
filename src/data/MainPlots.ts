@@ -55,7 +55,7 @@ export const signWithMe: Plot = {
   estimateLoops: (script: Script): number => {
     const girls = script.cast.filter((c) => c.character.descriptors.has("Girl")).length;
     // + 0.4 per girl in the game
-    return 1.0 + 0.4 * girls;
+    return 1 + 0.4 * girls;
   },
   plotRules: [
     {
@@ -99,7 +99,7 @@ export const giantTimeBomb: Plot = {
   name: m["plots.giantTimeBomb.name"],
   roles: () => [new PlotRole(Roles.witch)],
   requiredIncidents: [],
-  estimateLoops: () => 1.0,
+  estimateLoops: () => 1,
   plotRules: [
     {
       id: "bb155eea-be47-4d78-8749-64c13d004c22",
@@ -183,7 +183,7 @@ export const secretRecord: Plot = {
     const winningRoles = script.cast.filter((c) => c.role.is(Roles.friend)).length;
 
     // +0.5 for each role that, when revealed, kills the protagonists.
-    return 1.0 + winningRoles * 0.5;
+    return 1 + winningRoles * 0.5;
   },
   plotRules: [
     {
@@ -478,7 +478,7 @@ export const theSacredWordsOfDagon: Plot = {
     new PlotRole(Roles.deepOne),
   ],
   requiredIncidents: [],
-  estimateLoops: () => 2.0,
+  estimateLoops: () => 2,
   plotRules: [
     {
       id: "c1282b10-6378-4201-a157-ffc55e71e29e",
@@ -496,7 +496,7 @@ export const theKingInYellow: Plot = {
   name: m["plots.theKingInYellow.name"],
   roles: () => [new PlotRole(Roles.sacrifice), new PlotRole(Roles.cultist)],
   requiredIncidents: [],
-  estimateLoops: () => 1.0,
+  estimateLoops: () => 1,
   plotRules: [
     {
       id: "325c8f7e-f010-40cb-8a66-b62a0e02c949",

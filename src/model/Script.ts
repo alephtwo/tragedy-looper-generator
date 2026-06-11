@@ -21,7 +21,9 @@ export class Script {
 
     const loops = estimateLoops(this);
     this.loops = loops;
-    this.cast.forEach((c) => c.character.setLoopToEnter(loops));
+    for (const c of this.cast) {
+      c.character.setLoopToEnter(loops);
+    }
   }
 
   getIncidents(): Array<IncidentOccurrence> {
@@ -33,7 +35,7 @@ export class Script {
   }
 
   plots(): Array<Plot> {
-    return [this.mainPlot].concat(this.subplots);
+    return [this.mainPlot, ...this.subplots];
   }
 }
 

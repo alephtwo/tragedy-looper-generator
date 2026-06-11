@@ -16,8 +16,8 @@ test("generates random integers", () => {
   const max = 20;
   const randomFloats = Array.from({ length: max }, (_, i) => i / max);
 
-  randomFloats.forEach((random, i) => {
+  for (const [i, random] of randomFloats.entries()) {
     vi.mocked(Math.random).mockReturnValue(random);
     expect(randomInt(max)).toEqual(i);
-  });
+  }
 });

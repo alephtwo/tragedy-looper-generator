@@ -4,7 +4,7 @@ import { createRoot } from "react-dom/client";
 import { reportAccessibility } from "./util/a11y";
 import { Application } from "./view/Application";
 
-const root = createRoot(document.getElementById("app") as HTMLDivElement);
+const root = createRoot(document.querySelector("#app") as HTMLDivElement);
 root.render(<Application />);
 
-reportAccessibility(React).catch(console.error);
+await reportAccessibility(React).catch(console.error);
