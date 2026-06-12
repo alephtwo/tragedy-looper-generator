@@ -15,7 +15,7 @@ export function ScriptGenerator(props: ScriptGeneratorProps): React.JSX.Element 
   const { dispatch } = props;
   const { tragedySet, castSize, days, incidents, script } = props.state;
 
-  if (script !== null && script.cast.length > castSize) {
+  if (script !== undefined && script.cast.length > castSize) {
     console.warn(m["warnings.castSizeOverridden"]({ needed: script.cast.length }));
   }
 

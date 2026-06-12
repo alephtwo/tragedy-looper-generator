@@ -38,7 +38,7 @@ export function generate(args: GenerateArgs): Script {
 
   // If there is any initial cast, we should account for their roles
   const roles = fillRemainingRoles(requiredRoles, args.castSize - initialCast.length);
-  const castWithoutIncidents = roles.reduce(buildCast, {
+  const castWithoutIncidents = roles.reduce((state, role) => buildCast(state, role), {
     cast: initialCast,
     // Assume that the mystery boy has already been assigned.
     characters: args.tragedySet.characters.filter((c) => c.id !== Characters.mysteryBoy.id),
@@ -177,11 +177,15 @@ function pickIncidents(args: PickIncidentsArgs): Array<IncidentOccurrence> {
   );
 
   const incidents = [...required, ...remainingIncidents];
-  const assignedIncidents = incidents.reduce(assignDayToIncident, {
+  const initialState: AssignDayToIncidentState = {
     lastDay: args.days,
     days: _.list(1, args.days),
     occurrences: [],
-  }).occurrences;
+  };
+  const assignedIncidents = incidents.reduce(
+    (state, incident) => assignDayToIncident(state, incident),
+    initialState,
+  ).occurrences;
 
   // For each of our assigned incidents, we want to actually go through and assign it.
   return produce(assignedIncidents, (next) => {

@@ -23,12 +23,11 @@ export function Application(): React.JSX.Element {
     castSize: 9,
     days: 7,
     incidents: 4,
-    script: null,
     locale: getLocale(),
   });
   const [activeTab, setActiveTab] = useState<Tab>("mastermind");
   const scriptOutputRef = useRef<HTMLDivElement>(null);
-  const prevScript = useRef<Script | null>(null);
+  const prevScript = useRef<Script | undefined>(null);
   const { script } = state;
 
   useEffect(() => {
@@ -42,6 +41,7 @@ export function Application(): React.JSX.Element {
       }
       scriptOutputRef.current?.scrollIntoView({ behavior: "smooth", block: "nearest" });
     }
+
     prevScript.current = script;
   }, [script]);
 
@@ -63,7 +63,7 @@ export function Application(): React.JSX.Element {
               />
             </div>
             <ScriptGenerator state={state} dispatch={dispatch} />
-            {script !== null && (
+            {script !== undefined && (
               <div ref={scriptOutputRef} className="flex flex-col gap-2">
                 <div className="flex gap-1">
                   <TabButton

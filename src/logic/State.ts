@@ -10,7 +10,7 @@ export interface State {
   castSize: number;
   days: number;
   incidents: number;
-  script: MaybeScript;
+  script?: Script;
   locale: Locale;
 }
 
@@ -68,5 +68,3 @@ export function reducer(state: State, message: Message): State {
     }
   }
 }
-
-export type MaybeScript = Script | null;
