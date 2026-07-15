@@ -2,16 +2,19 @@
   "include": ["src"],
   "compilerOptions": {
     "types": ["vite/client"],
-    "lib": ["dom", "es2024"],
-    "target": "es2023",
-    "sourceMap": true,
-    "noEmit": true,
-    "jsx": "react",
+    "lib": ["dom", "esnext"],
+    "target": "es2024",
+
+    // Build
+    "allowImportingTsExtensions": true,
+    "allowJs": true,
     "module": "esnext",
     "moduleResolution": "bundler",
+    "noEmit": true,
     "resolveJsonModule": true,
-    "strict": true,
-    "allowJs": true,
-    "skipLibCheck": true
+    "skipLibCheck": true,
+
+    // JSX
+    "jsx": "react-jsx"
   }
 }

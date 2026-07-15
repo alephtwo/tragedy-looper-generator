@@ -1,5 +1,3 @@
-import * as React from "react";
-
 import { m } from "../../paraglide/messages";
 import { QuarterRedText } from "./QuarterRedText";
 

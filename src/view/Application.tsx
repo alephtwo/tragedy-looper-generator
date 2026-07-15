@@ -1,5 +1,4 @@
-import * as React from "react";
-import { useReducer, useEffect, useRef, useState } from "react";
+import { useReducer, useEffect, useRef, useState, Suspense } from "react";
 
 import * as TragedySets from "../data/TragedySets";
 import { reducer } from "../logic/State";
@@ -47,7 +46,7 @@ export function Application(): React.JSX.Element {
 
   return (
     <div className="min-h-screen bg-linear-to-tr from-[#0b1a27] to-[#1d3a5c] bg-fixed">
-      <React.Suspense fallback={<Loading />}>
+      <Suspense fallback={<Loading />}>
         <div className="mx-auto max-w-7xl px-4 py-4">
           <div className="flex flex-col gap-4">
             <div className="flex items-center justify-between">
@@ -97,7 +96,7 @@ export function Application(): React.JSX.Element {
             )}
           </div>
         </div>
-      </React.Suspense>
+      </Suspense>
     </div>
   );
 }

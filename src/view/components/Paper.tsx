@@ -1,5 +1,3 @@
-import * as React from "react";
-
 interface PaperProps extends React.PropsWithChildren {
   className?: string;
 }

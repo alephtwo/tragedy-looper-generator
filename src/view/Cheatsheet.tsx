@@ -1,5 +1,4 @@
 import * as _ from "radash";
-import * as React from "react";
 
 import { Incident } from "../data/types/Incident";
 import { MastermindAbility } from "../data/types/MastermindAbility";

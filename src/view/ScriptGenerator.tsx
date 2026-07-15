@@ -1,5 +1,3 @@
-import * as React from "react";
-
 import { Message, State } from "../logic/State";
 import { m } from "../paraglide/messages";
 import { Paper } from "./components/Paper";

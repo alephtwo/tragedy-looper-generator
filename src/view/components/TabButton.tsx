@@ -1,5 +1,3 @@
-import * as React from "react";
-
 interface TabButtonProps extends React.PropsWithChildren {
   active: boolean;
   onClick: () => void;

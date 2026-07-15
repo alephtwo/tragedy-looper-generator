@@ -1,5 +1,4 @@
 import * as _ from "radash";
-import * as React from "react";
 
 import * as TragedySets from "../data/TragedySets";
 import { TragedySet } from "../data/types/TragedySet";
