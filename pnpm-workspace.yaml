@@ -3,3 +3,9 @@ minimumReleaseAge: 1440 # 1 day
 saveExact: true
 allowBuilds:
   "esbuild": true
+overrides:
+  js-yaml@>=5.0.0 <=5.2.1: "5.2.2"
+  qs@>=6.11.1 <=6.15.1: "6.15.2"
+minimumReleaseAgeExclude:
+  - "qs@6.15.2"
+  - "js-yaml@5.2.2"
