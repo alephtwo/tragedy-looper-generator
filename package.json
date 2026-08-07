@@ -22,32 +22,32 @@
     "machine-translate": "inlang machine translate --project project.inlang"
   },
   "dependencies": {
-    "@tabler/icons-react": "3.45.0",
-    "immer": "11.1.15",
+    "@tabler/icons-react": "3.46.0",
+    "immer": "11.1.16",
     "react": "19.2.8",
     "react-dom": "19.2.8"
   },
   "devDependencies": {
     "@axe-core/react": "4.12.1",
-    "@inlang/cli": "3.2.0",
-    "@inlang/paraglide-js": "2.23.0",
+    "@inlang/cli": "3.3.0",
+    "@inlang/paraglide-js": "2.23.1",
     "@stryker-mutator/core": "9.6.1",
     "@stryker-mutator/vitest-runner": "9.6.1",
     "@tailwindcss/vite": "4.3.3",
     "@types/node": "26.1.2",
-    "@types/react": "19.2.17",
-    "@types/react-dom": "19.2.3",
-    "@vitejs/plugin-react": "6.0.4",
-    "daisyui": "5.7.4",
+    "@types/react": "19.2.18",
+    "@types/react-dom": "19.2.4",
+    "@vitejs/plugin-react": "6.0.5",
+    "daisyui": "5.7.16",
     "markdownlint": "0.41.1",
     "markdownlint-cli2": "0.23.2",
-    "oxfmt": "0.61.0",
-    "oxlint": "1.76.0",
+    "oxfmt": "0.62.0",
+    "oxlint": "1.77.0",
     "oxlint-tsgolint": "7.0.2001",
     "radash": "12.1.1",
     "tailwindcss": "4.3.3",
     "typescript": "7.0.2",
-    "vite": "8.1.5",
+    "vite": "8.2.1",
     "vitest": "4.1.10"
   }
 }
