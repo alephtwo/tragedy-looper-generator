@@ -6,14 +6,16 @@ import { PlotRole } from "../data/types/PlotRole";
 import { CastMember } from "../model/CastMember";
 import { Script } from "../model/Script";
 import { m } from "../paraglide/messages";
+import { Divider } from "./components/Divider";
 import { Paper } from "./components/Paper";
+import { Table } from "./components/Table";
 import * as Icons from "./Icons";
 
 interface ScriptCardProps {
   script: Script;
 }
 
-export function Mastermind({ script }: ScriptCardProps): React.JSX.Element {
+export function Mastermind({ script }: Readonly<ScriptCardProps>): React.JSX.Element {
   const occurrences = describeIncidents(script.cast);
 
   return (
@@ -23,7 +25,7 @@ export function Mastermind({ script }: ScriptCardProps): React.JSX.Element {
           <Icons.Mastermind />
           {m["terms.mastermind"]()}
         </h2>
-        <div className="divider my-0" />
+        <Divider />
         <GeneralInfo script={script} mastermind={true} />
         <Incidents occurrences={occurrences} mastermind={true} />
         <div className="flex flex-col gap-2">
@@ -31,7 +33,7 @@ export function Mastermind({ script }: ScriptCardProps): React.JSX.Element {
             <Icons.Cast />
             {m["terms.cast"]()}
           </h3>
-          <table className="table-sm table">
+          <Table>
             <thead>
               <tr>
                 <td>{m["terms.character"]({ count: 1 })}</td>
@@ -48,14 +50,14 @@ export function Mastermind({ script }: ScriptCardProps): React.JSX.Element {
                 </tr>
               ))}
             </tbody>
-          </table>
+          </Table>
         </div>
       </div>
     </Paper>
   );
 }
 
-export function Players({ script }: ScriptCardProps): React.JSX.Element {
+export function Players({ script }: Readonly<ScriptCardProps>): React.JSX.Element {
   const occurrences = describeIncidents(script.cast);
 
   return (
@@ -65,7 +67,7 @@ export function Players({ script }: ScriptCardProps): React.JSX.Element {
           <Icons.Players />
           {m["terms.player"]({ count: 2 })}
         </h2>
-        <div className="divider my-0" />
+        <Divider />
         <GeneralInfo script={script} mastermind={false} />
         <Incidents occurrences={occurrences} mastermind={false} />
         <TraitorWinConditions script={script} />
@@ -78,9 +80,9 @@ interface GeneralInfoProps {
   mastermind: boolean;
   script: Script;
 }
-function GeneralInfo({ mastermind, script }: GeneralInfoProps): React.JSX.Element {
+function GeneralInfo({ mastermind, script }: Readonly<GeneralInfoProps>): React.JSX.Element {
   return (
-    <table className="table-sm table">
+    <Table>
       <tbody>
         <tr>
           <th>{m["terms.tragedySet"]()}</th>
@@ -112,7 +114,7 @@ function GeneralInfo({ mastermind, script }: GeneralInfoProps): React.JSX.Elemen
           )}
         />
       </tbody>
-    </table>
+    </Table>
   );
 }
 
@@ -120,14 +122,14 @@ interface IncidentsProps {
   mastermind: boolean;
   occurrences: Array<IncidentMetadata>;
 }
-function Incidents({ mastermind, occurrences }: IncidentsProps): React.JSX.Element {
+function Incidents({ mastermind, occurrences }: Readonly<IncidentsProps>): React.JSX.Element {
   return (
     <div className="flex flex-col gap-2">
       <h3 className="flex items-center gap-2 text-xl font-semibold">
         <Icons.Incidents />
         {m["terms.incident"]({ count: occurrences.length })}
       </h3>
-      <table className="table-sm table">
+      <Table>
         <thead>
           <tr>
             <th>{m["terms.day"]({ count: 1 })}</th>
@@ -152,7 +154,7 @@ function Incidents({ mastermind, occurrences }: IncidentsProps): React.JSX.Eleme
             </tr>
           ))}
         </tbody>
-      </table>
+      </Table>
     </div>
   );
 }
@@ -162,7 +164,7 @@ interface MastermindOnlyProps {
   // use a render function so that it is lazy
   render: () => React.JSX.Element;
 }
-function MastermindOnly(props: MastermindOnlyProps): React.JSX.Element {
+function MastermindOnly(props: Readonly<MastermindOnlyProps>): React.JSX.Element {
   if (props.mastermind) {
     return props.render();
   }
@@ -172,7 +174,7 @@ function MastermindOnly(props: MastermindOnlyProps): React.JSX.Element {
 interface CastMemberNameProps {
   castMember: CastMember;
 }
-function CastMemberName({ castMember }: CastMemberNameProps): React.JSX.Element {
+function CastMemberName({ castMember }: Readonly<CastMemberNameProps>): React.JSX.Element {
   const { character } = castMember;
   if (castMember.character.loopToEnter <= 1) {
     return <>{character.name()}</>;
@@ -216,7 +218,7 @@ interface IncidentNameProps {
   occurrence: IncidentMetadata;
   mastermind: boolean;
 }
-function IncidentName({ occurrence, mastermind }: IncidentNameProps): React.JSX.Element {
+function IncidentName({ occurrence, mastermind }: Readonly<IncidentNameProps>): React.JSX.Element {
   // If there's no fake incident, we're done. Just say what it's called.
   if (occurrence.fakeIncident === undefined) {
     return <>{occurrence.incident.name()}</>;
@@ -237,7 +239,7 @@ function IncidentName({ occurrence, mastermind }: IncidentNameProps): React.JSX.
 interface TraitorWinConditionProps {
   script: Script;
 }
-function TraitorWinConditions(props: TraitorWinConditionProps): React.JSX.Element {
+function TraitorWinConditions(props: Readonly<TraitorWinConditionProps>): React.JSX.Element {
   const traitorWinConditions = props.script
     .plots()
     .flatMap((plot) => plot.plotRules)
@@ -254,7 +256,7 @@ function TraitorWinConditions(props: TraitorWinConditionProps): React.JSX.Elemen
         <Icons.TraitorWinConditions />
         {m["terms.traitorWinCondition"]({ count: traitorWinConditions.length })}
       </h3>
-      <table className="table-sm table">
+      <Table>
         <thead>
           <tr>
             <th>Traitor</th>
@@ -273,7 +275,7 @@ function TraitorWinConditions(props: TraitorWinConditionProps): React.JSX.Elemen
             ),
           )}
         </tbody>
-      </table>
+      </Table>
     </div>
   );
 }

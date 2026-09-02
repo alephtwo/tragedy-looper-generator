@@ -2,7 +2,7 @@ interface QuarterRedTextProps {
   token: string;
 }
 
-export function QuarterRedText(props: QuarterRedTextProps) {
+export function QuarterRedText(props: Readonly<QuarterRedTextProps>) {
   const { token } = props;
   // The first quarter of characters in the last token are red.
   const quarter = Math.ceil(token.length / 4);

@@ -1,5 +1,6 @@
 import { Message, State } from "../logic/State";
 import { m } from "../paraglide/messages";
+import { Button } from "./components/Button";
 import { Paper } from "./components/Paper";
 import * as Icons from "./Icons";
 import { NumberPicker } from "./NumberPicker";
@@ -9,7 +10,7 @@ interface ScriptGeneratorProps {
   state: State;
   dispatch: React.Dispatch<Message>;
 }
-export function ScriptGenerator(props: ScriptGeneratorProps): React.JSX.Element {
+export function ScriptGenerator(props: Readonly<ScriptGeneratorProps>): React.JSX.Element {
   const { dispatch } = props;
   const { tragedySet, castSize, days, incidents, script } = props.state;
 
@@ -68,10 +69,10 @@ export function ScriptGenerator(props: ScriptGeneratorProps): React.JSX.Element 
           />
         </div>
         <div className="col-span-12 flex justify-center">
-          <button className="btn btn-primary" onClick={() => dispatch({ action: "generate" })}>
+          <Button onClick={() => dispatch({ action: "generate" })}>
             <Icons.Generate />
             {m["scaffolding.generateScript"]()}
-          </button>
+          </Button>
         </div>
       </div>
     </Paper>

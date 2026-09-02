@@ -1,17 +1,18 @@
 import { Locale, locales } from "../paraglide/runtime";
+import { Button } from "./components/Button";
 
 interface LocalePickerProps {
   value: Locale;
   onChange: (s: Locale) => void;
 }
 
-export function LocalePicker(props: LocalePickerProps) {
+export function LocalePicker(props: Readonly<LocalePickerProps>): React.JSX.Element {
   return (
     <fieldset className="flex gap-1">
       {locales.map((lang) => (
-        <button
+        <Button
           key={`lng-${lang}`}
-          className={`btn btn-sm btn-primary gap-1.5 ${lang === props.value ? "" : "btn-soft"}`}
+          variant={lang === props.value ? "solid" : "soft"}
           onClick={() => props.onChange(lang)}
           aria-pressed={lang === props.value}
         >
@@ -19,7 +20,7 @@ export function LocalePicker(props: LocalePickerProps) {
             {flags[lang]}
           </span>
           {lang.toUpperCase()}
-        </button>
+        </Button>
       ))}
     </fieldset>
   );

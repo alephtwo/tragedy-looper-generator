@@ -4,6 +4,7 @@ import * as TragedySets from "../data/TragedySets";
 import { TragedySet } from "../data/types/TragedySet";
 import { m } from "../paraglide/messages";
 import { findById } from "../util/findById";
+import { Select } from "./components/Select";
 import * as Icons from "./Icons";
 
 interface TragedySetPickerProps {
@@ -11,28 +12,25 @@ interface TragedySetPickerProps {
   selected: TragedySet;
   onChange: (ts: TragedySet) => void;
 }
-export function TragedySetPicker(props: TragedySetPickerProps): React.JSX.Element {
+export function TragedySetPicker(props: Readonly<TragedySetPickerProps>): React.JSX.Element {
   return (
-    <div className="w-full">
-      <label htmlFor={props.id} className="label">
-        <span className="flex items-center gap-1">
+    <Select
+      id={props.id}
+      label={
+        <>
           <Icons.TragedySet fontSize="small" />
           {m["terms.tragedySet"]()}
-        </span>
-      </label>
-      <select
-        id={props.id}
-        className="select select-sm w-full"
-        value={props.selected.id}
-        onChange={(e) => props.onChange(findTragedySet(e.target.value))}
-      >
-        {_.sort(Object.values(TragedySets), (a) => a.order).map((ts) => (
-          <option key={`ts-${ts.id}`} value={ts.id}>
-            {ts.name()}
-          </option>
-        ))}
-      </select>
-    </div>
+        </>
+      }
+      value={props.selected.id}
+      onChange={(id) => props.onChange(findTragedySet(id))}
+    >
+      {_.sort(Object.values(TragedySets), (a) => a.order).map((ts) => (
+        <option key={`ts-${ts.id}`} value={ts.id}>
+          {ts.name()}
+        </option>
+      ))}
+    </Select>
   );
 }
 

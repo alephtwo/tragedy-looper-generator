@@ -38,16 +38,20 @@ export function Application(): React.JSX.Element {
       if (prevScript.current === null) {
         setActiveTab("mastermind");
       }
-      scriptOutputRef.current?.scrollIntoView({ behavior: "smooth", block: "nearest" });
+      scriptOutputRef.current?.scrollIntoView({
+        behavior: "smooth",
+        block: "nearest",
+      });
     }
 
     prevScript.current = script;
   }, [script]);
 
   return (
-    <div className="min-h-screen bg-linear-to-tr from-[#0b1a27] to-[#1d3a5c] bg-fixed">
+    // oxlint-disable-next-line tailwindcss/enforce-sort-order
+    <div className="from-darkbg to-lightbg min-h-screen bg-linear-to-tr bg-fixed">
       <Suspense fallback={<Loading />}>
-        <div className="mx-auto max-w-7xl px-4 py-4">
+        <div className="mx-auto max-w-7xl p-4">
           <div className="flex flex-col gap-4">
             <div className="flex items-center justify-between">
               <PageTitle />
@@ -63,7 +67,7 @@ export function Application(): React.JSX.Element {
             </div>
             <ScriptGenerator state={state} dispatch={dispatch} />
             {script !== undefined && (
-              <div ref={scriptOutputRef} className="flex flex-col gap-2">
+              <div ref={scriptOutputRef} className="flex flex-col">
                 <div className="flex gap-1">
                   <TabButton
                     active={activeTab === "mastermind"}

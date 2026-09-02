@@ -33,6 +33,9 @@ importers:
       '@inlang/paraglide-js':
         specifier: 2.25.0
         version: 2.25.0(typescript@7.0.2)(vite@8.2.2(@types/node@26.4.0)(jiti@2.7.0))
+      '@stryker-mutator/api':
+        specifier: 10.0.0
+        version: 10.0.0
       '@stryker-mutator/core':
         specifier: 10.0.0
         version: 10.0.0(@types/node@26.4.0)
@@ -54,9 +57,6 @@ importers:
       '@vitejs/plugin-react':
         specifier: 6.1.0
         version: 6.1.0(vite@8.2.2(@types/node@26.4.0)(jiti@2.7.0))
-      daisyui:
-        specifier: 5.7.22
-        version: 5.7.22
       markdownlint:
         specifier: 0.41.1
         version: 0.41.1
@@ -69,6 +69,9 @@ importers:
       oxlint:
         specifier: 1.80.0
         version: 1.80.0(oxlint-tsgolint@7.0.2001)
+      oxlint-tailwindcss:
+        specifier: 1.10.2
+        version: 1.10.2
       oxlint-tsgolint:
         specifier: 7.0.2001
         version: 7.0.2001
@@ -1325,9 +1328,6 @@ packages:
   csstype@3.2.3:
     resolution: {integrity: sha512-z1HGKcYy2xA8AGQfwrn0PAy+PB7X/GSj3UVJW9qKyn43xWa+gl5nXmU4qqLMRzWVLFC8KusUX8T/0kCiOYpAIQ==}
 
-  daisyui@5.7.22:
-    resolution: {integrity: sha512-pYii+2NCN0+OIL6Lpuc054LK0QJeNv+GRK9UzN1GRmjdYhYO6WFl0QLoj5oPcitPD7o+okiiI0SKFkn641TxmA==}
-
   debug@4.4.3:
     resolution: {integrity: sha512-RGwwWnwQvkVfavKVt22FGLw+xYSdzARwm0ru6DhTVA3umU5hZc28V3kO4stgYryrTlLpuvgI9GiijltAjNbcqA==}
     engines: {node: '>=6.0'}
@@ -1950,6 +1950,10 @@ packages:
         optional: true
       vite-plus:
         optional: true
+
+  oxlint-tailwindcss@1.10.2:
+    resolution: {integrity: sha512-jUcNeibzkIohvfq7TkhqmidmbsOcHCAVIgnrEHiC6jYAgvufd/xEgmX5uvpEH8GmeSfovnCs9ph+j6+6zM60yA==}
+    engines: {node: '>=20'}
 
   oxlint-tsgolint@7.0.2001:
     resolution: {integrity: sha512-KjK/XLcXr1DSyonKhsuFqJRiuKqcyG9j3LJ8nkOsrLzGvodBPqzHOKauy10asLMDI0sUpvb+1sxlzff3udZvfg==}
@@ -3336,8 +3340,6 @@ snapshots:
 
   csstype@3.2.3: {}
 
-  daisyui@5.7.22: {}
-
   debug@4.4.3:
     dependencies:
       ms: 2.1.3
@@ -3975,6 +3977,11 @@ snapshots:
       '@oxfmt/binding-win32-arm64-msvc': 0.65.0
       '@oxfmt/binding-win32-ia32-msvc': 0.65.0
       '@oxfmt/binding-win32-x64-msvc': 0.65.0
+
+  oxlint-tailwindcss@1.10.2:
+    dependencies:
+      '@tailwindcss/node': 4.3.3
+      tailwindcss: 4.3.3
 
   oxlint-tsgolint@7.0.2001:
     optionalDependencies:

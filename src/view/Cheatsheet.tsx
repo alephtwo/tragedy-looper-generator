@@ -10,13 +10,15 @@ import { CastMember } from "../model/CastMember";
 import { IncidentOccurrence } from "../model/IncidentOccurrence";
 import { Script } from "../model/Script";
 import { m } from "../paraglide/messages";
+import { Divider } from "./components/Divider";
 import { Paper } from "./components/Paper";
+import { Table } from "./components/Table";
 import * as Icons from "./Icons";
 
 interface CheatsheetProps {
   script: Script;
 }
-export function Cheatsheet({ script }: CheatsheetProps): React.JSX.Element {
+export function Cheatsheet({ script }: Readonly<CheatsheetProps>): React.JSX.Element {
   if (!script.isValid()) {
     return <></>;
   }
@@ -38,7 +40,7 @@ export function Cheatsheet({ script }: CheatsheetProps): React.JSX.Element {
           <Icons.Cheatsheet />
           {m["scaffolding.cheatsheet"]()}
         </h2>
-        <div className="divider my-0" />
+        <Divider />
         <CheatsheetSection
           title={m["terms.winConditions"]()}
           icon={<Icons.WinConditions size={20} />}
@@ -78,7 +80,11 @@ interface CheatsheetSectionProps extends React.PropsWithChildren {
   title: string;
   icon: React.ReactNode;
 }
-function CheatsheetSection({ title, icon, children }: CheatsheetSectionProps): React.JSX.Element {
+function CheatsheetSection({
+  title,
+  icon,
+  children,
+}: Readonly<CheatsheetSectionProps>): React.JSX.Element {
   return (
     <details open className="group">
       <summary className="flex cursor-pointer list-none items-center gap-2 py-2 text-xl font-semibold select-none">
@@ -98,7 +104,7 @@ interface WinConditionsProps {
   roleAbilities: Array<RoleAbilityTrigger>;
   incidents: Array<CastMemberIncidentTrigger>;
 }
-function WinConditions(props: WinConditionsProps): React.JSX.Element {
+function WinConditions(props: Readonly<WinConditionsProps>): React.JSX.Element {
   const fromPlotRules: Array<PlotRule> = props.plots
     .flatMap((p) => p.plotRules)
     .filter((pr) => pr.winCondition === true);
@@ -112,7 +118,7 @@ function WinConditions(props: WinConditionsProps): React.JSX.Element {
     .filter((i) => i.winCondition === true);
 
   return (
-    <table className="table-sm table">
+    <Table>
       <thead>
         <tr>
           <th>{m["terms.mechanic"]()}</th>
@@ -149,14 +155,14 @@ function WinConditions(props: WinConditionsProps): React.JSX.Element {
           </tr>
         ))}
       </tbody>
-    </table>
+    </Table>
   );
 }
 
 interface PlotRulesProps {
   plots: Array<Plot>;
 }
-function PlotRules(props: PlotRulesProps): React.JSX.Element {
+function PlotRules(props: Readonly<PlotRulesProps>): React.JSX.Element {
   const plotRules = props.plots.flatMap((plot) =>
     plot.plotRules.map((pr) => ({
       plotId: plot.id,
@@ -170,7 +176,7 @@ function PlotRules(props: PlotRulesProps): React.JSX.Element {
   }
 
   return (
-    <table className="table-sm table">
+    <Table>
       <thead>
         <tr>
           <th>{m["terms.plot"]()}</th>
@@ -185,19 +191,21 @@ function PlotRules(props: PlotRulesProps): React.JSX.Element {
           </tr>
         ))}
       </tbody>
-    </table>
+    </Table>
   );
 }
 
 interface MastermindAbilitiesProps {
   mastermindAbilities: Array<MastermindAbilityTrigger>;
 }
-function MastermindAbilities({ mastermindAbilities }: MastermindAbilitiesProps): React.JSX.Element {
+function MastermindAbilities({
+  mastermindAbilities,
+}: Readonly<MastermindAbilitiesProps>): React.JSX.Element {
   if (mastermindAbilities.length === 0) {
     return <></>;
   }
   return (
-    <table className="table-sm table">
+    <Table>
       <thead>
         <tr>
           <th>{m["terms.mandatory"]()}</th>
@@ -220,16 +228,16 @@ function MastermindAbilities({ mastermindAbilities }: MastermindAbilitiesProps):
           </tr>
         ))}
       </tbody>
-    </table>
+    </Table>
   );
 }
 
 interface RoleAbilitiesProps {
   roleAbilities: Array<RoleAbilityTrigger>;
 }
-function RoleAbilities({ roleAbilities }: RoleAbilitiesProps): React.JSX.Element {
+function RoleAbilities({ roleAbilities }: Readonly<RoleAbilitiesProps>): React.JSX.Element {
   return (
-    <table className="table-sm table">
+    <Table>
       <thead>
         <tr>
           <th>{m["terms.trigger"]()}</th>
@@ -252,20 +260,20 @@ function RoleAbilities({ roleAbilities }: RoleAbilitiesProps): React.JSX.Element
           </tr>
         ))}
       </tbody>
-    </table>
+    </Table>
   );
 }
 
 interface IncidentsProps {
   incidents: Array<CastMemberIncidentTrigger>;
 }
-function Incidents({ incidents }: IncidentsProps): React.JSX.Element {
+function Incidents({ incidents }: Readonly<IncidentsProps>): React.JSX.Element {
   if (incidents.length === 0) {
     return <></>;
   }
 
   return (
-    <table className="table-sm table">
+    <Table>
       <thead>
         <tr>
           <th>{m["terms.day"]({ count: 1 })}</th>
@@ -286,7 +294,7 @@ function Incidents({ incidents }: IncidentsProps): React.JSX.Element {
           </tr>
         ))}
       </tbody>
-    </table>
+    </Table>
   );
 }
 
@@ -307,7 +315,10 @@ function uniqueAbilityAndCastMember(
   const uniques: Array<RoleAbilityTrigger> = [];
 
   for (const trigger of triggers) {
-    const json = JSON.stringify({ ability: trigger.ability.id, castMember: trigger.castMember.id });
+    const json = JSON.stringify({
+      ability: trigger.ability.id,
+      castMember: trigger.castMember.id,
+    });
     if (!seen.has(json)) {
       uniques.push(trigger);
       seen.add(json);
@@ -351,7 +362,7 @@ interface CastMemberDescriptionProps {
 function CastMemberDescription({
   castMember,
   triggeringRole,
-}: CastMemberDescriptionProps): React.JSX.Element {
+}: Readonly<CastMemberDescriptionProps>): React.JSX.Element {
   return (
     <>
       {castMember.character.name()} ({castMember.role.name(triggeringRole)})
@@ -364,7 +375,7 @@ interface MastermindAbilityTriggererProps {
 }
 function MastermindAbilityTriggerer({
   mastermindAbility,
-}: MastermindAbilityTriggererProps): React.JSX.Element {
+}: Readonly<MastermindAbilityTriggererProps>): React.JSX.Element {
   // If a cast member is defined, use it
   if (mastermindAbility.castMember !== undefined) {
     return (
