@@ -29,8 +29,8 @@
   },
   "devDependencies": {
     "@axe-core/react": "4.13.0",
-    "@inlang/cli": "3.3.8",
-    "@inlang/paraglide-js": "2.25.4",
+    "@inlang/cli": "3.3.9",
+    "@inlang/paraglide-js": "2.26.0",
     "@stryker-mutator/api": "10.0.0",
     "@stryker-mutator/core": "10.0.0",
     "@stryker-mutator/vitest-runner": "10.0.0",
@@ -48,7 +48,7 @@
     "radash": "12.1.1",
     "tailwindcss": "4.3.3",
     "typescript": "7.0.2",
-    "vite": "8.3.2",
+    "vite": "8.3.3",
     "vitest": "5.0.3"
   }
 }
