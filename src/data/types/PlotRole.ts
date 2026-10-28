@@ -1,5 +1,6 @@
+import { m } from "@i18n/messages";
+
 import { CastMember } from "../../model/CastMember";
-import { m } from "../../paraglide/messages";
 import { Character } from "./Character";
 import { MastermindAbility } from "./MastermindAbility";
 import { Role } from "./Role";

@@ -1,9 +1,9 @@
+import { m } from "@i18n/messages";
 import { useReducer, useEffect, useRef, useState, Suspense } from "react";
 
 import * as TragedySets from "../data/TragedySets";
 import { reducer } from "../logic/State";
 import { Script } from "../model/Script";
-import { m } from "../paraglide/messages";
 import { getLocale, setLocale } from "../paraglide/runtime";
 import { Cheatsheet } from "./Cheatsheet";
 import { PageTitle } from "./components/PageTitle";

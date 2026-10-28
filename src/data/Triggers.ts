@@ -1,4 +1,5 @@
-import { m } from "../paraglide/messages";
+import { m } from "@i18n/messages";
+
 import { Trigger } from "./types/Trigger";
 
 export const always: Trigger = {

@@ -1,7 +1,7 @@
+import { m } from "@i18n/messages";
 import * as _ from "radash";
 
 import { Script } from "../model/Script";
-import { m } from "../paraglide/messages";
 import { requireDescriptor, requireOppositeSex } from "../util/requirements";
 import * as Incidents from "./Incidents";
 import * as Roles from "./Roles";

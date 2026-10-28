@@ -1,3 +1,4 @@
+import { m } from "@i18n/messages";
 import * as _ from "radash";
 
 import { Character } from "../data/types/Character";
@@ -5,7 +6,6 @@ import { Incident } from "../data/types/Incident";
 import { PlotRole } from "../data/types/PlotRole";
 import { CastMember } from "../model/CastMember";
 import { Script } from "../model/Script";
-import { m } from "../paraglide/messages";
 import { Divider } from "./components/Divider";
 import { Paper } from "./components/Paper";
 import { Table } from "./components/Table";

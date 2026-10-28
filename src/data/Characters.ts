@@ -1,7 +1,7 @@
+import { m } from "@i18n/messages";
 import * as _ from "radash";
 
 import * as Locations from "../data/Locations";
-import { m } from "../paraglide/messages";
 import { Character } from "./types/Character";
 
 // Base ////////////////////////////////////////////////////////////////////////

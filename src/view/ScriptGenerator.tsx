@@ -1,5 +1,6 @@
+import { m } from "@i18n/messages";
+
 import { Message, State } from "../logic/State";
-import { m } from "../paraglide/messages";
 import { Button } from "./components/Button";
 import { Paper } from "./components/Paper";
 import * as Icons from "./Icons";

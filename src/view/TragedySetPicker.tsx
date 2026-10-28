@@ -1,8 +1,8 @@
+import { m } from "@i18n/messages";
 import * as _ from "radash";
 
 import * as TragedySets from "../data/TragedySets";
 import { TragedySet } from "../data/types/TragedySet";
-import { m } from "../paraglide/messages";
 import { findById } from "../util/findById";
 import { Select } from "./components/Select";
 import * as Icons from "./Icons";

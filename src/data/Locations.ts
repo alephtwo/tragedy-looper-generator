@@ -1,4 +1,5 @@
-import { m } from "../paraglide/messages";
+import { m } from "@i18n/messages";
+
 import { Location } from "./types/Location";
 
 export const city: Location = {

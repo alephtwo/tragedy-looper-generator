@@ -1,4 +1,5 @@
-import { m } from "../paraglide/messages";
+import { m } from "@i18n/messages";
+
 import * as TragedySets from "./TragedySets";
 import * as Triggers from "./Triggers";
 import { Role } from "./types/Role";
