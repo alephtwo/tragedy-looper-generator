@@ -1,10 +1,10 @@
-import { Progress } from "./components/Progress";
+import { Spinner } from "@/components/ui/spinner";
 
 export function Loading(): React.JSX.Element {
   return (
     <div className="flex h-screen flex-col items-center justify-center gap-4">
       <span className="text-4xl text-gray-100">Loading...</span>
-      <Progress className="w-1/2 text-gray-100" aria-label="Loading Progress" />
+      <Spinner className="w-1/2 text-gray-100" aria-label="Loading Progress" />
     </div>
   );
 }

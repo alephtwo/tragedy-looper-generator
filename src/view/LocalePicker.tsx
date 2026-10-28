@@ -1,5 +1,6 @@
+import { Button } from "@/components/ui/button";
+
 import { Locale, locales } from "../paraglide/runtime";
-import { Button } from "./components/Button";
 
 interface LocalePickerProps {
   value: Locale;
@@ -12,7 +13,7 @@ export function LocalePicker(props: Readonly<LocalePickerProps>): React.JSX.Elem
       {locales.map((lang) => (
         <Button
           key={`lng-${lang}`}
-          variant={lang === props.value ? "solid" : "soft"}
+          variant={lang === props.value ? "default" : "ghost"}
           onClick={() => props.onChange(lang)}
           aria-pressed={lang === props.value}
         >

@@ -1,10 +1,20 @@
 import { m } from "@i18n/messages";
 import * as _ from "radash";
 
+import { Field, FieldLabel } from "@/components/ui/field";
+import {
+  Select,
+  SelectContent,
+  SelectGroup,
+  SelectItem,
+  SelectLabel,
+  SelectTrigger,
+  SelectValue,
+} from "@/components/ui/select";
+
 import * as TragedySets from "../data/TragedySets";
 import { TragedySet } from "../data/types/TragedySet";
 import { findById } from "../util/findById";
-import { Select } from "./components/Select";
 import * as Icons from "./Icons";
 
 interface TragedySetPickerProps {
@@ -13,24 +23,38 @@ interface TragedySetPickerProps {
   onChange: (ts: TragedySet) => void;
 }
 export function TragedySetPicker(props: Readonly<TragedySetPickerProps>): React.JSX.Element {
+  const items = Object.values(TragedySets)
+    .toSorted((a, b) => a.order - b.order)
+    .map((ts) => ({ label: ts.name(), value: ts.id }));
+
   return (
-    <Select
-      id={props.id}
-      label={
-        <>
-          <Icons.TragedySet fontSize="small" />
-          {m["terms.tragedySet"]()}
-        </>
-      }
-      value={props.selected.id}
-      onChange={(id) => props.onChange(findTragedySet(id))}
-    >
-      {_.sort(Object.values(TragedySets), (a) => a.order).map((ts) => (
-        <option key={`ts-${ts.id}`} value={ts.id}>
-          {ts.name()}
-        </option>
-      ))}
-    </Select>
+    <Field>
+      <FieldLabel>
+        <Icons.TragedySet fontSize="small" />
+        {m["terms.tragedySet"]()}
+      </FieldLabel>
+      <Select
+        id={props.id}
+        value={props.selected.id}
+        items={items}
+        required
+        onValueChange={(id) => props.onChange(findTragedySet(id as string))}
+      >
+        <SelectTrigger>
+          <SelectValue />
+        </SelectTrigger>
+        <SelectContent>
+          <SelectGroup>
+            <SelectLabel>{m["terms.tragedySet"]()}</SelectLabel>
+            {items.map((item) => (
+              <SelectItem key={item.value} value={item.value}>
+                {item.label}
+              </SelectItem>
+            ))}
+          </SelectGroup>
+        </SelectContent>
+      </Select>
+    </Field>
   );
 }
 
