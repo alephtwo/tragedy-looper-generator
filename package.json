@@ -22,7 +22,7 @@
     "machine-translate": "inlang machine translate --project project.inlang"
   },
   "dependencies": {
-    "@tabler/icons-react": "3.49.0",
+    "@tabler/icons-react": "3.50.0",
     "immer": "11.2.9",
     "react": "19.3.1",
     "react-dom": "19.3.1"
@@ -39,9 +39,9 @@
     "@types/react": "19.3.0",
     "@types/react-dom": "19.3.0",
     "@vitejs/plugin-react": "6.1.2",
-    "oxfmt": "0.74.0",
-    "oxlint": "1.89.0",
-    "oxlint-tailwindcss": "1.16.0",
+    "oxfmt": "0.75.0",
+    "oxlint": "1.90.0",
+    "oxlint-tailwindcss": "1.17.0",
     "oxlint-tsgolint": "7.0.2005",
     "radash": "12.1.1",
     "rumdl": "0.3.0",

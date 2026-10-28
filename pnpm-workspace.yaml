@@ -4,8 +4,7 @@ saveExact: true
 allowBuilds:
   "esbuild": true
 overrides:
-  smol-toml@<=1.7.0: "1.7.1"
-  qs@>=6.11.1 <=6.15.1: "6.16.0"
+  qs@>=6.11.1 <=6.15.1: "6.16.1"
 packageExtensions:
   "@stryker-mutator/core@10.0.0":
     dependencies:
