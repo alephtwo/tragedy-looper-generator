@@ -26,7 +26,7 @@ export function NumberPicker(props: Readonly<NumberPickerProps>): React.JSX.Elem
         max={props.max}
         step={1}
         value={props.value}
-        onValueChange={props.onChange}
+        onValueChange={(n) => props.onChange(n as number)}
       />
       <div className="relative w-full text-xs" style={{ height: "1em" }}>
         {marks.map((n, i) => (
