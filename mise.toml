@@ -1,3 +1,37 @@
 [tools]
 node = "latest"
 pnpm = "latest"
+yamllint = "latest"
+
+[tasks.generate]
+description = "produce generated dependencies"
+run = "pnpm generate"
+
+[tasks.lint]
+description = "lint everything"
+depends = ["lint:*"]
+
+[tasks."lint:js"]
+description = "lint js"
+depends = ["generate"]
+run = "pnpm lint:ts"
+
+[tasks."lint:md"]
+description = "lint md"
+run = "pnpm lint:md"
+
+[tasks."lint:yaml"]
+description = "lint yml"
+run = "yamllint -s ."
+
+[tasks.format]
+description = "format everything"
+depends = ["format:*"]
+
+[tasks."format:js"]
+description = "format js"
+run = "pnpm format"
+
+[tasks."format:md"]
+description = "format md"
+run = "pnpm format:md"

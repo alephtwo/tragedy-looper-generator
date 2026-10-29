@@ -1,6 +1,17 @@
 import { m } from "@i18n/messages";
 import * as _ from "radash";
 
+import { Divider } from "@/components/Divider";
+import { Paper } from "@/components/Paper";
+import {
+  Table,
+  TableBody,
+  TableCell,
+  TableHead,
+  TableHeader,
+  TableRow,
+} from "@/components/ui/table";
+
 import { Incident } from "../data/types/Incident";
 import { MastermindAbility } from "../data/types/MastermindAbility";
 import { Plot } from "../data/types/Plot";
@@ -10,9 +21,6 @@ import { RoleAbility } from "../data/types/RoleAbility";
 import { CastMember } from "../model/CastMember";
 import { IncidentOccurrence } from "../model/IncidentOccurrence";
 import { Script } from "../model/Script";
-import { Divider } from "./components/Divider";
-import { Paper } from "./components/Paper";
-import { Table } from "./components/Table";
 import * as Icons from "./Icons";
 
 interface CheatsheetProps {
@@ -119,42 +127,44 @@ function WinConditions(props: Readonly<WinConditionsProps>): React.JSX.Element {
 
   return (
     <Table>
-      <thead>
-        <tr>
-          <th>{m["terms.mechanic"]()}</th>
-          <th>{m["terms.source"]()}</th>
-          <th>{m["terms.trigger"]()}</th>
-          <th>{m["terms.effect"]()}</th>
-        </tr>
-      </thead>
-      <tbody>
+      <TableHeader>
+        <TableRow>
+          <TableHead className="font-bold">{m["terms.mechanic"]()}</TableHead>
+          <TableHead className="font-bold">{m["terms.source"]()}</TableHead>
+          <TableHead className="font-bold">{m["terms.trigger"]()}</TableHead>
+          <TableHead className="font-bold">{m["terms.effect"]()}</TableHead>
+        </TableRow>
+      </TableHeader>
+      <TableBody>
         {_.unique(fromPlotRules, (pr) => pr.id).map((pr) => (
-          <tr key={`wc-${pr.id}`}>
-            <td>{m["terms.plotRule"]({ count: 1 })}</td>
-            <td aria-label="Plot rules do not have a source." />
-            <td>{pr.trigger.description()}</td>
-            <td>{pr.effect()}</td>
-          </tr>
+          <TableRow key={`wc-${pr.id}`}>
+            <TableCell>{m["terms.plotRule"]({ count: 1 })}</TableCell>
+            <TableCell aria-label="Plot rules do not have a source." />
+            <TableCell>{pr.trigger.description()}</TableCell>
+            <TableCell>{pr.effect()}</TableCell>
+          </TableRow>
         ))}
         {sortRoleAbilities(uniqueAbilityAndCastMember(fromRoleAbilities)).map((ra) => (
-          <tr key={`wc-${ra.ability.id}-${ra.castMember.id}`}>
-            <td>{m["terms.roleAbility"]({ count: 1 })}</td>
-            <td>
+          <TableRow key={`wc-${ra.ability.id}-${ra.castMember.id}`}>
+            <TableCell>{m["terms.roleAbility"]({ count: 1 })}</TableCell>
+            <TableCell>
               <CastMemberDescription castMember={ra.castMember} />
-            </td>
-            <td>{ra.ability.triggers.map((trigger) => trigger.description()).join(", ")}</td>
-            <td>{ra.ability.effect()}</td>
-          </tr>
+            </TableCell>
+            <TableCell>
+              {ra.ability.triggers.map((trigger) => trigger.description()).join(", ")}
+            </TableCell>
+            <TableCell>{ra.ability.effect()}</TableCell>
+          </TableRow>
         ))}
         {_.unique(fromIncidents, (i) => i.id).map((i) => (
-          <tr key={`wc-${i.id}`}>
-            <td>{m["terms.incident"]({ count: 1 })}</td>
-            <td>{i.name()}</td>
-            <td aria-label="Incidents do not have a trigger." />
-            <td>{i.effect()}</td>
-          </tr>
+          <TableRow key={`wc-${i.id}`}>
+            <TableCell>{m["terms.incident"]({ count: 1 })}</TableCell>
+            <TableCell>{i.name()}</TableCell>
+            <TableCell aria-label="Incidents do not have a trigger." />
+            <TableCell>{i.effect()}</TableCell>
+          </TableRow>
         ))}
-      </tbody>
+      </TableBody>
     </Table>
   );
 }
@@ -177,20 +187,20 @@ function PlotRules(props: Readonly<PlotRulesProps>): React.JSX.Element {
 
   return (
     <Table>
-      <thead>
-        <tr>
-          <th>{m["terms.plot"]()}</th>
-          <th>{m["terms.effect"]()}</th>
-        </tr>
-      </thead>
-      <tbody>
+      <TableHeader>
+        <TableRow>
+          <TableHead className="font-bold">{m["terms.plot"]()}</TableHead>
+          <TableHead className="font-bold">{m["terms.effect"]()}</TableHead>
+        </TableRow>
+      </TableHeader>
+      <TableBody>
         {_.alphabetical(plotRules, (pr) => pr.plot()).map((pr) => (
-          <tr key={`plotrule-${pr.plotId}-${pr.ruleId}`}>
-            <td>{pr.plot()}</td>
-            <td>{pr.rule()}</td>
-          </tr>
+          <TableRow key={`plotrule-${pr.plotId}-${pr.ruleId}`}>
+            <TableCell>{pr.plot()}</TableCell>
+            <TableCell>{pr.rule()}</TableCell>
+          </TableRow>
         ))}
-      </tbody>
+      </TableBody>
     </Table>
   );
 }
@@ -206,28 +216,30 @@ function MastermindAbilities({
   }
   return (
     <Table>
-      <thead>
-        <tr>
-          <th>{m["terms.mandatory"]()}</th>
-          <th>{m["terms.triggeredBy"]()}</th>
-          <th>{m["terms.effect"]()}</th>
-          <th>{m["terms.perDay"]()}</th>
-          <th>{m["terms.perLoop"]()}</th>
-        </tr>
-      </thead>
-      <tbody>
+      <TableHeader>
+        <TableRow>
+          <TableHead className="font-bold">{m["terms.mandatory"]()}</TableHead>
+          <TableHead className="font-bold">{m["terms.triggeredBy"]()}</TableHead>
+          <TableHead className="font-bold">{m["terms.effect"]()}</TableHead>
+          <TableHead className="font-bold">{m["terms.perDay"]()}</TableHead>
+          <TableHead className="font-bold">{m["terms.perLoop"]()}</TableHead>
+        </TableRow>
+      </TableHeader>
+      <TableBody>
         {mastermindAbilities.map((mat, i) => (
-          <tr key={`cheatsheet-ma-${i}`}>
-            <td>{m[mat.ability.optional ? "terms.optional" : "terms.mandatory"]()}</td>
-            <td>
+          <TableRow key={`cheatsheet-ma-${i}`}>
+            <TableCell>
+              {m[mat.ability.optional ? "terms.optional" : "terms.mandatory"]()}
+            </TableCell>
+            <TableCell>
               <MastermindAbilityTriggerer mastermindAbility={mat} />
-            </td>
-            <td>{mat.ability.effect()}</td>
-            <td>{mat.ability.timesPerDay}</td>
-            <td>{mat.ability.timesPerLoop}</td>
-          </tr>
+            </TableCell>
+            <TableCell>{mat.ability.effect()}</TableCell>
+            <TableCell>{mat.ability.timesPerDay}</TableCell>
+            <TableCell>{mat.ability.timesPerLoop}</TableCell>
+          </TableRow>
         ))}
-      </tbody>
+      </TableBody>
     </Table>
   );
 }
@@ -238,28 +250,30 @@ interface RoleAbilitiesProps {
 function RoleAbilities({ roleAbilities }: Readonly<RoleAbilitiesProps>): React.JSX.Element {
   return (
     <Table>
-      <thead>
-        <tr>
-          <th>{m["terms.trigger"]()}</th>
-          <th>{m["terms.mandatory"]()}</th>
-          <th>{m["terms.triggeredBy"]()}</th>
-          <th>{m["terms.effect"]()}</th>
-          <th>{m["terms.perLoop"]()}</th>
-        </tr>
-      </thead>
-      <tbody>
+      <TableHeader>
+        <TableRow>
+          <TableHead className="font-bold">{m["terms.trigger"]()}</TableHead>
+          <TableHead className="font-bold">{m["terms.mandatory"]()}</TableHead>
+          <TableHead className="font-bold">{m["terms.triggeredBy"]()}</TableHead>
+          <TableHead className="font-bold">{m["terms.effect"]()}</TableHead>
+          <TableHead className="font-bold">{m["terms.perLoop"]()}</TableHead>
+        </TableRow>
+      </TableHeader>
+      <TableBody>
         {sortRoleAbilities(roleAbilities).map((a, i) => (
-          <tr key={`cheatsheet-ra-${i}`}>
-            <td>{a.ability.triggers.map((trigger) => trigger.description()).join(", ")}</td>
-            <td>{m[a.ability.optional ? "terms.optional" : "terms.mandatory"]()}</td>
-            <td>
+          <TableRow key={`cheatsheet-ra-${i}`}>
+            <TableCell>
+              {a.ability.triggers.map((trigger) => trigger.description()).join(", ")}
+            </TableCell>
+            <TableCell>{m[a.ability.optional ? "terms.optional" : "terms.mandatory"]()}</TableCell>
+            <TableCell>
               <CastMemberDescription castMember={a.castMember} triggeringRole={a.grantedBy} />
-            </td>
-            <td>{a.ability.effect()}</td>
-            <td>{a.ability.timesPerLoop}</td>
-          </tr>
+            </TableCell>
+            <TableCell>{a.ability.effect()}</TableCell>
+            <TableCell>{a.ability.timesPerLoop}</TableCell>
+          </TableRow>
         ))}
-      </tbody>
+      </TableBody>
     </Table>
   );
 }
@@ -274,26 +288,26 @@ function Incidents({ incidents }: Readonly<IncidentsProps>): React.JSX.Element {
 
   return (
     <Table>
-      <thead>
-        <tr>
-          <th>{m["terms.day"]({ count: 1 })}</th>
-          <th>{m["terms.incident"]({ count: 1 })}</th>
-          <th>{m["terms.culprit"]()}</th>
-          <th>{m["terms.effect"]()}</th>
-        </tr>
-      </thead>
-      <tbody>
+      <TableHeader>
+        <TableRow>
+          <TableHead className="font-bold">{m["terms.day"]({ count: 1 })}</TableHead>
+          <TableHead className="font-bold">{m["terms.incident"]({ count: 1 })}</TableHead>
+          <TableHead className="font-bold">{m["terms.culprit"]()}</TableHead>
+          <TableHead className="font-bold">{m["terms.effect"]()}</TableHead>
+        </TableRow>
+      </TableHeader>
+      <TableBody>
         {_.sort(incidents, (i) => i.incidentTrigger.day).map(({ castMember, incidentTrigger }) => (
-          <tr key={`cheatsheet-i-${incidentTrigger.id}`}>
-            <td>{incidentTrigger.day}</td>
-            <td>{incidentTrigger.incident.name()}</td>
-            <td>
+          <TableRow key={`cheatsheet-i-${incidentTrigger.id}`}>
+            <TableCell>{incidentTrigger.day}</TableCell>
+            <TableCell>{incidentTrigger.incident.name()}</TableCell>
+            <TableCell>
               <CastMemberDescription castMember={castMember} />
-            </td>
-            <td>{incidentTrigger.incident.effect()}</td>
-          </tr>
+            </TableCell>
+            <TableCell>{incidentTrigger.incident.effect()}</TableCell>
+          </TableRow>
         ))}
-      </tbody>
+      </TableBody>
     </Table>
   );
 }

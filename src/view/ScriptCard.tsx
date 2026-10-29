@@ -1,14 +1,22 @@
 import { m } from "@i18n/messages";
 import * as _ from "radash";
 
+import { Divider } from "@/components/Divider";
+import { Paper } from "@/components/Paper";
+import {
+  Table,
+  TableBody,
+  TableCell,
+  TableHead,
+  TableHeader,
+  TableRow,
+} from "@/components/ui/table";
+
 import { Character } from "../data/types/Character";
 import { Incident } from "../data/types/Incident";
 import { PlotRole } from "../data/types/PlotRole";
 import { CastMember } from "../model/CastMember";
 import { Script } from "../model/Script";
-import { Divider } from "./components/Divider";
-import { Paper } from "./components/Paper";
-import { Table } from "./components/Table";
 import * as Icons from "./Icons";
 
 interface ScriptCardProps {
@@ -34,20 +42,20 @@ export function Mastermind({ script }: Readonly<ScriptCardProps>): React.JSX.Ele
             {m["terms.cast"]()}
           </h3>
           <Table>
-            <thead>
-              <tr>
-                <td>{m["terms.character"]({ count: 1 })}</td>
-                <td>{m["terms.role"]({ count: 1 })}</td>
-              </tr>
-            </thead>
+            <TableHeader>
+              <TableRow>
+                <TableHead className="font-bold">{m["terms.character"]({ count: 1 })}</TableHead>
+                <TableHead className="font-bold">{m["terms.role"]({ count: 1 })}</TableHead>
+              </TableRow>
+            </TableHeader>
             <tbody>
               {_.alphabetical(script.cast, (c) => c.character.name()).map((c) => (
-                <tr key={`cast-${c.id}`}>
-                  <td>
+                <TableRow key={`cast-${c.id}`}>
+                  <TableCell>
                     <CastMemberName castMember={c} />
-                  </td>
-                  <td>{c.role.name()}</td>
-                </tr>
+                  </TableCell>
+                  <TableCell>{c.role.name()}</TableCell>
+                </TableRow>
               ))}
             </tbody>
           </Table>
@@ -83,37 +91,39 @@ interface GeneralInfoProps {
 function GeneralInfo({ mastermind, script }: Readonly<GeneralInfoProps>): React.JSX.Element {
   return (
     <Table>
-      <tbody>
-        <tr>
-          <th>{m["terms.tragedySet"]()}</th>
-          <td>{script.tragedySet.name()}</td>
-        </tr>
-        <tr>
-          <th>{m["terms.castSize"]()}</th>
-          <td>{script.cast.length}</td>
-        </tr>
-        <tr>
-          <th>{m["terms.loops"]()}</th>
-          <td>{script.loops}</td>
-        </tr>
+      <TableBody>
+        <TableRow>
+          <TableHead className="font-bold">{m["terms.tragedySet"]()}</TableHead>
+          <TableCell>{script.tragedySet.name()}</TableCell>
+        </TableRow>
+        <TableRow>
+          <TableHead className="font-bold">{m["terms.castSize"]()}</TableHead>
+          <TableCell>{script.cast.length}</TableCell>
+        </TableRow>
+        <TableRow>
+          <TableHead className="font-bold">{m["terms.loops"]()}</TableHead>
+          <TableCell>{script.loops}</TableCell>
+        </TableRow>
         <MastermindOnly
           mastermind={mastermind}
           render={() => (
             <>
-              <tr>
-                <th>{m["terms.mainPlot"]()}</th>
-                <td>{script.mainPlot.name()}</td>
-              </tr>
+              <TableRow>
+                <TableHead className="font-bold">{m["terms.mainPlot"]()}</TableHead>
+                <TableCell>{script.mainPlot.name()}</TableCell>
+              </TableRow>
               {script.subplots.map((subplot, i) => (
-                <tr key={`subplot-${i}-${subplot.id}`}>
-                  <th>{i === 0 ? m["terms.subplot"]({ count: script.subplots.length }) : ""}</th>
-                  <td>{subplot.name()}</td>
-                </tr>
+                <TableRow key={`subplot-${i}-${subplot.id}`}>
+                  <TableHead>
+                    {i === 0 ? m["terms.subplot"]({ count: script.subplots.length }) : ""}
+                  </TableHead>
+                  <TableCell>{subplot.name()}</TableCell>
+                </TableRow>
               ))}
             </>
           )}
         />
-      </tbody>
+      </TableBody>
     </Table>
   );
 }
@@ -130,30 +140,30 @@ function Incidents({ mastermind, occurrences }: Readonly<IncidentsProps>): React
         {m["terms.incident"]({ count: occurrences.length })}
       </h3>
       <Table>
-        <thead>
-          <tr>
-            <th>{m["terms.day"]({ count: 1 })}</th>
-            <th>{m["terms.name"]()}</th>
+        <TableHeader>
+          <TableRow>
+            <TableHead className="font-bold">{m["terms.day"]({ count: 1 })}</TableHead>
+            <TableHead className="font-bold">{m["terms.name"]()}</TableHead>
             <MastermindOnly
               mastermind={mastermind}
-              render={() => <th>{m["terms.culprit"]()}</th>}
+              render={() => <TableHead>{m["terms.culprit"]()}</TableHead>}
             />
-          </tr>
-        </thead>
-        <tbody>
+          </TableRow>
+        </TableHeader>
+        <TableBody>
           {_.sort(occurrences, (o) => o.day).map((occurrence) => (
-            <tr key={`occ-${occurrence.id}`}>
-              <td>{occurrence.day}</td>
-              <td>
+            <TableRow key={`occ-${occurrence.id}`}>
+              <TableCell>{occurrence.day}</TableCell>
+              <TableCell>
                 <IncidentName mastermind={mastermind} occurrence={occurrence} />
-              </td>
+              </TableCell>
               <MastermindOnly
                 mastermind={mastermind}
-                render={() => <td>{occurrence.character.name()}</td>}
+                render={() => <TableCell>{occurrence.character.name()}</TableCell>}
               />
-            </tr>
+            </TableRow>
           ))}
-        </tbody>
+        </TableBody>
       </Table>
     </div>
   );
@@ -257,13 +267,13 @@ function TraitorWinConditions(props: Readonly<TraitorWinConditionProps>): React.
         {m["terms.traitorWinCondition"]({ count: traitorWinConditions.length })}
       </h3>
       <Table>
-        <thead>
-          <tr>
-            <th>Traitor</th>
-            <th>Trigger</th>
-            <th>Rule</th>
-          </tr>
-        </thead>
+        <TableHeader>
+          <TableRow>
+            <TableHead className="font-bold">{m["terms.traitor"]()}</TableHead>
+            <TableHead className="font-bold">{m["terms.trigger"]({ count: 1 })}</TableHead>
+            <TableHead className="font-bold">{m["terms.rule"]({ count: 1 })}</TableHead>
+          </TableRow>
+        </TableHeader>
         <tbody>
           {_.alphabetical(traitorWinConditions, (wc) => wc.winConditionForTraitor ?? "").map(
             (wc) => (

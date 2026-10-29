@@ -1,11 +1,9 @@
 import * as _ from "radash";
 
-import { Label } from "./components/Label";
-import { Range } from "./components/Range";
+import { Slider } from "./ui/slider";
 
 interface NumberPickerProps {
   id: string;
-  label: string;
   startIcon?: React.JSX.Element;
   min: number;
   max: number;
@@ -18,19 +16,17 @@ export function NumberPicker(props: Readonly<NumberPickerProps>): React.JSX.Elem
   const thumbSize = "16px";
 
   return (
-    <div className="w-full" style={{ "--range-thumb-size": thumbSize } as React.CSSProperties}>
-      <Label htmlFor={props.id}>
-        {props.startIcon}
-        {props.label}
-      </Label>
-      <Range
+    <div
+      className="flex w-full flex-col gap-2"
+      style={{ "--range-thumb-size": thumbSize } as React.CSSProperties}
+    >
+      <Slider
         id={props.id}
-        aria-label={props.label}
         min={props.min}
         max={props.max}
         step={1}
         value={props.value}
-        onChange={props.onChange}
+        onValueChange={props.onChange}
       />
       <div className="relative w-full text-xs" style={{ height: "1em" }}>
         {marks.map((n, i) => (
