@@ -18,7 +18,7 @@
     "lint": "pnpm lint:ts && pnpm oxfmt && pnpm lint:md",
     "lint:ts": "oxlint .",
     "lint:md": "rumdl check .",
-    "build:i18n": "paraglide-js compile --project ./project.inlang --outdir ./src/paraglide"
+    "build:i18n": "paraglide-js compile --project ./project.inlang --outdir ./src/paraglide --emit-ts-declarations"
   },
   "dependencies": {
     "@base-ui/react": "1.9.0",
